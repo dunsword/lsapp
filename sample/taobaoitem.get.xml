@@ -1,0 +1,2649 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<item_get_response>
+	<item>
+		<approve_status>onsale</approve_status>
+		<auction_point>0</auction_point>
+		<cid>50010731</cid>
+		<delist_time>2012-12-07 11:24:38</delist_time>
+		<desc>
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;background-color: #ffff00;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;strong&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;3&quot;&gt;&lt;u&gt;&lt;font size=&quot;5&quot;&gt;&lt;img
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/82277914/T2tnmMXj4XXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;background-color: #ffff00;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;strong&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;3&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot; face=&quot;黑体&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot; face=&quot;黑体&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;u&gt;&lt;font
+			size=&quot;5&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;信用卡付款注意事项&lt;/font&gt;：&lt;/font&gt;&lt;font
+			color=&quot;#000000&quot;&gt;信用卡付款的朋友请联系店家补齐1%的手续费,&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;font
+			size=&quot;3&quot;&gt;如果联系不到买家,没补齐手续费,我们将暂停发货，不便之处请原谅&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;font
+			size=&quot;5&quot; face=&quot;黑体&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;
+			&lt;p&gt;&lt;span style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 27.0px;font-family:
+			tahoma arial 宋体 sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;本店默认发顺丰快递，顺丰不到改发申通或圆通，亲们要是顺丰不到记得留言，告诉我们你那里有什么快递，方便我们第一时间准确发货&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans: 2;color:
+			#000000;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;line-height: 27.0px;font-family: tahoma arial 宋体
+			sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;11过后活动不断，购机就送清水套，亲们需同机器一起拍下，并且联系掌柜改价，我们才会送，不拍不送的哦！&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans: 2;color:
+			#000000;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;line-height: 27.0px;font-family: tahoma arial 宋体
+			sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#000000&quot;&gt;清水套链接：&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=16544631264&quot;&gt;http://item.taobao.com/item.htm?id=16544631264&lt;/a&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans: 2;color:
+			#000000;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;line-height: 27.0px;font-family: tahoma arial 宋体
+			sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff00ff&quot;&gt;亲们如需只做root，不刷ROM的请记得留言，不留言我们默认发刷ROM的。&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans: 2;color:
+			#000000;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;line-height: 27.0px;font-family: tahoma arial 宋体
+			sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;
+			size=&quot;5&quot;&gt;这里介绍下root和ROM的区别，&lt;font
+			color=&quot;#000000&quot;
+			size=&quot;4&quot;&gt;root只是给机器做个破解，破解包里只包含区域，UC浏览器，豌豆荚，RE管理器等软件。rom是别人的备份，因为安装了常用软件，对于小白来说无疑是最好的选择，拿到手就可以直接用。&lt;/font&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans: 2;color:
+			#000000;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;line-height: 27.0px;font-family: tahoma arial 宋体
+			sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 27.0px;font-family:
+			tahoma arial 宋体 sans-serif;color: #ff0000;font-size:
+			18.0px;&quot;&gt;&lt;span&gt;&lt;font
+			color=&quot;#0066cc&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;white-space: normal;orphans:
+			2;color: #000000;word-spacing: 0.0px;font-size-adjust:
+			none;font-stretch: normal;&quot;&gt;&lt;span style=&quot;line-height:
+			27.0px;font-family: tahoma arial 宋体 sans-serif;color:
+			#ff0000;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#000000&quot;
+			face=&quot;黑体&quot;&gt;本店现在代刷的中文纯净版bata4版本，root后集成了常用软件，包括局刷，瞬刷，横屏，2指缩放，深蓝词典等等常用软件，解决了不能注册，不能上网，时间不能调整等问题，系统待机时间更给力。&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;/p&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			size=&quot;3&quot; face=&quot;黑体&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;background-color:
+			#ffff00;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			size=&quot;5&quot; face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot; size=&quot;3&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;u&gt;&lt;font color=&quot;#ff0000&quot;
+			size=&quot;7&quot; face=&quot;黑体&quot;&gt;&lt;font
+			color=&quot;#000000&quot; size=&quot;5&quot;
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;巴诺新款NOOK
+			HD+接受预定，预计到货时间为11月初，相关链接：&lt;/font&gt;&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=17355251018&quot;&gt;http://item.taobao.com/item.htm?id=17355251018&lt;/a&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;p&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;strong&gt;本店技术交流群，&lt;/strong&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;QQ超级群:212211506&lt;font
+			color=&quot;#0000ff&quot;&gt;.&lt;/font&gt;&lt;font
+			color=&quot;#000000&quot;&gt;欢迎买家入群.请提供订单号入群,谢谢!&lt;/font&gt;&lt;/font&gt;&lt;font
+			color=&quot;#000000&quot; size=&quot;3&quot;&gt;
+			巴诺专业论坛：&lt;a&gt;http://goo.gl/wQeM3&lt;/a&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;Nook3主连接:&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=17100784038&quot;&gt;http://item.taobao.com/item.htm?id=17100784038&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T24w9EXhVXXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font size=&quot;7&quot; face=&quot;黑体&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;8月份新款超原款皮套上市，弥补了在国内配件短缺的缺陷，让您的爱机一直受保护&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2.SagXb8bXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;超原款皮套链接：&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=15594270721&quot;&gt;http://item.taobao.com/item.htm?id=15594270721&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;font
+			color=&quot;#800000&quot; face=&quot;黑体&quot;&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;strong&gt;最新消息,本店订了一批nook touch
+			官翻机回来.我们发货都是默认发工厂密封的,没有挑选,接受不了瑕疵的朋友请拍全新原封机,谢谢&lt;/strong&gt;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/u&gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff9900;&quot;&gt;&lt;u&gt;&lt;span
+			style=&quot;line-height: 36.0px;font-weight: 800;&quot;&gt;&lt;font
+			face=&quot;Verdana&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;这里简单的介绍下官翻机的意思,官翻,顾名思义,美国的7天无条件退款造就了官翻机的由来,这些买家因为不喜欢,或者别的原因退货,在美国来说是不可能在当全新机卖了,只能经过工厂质检过后进行翻新,对于那些没有9成新的机器会做换外壳处理,机器都没有任何问题,从卖官翻机到现在,没有听到一个客户说机器有质量问题的,对于官翻机的保修条例,请看我们店铺首页的最下面介绍,免费店保跟全新机一样的服务待遇.&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/span&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff9900;&quot;&gt;&lt;u&gt;&lt;span
+			style=&quot;line-height: 36.0px;font-weight: 800;&quot;&gt;&lt;font
+			face=&quot;Verdana&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/span&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;line-height:
+			36.0px;font-weight: 800;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;为方便广大客户的需求,本商品由于是官网代购产品,官网保修来回邮费太贵,造成保修不便,本店有专业人士专门负责国际来回保修服务,客户选择店保一年后,本店会记录机器设备号码,在签收的那天起以淘宝订单为准,开始享受店保一年,期间人为损坏除外,本店负责国际来回邮费,客户只需承担国内邮费即可,小问题可以在国内自行解决,彻底解决了买家的后顾之忧,&lt;/span&gt;特别注明,全新机可以享受官网一年保修,官翻机官网也只是保修一个月,购回来到销售日期差不多就已经时间过去了,本店官翻机默认店铺保修一个月,本店服务宗旨:顾客至上,一直在完善,从未停止过&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;line-height:
+			36.0px;font-weight: 800;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color:
+			#000000;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;line-height:
+			36.0px;font-weight: 800;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;&lt;strong&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color: #000000;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-weight:
+			normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;font-weight: normal;&quot;&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;4&quot;&gt;&lt;font
+			color=&quot;#ff00ff&quot;&gt;本店推出了店保一年的服务,详情请点击&lt;/font&gt;&lt;a
+			href=&quot;http://item.taobao.com/item.htm?spm=686.1000925.1000774.43&id=18928644178&quot;&gt;&lt;font
+			color=&quot;#ff00ff&quot;&gt;http://item.taobao.com/item.htm?spm=686.1000925.1000774.43&id=18928644178&lt;/font&gt;&lt;/a&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#800000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;strong&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			全新原封/官翻原封nook2深圳大量现货，当天晚上8点拍下付款的朋友都可当天从深圳发出，不用担心没货，不用担心品质，本店假一赔三，货真价实，以下图片9月13号拍摄。&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;img
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/82277914/T2yBGEXhFbXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;/font&gt;&lt;/strong&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;font color=&quot;#8000ff&quot;
+			size=&quot;3&quot;&gt;Nook2触屏电纸书，待机时间为Kindle3的2倍，触摸体验非常顺滑，并附带tf卡槽。使用安卓系统，可以破解，破解后可安装海量安卓应用软件。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&nbsp;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font size=&quot;3&quot;&gt;注：需要ROOT的就留言
+			否则发原封机器。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;
+			size=&quot;3&quot;&gt;nook2作为第一款安卓系统的触屏电纸书，有很多特色。在本视频我们详细介绍了它看pdf、epub、txt、word、excel这几种常见图书格式的效果。同时也展示了他浏览网页和微博的效果，希望对大家有所帮助。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;font
+			size=&quot;3&quot;&gt;视频连接：&lt;/font&gt;&lt;a&gt;&lt;font
+			size=&quot;3&quot;&gt;http://www.tudou.com/programs/view/ULAOB9sj4RI&lt;/font&gt;&lt;/a&gt;&lt;font
+			size=&quot;3&quot;&gt;&nbsp;直接点击可观看视频。&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;u&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;background-color:
+			#ffff00;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			color=&quot;#000000&quot; size=&quot;3&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/u&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;div style=&quot;font-size:
+			15.0px;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;font-size: 72.0px;&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;font-size:
+			16.0px;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			size=&quot;3&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			72.0px;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans:
+			2;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;font-size:
+			16.0px;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot; size=&quot;3&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;/font&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;color: #000000;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;NOOK2全新官方标配：&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;全新机器(内有数据线一条+英文说明书一份)/官翻配置和全新机一样&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;color: #000000;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#666666&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;套餐一:&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;color: #000000;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;u&gt;磨砂膜一张10+苹果充电头10+保护绒布袋一个10+电容笔一支10&lt;/u&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;color: #000000;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;color: #000000;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;color: #000000;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;color: #000000;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;color:
+			#ff0000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			color=&quot;#0000ff&quot;&gt;套餐二:&lt;/font&gt;&lt;u&gt;&lt;font
+			size=&quot;4&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;磨砂膜一张10&lt;/span&gt;&lt;u&gt;&lt;font
+			color=&quot;#000000&quot;
+			face=&quot;宋体&quot;&gt;+苹果充电头10+电容笔10+&lt;/font&gt;&lt;/u&gt;&lt;span
+			style=&quot;color:
+			#000000;&quot;&gt;专用定制套一个28&lt;/span&gt;&lt;/font&gt;&lt;/u&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;u&gt;&lt;span
+			style=&quot;color:
+			#000000;&quot;&gt;&lt;/span&gt;&lt;/u&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;u&gt;套餐三:&lt;/u&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;u&gt;&lt;u&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;u&gt;&lt;u&gt;&lt;span
+			style=&quot;color:
+			#ff0000;&quot;&gt;&lt;u&gt;&lt;u&gt;&lt;u&gt;&lt;u&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;u&gt;&lt;u&gt;&lt;span
+			style=&quot;color:
+			#ff0000;&quot;&gt;&lt;u&gt;&lt;u&gt;&lt;u&gt;&lt;font
+			color=&quot;#000000&quot;&gt;磨砂膜1张10&lt;u&gt;&lt;font
+			color=&quot;#000000&quot;
+			face=&quot;宋体&quot;&gt;+电容笔一支10&lt;/font&gt;&lt;/u&gt;+2张DVD书盘（里面有几万本书历史故事漫画==）20+苹果充电头10+插入式皮套一个50=100&lt;/font&gt;&lt;/u&gt;&lt;/u&gt;&lt;/u&gt;&lt;/span&gt;&lt;/u&gt;&lt;/u&gt;&lt;/span&gt;&lt;/u&gt;&lt;/u&gt;&lt;/u&gt;&lt;/u&gt;&lt;/span&gt;&lt;/u&gt;&lt;/u&gt;&lt;/span&gt;&lt;/u&gt;&lt;/u&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&nbsp;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/font&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;套餐四:&lt;/span&gt;磨砂膜一张10+原装金士顿4GTF卡35+定制版皮套28=73元&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;套餐五:&lt;/span&gt;磨砂膜一张10+原装金士顿8GTF卡50+插入式皮套50=110元&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;
+			&lt;p&gt;
+			&lt;/p&gt;&lt;p&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/p&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;选择root的朋友建议购买一张内存卡,我们会帮你把备份做好,你回去需要折腾,刷机啥的也不怕了,随时可以还原回到原厂模式来&lt;/font&gt;
+			&lt;p&gt;&lt;/p&gt;
+			&lt;hr&gt;
+
+			&lt;p&gt;&nbsp;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;插入式皮套连接：&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=16010600396&quot;&gt;http://item.taobao.com/item.htm?id=16010600396&lt;/a&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;专用定制套连接:&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=15264593336&quot;&gt;http://item.taobao.com/item.htm?id=15264593336&lt;/a&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;font
+			face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;line-height:
+			normal;widows: 2;text-transform: none;font-variant:
+			normal;font-style: normal;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font-family: simsun;white-space:
+			normal;orphans: 2;font-weight: normal;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;苹果充电头连接：&lt;/font&gt;&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=13540013666&quot;&gt;http://item.taobao.com/item.htm?id=13540013666&lt;/a&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;高清磨砂膜链接：&lt;/font&gt;&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=14154858021&quot;&gt;http://item.taobao.com/item.htm?id=14154858021&lt;/a&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;line-height: normal;widows: 2;text-transform:
+			none;font-variant: normal;font-style: normal;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font-family:
+			simsun;white-space: normal;orphans: 2;font-weight:
+			normal;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;电容笔链接：&lt;/font&gt;&lt;a
+			href=&quot;http://item.taobao.com/item.htm?id=16012424467&quot;&gt;http://item.taobao.com/item.htm?id=16012424467&lt;/a&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span
+			style=&quot;font-size: 72.0px;&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;font-size:
+			16.0px;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			size=&quot;3&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			72.0px;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans:
+			2;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: 宋体;font-size:
+			16.0px;&quot;&gt;&lt;font face=&quot;微软雅黑&quot;&gt;&lt;font
+			color=&quot;#000000&quot; size=&quot;3&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;font size=&quot;4&quot;&gt;&lt;font
+			color=&quot;#0000ff&quot;
+			size=&quot;5&quot;&gt;常见问题问答：&lt;/font&gt;&lt;br&gt;&lt;font
+			color=&quot;#ff0080&quot;&gt;1.nook2都可以支持什么格式呢？&lt;br&gt;答：原生系统可以支持pdf格式。epub格式需要root之后更换中文字体就可以完美支持了。txt格式需要在安卓环境下安装阅读软件，比如ireader或者flybook阅读器就可以了。&lt;br&gt;2
+			nook2的操作界面可以变成中文吗？&lt;br&gt;答：需要root之后在安卓环境下安装区域设置软件，这样所使用的软件就可以显示中文了，但是菜单界面还是英文的。&lt;br&gt;3，nook2可以上网吗？&lt;br&gt;答：nook2是wifi上网，root之后安装greader（RSS阅读器专业版）就可以读RSS新闻了，浏览网页的话使用ucweb就可以了，qq和新浪微博也可以安装使用，只要是安卓系统的软件一般都是可以使用的。&lt;br&gt;4
+			nook2的内存容量是多大？&lt;br&gt;答nook2的可用内存为236MB,它支持TF卡，最大支持扩展容量为32G。&lt;br&gt;5
+			nook2司机之后如何恢复系统：如何恢复用户数据？&lt;br&gt;答：三键恢复（power键+两个向下翻页键，同时按住5-10秒）是恢复系统，8次重启是恢复用户数据。&lt;br&gt;6
+			nook2进factory
+			mode如何跳过注册？&lt;br&gt;答：初始开机第一屏：按住右侧上方的翻页键，按照右下角，左下角，左上角，右上角，逆时针点击屏幕四个角，即可在屏幕的左上方出现&ldquo;factory&rdquo;按钮，进入factory按钮显示相关信息，再次按住右侧上方的翻页键，点屏幕右下方，出来skip按钮，即可skip注册步骤。&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;图片展示：&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2lg8eXf8OXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2jPlBXdhNXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2.st8XaBcXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2YTqMXkNaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/82277914/T289uPXbBaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/82277914/T2tJGHXiXbXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/82277914/T20T5dXn4bXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/82277914/T2PyiQXXdXXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/82277914/T2eP1hXdVcXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2WSafXchaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2c89fXeBaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2tBCfXXxbXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/82277914/T2QRqfXo4XXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/82277914/T2SRmfXaxaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/82277914/T2tRmfXbXaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			align=&quot;absMiddle&quot;
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/82277914/T21YXRXiddXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;上面图片的包装是全新机的包装,和下面官翻机对比明显小一点,短一点,薄一点.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			align=&quot;absMiddle&quot;
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/82277914/T2V0pkXfXNXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;看上图左边的封条,很普通的说,不明真相的人很可能相信它是我们自己封的,没办法,巴诺对包装要求太低了点,它就是原封的,下面包装塑料有所改善.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			align=&quot;absMiddle&quot;
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/82277914/T2TNxsXa0NXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;这个塑封看起来紧扎很多,因为巴诺买塑封机了哈&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			align=&quot;absMiddle&quot;
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/82277914/T23hxsXnpMXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;这是新塑封的背面,看见右边的塑料挂钩了没&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			align=&quot;absMiddle&quot;
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/82277914/T2SfBkXgBNXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;这个塑料挂钩是在薄膜袋上的,以上二种包装都是全新原封的,下面来介绍官翻机的区别.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;img
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/82277914/T2yBGEXhFbXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;color:
+			#0000ff;&quot;&gt;上图是官翻机的包装,没有塑封袋,只有一个厂家出来的标签,如包装的开封口黑色椭圆形标签.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/82277914/T2p8yfXmlXXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;好了,全新和官翻介绍到这里,本店铺主营亚马逊和巴诺二个品牌,全新的就是全新机的价格,官翻机就是官翻机的价格,不会蒙人,事实用行动说话,这里不废话多说&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;img
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/82277914/T2pQ5fXiNaXXXXXXXX_!!82277914.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;最常见一些问题：&lt;/font&gt;&lt;br&gt;&lt;font
+			size=&quot;4&quot;&gt;1、&lt;br&gt;Q:我安装百度输入法从TF卡复制?/system/app
+			下面时，提示warning&lt;br&gt;you cannot paste here because the file system
+			is
+			read-only警告&lt;br&gt;你不能贴在这里因为文件系统是只读的&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;A:rootexplorer 软件顶端有个 mounte as r/o 么？&nbsp;
+			你点旁边的 Mount R/W，之后若显示为 Mount as R/W
+			则权限修改成功，可以进行操作；若未成功，请重启再试，或检查软件：超级权限版本 或 Rootexplorer
+			版本是否过低。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;2、&lt;br&gt;Q:本机读书显示错误rror
+			dialog&lt;br&gt;sorry,cannot open this
+			book错误对话框&lt;br&gt;对不起,不能打开这本书&lt;br&gt;A:说明之前尚未打开书本，请点HOME键进入library打开书本。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;3、&lt;br&gt;Q:解压不了Nook+STR+2.1+Script&lt;br&gt;.&lt;br&gt;A:请升级你WINRAR的版本&nbsp;&nbsp;
+			或&nbsp;
+			升级7Z的解压软件&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;4、&lt;br&gt;Q:为什么字体无法复制到fonts文件下&lt;br&gt;A:解决办法类似Q1复制输入法，请保证已经获得修改权限。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;5、&lt;br&gt;Q:root之后，安卓和原系统能不能随意切换？&lt;br&gt;A:root之前的原系统只是android的一个软件，而root之后，你可以进入android系统的界面，切换是完全没问题的，按HOME键即可回到root前界面。如果想要返回android界面，请通过按钮救星（右边中间半透明按钮调出），通过虚拟home返回&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;6、&lt;br&gt;Q:adb安装rootexplorer之后，怎么安装程序？&lt;br&gt;A:如果不嫌麻烦，可以继续用adb装其他程序；或者
+			把程序安装包apk复制到TF卡任意位置，再从nook的rootexplorer找到安装包进行安装即可。当然也可以通过adb先装豌豆荚，再通过豌豆荚连接电脑安装其他软件。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;7、&lt;br&gt;Q:在电脑端用adb连接NOOK2时 为什么会出现 unable to
+			connect *.*.*.*&lt;br&gt;A:请确定nook2的
+			IP地址是否正确或NOOK2是否成功连接WIFI，NOOK2锁屏以后 会自动断开WIFI的
+			。同时请确定电脑与NOOK已经连接到同一局域网内。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;8、&lt;br&gt;Q:不ROOT如何看中文EPUB书籍？&lt;br&gt;A：群共享里有外挂字库，下载解压后把fonts文件夹复制到TF卡根目录，就可以看转换PUB书籍（需要在字体设置里Publisher
+			Defaults 打钩。转换工具在群共享里nook
+			epub.rar)。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;9、&lt;br&gt;Q:不root如何看中文PUB书籍？&lt;br&gt;A:ROOT后才可以操作。群共享有内嵌字库下载，解压后把2套字体复制进TF卡，TF卡插入NOOK2，启动rootexplorer把字体逐一复制进本体内存把
+			system 下面fonts 替换，然后改权限
+			rw-r-r。然后重启。看书时需要在字体选项里勾选替换的2套字体名称。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;10、&lt;br&gt;Q:如何注册？&lt;br&gt;A:去官网注册后，只要在NOOK2上填入邮箱和密码就可以绑定。官网：&lt;/font&gt;&lt;a&gt;&lt;font
+			size=&quot;4&quot;&gt;http://www.barnesandnoble.com/&lt;/font&gt;&lt;/a&gt;&lt;br&gt;&lt;font
+			size=&quot;4&quot;&gt;&nbsp;
+			当然在NOOK2上直接注册?部梢浴Ｐ庞每&uacute;街杩梢灾苯犹?(SKIP)。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;11、&lt;br&gt;Q:如何看NOOK2的IP地址？&lt;br&gt;A:点击n键（唯一的菜单键）后选settings--wireless--点选你的wifi网络--IP
+			address***.***.***.***&lt;br&gt;这就是你的N2的ip地址。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;12、&lt;br&gt;Q:NOOK2开机如何注册？&lt;br&gt;A:http://www.by-smart.com/forum.php?mod=viewthread&tid=2430
+			(这段网址内有比较详细的注册图解）&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;13、&lt;br&gt;Q：没有WIFI网络，新机如何跳?⒉幔?&lt;br&gt;A:初始开机第一屏：&lt;br&gt;按住右侧上方的翻页键，按照左上角、左下角、右下角、右上角逆时针点击屏幕四个角，即可在屏幕的左上方出现&ldquo;factory&rdquo;按钮；&lt;br&gt;进入factory按钮显示相关信息，再次按住右侧上方的翻?臣闫聊挥蚁路剑隼磗kip按钮，即可skip注册步骤&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;14、&lt;br&gt;Q:如何恢复出厂设置？&lt;br&gt;A:方法有3种。1、注销自己账号就可以恢复出厂设置（主清除，不恢复固件）&lt;br&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			2、3键恢复法按住电源键 随后同时按住左右两侧在下方的翻页键 出现开机界面后松开 （主清除，效果和注销账号一样）&lt;br&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			3、八次启动打断法，就按住power键15秒重启然后在进入系统前再按power键15秒重启，连续8次会进入固件恢复状态。（只恢复固件，root后安装的程序还在）&lt;br&gt;所以想要一个全新的系统就是先主清除，然后八次打断法进行固件恢复。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;15、&lt;br&gt;Q：原生阅读器如何使用自己喜欢的字体？&lt;br&gt;A：如果对系统随机内嵌的中文字体不满意，只要把自己喜欢的字体库拷入t卡的fonts目录并重命名为zw.ttf即可。（epub书籍需要使用nookepub转换工具）&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;16、&lt;br&gt;Q:如何替换回原来左翻页键？&lt;br&gt;A:1.首先要root,这是大前提。然后用root
+			explorer浏览器按照此路径找到&nbsp;
+			/system/usr/keylayout/TWL4030_Keypad.kl&lt;br&gt;然后把这个文件拷贝到电脑上，最好备份下原文件。&lt;br&gt;2.在电脑上用写字板打开这个文件，在最下几排找到&lt;br&gt;key
+			407 RIGHT_NEXTPAGE&lt;br&gt;key 412 LEFT_NEXTPAGE&lt;br&gt;key 139
+			LEFT_PREVPAGE&lt;br&gt;key 158
+			RIGHT_PREVPAGE&lt;br&gt;自上而下分别对应两侧实体按键的右上、左上、左下、右下。&lt;br&gt;GATON。o
+			O(34848491)&nbsp;
+			20:16:06&lt;br&gt;自上而下分别对应两侧实体按键的右上、左上、左下、右下。&lt;br&gt;3.修改物理按键:可将数字后面的部分进行修改为想要的功能.&lt;br&gt;建议改为以下几种样式:&lt;br&gt;MENU(菜单)&lt;br&gt;BACK（后退）&lt;br&gt;VOLUME_DOWN
+			、VOLUME_UP（很多软件可以设置音量键翻页，所以建议固定一个按键为下翻页键）&lt;br&gt;4.改好之后保存文件，放入n2中。&lt;br&gt;5.
+			用root explorer浏览器找到刚才修改后的文件，复制，然后拷入/system/usr/keylayout，覆盖原文件，记得
+			选关闭只读，然后设置此文件权限为rw-r&ndash;r&ndash;，重启后生效。&lt;br&gt;GATON。o
+			O(34848491)&nbsp;
+			20:16:26&lt;br&gt;你要恢复翻页，就改成key 407 RIGHT_NEXTPAGE&lt;br&gt;key 412
+			LEFT_NEXTPAGE&lt;br&gt;key 139 LEFT_PREVPAGE&lt;br&gt;key 158
+			RIGHT_PREVPAGE&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;17、&lt;br&gt;Q:第三方阅读软件如何局刷？&lt;br&gt;A:安装群共享里的随手写APK。运行改程序后再运行阅读软件（iread，静读）神奇的局刷出现了。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;Q:如何快速关闭wifi？&lt;br&gt;A:使用第三方软件时WIFI信号会一直打开，?贾潞牡纾庋陀斜匾焖俟乇誻ifi。在wifi信号上点一下，就会跳出关闭窗口。取消打钩，关闭wifi。想要快速打开wifi也一样在wifi信号位置再点下跳出窗口勾选wifi。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p style=&quot;text-align: center;padding-bottom: 0.0px;margin:
+			1.12em 0.0px;padding-left: 0.0px;padding-right: 0.0px;padding-top:
+			0.0px;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;font size=&quot;4&quot;&gt;&nbsp;（注意千万别把系统盘格掉
+			弄个读卡器最好 还有TF卡别拿太次的会影响机器和ROOT弄不好会死机）&lt;/font&gt;&nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;font
+			face=&quot;宋体&quot;&gt;&lt;font size=&quot;4&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot; face=&quot;宋体&quot;&gt;&lt;span
+			style=&quot;font-size:
+			36.0px;&quot;&gt;NOOK2破解方法：&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;需要:&lt;br&gt;Nook Simple
+			Touch（nook2）&lt;br&gt;WinRAR
+			Archiver（如果这个解开压缩错误，请去下载个7-zip）&lt;br&gt;512MB
+			以上microSD卡&lt;br&gt;读卡器&lt;br&gt;xp电脑&lt;br&gt;nook2能连上的wifi网络&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;修改/添加:&lt;br&gt;Superuser权限&lt;br&gt;禁止更新&lt;br&gt;可以安装非官方市场软件&lt;br&gt;开启adb
+			debugging&lt;br&gt;可选替换待机图片&lt;br&gt;可选更改左按键为菜单和返回&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;安装软件:&lt;br&gt;AdFree (禁止广告)
+			[Wi-Fi needed]&lt;br&gt;Button Savior (屏幕模拟主页等按键Displays
+			Softkeys)&lt;br&gt;gTab simi Clock (时钟小部件)&lt;br&gt;Kindle (这个都知道。。。)
+			[Wi-Fi needed]&lt;br&gt;LauncherPro
+			(替换默认launcher)&lt;br&gt;Superuser&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;步骤&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;先下载：&lt;a&gt;http://dl.dbank.com/c0c6xhte90&lt;/a&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;将文件解压缩在D盘的根目录下，&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;1:将TF卡用读卡器插在xp系统的电脑上，运行Win32DiskImager，选择&ldquo;noogie.img&rdquo;和microSD盘符。注意不要选错了。然后点&ldquo;Write&rdquo;。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;2:第一步完成后，电脑上安全移除microSD卡，插入完全关机的NOOK2.&lt;br&gt;将nook2用USB线连接电脑，啥都不要动。等会儿就会出现rooted
+			forever&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;3:打开我的电脑看nook的盘符，记下来。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;4:&lt;/span&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;运行xe-autonook.bat&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Is your Nook touch Rooted yet
+			(yes,
+			no)?&lt;br&gt;回答no。回车&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Please type the Nooks drive
+			letter (ie.&nbsp;
+			d,e,f,g):&lt;br&gt;填第三步的盘符字母，回车&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;echo
+			*****************************&lt;br&gt;echo * Unplug you Nook Touch!&nbsp;&nbsp;&nbsp;
+			*&lt;br&gt;echo * Remove the SD Card!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			*&lt;br&gt;echo * Hold Power for 10-15 sec&nbsp;
+			*&lt;br&gt;echo * Release Power and Turn on *&lt;br&gt;echo * Nook
+			will boot as normal&nbsp;
+			*&lt;br&gt;echo
+			*****************************&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;安全断开USB线&lt;br&gt;取出TF卡&lt;br&gt;再去按nook2的电源键10-15秒开机&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;然后再运行xe-autonook.bat，这个时候要先保证nook已经无线连接上了wifi&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;注意：要注意一点，在（安全断开USB线，取出TF卡，再去按nook2的电源键10-15秒开机，然后再运行xe-autonook.bat，这个时候要先保证&lt;/span&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;nook已经无线连接上了wifi）的时候，要确定和所操作的电脑是同一网段的，就是说电脑可以通过wifi连接nook2.因为第二次操作的时候，&lt;/span&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;不是通过数据线连接机器的。注意这
+			一点应该就可以破解成功了。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;br&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size: 18.0px;&quot;&gt;Is
+			your Nook touch Rooted yet (yes,
+			no)?&lt;br&gt;回答yes&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Enter the Nooks IP
+			address:&lt;br&gt;填nook2的ip地址。可以去settings-wireless看。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Was the connection successful
+			(yes,
+			no)?&lt;br&gt;要是出现connected就是成功了，填yes。否则再看看哪出错了。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Convert Left Buttons to Back
+			and Menu (yes,
+			no)?&lt;br&gt;是否把左边两个按键换位返回键和菜单键&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Remove Quickstart Guide and
+			Nook Manual from Library (yes,
+			no)?&lt;br&gt;是否删除随机带的说明书&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;Replace Authors wallpapers
+			with better ones (yes,
+			no)?&lt;br&gt;是否替换待机图片？&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;这就完成root了~~&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;可以把那张TF卡格式化回来用，需要专门软件：&lt;a&gt;http://dl.dbank.com/c0j9t82q4z&lt;/a&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;破解成功后，先用豌豆荚，或者91手机助手，下载些软件，安装一个apk安装器，就
+			可以直接在机器上安装软件，不用命令推送了。安装了&lt;/span&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;uc，应用汇，还有安装了，区域管理（可以让机器显示中文），安装re管理器，为以后的破解做准备。有从win7机器里考出来的雅黑字体备&lt;/span&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;用。把雅黑字体改名为Malabar.ttf.注意文件名称。用re管理器拷贝到/system/fonts目录，覆盖同名文件，改变权限，改成rw-r--r--.如果&lt;/span&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;不知道如何改
+			，可以长按系统自带字体，看权限，同样修改即可。&lt;br&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			系统用区域管理设置可以设置成中文的，改过字体用系统自带的阅读器打开epub文件时按屏幕中间，显示设置，在字体设置的时候，&lt;/span&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;设置为Malabar字体即可，大体完美支持epub，不用改变文件格式，有的时候段落之间会
+			有重叠，改变又下面页面格式可以解决。&lt;br&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			使用的看书软件，看txt epub，用ireader，看pdf用repligo。桌面管理器用ADWLAUNCHER EX
+			这个图标比较大比较密集看起来比较舒&lt;/span&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;服。安装uc等软件，通过wifi上网，使用还不错，就是屏幕刷新起来比较麻烦。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			color=&quot;#000000&quot;&gt;&lt;font
+			size=&quot;3&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;font style=&quot;background-color:
+			#000000;&quot;&gt;&lt;font color=&quot;#ffffff&quot;
+			face=&quot;楷体_GB2312&quot;&gt;&lt;span&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;&gt;&lt;span&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			size=&quot;7&quot;&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;&gt;&lt;span&gt;&lt;font
+			color=&quot;#000000&quot;
+			size=&quot;4&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span
+			style=&quot;font-family: arial;&quot;&gt;&lt;font size=&quot;4&quot;
+			face=&quot;宋体&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;font color=&quot;#3300ff&quot;
+			size=&quot;4&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans: 2;color:
+			#000000;word-spacing: 0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;font-family: tahoma arial 宋体
+			sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;新款Nook电子书阅读器搭载6寸&ldquo;Pearl&rdquo;e-ink电子纸萤幕，并采用Neonode的&ldquo;zForce&rdquo;红外线触控技术、Freescale的&ldquo;i.MX508&rdquo;处理器，同时内建2GB的记忆体、&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;NOOK2具体参数&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;B&N的第二代电子书Nook Simple Touch Reader，Android
+			2.1，红外线触屏，较上代Nook在翻页速度以及对比度有很大的提高。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color: #000000;&quot;&gt;&middot;触摸屏采用Neonode高敏感zForce红外线触摸技术&lt;/span&gt;&lt;br&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&middot;6英寸Pearl电子墨显示屏&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color: #000000;&quot;&gt;&middot;Wi-Fi无线连接(802.11
+			b/g/n)&lt;br&gt;&middot;2GB存储&lt;br&gt;&middot;800MHz德州仪器OMAP
+			3处理器&lt;br&gt;&middot;MicroSD卡扩展槽（可扩充至32GB）&lt;br&gt;&middot;电池续航时间长达两个月（用户不能自行更换电池）&lt;br&gt;&middot;系统运行Android
+			2.1 安卓2.1&lt;br&gt;&middot;支持EPUB、PDF、Adobe
+			DRM（支持电子书借阅）&lt;br&gt;&middot;支持JPEG、GIF、PNG、BMP图形文件&lt;br&gt;&middot;尺寸：6.5
+			x 5 x 0.47英寸&lt;br&gt;&middot;重量：7.48盎司（212克）&lt;br&gt;&middot;颜色：只有黑色&lt;/span&gt;&lt;br&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;厚:11.93
+			mm&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;屏幕大小：6寸
+			分辨率：800*600&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color: #000000;&quot;&gt;红外线触屏
+			就一个按键&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;电池比Kindle 3长一倍 (2个月)
+			刷新速率提高80％&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size: 24.0px;&quot;&gt;&nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;购物须知：&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;background-color: #ffff00;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;2&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans:
+			2;word-spacing: 0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot; size=&quot;3&quot;
+			face=&quot;Tahoma&quot;&gt;1、在本店购买产品，路途中出现丢失、损坏，我们将承担全责，网购零风险解决您的最大障碍。&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;strong&gt;&lt;span
+			style=&quot;background-color: #ffff00;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;2&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans:
+			2;word-spacing: 0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/u&gt;&lt;/strong&gt;&lt;strong&gt;&lt;u&gt;&lt;strong&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;background-color: #ffff00;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;strong&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;strong&gt;&lt;span&gt;&lt;font
+			face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;font
+			size=&quot;5&quot; face=&quot;黑体&quot;&gt;&lt;span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;2&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;font: medium simsun;white-space: normal;orphans:
+			2;word-spacing: 0.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			宋体;font-size: 18.0px;&quot;&gt;&lt;strong&gt;&lt;font
+			size=&quot;3&quot; face=&quot;Tahoma&quot;&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			color=&quot;#000000&quot;&gt;2、凡在本店购买的Nook
+			touch，7天内产品出现非人为质量问题,本店承担来回邮费包换！无质量问题概不退货,&lt;font
+			color=&quot;#ff0000&quot;&gt;特别注明,在包换期间,机器最好不要有注册,注册后不能退机,不能换机&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;u&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;background-color:
+			#ffff00;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			color=&quot;#000000&quot; size=&quot;3&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;3、收到机器在48小时内点击确认好评的请联系卖家，自动享受一个月店铺保修.&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/u&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&lt;span
+			style=&quot;font-size: 24.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 36.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;u&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;background-color:
+			#ffff00;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			color=&quot;#000000&quot; size=&quot;3&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/u&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;strong&gt;&lt;u&gt;&lt;font
+			color=&quot;#ff0000&quot; size=&quot;7&quot;
+			face=&quot;黑体&quot;&gt;&lt;u&gt;&lt;span style=&quot;color:
+			#0000ff;&quot;&gt;&lt;span style=&quot;background-color:
+			#ffff00;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;color:
+			#ff0000;&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span
+			style=&quot;widows: 2;text-transform: none;text-indent:
+			0.0px;letter-spacing: normal;border-collapse: separate;font: medium
+			simsun;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;webkit-border-horizontal-spacing:
+			0.0px;webkit-border-vertical-spacing:
+			0.0px;webkit-text-decorations-in-effect:
+			none;webkit-text-size-adjust: auto;webkit-text-stroke-width:
+			0.0px;&quot;&gt;&lt;span style=&quot;line-height: 21.0px;font-family:
+			tahoma arial 宋体 sans-serif;font-size: 14.0px;&quot;&gt;&lt;span
+			style=&quot;color: #ff0000;&quot;&gt;&lt;font
+			style=&quot;background-color: #ffffff;&quot;
+			color=&quot;#000000&quot; size=&quot;3&quot;
+			face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;widows:
+			2;text-transform: none;text-indent: 0.0px;letter-spacing:
+			normal;border-collapse: separate;font: medium simsun;white-space:
+			normal;orphans: 2;word-spacing: 0.0px;&quot;&gt;&lt;span
+			style=&quot;font-family: 宋体;font-size:
+			18.0px;&quot;&gt;&lt;strong&gt;4.电子产品在您签收包裹时,检查包裹是否损坏,务必打开检查显示屏是否损坏,如缺线,无显示,白屏,请拒签,并且第一时间联系卖家,方便卖家在最快的时间内给您补发过去,买家在签收包裹无争议后视显示屏为正常,不接受以后缺线,白屏,无显示一说.原封机器按照国家标准,3个亮点以内算正常,超出无条件换机,拆封破解的机器可确保无亮点&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/u&gt;&lt;/font&gt;&lt;/u&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
+			&lt;div style=&quot;font-size: 15.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+			&lt;h3 style=&quot;padding-bottom: 0.0px;margin: 1.0em
+			0.0px;padding-left: 0.0px;padding-right: 0.0px;font-size:
+			1.17em;font-weight: 700;padding-top: 0.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;font-size-adjust: none;font-stretch: normal;&quot;&gt;&lt;span
+			style=&quot;font-family: verdana arial helvetica
+			sans-serif;font-size: small;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;
+			size=&quot;4&quot;&gt;&lt;span&gt;购前必看：&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+			&lt;h3 style=&quot;padding-bottom: 0.0px;margin: 1.0em
+			0.0px;padding-left: 0.0px;padding-right: 0.0px;font-size:
+			1.17em;font-weight: 700;padding-top: 0.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;font-size-adjust: none;font-stretch: normal;&quot;&gt;&lt;span
+			style=&quot;font-family: verdana arial helvetica
+			sans-serif;font-size: small;&quot;&gt;&lt;font
+			size=&quot;4&quot;&gt;&lt;span&gt;因为进口产品价格经常有变化所以客户在购机时请认真考虑好在下单，本店不接受价格或者礼品变化而要求补差价或者退货以当天下单价格为标准。店小利薄希望理解。&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+			&lt;h3 style=&quot;padding-bottom: 0.0px;margin: 1.0em
+			0.0px;padding-left: 0.0px;padding-right: 0.0px;font-size:
+			1.17em;font-weight: 700;padding-top: 0.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;font-size-adjust: none;font-stretch: normal;&quot;&gt;&lt;span
+			style=&quot;font-family: verdana arial helvetica
+			sans-serif;font-size: small;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;&lt;span&gt;&lt;font
+			size=&quot;4&quot;&gt;配送说明：&lt;span&gt;&lt;span&gt;&lt;font
+			style=&quot;color: #111111;font-size: 18.0pt;&quot;&gt;本店在正常情况下发&nbsp;
+			顺丰&nbsp;
+			快递
+			需要其他物流的请说明。&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+			&lt;h3 style=&quot;padding-bottom: 0.0px;margin: 1.0em
+			0.0px;padding-left: 0.0px;padding-right: 0.0px;font-size:
+			1.17em;font-weight: 700;padding-top: 0.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;font-size-adjust: none;font-stretch: normal;&quot;&gt;&lt;span
+			style=&quot;font-family: verdana arial helvetica
+			sans-serif;font-size: small;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;
+			size=&quot;4&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;售后服务：&lt;span&gt;&lt;span&gt;&lt;font
+			style=&quot;color: #2d2d2d;font-size:
+			12.0pt;&quot;&gt;本店卖机器为全新未拆封机器在不影响第2次销售的情况下购机7天内可退换货，如果是客户要求要求刷机或者破解的机器不接受退货。本店保证所有机器为正品原厂机器支持官方保修一年.官翻保修30天,配件不在保修范围内.&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;
+			&lt;h3 style=&quot;padding-bottom: 0.0px;margin: 1.0em
+			0.0px;padding-left: 0.0px;padding-right: 0.0px;font-size:
+			1.17em;font-weight: 700;padding-top: 0.0px;&quot;&gt;&lt;span
+			style=&quot;color: #0000ff;&quot;&gt;&lt;span style=&quot;font-size:
+			24.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			36.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;widows: 2;text-transform:
+			none;text-indent: 0.0px;letter-spacing: normal;border-collapse:
+			separate;white-space: normal;orphans: 2;color: #000000;word-spacing:
+			0.0px;font-size-adjust: none;font-stretch: normal;&quot;&gt;&lt;span
+			style=&quot;font-family: verdana arial helvetica
+			sans-serif;font-size: small;&quot;&gt;&lt;font
+			color=&quot;#ff0000&quot;
+			size=&quot;3&quot;&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;联系电话：曹生：18718772996.QQ:976048626&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;/div&gt;
+		</desc>
+		<detail_url>http://item.taobao.com/item.htm?id=13992183498&spm=2014.12129701.0.0
+		</detail_url>
+		<ems_fee>15.00</ems_fee>
+		<express_fee>0.01</express_fee>
+		<freight_payer>buyer</freight_payer>
+		<has_discount>false</has_discount>
+		<has_invoice>false</has_invoice>
+		<has_showcase>true</has_showcase>
+		<has_warranty>true</has_warranty>
+		<input_pids></input_pids>
+		<input_str></input_str>
+		<is_virtual>false</is_virtual>
+		<item_imgs list="true">
+			<item_img>
+				<id>0</id>
+				<position>0</position>
+				<url>http://img04.taobaocdn.com/bao/uploaded/i4/T1rDnKXatoXXbCW_.8_101803.jpg
+				</url>
+			</item_img>
+			<item_img>
+				<id>2995445092</id>
+				<position>1</position>
+				<url>http://img03.taobaocdn.com/bao/uploaded/i3/82277914/T2TNxsXa0NXXXXXXXX_!!82277914.jpg
+				</url>
+			</item_img>
+			<item_img>
+				<id>2995397548</id>
+				<position>2</position>
+				<url>http://img02.taobaocdn.com/bao/uploaded/i2/82277914/T23hxsXnpMXXXXXXXX_!!82277914.jpg
+				</url>
+			</item_img>
+			<item_img>
+				<id>4395687337</id>
+				<position>3</position>
+				<url>http://img02.taobaocdn.com/bao/uploaded/i2/82277914/T21YXRXiddXXXXXXXX_!!82277914.jpg
+				</url>
+			</item_img>
+			<item_img>
+				<id>4395687338</id>
+				<position>4</position>
+				<url>http://img01.taobaocdn.com/bao/uploaded/i1/82277914/T2V0pkXfXNXXXXXXXX_!!82277914.jpg
+				</url>
+			</item_img>
+		</item_imgs>
+		<list_time>2012-11-30 11:24:38</list_time>
+		<location>
+			<city>深圳</city>
+			<state>广东</state>
+		</location>
+		<modified>2012-12-04 12:57:07</modified>
+		<nick>联盛科技2008</nick>
+		<num>1086</num>
+		<num_iid>13992183498</num_iid>
+		<outer_id>u[82277914]</outer_id>
+		<pic_url>http://img04.taobaocdn.com/bao/uploaded/i4/T1rDnKXatoXXbCW_.8_101803.jpg
+		</pic_url>
+		<post_fee>0.01</post_fee>
+		<postage_id>505585850</postage_id>
+		<price>549.00</price>
+		<property_alias>1627207:3232481:官翻(代刷bate4纯净中文版ROM)★现货当天发;1627207:3232483:官翻原装未拆封★假一赔三◆现货当天发;1627207:3232484:官翻（信用卡付款）★假一赔三◆现货当天发
+		</property_alias>
+		<props>34176:21401;20000:20141;6742911:92188;3374472:41635;20930:32999;8544532:3266779;8544532:3266781;8544532:3266785;8544532:3266786;8544532:3266789;8544532:6536025;1627207:3232481;1627207:3232483;1627207:3232484;10447521:57640922;14543054:3227587;14543160:125080417;14543205:85711
+		</props>
+		<seller_cids>,504870034,</seller_cids>
+		<skus list="true">
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-12-01 17:41:07</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>600.00</price>
+				<properties>8544532:3266779;1627207:3232481</properties>
+				<properties_name>8544532:3266779:套餐类型:套餐一;1627207:3232481:颜色分类:巧克力色
+				</properties_name>
+				<quantity>29</quantity>
+				<sku_id>22895115100</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>618.00</price>
+				<properties>8544532:3266781;1627207:3232481</properties>
+				<properties_name>8544532:3266781:套餐类型:套餐二;1627207:3232481:颜色分类:巧克力色
+				</properties_name>
+				<quantity>30</quantity>
+				<sku_id>22895115101</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>660.00</price>
+				<properties>8544532:3266785;1627207:3232481</properties>
+				<properties_name>8544532:3266785:套餐类型:套餐三;1627207:3232481:颜色分类:巧克力色
+				</properties_name>
+				<quantity>30</quantity>
+				<sku_id>22895115102</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>632.00</price>
+				<properties>8544532:3266786;1627207:3232481</properties>
+				<properties_name>8544532:3266786:套餐类型:套餐四;1627207:3232481:颜色分类:巧克力色
+				</properties_name>
+				<quantity>99</quantity>
+				<sku_id>22895115103</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>559.00</price>
+				<properties>8544532:6536025;1627207:3232481</properties>
+				<properties_name>8544532:6536025:套餐类型:官方标配;1627207:3232481:颜色分类:巧克力色
+				</properties_name>
+				<quantity>88</quantity>
+				<sku_id>22895115104</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-12-03 00:38:38</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>590.00</price>
+				<properties>8544532:3266779;1627207:3232483</properties>
+				<properties_name>8544532:3266779:套餐类型:套餐一;1627207:3232483:颜色分类:军绿色
+				</properties_name>
+				<quantity>28</quantity>
+				<sku_id>22895115105</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-12-03 15:32:23</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>608.00</price>
+				<properties>8544532:3266781;1627207:3232483</properties>
+				<properties_name>8544532:3266781:套餐类型:套餐二;1627207:3232483:颜色分类:军绿色
+				</properties_name>
+				<quantity>30</quantity>
+				<sku_id>22895115106</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>650.00</price>
+				<properties>8544532:3266785;1627207:3232483</properties>
+				<properties_name>8544532:3266785:套餐类型:套餐三;1627207:3232483:颜色分类:军绿色
+				</properties_name>
+				<quantity>31</quantity>
+				<sku_id>22895115107</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>622.00</price>
+				<properties>8544532:3266786;1627207:3232483</properties>
+				<properties_name>8544532:3266786:套餐类型:套餐四;1627207:3232483:颜色分类:军绿色
+				</properties_name>
+				<quantity>99</quantity>
+				<sku_id>22895115108</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>549.00</price>
+				<properties>8544532:6536025;1627207:3232483</properties>
+				<properties_name>8544532:6536025:套餐类型:官方标配;1627207:3232483:颜色分类:军绿色
+				</properties_name>
+				<quantity>52</quantity>
+				<sku_id>22895115109</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-12-01 17:56:47</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>595.00</price>
+				<properties>8544532:3266779;1627207:3232484</properties>
+				<properties_name>8544532:3266779:套餐类型:套餐一;1627207:3232484:颜色分类:天蓝色
+				</properties_name>
+				<quantity>32</quantity>
+				<sku_id>22895115110</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>613.00</price>
+				<properties>8544532:3266781;1627207:3232484</properties>
+				<properties_name>8544532:3266781:套餐类型:套餐二;1627207:3232484:颜色分类:天蓝色
+				</properties_name>
+				<quantity>30</quantity>
+				<sku_id>22895115111</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>656.00</price>
+				<properties>8544532:3266785;1627207:3232484</properties>
+				<properties_name>8544532:3266785:套餐类型:套餐三;1627207:3232484:颜色分类:天蓝色
+				</properties_name>
+				<quantity>31</quantity>
+				<sku_id>22895115112</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>627.00</price>
+				<properties>8544532:3266786;1627207:3232484</properties>
+				<properties_name>8544532:3266786:套餐类型:套餐四;1627207:3232484:颜色分类:天蓝色
+				</properties_name>
+				<quantity>99</quantity>
+				<sku_id>22895115113</sku_id>
+			</sku>
+			<sku>
+				<created>2012-06-22 14:04:28</created>
+				<modified>2012-12-04 03:19:16</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>553.00</price>
+				<properties>8544532:6536025;1627207:3232484</properties>
+				<properties_name>8544532:6536025:套餐类型:官方标配;1627207:3232484:颜色分类:天蓝色
+				</properties_name>
+				<quantity>87</quantity>
+				<sku_id>22895115114</sku_id>
+			</sku>
+			<sku>
+				<created>2012-07-26 00:56:56</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>665.00</price>
+				<properties>8544532:3266789;1627207:3232481</properties>
+				<properties_name>8544532:3266789:套餐类型:套餐五;1627207:3232481:颜色分类:巧克力色
+				</properties_name>
+				<quantity>97</quantity>
+				<sku_id>28838428768</sku_id>
+			</sku>
+			<sku>
+				<created>2012-07-26 00:56:56</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>655.00</price>
+				<properties>8544532:3266789;1627207:3232483</properties>
+				<properties_name>8544532:3266789:套餐类型:套餐五;1627207:3232483:颜色分类:军绿色
+				</properties_name>
+				<quantity>97</quantity>
+				<sku_id>28838428772</sku_id>
+			</sku>
+			<sku>
+				<created>2012-07-26 00:56:56</created>
+				<modified>2012-11-30 12:25:46</modified>
+				<outer_id>u[82277914]</outer_id>
+				<price>661.00</price>
+				<properties>8544532:3266789;1627207:3232484</properties>
+				<properties_name>8544532:3266789:套餐类型:套餐五;1627207:3232484:颜色分类:天蓝色
+				</properties_name>
+				<quantity>97</quantity>
+				<sku_id>28838428776</sku_id>
+			</sku>
+		</skus>
+		<stuff_status>new</stuff_status>
+		<title>包邮送清水套 巴诺nook2 nook touch 6寸安卓系统 完胜kindle 4 5</title>
+		<type>fixed</type>
+		<valid_thru>7</valid_thru>
+	</item>
+</item_get_response><!--top050060.cm4 -->

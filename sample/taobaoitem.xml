@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 
+detail_url,num_iid,title,nick,type,cid,
+seller_cids,props,input_pids,input_str,
+desc,pic_url,num,valid_thru,list_time,
+delist_time,stuff_status,location,
+price,post_fee,express_fee,ems_fee,has_discount,
+freight_payer,has_invoice,has_warranty,has_showcase,modified,
+increment,approve_status,postage_id,product_id,auction_point,
+property_alias,item_img,prop_img,sku,video,outer_id,is_virtual
+ -->
+<item_get_response>
+	<item>
+		<approve_status>onsale</approve_status>
+		<auction_point>0</auction_point>
+		<cid>50024116</cid>
+		<delist_time>2012-12-10 09:08:17</delist_time>
+		<desc>
+			&lt;p&gt;&lt;img align=&quot;middle&quot; style=&quot;font-family:
+			simhei;font-size: 18.0px;color: #000000;&quot;
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/114824012/T2soNXXblOXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;产品名称: 巴诺Nook2 Nook3 Simple Touch 3 Glowlight 背光 原装款
+			保护皮套&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;产品材质: 高密度超纤(内衬)+进口poly
+			urethane皮料（疯马纹）&lt;br&gt;&lt;br&gt;适用机型:&lt;font
+			color=&quot;#000000&quot;&gt;Nook2&lt;font
+			color=&quot;#000000&quot;&gt;Nook3&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span
+			style=&quot;color: #000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;可选颜色: 黑色 白色
+			红色&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;br&gt;产品特色:&lt;br&gt;&middot;优质皮料完美包裹着您的爱机，全方位保护机器免受灰尘、油污的侵扰&lt;br&gt;&middot;皮质细腻，手感非常好，单手持握，感觉比较厚实稳重，非常有质感;&lt;br&gt;&middot;时尚的外形，简洁大方，商务休闲样样适合.&lt;br&gt;&middot;皮套内里衬超纤，柔软舒适，防滑防撞，给您的的爱机带来贴身呵护；&lt;br&gt;&middot;皮套内侧两个卡位和机器完美贴合，能有效防止机器滑出。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;img align=&quot;middle&quot;
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/114824012/T2cvGdXdVcXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;所以订单均自动赠送磨砂贴膜一张。（贴膜无需拍下）&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;额外需要多张贴膜的朋友，可以访问以下链接：&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;a
+			href=&quot;http://item.taobao.com/item.htm?spm=a1z10.3.17.10.f65547&id=16073354553&quot;&gt;http://item.taobao.com/item.htm?spm=a1z10.3.17.10.f65547&id=16073354553&lt;/a&gt;&&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p
+			style=&quot;text-align: left;&quot;&gt;&lt;span
+			style=&quot;font-family: simhei;&quot;&gt;&lt;span
+			style=&quot;font-size: 18.0px;&quot;&gt;&lt;span style=&quot;color:
+			#8000ff;&quot;&gt;&lt;span style=&quot;color:
+			#222222;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;span style=&quot;color:
+			#000000;&quot;&gt;&lt;span style=&quot;font-size:
+			18.0px;&quot;&gt;&lt;span style=&quot;font-family:
+			simhei;&quot;&gt;&lt;img align=&quot;middle&quot;
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/114824012/T2y8FlXmxNXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/114824012/T2vJiRXlJaXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/114824012/T2KkSPXlJaXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/114824012/T2jJCRXf8aXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/114824012/T2OiBKXoxcXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/114824012/T2ABOKXnpaXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/114824012/T2N_9OXoFaXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;通过上下卡扣卡住机器&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/114824012/T2feiOXXtbXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/114824012/T21FBaXepOXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img04.taobaocdn.com/imgextra/i4/114824012/T2xgBaXe8OXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img03.taobaocdn.com/imgextra/i3/114824012/T2Y1KLXXxbXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img01.taobaocdn.com/imgextra/i1/114824012/T2y1afXoBbXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;&lt;font
+			color=&quot;#ff0000&quot;&gt;超细纤维内衬细节图&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;img
+			align=&quot;middle&quot;
+			src=&quot;http://img02.taobaocdn.com/imgextra/i2/114824012/T2RsSMXXlbXXXXXXXX_!!114824012.jpg&quot;&gt;&lt;/p&gt;
+		</desc>
+		<detail_url>http://item.taobao.com/item.htm?id=16073374040&spm=2014.12129701.0.0
+		</detail_url>
+		<ems_fee>25.00</ems_fee>
+		<express_fee>6.00</express_fee>
+		<freight_payer>buyer</freight_payer>
+		<has_discount>true</has_discount>
+		<has_invoice>false</has_invoice>
+		<has_showcase>true</has_showcase>
+		<has_warranty>false</has_warranty>
+		<input_pids></input_pids>
+		<input_str></input_str>
+		<is_virtual>false</is_virtual>
+		<item_imgs list="true">
+			<item_img>
+				<id>0</id>
+				<position>0</position>
+				<url>http://img01.taobaocdn.com/bao/uploaded/i1/T1oVTSXjVgXXaDBls8_101439.jpg
+				</url>
+			</item_img>
+			<item_img>
+				<id>6815252703</id>
+				<position>1</position>
+				<url>http://img03.taobaocdn.com/bao/uploaded/i3/114824012/T2qN9FXilbXXXXXXXX_!!114824012.jpg
+				</url>
+			</item_img>
+			<item_img>
+				<id>6815252704</id>
+				<position>2</position>
+				<url>http://img02.taobaocdn.com/bao/uploaded/i2/114824012/T2ESaRXmpXXXXXXXXX_!!114824012.jpg
+				</url>
+			</item_img>
+		</item_imgs>
+		<list_time>2012-12-03 09:08:17</list_time>
+		<location>
+			<city>上海</city>
+			<state>上海</state>
+		</location>
+		<modified>2012-12-01 19:41:06</modified>
+		<nick>onepieceofautumn</nick>
+		<num>9</num>
+		<num_iid>16073374040</num_iid>
+		<outer_id></outer_id>
+		<pic_url>http://img01.taobaocdn.com/bao/uploaded/i1/T1oVTSXjVgXXaDBls8_101439.jpg
+		</pic_url>
+		<post_fee>6.00</post_fee>
+		<postage_id>10054929</postage_id>
+		<price>50.00</price>
+		<property_alias>1627207:3232481:红，送贴膜;1627207:3232483:黑，送贴膜;1627207:3232484:白，送贴膜
+		</property_alias>
+		<props>1627207:3232483;1627207:3232484;1627207:3232481</props>
+		<seller_cids>,621218124,</seller_cids>
+		<skus list="true">
+			<sku>
+				<created>2012-10-04 10:15:21</created>
+				<modified>2012-12-01 19:38:19</modified>
+				<price>50.00</price>
+				<properties>1627207:3232483</properties>
+				<properties_name>1627207:3232483:颜色分类:军绿色</properties_name>
+				<quantity>5</quantity>
+				<sku_id>31818428409</sku_id>
+			</sku>
+			<sku>
+				<created>2012-10-04 10:15:21</created>
+				<modified>2012-11-11 23:42:37</modified>
+				<price>50.00</price>
+				<properties>1627207:3232484</properties>
+				<properties_name>1627207:3232484:颜色分类:天蓝色</properties_name>
+				<quantity>1</quantity>
+				<sku_id>31818428410</sku_id>
+			</sku>
+			<sku>
+				<created>2012-10-04 10:15:21</created>
+				<modified>2012-11-28 23:35:49</modified>
+				<price>50.00</price>
+				<properties>1627207:3232481</properties>
+				<properties_name>1627207:3232481:颜色分类:巧克力色</properties_name>
+				<quantity>3</quantity>
+				<sku_id>31818428411</sku_id>
+			</sku>
+		</skus>
+		<stuff_status>new</stuff_status>
+		<title>疯马纹 Nook2 Nook3 代Nook Touch Glowlight 皮套 保护套 套送膜</title>
+		<type>fixed</type>
+		<valid_thru>7</valid_thru>
+	</item>
+</item_get_response><!--top049081.cm4 -->

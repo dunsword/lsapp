@@ -1,0 +1,1 @@
+create unique index user_email on auth_user (email);
