@@ -55,10 +55,7 @@ class ThreadRequest(BaseRequest):
         result=f.read()
         u_result = result.decode(config.SBS_API_ENCODE)
         jsonResult=json.loads(result,config.SBS_API_ENCODE)
-        return jsonResult
-
-
-    
+        return jsonResult    
     
     def publishThread(self,fid,subject,content,threadcategory=0):
         reqData={
