@@ -19,7 +19,7 @@ DATABASES = {
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         'OPTIONS':{
-                   'read_default_file' :'E:/workspace/myhome/myhome/my.cnf',
+                   'read_default_file' :os.path.dirname(__file__)+'/my.cnf',
                    'init_command':'SET storage_engine=INNODB',
         }
     }
@@ -63,11 +63,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'E:/workspace/pyweb/statics'
+STATIC_ROOT = os.path.dirname(__file__)+'../statics'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = 'http://i.19lou.com/'
+STATIC_URL = 'http://i.19lou.com/statics/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
