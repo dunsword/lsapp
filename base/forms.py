@@ -14,9 +14,10 @@ my_default_errors = {
 
 class RegisterUserForm(forms.Form):
     username=forms.CharField(max_length=100,label='用户名',error_messages=my_default_errors)
+    email=forms.EmailField(label='电子邮箱',error_messages=my_default_errors)
     password=forms.CharField(widget=forms.PasswordInput,label='密 码',error_messages=my_default_errors)
     repassword=forms.CharField(widget=forms.PasswordInput,label='重新输入密码',error_messages=my_default_errors)
-    email=forms.EmailField(label='电子邮箱',error_messages=my_default_errors)
+    
     
     def clean_username(self):
         username=self.cleaned_data['username']
