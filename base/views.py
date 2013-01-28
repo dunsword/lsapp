@@ -11,6 +11,7 @@ from django.core.context_processors import csrf
 from django.contrib.auth import authenticate, login,logout
 from MySQLdb.connections import IntegrityError
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 def do_login(request):
     if request.method=='POST':
@@ -108,6 +109,7 @@ def do_register(request):
             return HttpResponse(tt.render(c))
     return HttpResponseRedirect('login')
 
+@login_required
 def setup(request):
     form=None
     if request.method=='POST':
