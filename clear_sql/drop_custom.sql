@@ -1,0 +1,1 @@
+alter table auth_user drop index user_email;
