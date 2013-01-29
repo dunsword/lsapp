@@ -23,4 +23,7 @@ urlpatterns = patterns('',
     (r'^register','base.views.register'),
     (r'^regsuccess','base.views.reg_success'),
     (r'^do_register','base.views.do_register'),
+    #admin
+    (r'^admin$','base.admin_views.users'),
+    
 )
