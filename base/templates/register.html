@@ -6,13 +6,11 @@
 		<h1 style="text-align: center">注册</h1>  
 		{% if exception %}
 		<p>错误信息：{{ exception }}</p>
-		{% endif %}
-		
+		{% endif %}		
 			{% csrf_token %}			
 			{{form.as_p}}
 			<input type='file' name='thefile' />
 			<input type="submit" />
 		</form>
-		
 		</div>
 {% endblock %}
