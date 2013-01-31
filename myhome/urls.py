@@ -17,12 +17,16 @@ urlpatterns = patterns('',
     (r'^$','album.views.index'),
     (r'^add$','album.views.add'),
     (r'^detail/(?P<doc_id>\d+)$','album.views.detail'),
+    
+    #base
     (r'^setup$','base.views.setup'),
     (r'^login$','base.views.do_login'),
     (r'^logout$','base.views.do_logout'),
     (r'^register','base.views.register'),
     (r'^regsuccess','base.views.reg_success'),
     (r'^do_register','base.views.do_register'),
+    (r'^404','base.views.page_404'),
+    
     #admin
     (r'^admin$','base.admin_views.users'),
     

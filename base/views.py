@@ -81,6 +81,16 @@ def reg_success(request):
     tt = loader.get_template('regsuccess.html')
     return HttpResponse(tt.render(c))
     
+def page_404(request):
+    c=RequestContext(request,{})
+    tt = None
+    user=request.user
+    if user==None:
+        tt=loader.get_template('unlogin_404.html')
+    else:
+        tt=loader.get_template('login_404.html')
+    return HttpResponse(tt.render(c))
+
 def do_register(request):
     if request.method=='POST':
         form= RegisterUserForm(request.POST)

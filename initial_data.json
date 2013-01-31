@@ -12,7 +12,8 @@
         "is_active":1,
         "is_superuser":1,
         "last_login":"2012-10-13 12:34:34", 
-        "date_joined":"2012-10-13 12:34:34" 
+        "date_joined":"2012-10-13 12:34:34",
+        "groups":[1]
      }   
    },
    {
@@ -28,31 +29,15 @@
         "is_active":1,
         "is_superuser":0,
         "last_login":"2012-10-13 12:34:34", 
-        "date_joined":"2012-10-13 12:34:34" ,
-        "groups":[1,],
-     }   
-   },
-   {
-    "model": "auth.User",
-     "pk":1,
-     "fields":{
-        "username":"paul",
-        "first_name":"Paul",
-        "last_name":"Wang",
-        "email":"wagzhi@gmail.com",
-        "password":"pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
-        "is_staff":1,
-        "is_active":1,
-        "is_superuser":1,
-        "last_login":"2012-10-13 12:34:34", 
-        "date_joined":"2012-10-13 12:34:34" 
+        "date_joined":"2012-10-13 12:34:34"
      }   
    },
    {
     "model": "auth.Group",
      "pk":1,
      "fields":{
-        "name":"admin"
+        "name":"admin",
+        "permissions":[31]
      }   
    }   
 ]
