@@ -1,43 +1,32 @@
 {% extends "admin.html" %}
 
-{% block content %}
-<div class='container-fluid'>
-    <div class="row-fluid">
-        <div class="span2">
-            <ul class='nav nav-list'>
-                <li class='nav-header'></li>
-                <li class='active'><a href="/admin">用户管理</a></li>
-                <li><a href="/admin/sys">系统管理</a></li>
-            </ul>
-        </div>
-        <div class="span10">
-           {% block adminContent %}
-           <table class='table'>
-               <thead>
-                   <tr>
-                       <td>ID</td>
-                       <td>用户名</td>
-                       <td>邮箱地址</td>
-                       <td>姓</td>
-                       <td>名</td>
-                       <td>操作</td>
-                   </tr>
-               </thead>
-               <tbody>
-                   {% for u in users%}
-                   <tr>
-                       <td>{{u.id}}</td>
-                       <td>{{u.name}}</td>
-                       <td>{{u.email}}</td>
-                       <td>{{u.last_name}}</td>
-                       <td>{{u.first_name}}</td>
-                       <td><a herf="/admin/users/edit/{{u.id}}">操作</a></td>
-                   </tr>
-                   {% endfor %}
-               </tbody>
-           </table>
-           {% endblock %}
-        </div>
-    </div>
-</div>
+{% block adminContent %}
+<table class='table'>
+    <thead>
+        <tr>
+            <td>用户ID</td>
+            <td>用户名</td>
+            <td>邮箱地址</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in users%}
+        <tr>
+            <td>{{u.id}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.last_name}}</td>
+            <td>{{u.first_name}}</td>
+            <td><a href="/admin/user/edit/{{u.id}}" class="edit-btn" title="编辑用户信息"  rel="tooltip"> <i class='icon-edit'></i> </a></td>
+        </tr>
+        <script>
+			$('.edit-btn').tooltip();
+
+        </script>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

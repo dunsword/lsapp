@@ -1,0 +1,8 @@
+{% extends "admin.html" %}
+
+{% block adminContent %}
+<form action="/admin/user/edit/{{user.id}}" method="post">
+    
+    {{ form.as_p }}
+</form>
+{% endblock %} 
