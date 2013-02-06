@@ -1,7 +1,7 @@
 '''
 Created on 2012-11-29
 
-@author: DELL
+@author: Paul
 '''
 
 import urllib
