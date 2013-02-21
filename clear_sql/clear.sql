@@ -3,6 +3,7 @@ DROP TABLE `album_document`;
 DROP TABLE `album_album`;
 DROP TABLE `album_taobaoitem`;
 DROP TABLE `base_userprofile`;
+DROP TABLE `base_userprofilemanager`;
 DROP TABLE `django_session`;
 ALTER TABLE `auth_user_groups` DROP FOREIGN KEY `user_id_refs_id_831107f1`;
 ALTER TABLE `auth_user_user_permissions` DROP FOREIGN KEY `user_id_refs_id_f2045483`;

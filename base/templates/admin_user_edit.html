@@ -1,8 +1,19 @@
 {% extends "admin.html" %}
 
 {% block adminContent %}
-<form action="/admin/user/edit/{{user.id}}" method="post">
-    
-    {{ form.as_p }}
-</form>
+
+<div id="user_edit" style="width: 600px">
+{% include "p_admin_user_edit_form.html" %}
+</div>
+    <script>
+        function postUserInfo(){
+            $.post("/admin/user/edit/{{user.id}}", $("#user_edit_form").serialize()).done(
+                function(data){
+                    $('#user_edit').html(data);
+                }
+            );
+            $('#user_edit').html('loading');
+            return false;
+        }
+    </script>
 {% endblock %} 
