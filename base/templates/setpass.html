@@ -1,0 +1,38 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center">修改密码</h1>
+    <div class='span3'>
+        <ul class="nav nav-list">
+            <li>
+                <a href="/setup">个人设置</a>
+            </li>
+            <li  class="active">
+                <a href="/setpass">密码修改</a>
+            </li>
+        </ul>
+    </div>
+    <form action='/setpass' method='post'  class='form-horizontal' style="margin-left:auto; margin-right:auto;width:230px">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.password.errors }} <label for="id_subject">{{ form.password.label }}:</label>
+            {{ form.password }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.newPassword.errors }} <label for="id_subject">{{ form.newPassword.label }}:</label>
+            {{ form.newPassword }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.rePassword.errors }} <label for="id_subject">{{ form.rePassword.label }}:</label>
+            {{ form.rePassword }}
+        </div>
+        <button type='submit' class="btn" >
+            设置
+        </button>
+        <br/>
+        
+    </form>
+</div>
+{% endblock %}

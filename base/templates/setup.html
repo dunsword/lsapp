@@ -1,0 +1,40 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center">个人设置</h1>
+    <div class='span3'>
+        <ul class="nav nav-list">
+            <li class="active">
+                <a href="/setup">个人设置</a>
+            </li>
+            <li>
+                <a href="/setpass">密码修改</a>
+            </li>
+            <li>
+                <a href="/setavatar">头像修改</a>
+            </li>
+        </ul>
+    </div>
+    <div class='span8'>
+    <form action='setup' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form.visible_fields %}
+        <div class="control-group">
+            <label style='float:left; margin-right: 30px'for="id_nickname">{{ field.label }}:</label>
+            {{ field }}
+            <span class="help-inline">{{ field.errors.as_text }} </span>
+        </div>
+        {% endfor %}
+        
+        
+        <button type='submit' class="btn btn-primary" >
+            设置
+        </button>
+        <br/>
+        
+    </form>
+    </div>
+</div>
+{% endblock %}
