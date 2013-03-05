@@ -21,11 +21,7 @@ urlpatterns = patterns('',
     #base
     (r'^setup$','base.views.setup'),
     (r'^setpass','base.views.setpass'),
-<<<<<<< HEAD
-     (r'^setavatar','base.views.setAvatar'),
-=======
     (r'^setavatar','base.views.setAvatar'),
->>>>>>> share/master
     (r'^login$','base.views.do_login'),
     (r'^logout$','base.views.do_logout'),
     (r'^register','base.views.register'),

@@ -1,13 +1,8 @@
 # Django settings for myhome project.
 import os
-<<<<<<< HEAD
 #import sae.const
 
 DEBUG = True
-=======
-
-DEBUG = False
->>>>>>> share/master
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -19,19 +14,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-<<<<<<< HEAD
-        'NAME': 'app_weibols',#sae.const.MYSQL_DB,                      # Or path to database file if using sqlite3.
+'NAME': 'app_weibols',#sae.const.MYSQL_DB,                      # Or path to database file if using sqlite3.
         'USER': 'paul',#sae.const.MYSQL_USER,                      # Not used with sqlite3.
         'PASSWORD': 'password',#sae.const.MYSQL_PASS,                  # Not used with sqlite3.
         'HOST': '',#sae.const.MYSQL_HOST,                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',#sae.const.MYSQL_PORT,                      # Set to empty string for default. Not used with sqlite3.
-=======
-        'NAME': 'app_weibols', #sae.const.MYSQL_DB,                      # Or path to database file if using sqlite3.
-        'USER': 'paul' ,#sae.const.MYSQL_USER,                      # Not used with sqlite3.
-        'PASSWORD': 'password', #sae.const.MYSQL_PASS,                  # Not used with sqlite3.
-        'HOST': '127.0.0.1',#sae.const.MYSQL_HOST,                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306',#sae.const.MYSQL_PORT,                      # Set to empty string for default. Not used with sqlite3.
->>>>>>> share/master
         'OPTIONS':{
                    #'read_default_file' :os.path.dirname(__file__)+'/my.cnf',
                    #'init_command':'SET storage_engine=INNODB',
@@ -77,11 +64,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-<<<<<<< HEAD
 STATIC_ROOT = os.path.dirname(__file__)+'/../static'
-=======
-STATIC_ROOT = os.path.dirname(__file__)+'../statics'
->>>>>>> share/master
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -124,10 +107,6 @@ MIDDLEWARE_CLASSES = (
 )
 AUTHENTICATION_BACKENDS=('base.backend.BaseBackend',)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> share/master
 ROOT_URLCONF = 'myhome.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
