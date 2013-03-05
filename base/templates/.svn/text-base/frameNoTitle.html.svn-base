@@ -1,0 +1,22 @@
+{% extends "frameBase.html" %}
+{% block topBar %}
+ 
+            <div class="navbar-inner">
+                <div class="container" style="width:980px; margin: 0 auto;">
+                    <a class="brand" href="#">我家</a>
+                    
+                    <ul class="nav pull-right">
+                        <li>
+                            <a href="/login"></a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li>
+                            <a href="#">关于</a>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+         
+{% endblock %}
+    

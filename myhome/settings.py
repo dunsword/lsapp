@@ -1,5 +1,6 @@
 # Django settings for myhome project.
 import os
+#import sae.const
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -13,14 +14,14 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        #'NAME': 'myhome',                      # Or path to database file if using sqlite3.
-        #'USER': 'paul',                      # Not used with sqlite3.
-        #'PASSWORD': 'password',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': 'app_weibols',#sae.const.MYSQL_DB,                      # Or path to database file if using sqlite3.
+        'USER': 'paul',#sae.const.MYSQL_USER,                      # Not used with sqlite3.
+        'PASSWORD': 'password',#sae.const.MYSQL_PASS,                  # Not used with sqlite3.
+        'HOST': '',#sae.const.MYSQL_HOST,                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',#sae.const.MYSQL_PORT,                      # Set to empty string for default. Not used with sqlite3.
         'OPTIONS':{
-                   'read_default_file' :os.path.dirname(__file__)+'/my.cnf',
-                   'init_command':'SET storage_engine=INNODB',
+                   #'read_default_file' :os.path.dirname(__file__)+'/my.cnf',
+                   #'init_command':'SET storage_engine=INNODB',
         }
     }
 }
@@ -63,11 +64,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.dirname(__file__)+'../statics'
+STATIC_ROOT = os.path.dirname(__file__)+'/../static'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = 'http://i.19lou.com/static/'
+STATIC_URL = 'http://weibols.sinaapp.com/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -104,6 +105,8 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+AUTHENTICATION_BACKENDS=('base.backend.BaseBackend',)
+
 
 ROOT_URLCONF = 'myhome.urls'
 
