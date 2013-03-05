@@ -30,4 +30,3 @@ App Key:100
 App Secret:accessTest7118jqq54113accessTest
 
 http://s.taobao.com/search?spm=a230r.1.6.2.H1lFl6&q=&initiative_id=staobaoz_20121203&cat=1512&sort=renqi-desc&atype=b&v=auction&tab=all&cd=false&filterFineness=2&fs=1&bcoffset=1&psrc=detail&dc=1&newpre=null&bcoffset=1&cps=yes&from=compass&ppath=20000:81156
-添加到本地git master
