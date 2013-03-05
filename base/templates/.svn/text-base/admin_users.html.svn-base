@@ -1,0 +1,32 @@
+{% extends "admin.html" %}
+
+{% block adminContent %}
+<table class='table'>
+    <thead>
+        <tr>
+            <td>用户ID</td>
+            <td>用户名</td>
+            <td>邮箱地址</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in users%}
+        <tr>
+            <td>{{u.id}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.last_name}}</td>
+            <td>{{u.first_name}}</td>
+            <td><a href="/admin/user/edit/{{u.id}}" class="edit-btn" title="编辑用户信息"  rel="tooltip"> <i class='icon-edit'></i> </a></td>
+        </tr>
+        <script>
+			$('.edit-btn').tooltip();
+
+        </script>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
