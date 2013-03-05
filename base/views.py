@@ -13,6 +13,7 @@ from MySQLdb.connections import IntegrityError
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
+from PIL import Image
 
 def do_login(request):
     if request.method == 'POST':
@@ -190,11 +191,22 @@ def __jsonRespones(ctx, **httpresponse_kwargs):
 
 @login_required
 def cropAvatar(request):
-    avatarWidth = request.POST['avatar_width']
-    user = request.user
+    avatarWidth = int(request.POST['avatar_width'])
+    avatarHeight = int(request.POST['avatar_height'])
+    avatarMarginLeft = int(request.POST['avatar_marginLeft'])
+    avatarMarginTop = int(request.POST['avatar_marginTop'])
+    avatarRealWidth = int(request.POST['avatar_real_x'])
+    avatarRealHeight = int(request.POST['avatar_real_y'])
     
+    
+    user = request.user
     fileName = settings.STATIC_ROOT + '/avatar/' + str(user.id) + '.jpg'
-    result={'avatarWidth':avatarWidth,'result':'success'}
+    img=Image.open(fileName)
+    img.thumbnail((avatarRealWidth,avatarRealHeight),Image.ANTIALIAS)
+    avatar=img.crop((avatarMarginLeft,avatarMarginTop,avatarMarginLeft+avatarWidth,avatarMarginTop+avatarHeight))
+    avatar.thumbnail((60,60),Image.ANTIALIAS)
+    avatar.save(settings.STATIC_ROOT + '/avatar/' + str(user.id) + '_avatar_60_60.jpg',"JPEG",quality=100)
+    result={'width':avatarWidth,'height':avatarHeight,'left':avatarMarginLeft,'top':avatarMarginTop,'real_width':avatarRealWidth,'real_height':avatarRealHeight , 'result':'success',}
     return __jsonRespones(result);
 
 def handleFile(uid, f):

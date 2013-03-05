@@ -63,6 +63,8 @@
 						$('#avatar_height').val(c.h);
 						$('#avatar_marginLeft').val(avartarMarginLeft);
 						$('#avatar_marginTop').val(avartarMarginTop);
+						$('#avatar_real_x').val(boundx);
+						$('#avatar_real_y').val(boundy);
 					}
 				};
 
@@ -94,11 +96,13 @@
         <!--cnzz tui-->
 
 <!--cnzz tui-->
-        <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit=" postCropAvatar()" class='form-horizontal' style=" ">
+        <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit="return postCropAvatar()" class='form-horizontal' style=" ">
             <input type='text' id='avatar_width' name='avatar_width'/>
             <input type='text' id='avatar_height' name='avatar_height'/>
-             <input type='text' id='avatar_marginLeft' name='avatar_marginLeft'/>
-             <input type='text' id='avatar_marginTop' name='avatar_marginTop'/>
+            <input type='text' id='avatar_marginLeft' name='avatar_marginLeft'/>
+            <input type='text' id='avatar_marginTop' name='avatar_marginTop'/>
+            <input type='text' id='avatar_real_x' name='avatar_real_x'/>
+            <input type='text' id='avatar_real_y' name='avatar_real_y'/>
              {% csrf_token %}
             <button class="btn-primary">
                 完成设置
@@ -108,7 +112,7 @@
             function postCropAvatar(){
                 $.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(
                 function(data){
-                    
+                    alert(data.toString());
                 });
                 return false;
                 }
