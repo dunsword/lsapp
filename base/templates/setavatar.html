@@ -5,21 +5,19 @@
     <h1 style="text-align: center">个人设置</h1>
     <div class='span3'>
         <ul class="nav nav-list">
-            <li class="active">
+            <li>
                 <a href="/setup">个人设置</a>
             </li>
             <li>
                 <a href="/setpass">密码修改</a>
             </li>
-            <li>
+            <li class="active">
                 <a href="/setavatar">头像修改</a>
             </li>
         </ul>
     </div>
     <div class='span8'>
         <script language="JavaScript">
-			
-
 			jQuery(function($) {
 
 				// Create variables (in this scope) to hold the API and image size
@@ -29,7 +27,7 @@
 				$preview = $('#preview-pane');
 				$pcnt = $('#preview-pane .preview-container');
 				$pimg = $('#preview-pane .preview-container img');
-			    xsize = $pcnt.width(), ysize = $pcnt.height();
+				xsize = $pcnt.width(), ysize = $pcnt.height();
 
 				console.log('init', [xsize, ysize]);
 				$('#target').Jcrop({
@@ -48,16 +46,23 @@
 					$preview.appendTo(jcrop_api.ui.holder);
 				});
 				function updatePreview(c) {
-					if(parseInt(c.w) > 0) {
+					if (parseInt(c.w) > 0) {
 						var rx = xsize / c.w;
 						var ry = ysize / c.h;
-
+                        var avatarWidth=Math.round(rx * boundx);
+                        var avatarHeight=Math.round(ry * boundy);
+                        var avartarMarginLeft=Math.round(rx * c.x);
+                        var avartarMarginTop=Math.round(ry * c.y);
 						$pimg.css({
 							width : Math.round(rx * boundx) + 'px',
 							height : Math.round(ry * boundy) + 'px',
 							marginLeft : '-' + Math.round(rx * c.x) + 'px',
 							marginTop : '-' + Math.round(ry * c.y) + 'px'
 						});
+						$('#avatar_width').val(c.w);
+						$('#avatar_height').val(c.h);
+						$('#avatar_marginLeft').val(avartarMarginLeft);
+						$('#avatar_marginTop').val(avartarMarginTop);
 					}
 				};
 
@@ -70,6 +75,7 @@
                 <img src="http://i.19lou.com/static/avatar/1.jpg" class="jcrop-preview" alt="Preview" />
             </div>
         </div>
+
         <form action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
             {% csrf_token %}
             {{ form.non_field_errors }}
@@ -80,10 +86,33 @@
             </div>
             {% endfor %}
             <button type='submit' class="btn btn-primary" >
-                设置
+                上传头像
             </button>
+
             <br/>
         </form>
+        <!--cnzz tui-->
+
+<!--cnzz tui-->
+        <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit=" postCropAvatar()" class='form-horizontal' style=" ">
+            <input type='text' id='avatar_width' name='avatar_width'/>
+            <input type='text' id='avatar_height' name='avatar_height'/>
+             <input type='text' id='avatar_marginLeft' name='avatar_marginLeft'/>
+             <input type='text' id='avatar_marginTop' name='avatar_marginTop'/>
+             {% csrf_token %}
+            <button class="btn-primary">
+                完成设置
+            </button>
+        </form>
+        <script>
+            function postCropAvatar(){
+                $.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(
+                function(data){
+                    
+                });
+                return false;
+                }
+        </script>
     </div>
 </div>
 {% endblock %}
