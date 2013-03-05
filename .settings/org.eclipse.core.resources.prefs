@@ -1,9 +1,12 @@
-#Mon Feb 04 11:01:05 CST 2013
+#Fri Feb 22 16:34:53 CST 2013
 eclipse.preferences.version=1
 encoding//album/views.py=utf-8
 encoding//base/admin_forms.py=utf-8
 encoding//base/admin_views.py=utf-8
+encoding//base/backend.py=utf-8
 encoding//base/forms.py=utf-8
+encoding//base/messages.py=utf-8
+encoding//base/models.py=utf-8
 encoding//base/views.py=utf-8
 encoding//sbs/__init__.py=utf-8
 encoding//sbs/api/BaseRequest.py=utf-8
