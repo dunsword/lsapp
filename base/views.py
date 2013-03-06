@@ -14,6 +14,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
 from PIL import Image
+from base.storage.client import StorageClient
 
 def do_login(request):
     if request.method == 'POST':
@@ -172,14 +173,15 @@ def setpass(request):
 @login_required
 def setAvatar(request):
     form = SetAvatarForm()
+    url=None #todo get from user obj
     if request.method == 'POST':
         form = SetAvatarForm(request.POST, request.FILES)
         user = request.user
         if form.is_valid():
             avatarTempFile = request.FILES['avatar']
-            handleFile(user.id, avatarTempFile)
+            url=handleFile(user.id, avatarTempFile)
             
-    c = RequestContext(request, {'form':form, 'head_template_file':'setavatar_head.html'})
+    c = RequestContext(request, {'form':form, 'head_template_file':'setavatar_head.html','avatar_url':url})
     tt = loader.get_template('setavatar.html')
     return HttpResponse(tt.render(c))
 
@@ -212,6 +214,11 @@ def cropAvatar(request):
 def handleFile(uid, f):
     fileName = settings.STATIC_ROOT + '/avatar/' + str(uid) + '.jpg'
     destination = open(fileName, 'wb+')
-    for chunk in f.chunks():
-        destination.write(chunk)
+#    for chunk in f.chunks():
+#        destination.write(chunk)
+    data=f.read()
+    destination.write(data)
+    sc=StorageClient()
+    url=sc.store(data)
     destination.close()
+    return url
