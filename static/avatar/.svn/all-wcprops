@@ -7,5 +7,23 @@ END
 K 25
 svn:wc:ra_dav:version-url
 V 42
-/weibols/!svn/ver/31/2/static/avatar/1.jpg
+/weibols/!svn/ver/47/2/static/avatar/1.jpg
+END
+1_avatar_30_30.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/weibols/!svn/ver/47/2/static/avatar/1_avatar_30_30.jpg
+END
+1_avatar_60_60.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/weibols/!svn/ver/47/2/static/avatar/1_avatar_60_60.jpg
+END
+1_avatar.jpg
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/weibols/!svn/ver/47/2/static/avatar/1_avatar.jpg
 END
