@@ -71,13 +71,13 @@
 			});
 
         </script>
-        <img id="target" src="http://i.19lou.com/static/avatar/1.jpg" />
+        <img id="target" src="{{avatar_url}}" />
         <div id="preview-pane">
             <div class="preview-container">
-                <img src="http://i.19lou.com/static/avatar/1.jpg" class="jcrop-preview" alt="Preview" />
+                <img src="{{avatar_url}}" class="jcrop-preview" alt="Preview" />
             </div>
         </div>
-		<div>url={{url}}</div>
+		
         <form action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
             {% csrf_token %}
             {{ form.non_field_errors }}
