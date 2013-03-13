@@ -14,7 +14,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
 from PIL import Image
-from base.storage.client import AvatarClient
+from base.storage.client import AvatarClient,CropClient
 
 def do_login(request):
     if request.method == 'POST':
@@ -203,14 +203,19 @@ def cropAvatar(request):
     avatarRealWidth = int(request.POST['avatar_real_x'])
     avatarRealHeight = int(request.POST['avatar_real_y'])
     
+   
     
     user = request.user
-    fileName = settings.STATIC_ROOT + '/avatar/' + str(user.id) + '.jpg'
-    img=Image.open(fileName)
-    img.thumbnail((avatarRealWidth,avatarRealHeight),Image.ANTIALIAS)
-    avatar=img.crop((avatarMarginLeft,avatarMarginTop,avatarMarginLeft+avatarWidth,avatarMarginTop+avatarHeight))
-    avatar.thumbnail((60,60),Image.ANTIALIAS)
-    avatar.save(settings.STATIC_ROOT + '/avatar/' + str(user.id) + '_avatar_60_60.jpg',"JPEG",quality=100)
+    
+    originAvatar=AvatarClient.getStoreFileName(AvatarClient.getSaveFileName(user.id))
+    #afile=open(originAvatar)
+    
+    cropedAvatar=CropClient.store(user.id,originAvatar,avatarRealWidth,avatarRealHeight,avatarMarginLeft,avatarMarginTop,avatarWidth,avatarHeight)    
+    
+    #TODO 删除旧文件
+    user.avatar=cropedAvatar
+    user.save()
+    
     result={'width':avatarWidth,'height':avatarHeight,'left':avatarMarginLeft,'top':avatarMarginTop,'real_width':avatarRealWidth,'real_height':avatarRealHeight , 'result':'success',}
     return __jsonRespones(result);
 

@@ -27,12 +27,13 @@ class StorageClient():
         #self.client.put('avatar', '001.jpg', obj)
         im=Image.open(file)
         fileName=self.getSaveFileName(uid,file.name)
-        fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName
+        fullPathName=self.getStoreFileName(fileName)
         im.save(fullPathName,"JPEG",quality=100)
       
         return fileName#self.client.url('avatar','001.jpg')
     
-            
+    def getStoreFileName(self,fileName):        
+        return settings.STATIC_ROOT+self.domain+"/"+fileName
         
     def url(self,fileName,size=None):
         if size:
@@ -56,32 +57,37 @@ class StorageClient():
             originName = originName[len(originName)-10:]
         return now.strftime('%y_%m_%d_%H_%M_%S_')+str(uid)+'_'+str(originName)    
 
-class AvatarStorageClient(StorageClient):
+class CAvatarStorageClient(StorageClient):
     PREFIX="a_o_"
     def getSaveFileName(self,uid,originName=None):
-        return AvatarStorageClient.PREFIX+str(uid)+".jpg"
+        return CAvatarStorageClient.PREFIX+str(uid)+".jpg"
         
-class AvatarCropClient(StorageClient):
+class CAvatarCropClient(StorageClient):
     def getSaveFileName(self,uid,originName=None):
         now=datetime.now()
         prefix="a_"+now.strftime('%y_%m_%d_%H_%M_%S_')
         return prefix+str(uid)+".jpg"
     
-    def store(self, uid,file,displayW,displayH,cropW,cropH,left,top):
+    def store(self, uid,file,displayW,displayH,left,top,cropW,cropH):
         #obj = sae.storage.Object(fileData)
         #self.client.put('avatar', '001.jpg', obj)
         im=Image.open(file)
-       
-        fileName=self.getSaveFileName(uid,file.name)
+        im.thumbnail((displayW,displayH), Image.ANTIALIAS)
+        area=im.crop((left,top,left+cropW,top+cropH))
+        
+        fileName=self.getSaveFileName(uid)
+
         fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName
-        im.save(fullPathName,"JPEG",quality=100)
-      
+        area.thumbnail((250,250),Image.ANTIALIAS)
+       
+        area.save(fullPathName,"JPEG",quality=100)
+         
         return fileName#self.client.url('avatar','001.jpg')
         
    
      
-AvatarClient=AvatarStorageClient("avatar")
-
+AvatarClient=CAvatarStorageClient("avatar")
+CropClient=CAvatarCropClient("avatar")
 #
 #class ImageClient(StorageClient):
 #    URL_ROOT=settings.STATIC_URL
