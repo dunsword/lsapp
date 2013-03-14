@@ -17,6 +17,8 @@
         </ul>
     </div>
     <div class='span8'>
+    	当前头像：<img id='current_avatar' src='{{STATIC_URL}}avatar/{{user.avatar}}'/>
+    	<span id="cropMessage"></span>
         <script language="JavaScript">
 			jQuery(function($) {
 
@@ -71,46 +73,54 @@
 			});
 
         </script>
-        <img id="target" src="http://i.19lou.com/static/avatar/1.jpg" />
+        <div>
+        头像图片：
+        <img id="target" src="{{avatar_url}}?tag={% now  'U' %}" />
+        </div>
         <div id="preview-pane">
             <div class="preview-container">
-                <img src="http://i.19lou.com/static/avatar/1.jpg" class="jcrop-preview" alt="Preview" />
+                <img src="{{avatar_url}}?tag={% now  'U' %}" class="jcrop-preview" alt="Preview" />
+               
             </div>
+             <button class="btn-primary" onclick="$('#cropAvatarForm').submit()">
+                设定头像
+                </button>
         </div>
-		<div>url={{url}}</div>
+		
         <form action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
             {% csrf_token %}
             {{ form.non_field_errors }}
             {% for field in form.visible_fields %}
             <div class="control-group">
-                <label style='float:left; margin-right: 30px'for="id_nickname">{{ field.label }}:</label>
-                {{ field }} <span class="help-inline">{{ field.errors.as_text }} </span>
-            </div>
-            {% endfor %}
-            <button type='submit' class="btn btn-primary" >
-                上传头像count={{count}}
+                <label style='float:left; margin-right: 30px'for="id_avatar">上传头像文件:</label>
+                {{ field }} <span class="help-inline">{{ field.errors.as_text }} </span> 
+                
+                 <button type='submit' class="btn btn-primary" >
+                上传头像图片
             </button>
 
+            </div>
+            {% endfor %}
+           
             <br/>
         </form>
        
         <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit="return postCropAvatar()" class='form-horizontal' style=" ">
-            <input type='text' id='avatar_width' name='avatar_width'/>
-            <input type='text' id='avatar_height' name='avatar_height'/>
-            <input type='text' id='avatar_marginLeft' name='avatar_marginLeft'/>
-            <input type='text' id='avatar_marginTop' name='avatar_marginTop'/>
-            <input type='text' id='avatar_real_x' name='avatar_real_x'/>
-            <input type='text' id='avatar_real_y' name='avatar_real_y'/>
+            <input type='hidden' id='avatar_width' name='avatar_width'/>
+            <input type='hidden' id='avatar_height' name='avatar_height'/>
+            <input type='hidden' id='avatar_marginLeft' name='avatar_marginLeft'/>
+            <input type='hidden' id='avatar_marginTop' name='avatar_marginTop'/>
+            <input type='hidden' id='avatar_real_x' name='avatar_real_x'/>
+            <input type='hidden' id='avatar_real_y' name='avatar_real_y'/>
              {% csrf_token %}
-            <button class="btn-primary">
-                完成设置
-            </button>
+            
         </form>
         <script>
             function postCropAvatar(){
                 $.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(
                 function(data){
-                    alert(data.toString());
+                    $('#current_avatar').attr('src','{{STATIC_URL}}avatar/'+data['avatar_url']);
+                    $('#cropMessage').html("头像更新成功！");
                 });
                 return false;
                 }

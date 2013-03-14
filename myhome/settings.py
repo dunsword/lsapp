@@ -130,8 +130,9 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'base',
+    'ls',
     'album',
-    'base'
 )
 LOGIN_URL='/login'
 # A sample logging configuration. The only tangible logging

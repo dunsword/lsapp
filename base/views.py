@@ -14,7 +14,8 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
 from PIL import Image
-from base.storage.client import StorageClient
+from base.storage.client import AvatarClient,CropClient
+from datetime import datetime
 
 def do_login(request):
     if request.method == 'POST':
@@ -173,22 +174,20 @@ def setpass(request):
 @login_required
 def setAvatar(request):
     form = SetAvatarForm()
-    url=None #todo get from user obj
-    ac=StorageClient.getAvatarClient()
+
     user = request.user
     if request.method == 'POST':
         form = SetAvatarForm(request.POST, request.FILES)
         
         if form.is_valid():
             avatarTempFile = request.FILES['avatar']
-            #url=handleFile(user.id, avatarTempFile)
-            saveFileName=ac.store(user.id,avatarTempFile,avatarTempFile.name)
-            user.avatar=saveFileName
-            user.save()
-    c = RequestContext(request, {'form':form, 
-                                 'head_template_file':'setavatar_head.html',
-                                 'avatar_url':ac.url(user.avatar),
-                                 'count':StorageClient.count})
+            fileName=AvatarClient.store(user.id, avatarTempFile) 
+#            user.avatar=fileName
+#            user.save()
+    
+    url=AvatarClient.url(AvatarClient.getSaveFileName(user.id))        
+    c = RequestContext(request, {'form':form, 'head_template_file':'setavatar_head.html','avatar_url':url,})
+
     tt = loader.get_template('setavatar.html')
     return HttpResponse(tt.render(c))
 
@@ -207,27 +206,35 @@ def cropAvatar(request):
     avatarRealWidth = int(request.POST['avatar_real_x'])
     avatarRealHeight = int(request.POST['avatar_real_y'])
     
+   
     
     user = request.user
-    fileName = settings.STATIC_ROOT + '/avatar/' + str(user.id) + '.jpg'
-    img=Image.open(fileName)
-    img.thumbnail((avatarRealWidth,avatarRealHeight),Image.ANTIALIAS)
-    avatar=img.crop((avatarMarginLeft,avatarMarginTop,avatarMarginLeft+avatarWidth,avatarMarginTop+avatarHeight))
-    avatar.thumbnail((60,60),Image.ANTIALIAS)
-    avatar.save(settings.STATIC_ROOT + '/avatar/' + str(user.id) + '_avatar_60_60.jpg',"JPEG",quality=100)
-    result={'width':avatarWidth,'height':avatarHeight,'left':avatarMarginLeft,'top':avatarMarginTop,'real_width':avatarRealWidth,'real_height':avatarRealHeight , 'result':'success',}
+    
+    originAvatar=AvatarClient.getStoreFileName(AvatarClient.getSaveFileName(user.id))
+    #afile=open(originAvatar)
+    
+    cropedAvatar=CropClient.store(user.id,originAvatar,avatarRealWidth,avatarRealHeight,avatarMarginLeft,avatarMarginTop,avatarWidth,avatarHeight)    
+    
+    #TODO 删除旧文件
+    user.avatar=cropedAvatar
+    user.save()
+    
+    result={'avatar_url': cropedAvatar, 'result':'success',}
     return __jsonRespones(result);
 
-def handleFile(uid, f):
+#def handleFile(uid, f):
     
     
-    fileName = settings.STATIC_ROOT + '/avatar/' + str(uid) + '.jpg'
-    destination = open(fileName, 'wb+')
+#    fileName = settings.STATIC_ROOT + '/avatar/' + str(uid) + '.jpg'
+#    destination = open(fileName, 'wb+')
 #    for chunk in f.chunks():
 #        destination.write(chunk)
-    data=f.read()
-    destination.write(data)
-    ac=StorageClient.getAvatarClient()
-    url=ac.store(data)
-    destination.close()
-    return url
+
+#    data=f.read()
+#    destination.write(data)
+#    sc=StorageClient()
+#    url=sc.store(data)
+#    destination.close()
+#    fileName = AvatarClient.store(uid,f)
+#    return fileName
+

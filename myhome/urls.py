@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (r'^$','album.views.index'),
+    (r'^$','ls.views.index'),
     (r'^add$','album.views.add'),
     (r'^detail/(?P<doc_id>\d+)$','album.views.detail'),
     

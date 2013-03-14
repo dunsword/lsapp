@@ -23,8 +23,14 @@ from django.contrib.auth.hashers import (
 
 class UserManager(models.Manager):
     def create_user(self,username,email,password):
-        User.objects.create(username,email,password)
-
+        user=User(username=username,email=email)
+        user.set_password(password)
+        user.save()
+        return user
+    
+    def getByEmail(self,email):
+        return self.get(email=email)
+        
 class User(models.Model):
     objects = UserManager()
     username = models.CharField(_('username'), max_length=30, unique=True,
