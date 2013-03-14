@@ -4,28 +4,60 @@ from datetime import datetime
 from PIL import Image
 #import sae.storage
 class StorageClient():
-    OMAIN_AVATOR="avatar"
+    DOMAIN_AVATOR="avatar"
     DOMAIN_ATTACH="attach"
     #下面两个实例可以根据需要切换
     #if defalut
-    __avatarClient__=ImageClient(DOMAIN_AVATOR)
-    __attachClient__=ImageClient(DOMAIN_ATTACH)
+    __avatarClient__=None
+    __attachClient__=None
     
     SIZE_MIDDLE='middle'
     SIZE_60='60X60'
     
     SIZE_DICT = {SIZE_60:(60,60)}
     
+    __inited__=False
+    count=0
+    @staticmethod
+    def init():
+        if not StorageClient.__inited__:
+            StorageClient.__avatarClient__=ImageClient(StorageClient.DOMAIN_AVATOR,{StorageClient.SIZE_60})
+            StorageClient.__attachClient__=ImageClient(StorageClient.DOMAIN_ATTACH,{})
+            StorageClient.__inited__=True
+        StorageClient.count=StorageClient.count+1
     
+    @staticmethod   
+    def isInited():
+        inited=StorageClient.__inited__
+        return inited    
     #else if sae
     #sae implements
-    
+    @staticmethod
     def getAvatarClient():
-        return __avatarClient__
+        return StorageClient.__avatarClient__
     
+    @staticmethod
     def getAttachClient():
-        return __attachClient__
-
+        return StorageClient.__attachClient__
+    
+    
+    def store(self, uid,file,originName):
+        '''
+        store image file and thrumb files
+        '''
+        pass
+    
+   
+    def url(self,fileName):
+        '''
+        return the url of the image file
+        '''
+        pass
+    
+   
+    def thrumbURL(self,fileName,size):
+        pass
+    
 class ImageClient(StorageClient):
     URL_ROOT=settings.STATIC_URL
     STORAGE_ROOT=settings.STATIC_ROOT
@@ -34,6 +66,7 @@ class ImageClient(StorageClient):
     '''
     def __init__(self,domain,supportedSize):
         #self.client=sae.storage.Client()
+        self.supportedSize=supportedSize
         self.domain=domain
     
     def store(self, uid,file,originName):
@@ -41,12 +74,13 @@ class ImageClient(StorageClient):
         #self.client.put('avatar', '001.jpg', obj)
         im=Image.open(file)
         fileName=self.nameStratage(uid,originName)
-        im.save(fileName,"JPEG",quality=100)
+        fullName=ImageClient.STORAGE_ROOT+self.domain+"/"+fileName
+        im.save(fullName,"JPEG",quality=100)
         for size in self.supportedSize:
             sizeFileName=size+"_"+fileName
             dm=StorageClient.SIZE_DICT[size]
             sizeIm=im.resize(dm,Image.ANTIALIAS) #TODO需要优化，目前会变形，需要添加按比例截取的功能
-            sizeIm.save(sizeFileName,"JPEG",quality=100)
+            sizeIm.save(ImageClient.STORAGE_ROOT+self.domain+"/"+sizeFileName,"JPEG",quality=100)
             
         return fileName#self.client.url('avatar','001.jpg')
         
@@ -68,4 +102,4 @@ class ImageClient(StorageClient):
         now=datetime.now()
         return now.strftime('%y_%m_%d_%H_%M_%S_')+str(uid)+'_'+str(orginName)
         
-    
+StorageClient.init()

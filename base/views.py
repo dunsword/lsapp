@@ -174,14 +174,21 @@ def setpass(request):
 def setAvatar(request):
     form = SetAvatarForm()
     url=None #todo get from user obj
+    ac=StorageClient.getAvatarClient()
+    user = request.user
     if request.method == 'POST':
         form = SetAvatarForm(request.POST, request.FILES)
-        user = request.user
+        
         if form.is_valid():
             avatarTempFile = request.FILES['avatar']
-            url=handleFile(user.id, avatarTempFile)
-            
-    c = RequestContext(request, {'form':form, 'head_template_file':'setavatar_head.html','avatar_url':url})
+            #url=handleFile(user.id, avatarTempFile)
+            saveFileName=ac.store(user.id,avatarTempFile,avatarTempFile.name)
+            user.avatar=saveFileName
+            user.save()
+    c = RequestContext(request, {'form':form, 
+                                 'head_template_file':'setavatar_head.html',
+                                 'avatar_url':ac.url(user.avatar),
+                                 'count':StorageClient.count})
     tt = loader.get_template('setavatar.html')
     return HttpResponse(tt.render(c))
 
@@ -212,13 +219,15 @@ def cropAvatar(request):
     return __jsonRespones(result);
 
 def handleFile(uid, f):
+    
+    
     fileName = settings.STATIC_ROOT + '/avatar/' + str(uid) + '.jpg'
     destination = open(fileName, 'wb+')
 #    for chunk in f.chunks():
 #        destination.write(chunk)
     data=f.read()
     destination.write(data)
-    sc=StorageClient()
-    url=sc.store(data)
+    ac=StorageClient.getAvatarClient()
+    url=ac.store(data)
     destination.close()
     return url
