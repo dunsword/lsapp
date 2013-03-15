@@ -10,8 +10,12 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
 from datetime import datetime
+from ls.models import Feed
 
 def index(request):
-      c = RequestContext(request, {})
+      feeds=Feed.objects.all()[0:20]
+      c = RequestContext(request, {'feeds':feeds})
+    
       tt = loader.get_template('ls_index.html')
       return HttpResponse(tt.render(c))
+

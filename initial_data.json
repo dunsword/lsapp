@@ -6,7 +6,7 @@
         "username":"paul",
         "first_name":"",
         "last_name":"",
-        "nickname":"猪猪侠",
+        "nickname":"桃花树下",
         "avatar":"",
         "email":"wagzhi@gmail.com",
         "password":"pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
@@ -33,6 +33,36 @@
         "is_superuser":0,
         "last_login":"2012-10-13 12:34:34", 
         "date_joined":"2012-10-13 12:34:34" 
+     }   
+   },
+   {
+    "model": "ls.Feed",
+     "pk":1,
+     "fields":{
+     	"userid":1,
+        "username":"桃花树下",
+        "title":"《军区大院》作者：泡泡雪儿【连载中·耽美】",
+        "content":"五百年前，她爱他入骨，倾尽所有。却仍是唤不起他的一个回眸。 曾那般撕心裂肺的问：我这么喜欢你，你喜欢我一下会死啊？ 后来才知道，他真的会死，而且是在她眼前。 但她却狠不下这个心，所以他不死，她去。 她以生生世世的苦劫，换以凤鸣仙子的一次重生，只盼能在他心底留下一丝，对她的牵绊。 不料，她输得彻底。",
+        "created_at":"2013-01-13 12:34:34",
+        "read_count":0,
+        "like_count":0,
+        "reply_count":0,
+        "update_status":0
+     }   
+   },
+   {
+    "model": "ls.Feed",
+     "pk":2,
+     "fields":{
+     	"userid":2,
+        "username":"路人甲",
+        "title":"《军区大院》作者：泡泡雪儿【连载中·耽美】",
+        "content":"五百年前，她爱他入骨，倾尽所有。却仍是唤不起他的一个回眸。 曾那般撕心裂肺的问：我这么喜欢你，你喜欢我一下会死啊？ 后来才知道，他真的会死，而且是在她眼前。 但她却狠不下这个心，所以他不死，她去。 她以生生世世的苦劫，换以凤鸣仙子的一次重生，只盼能在他心底留下一丝，对她的牵绊。 不料，她输得彻底。",
+        "created_at":"2013-01-13 12:34:34",
+        "read_count":0,
+        "like_count":0,
+        "reply_count":0,
+        "update_status":0
      }   
    }
 ]
