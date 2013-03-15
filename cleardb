@@ -1,0 +1,1 @@
+mysql -upaul -ppassword   < clear_sql/recreatedb.sql
