@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
+from django.conf import settings
 #from django.contrib.auth.models import User
 # Create your models here.
 #class UserProfileManager(models.Model):
@@ -50,10 +51,16 @@ class User(models.Model):
         help_text=_('超级用户，拥有所有权限'))
     last_login = models.DateTimeField(_('last login'), default=timezone.now)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    
     class Meta:
         #abstract = True
         pass
-    
+    def get_avatar_url(self):
+        if self.avatar:
+            return settings.STATIC_URL+"avatar/"+self.avatar
+        else:
+            return settings.STATIC_URL+"img/avatar_default.jpg"
+            
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
 
