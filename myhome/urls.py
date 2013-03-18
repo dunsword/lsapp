@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from ls.feed_view import FeedView
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -14,7 +15,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    (r'^$','ls.views.index'),
+    (url(r'^$',FeedView.as_view(page_size=30))),
     (r'^add$','album.views.add'),
     (r'^detail/(?P<doc_id>\d+)$','album.views.detail'),
     

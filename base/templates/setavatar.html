@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div class='span8'>
-    	当前头像：<img id='current_avatar' src='{{STATIC_URL}}avatar/{{user.avatar}}'/>
+    	当前头像：<img id='current_avatar' src='{{avatar_url}}'/>
     	<span id="cropMessage"></span>
         <script language="JavaScript">
 			jQuery(function($) {
@@ -75,11 +75,11 @@
         </script>
         <div>
         头像图片：
-        <img id="target" src="{{avatar_url}}?tag={% now  'U' %}" />
+        <img id="target" src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" />
         </div>
         <div id="preview-pane">
             <div class="preview-container">
-                <img src="{{avatar_url}}?tag={% now  'U' %}" class="jcrop-preview" alt="Preview" />
+                <img src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" class="jcrop-preview" alt="Preview" />
                
             </div>
              <button class="btn-primary" onclick="$('#cropAvatarForm').submit()">
@@ -119,7 +119,7 @@
             function postCropAvatar(){
                 $.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(
                 function(data){
-                    $('#current_avatar').attr('src','{{STATIC_URL}}avatar/'+data['avatar_url']);
+                    $('#current_avatar').attr('src',data['avatar_url']);
                     $('#cropMessage').html("头像更新成功！");
                 });
                 return false;

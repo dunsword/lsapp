@@ -65,10 +65,14 @@ class CAvatarStorageClient(StorageClient):
         return CAvatarStorageClient.PREFIX+str(uid)+".jpg"
         
 class CAvatarCropClient(StorageClient):
+    PREFIX="a_250X250_"
+    def getDefaultAvatarUrl(self,size=StorageClient.SIZE_250):
+        return settings.STATIC_URL+self.domain+"img/avatar_default.jpg"
+        
     def getSaveFileName(self,uid,originName=None):
-        now=datetime.now()
-        prefix="a_"+now.strftime('%y_%m_%d_%H_%M_%S_')
-        return prefix+str(uid)+".jpg"
+#        now=datetime.now()
+#        prefix="a_"+now.strftime('%y_%m_%d_%H_%M_%S_')
+        return CAvatarCropClient.PREFIX+str(uid)+".jpg"
     
     def store(self, uid,file,displayW,displayH,left,top,cropW,cropH):
         #obj = sae.storage.Object(fileData)

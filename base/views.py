@@ -185,8 +185,14 @@ def setAvatar(request):
 #            user.avatar=fileName
 #            user.save()
     
-    url=AvatarClient.url(AvatarClient.getSaveFileName(user.id))        
-    c = RequestContext(request, {'form':form, 'head_template_file':'setavatar_head.html','avatar_url':url,})
+    avatarUrl=user.get_avatar_url()  
+    
+    avatarFileName= AvatarClient.getSaveFileName(user.id)
+    
+    c = RequestContext(request, {'form':form, 
+                                 'head_template_file':'setavatar_head.html',
+                                 'avatar_file_name':avatarFileName,
+                                 'avatar_url':avatarUrl,})
 
     tt = loader.get_template('setavatar.html')
     return HttpResponse(tt.render(c))
@@ -215,11 +221,12 @@ def cropAvatar(request):
     
     cropedAvatar=CropClient.store(user.id,originAvatar,avatarRealWidth,avatarRealHeight,avatarMarginLeft,avatarMarginTop,avatarWidth,avatarHeight)    
     
-    #TODO 删除旧文件
-    user.avatar=cropedAvatar
+    now=datetime.now()
+    timestr=now.strftime('%y%m%d%H%M%S')
+    user.avatar=cropedAvatar+'?t='+timestr+'.jpg'
     user.save()
     
-    result={'avatar_url': cropedAvatar, 'result':'success',}
+    result={'avatar_url': user.get_avatar_url(), 'result':'success',}
     return __jsonRespones(result);
 
 #def handleFile(uid, f):
