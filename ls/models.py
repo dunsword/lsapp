@@ -7,6 +7,7 @@ class Document(models.Model):
     title=models.CharField('bookname',max_length=256)
     content=models.CharField('content',max_length=1024)
     created_at=models.DateTimeField('created time', default=timezone.now)
+    updated_at=models.DateTimeField('updated time', default=timezone.now)
     read_count=models.IntegerField('read count',default=0)
     like_count=models.IntegerField('like count',default=0)
     reply_count=models.IntegerField('reply count',default=0)
@@ -27,8 +28,8 @@ class Feed(models.Model):
     
     userid=models.IntegerField('user id')
     username=models.CharField('user name',max_length=30)
-    
     docid=models.IntegerField('doc id')
+    created_at=models.DateTimeField('created time',default=timezone.now)
     feed_type=models.SmallIntegerField('feed type',default=1)
 
 class Category(models.Model):

@@ -40,7 +40,7 @@ class User(models.Model):
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     nickname = models.CharField(_('nick name'), max_length=30, unique=True)
     email = models.EmailField(_('e-mail address'), unique=True)
-    avatar = models.URLField(_('avatar'))
+    avatar = models.URLField(_('avatar'),null=True)
     password = models.CharField(_('password'), max_length=128)
     is_staff = models.BooleanField(_('staff status'), default=False,
         help_text=_('确定是否管理员.'))
@@ -80,4 +80,12 @@ class User(models.Model):
         authenticated in templates.
         """
         return True
+
+class UserFollow(models.Model):
+    userid=models.IntegerField('user id')
+    username=models.CharField('user Name',max_length=30,)
+    followed_userid=models.IntegerField('followed user id')
+    followed_username=models.CharField('followed user name',max_length=30, )
+    class Meta:
+        unique_together = (("userid", "followed_userid"),)
     

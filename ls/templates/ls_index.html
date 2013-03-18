@@ -1,8 +1,8 @@
 {% extends "frameWithTitle.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="container-fluid">
+<div class="container" style="width: 980px">
+    <div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
          <div class="row-fluid">
             <div class="span10">
                 <!-- main -->
@@ -12,7 +12,7 @@
                     {% with feed=item.feed%}
                     <div class="row-fluid">
                     <div class="span2" style="margin-top: 20px">
-                        <img data-src="holder.js/140x140"
+                        <img  
                         class="img-rounded"
                         alt="140x140"
                         style="width: 60px; height: 60px;"
@@ -55,7 +55,22 @@
             </div>
             <div class="span2">
                 <!--Sidebar content-->
-                我关注的人：
+                <div class="row">
+                    <div class="span12">我关注的人：</div>  
+                </div>
+                <div class="row">
+                    {% for uf in follows %}
+                        <div class="span4">
+                             <img  
+                            class="img-rounded"
+                            alt="140x140"
+                            style="width: 50px; height: 50px;"
+                            src="http://static.lsapp.com/avatar/a_250X250_{{uf.followed_userid}}.jpg">
+                        </img>
+                        </div>
+                    {% endfor%}
+                </div>
+                
             </div>
         </div>
        

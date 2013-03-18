@@ -4,7 +4,7 @@ from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
 import os
 from django.template import RequestContext
-from base.models import User
+from base.models import User,UserFollow
 from django.core.context_processors import csrf
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
@@ -20,10 +20,15 @@ class FeedView(View):
     def get(self,request, *args, **kwargs):
         user=request.user
         feeds=self._get_feed_items(user.id,self.page_size)
-        c = RequestContext(request, {'feeds':feeds})
+        follows=self._get_follows(user.id, 20)
+        c = RequestContext(request, {'feeds':feeds,'follows':follows})
         tt = loader.get_template('ls_index.html')
         return HttpResponse(tt.render(c))
     
+    def _get_follows(self,uid,page_size):
+        follows=UserFollow.objects.filter(userid=uid)
+        return follows
+        
     def _get_feed_items(self,uid,page_size):
         items=[]
         feeds=Feed.objects.all()[0:self.page_size]
