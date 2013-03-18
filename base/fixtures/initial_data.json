@@ -1,0 +1,56 @@
+[
+  {
+    "model": "base.User",
+     "pk":3,
+     "fields":{
+        "username":"user2",
+        "first_name":"",
+        "last_name":"",
+        "nickname":"路人已",
+        "email":"user2@gmail.com",
+        "password":"pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
+        "is_staff":1,
+        "is_active":1,
+        "is_superuser":1,
+        "last_login":"2012-10-13 12:34:34", 
+        "date_joined":"2012-10-13 12:34:34" 
+     }   
+   },
+   {
+    "model": "base.User",
+     "pk":4,
+     "fields":{
+        "username":"user3",
+        "first_name":"",
+        "last_name":"",
+        "nickname":"路人丙",
+        "email":"user3@gmail.com",
+        "password":"pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
+        "is_staff":0,
+        "is_active":1,
+        "is_superuser":0,
+        "last_login":"2012-10-13 12:34:34", 
+        "date_joined":"2012-10-13 12:34:34" 
+     }   
+   },
+   {
+   	 "model": "base.UserFollow",
+     "pk":1,
+     "fields":{
+     	"userid":1,
+        "username":"paul",
+        "followed_userid":2,
+        "followed_username":"user1"
+       }
+   },
+   {
+   	 "model": "base.UserFollow",
+     "pk":2,
+     "fields":{
+     	"userid":1,
+        "username":"paul",
+        "followed_userid":3,
+        "followed_username":"user3"
+       }
+   }
+]
