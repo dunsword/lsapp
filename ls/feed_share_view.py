@@ -25,6 +25,11 @@ class FeedShareView(View):
         tt = loader.get_template('ls_index.html')
         return HttpResponse(tt.render(c))
     
+    def get(self,request, *args, **kwargs):
+        feedForm=RecommendFeedForm()
+        c = RequestContext(request, {'feedForm':feedForm})
+        tt = loader.get_template('ls_add_feed.html')
+        return HttpResponse(tt.render(c))
 
 class FeedShareService():
     def addRecommedFeed(self,user,recommendFeedForm):

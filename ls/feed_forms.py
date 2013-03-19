@@ -5,7 +5,7 @@ from django import forms
 from ls.models import Feed
 
 class DocumentForm(forms.Form):
-    docid=forms.IntegerField(lable='docid',widget=forms.Field.hidden_widget)
+    docid=forms.IntegerField(label='docid',widget=forms.Field.hidden_widget)
     author_name=forms.CharField(
                                label='作者',
                                min_length=3,
@@ -34,7 +34,8 @@ class DocumentForm(forms.Form):
                                                'max_length': '不能超过1024个字！'
                                                })
     created_at=forms.DateTimeField(label="创建时间",input_formats='%Y-%m-%d %H:%M:%S')
-    update_status=forms.IntegerField(label="更新状态",input_formats='%Y-%m-%d %H:%M:%S')
+    updated_at=forms.DateTimeField(label="更新时间",input_formats='%Y-%m-%d %H:%M:%S')
+    update_status=forms.IntegerField(label="更新状态")
     read_count=forms.IntegerField(label="阅读数")
     like_count=forms.IntegerField(label="喜欢数")
     reply_count=forms.IntegerField(label="回复数")
@@ -43,8 +44,8 @@ class DocumentForm(forms.Form):
     
 class RecommendFeedForm(DocumentForm):
     feed_type=1
-    feedid=forms.IntegerField(lable='feedid',widget=forms.Field.hidden_widget)
-    username = forms.CharField(max_length=100,
+    feedid=forms.IntegerField(label='feedid',widget=forms.Field.hidden_widget)
+    username = forms.CharField(
                                label='用户名',
                                min_length=3,
                                max_length=100,
@@ -53,11 +54,10 @@ class RecommendFeedForm(DocumentForm):
                                                'min_length':'不能少于3个字！',
                                                'max_length': '不能超过100个字！'
                                                })
-    userid = forms.IntegerField(label='uid')
+    userid = forms.IntegerField(label='uid',widget=forms.Field.hidden_widget)
     feed_created_at=forms.DateTimeField(label="创建时间",input_formats='%Y-%m-%d %H:%M:%S')
     
-    def __init__(self):
-        self.data
+   
     
     
     
