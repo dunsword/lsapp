@@ -39,7 +39,6 @@ class DocumentForm(forms.Form):
     read_count=forms.IntegerField(label="阅读数")
     like_count=forms.IntegerField(label="喜欢数")
     reply_count=forms.IntegerField(label="回复数")
-    
     categoryid=forms.IntegerField(label="类别")
     
 class RecommendFeedForm(DocumentForm):

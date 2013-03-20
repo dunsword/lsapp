@@ -34,3 +34,23 @@ class Feed(models.Model):
 
 class Category(models.Model):
     name=models.CharField('category name',max_length=100)
+    
+    
+class Topic(models.Model):
+    userid=models.IntegerField('user id')
+    username=models.CharField('user name',max_length=30)
+    title=models.CharField('topic title',max_length=255)
+    content=models.CharField('topic content',max_length=2048)
+    reply_count=models.IntegerField('reply count')
+    created_at=models.DateTimeField('created time',default=timezone.now)
+    updated_at=models.DateTimeField('updated time',default=timezone.now)
+
+class TopicReply(models.Model):
+    userid=models.IntegerField('user id')
+    username=models.CharField('user name',max_length=30)
+    topicid=models.IntegerField('topic id',db_index=True)
+    title=models.CharField('topic title',max_length=255)
+    content=models.CharField('topic content',max_length=2048)
+    created_at=models.DateTimeField('created time',default=timezone.now)
+    updated_at=models.DateTimeField('updated time',default=timezone.now)
+ 

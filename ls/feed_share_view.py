@@ -19,10 +19,13 @@ class FeedShareView(View):
     @method_decorator(login_required)
     def post(self,request, *args, **kwargs):
         user=request.user
-        feeds=self._get_feed_items(user.id,self.page_size)
-        follows=self._get_follows(user.id, 20)
-        c = RequestContext(request, {'feeds':feeds,'follows':follows})
-        tt = loader.get_template('ls_index.html')
+        feedForm= RecommendFeedForm(request.POST)
+        if feedForm.is_valid():
+            c = RequestContext(request, {'feedForm':feedForm})
+            tt = loader.get_template('ls_add_feed.html')
+            return HttpResponse(tt.render(c))
+        c = RequestContext(request, {'feedForm':feedForm})
+        tt = loader.get_template('ls_add_feed.html')
         return HttpResponse(tt.render(c))
     
     def get(self,request, *args, **kwargs):
