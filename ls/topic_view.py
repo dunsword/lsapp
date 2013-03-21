@@ -11,16 +11,19 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from ls.models import Feed,Document,Category,Topic,TopicReply
-from ls.topic_forms import TopicForm,TopicReplyForm
+from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyService
 from django.utils.decorators import method_decorator
 
 class TopicView(View):
     
     #@method_decorator(login_required)
-    def get(self,request, *args, **kwargs):
-        topic=Topic.objects.get(pk=1)
-        topicForm=TopicForm(instance=topic)
+    def get(self,request, topicid,page=1,*args, **kwargs):
+        topicService=TopicService()
+        trSrv=TopicReplyService()
+        topic=Topic.objects.get(pk=topicid)
+        replyList=trSrv.getTopicReplyList(topic.id, page)
+        topicForm=topicService.getTopicForm(1)
         topicForm.is_valid()
-        c = RequestContext(request, {'topic':topicForm})
+        c = RequestContext(request, {'topic':topicForm,'reply_list':replyList})
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))

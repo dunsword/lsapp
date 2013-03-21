@@ -2,6 +2,18 @@
 from django.db import models
 from django.utils import timezone
 
+class BaseModel(models.Model):
+    created_at=models.DateTimeField('created time', default=timezone.now)
+    updated_at=models.DateTimeField('updated time', default=timezone.now)
+    class Meta:
+        abstract=True
+
+class SiteSource(BaseModel):
+    name=models.CharField('site name',max_length=256)
+    homepage=models.URLField('site home page')
+    desc=models.CharField('description',max_length=2048)
+    
+    
 class Document(models.Model):
     author_name=models.CharField('author name',max_length=256,null=True,default=None)
     title=models.CharField('bookname',max_length=256)
@@ -13,7 +25,8 @@ class Document(models.Model):
     reply_count=models.IntegerField('reply count',default=0)
     update_status=models.SmallIntegerField('status',default=0)
     categoryid=models.IntegerField('category id')
-
+    source_id=models.IntegerField('sourse id')
+    source_url=models.URLField('source url')
 
 class Feed(models.Model):
 #    FEED_TYPE_RECOMMEND=1
@@ -41,7 +54,9 @@ class Topic(models.Model):
     username=models.CharField('user name',max_length=30)
     title=models.CharField('topic title',max_length=255)
     content=models.CharField('topic content',max_length=2048)
-    reply_count=models.IntegerField('reply count')
+    categoryid=models.IntegerField('category id',default=1)
+    read_count=models.IntegerField('read count',default=0)
+    reply_count=models.IntegerField('reply count',default=0)
     created_at=models.DateTimeField('created time',default=timezone.now)
     updated_at=models.DateTimeField('updated time',default=timezone.now)
 

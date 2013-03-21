@@ -11,7 +11,14 @@
          <div class="row-fluid" >
             <div class="span10">
                 <!-- main -->
-                   
+                    <div class="row-fluid">
+                        <div class="span9" >
+                            <h3> {{topic.instance.title}}</h3>
+                        </div>
+                        <div class="span3" style="padding-top: 30px">
+                            <span>类别：{{topic.getCategory.name}}</span>
+                        </div>
+                    </div>
                     <div class="row-fluid" style="border-top: 1px solid #dddddd;">
                     <div class="span2" style="margin-top: 20px">
                         <img  
@@ -26,16 +33,18 @@
                             <div class="span12">
                                 <div class="row-fluid">
                                     <div class="span9">
-                                        <h5> {{topic.instance.username}}</h5>
-                                        <h4> {{topic.instance.title}}</h4>
+                                        <h5>
+                                            <span >来自： {{topic.instance.username}}</span> 
+                                            <span>{{topic.instance.created_at|date:"Y-m-d f"}}</span> 
+                                        </h5>
                                     </div>
                                    <div class="span3" style="height:30px;margin-top: 10px;"> 
-                                        <span>类别：大大大</span>
+                                        <span></span>
                                     </div>
                                 </div>
                                 <div class="row-fluid">
                                     <div class="span12">
-                                        阅读：{{item.document.read_count}}  状态：完结   评论：{{item.document.reply_count}}
+                                        阅读：{{topic.instance.read_count}}   评论：{{topic.instance.reply_count}}
                                     </div>
                                 </div>
                                 <div class="row-fluid">
@@ -48,14 +57,48 @@
                         </div>
                     </div>
                 </div>
-                
-                
+                {% for reply in reply_list%}
+                <div class="row-fluid" style="border-top: 1px solid #dddddd;">
+                    <div class="span2" style="margin-top: 20px">
+                        <img  
+                        class="img-rounded"
+                        alt="140x140"
+                        style="width: 60px; height: 60px;"
+                        src="http://static.lsapp.com/avatar/a_250X250_{{reply.userid}}.jpg">
+                        </img>
+                    </div>
+                    <div  class="span10" style="margin-left: 0px">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <h5>
+                                            <span >来自： {{reply.username}}</span> 
+                                            <span>{{reply.created_at|date:"Y-m-d f"}}</span> 
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        {{reply.title}}
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        {{reply.content}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
                 
             </div>
             <div class="span2">
                 <!--Sidebar content-->
                 <div class="row-fluid">
-                    <div class="span12">我关注的人：</div>  
+                    <div class="span12">同类热门小说：</div>  
                 </div>
                 <div class="row-fluid">
                     {% for uf in follows %}
