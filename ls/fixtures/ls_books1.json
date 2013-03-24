@@ -1,0 +1,37 @@
+[
+	{
+		"model": "ls.Document",
+		"pk": 3,
+		"fields": {
+			"categoryid": 4,
+			"title": "转化神手 ",
+			"content": "五百年前，她爱他入骨，倾尽所有。却仍是唤不起他的一个回眸。 曾那般撕心裂肺的问：我这么喜欢你，你喜欢我一下会死啊？ 后来才知道，他真的会死，而且是在她眼前。 但她却狠不下这个心，所以他不死，她去。 她以生生世世的苦劫，换以凤鸣仙子的一次重生，只盼能在他心底留下一丝，对她的牵绊。 不料，她输得彻底。",
+			"author_name":"保卫萝卜",
+			"source_url":"http://www.qidian.com/Book/2574213.aspx",
+			"source_id": 1,
+			"created_at": "2013-01-13 12:34:34",
+			"updated_at": "2013-03-21 08:52:00",
+			"read_count": 120448,
+			"like_count": 1822,
+			"reply_count": 0,
+			"update_status": 0
+		}
+	}, {
+		"model": "ls.Document",
+		"pk": 4,
+		"fields": {
+			"categoryid":4,
+			"title": "超级强者",
+			"content": "一次意外，让身为高中生的他变成了上帝制造的最大bug，他的人生将会发生怎样的变化？ 权力？金钱？美人？  “总有一天，这个世界会因我而颤栗！！”    ——裴东来 …… PS:天王终结，强者来袭！疯狂继《浪迹花都》、《特种教师》、《狩猎花都》、《极品天王》后，再续都市情缘，激情不灭，热血永存，敬请期待！ ",
+			"author_name":"我本疯狂",
+			"source_url":"http://www.qidian.com/Book/2166708.aspx",
+			"source_id": 1,
+			"created_at": "2013-01-13 12:34:34",
+			"updated_at": "2013-03-21 01:58:34",
+			"read_count": 4184702,
+			"like_count": 0,
+			"reply_count": 0,
+			"update_status": 0
+		}
+	}
+]

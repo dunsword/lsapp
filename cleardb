@@ -1,1 +1,2 @@
 mysql -upaul -ppassword   < clear_sql/recreatedb.sql
+./manage.py syncdb

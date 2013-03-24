@@ -1,14 +1,13 @@
 [
   {
     "model": "base.User",
-     "pk":1,
+     "pk":3,
      "fields":{
-        "username":"paul",
+        "username":"user2",
         "first_name":"",
         "last_name":"",
-        "nickname":"桃花树下",
-        "avatar":"a_250X250_1.jpg?t=130318153547.jpg",
-        "email":"wagzhi@gmail.com",
+        "nickname":"路人已",
+        "email":"user2@gmail.com",
         "password":"pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
         "is_staff":1,
         "is_active":1,
@@ -19,14 +18,13 @@
    },
    {
     "model": "base.User",
-     "pk":2,
+     "pk":4,
      "fields":{
-        "username":"user1",
+        "username":"user3",
         "first_name":"",
         "last_name":"",
-        "nickname":"路人甲",
-        "avatar":"a_250X250_2.jpg?t=130318154716.jpg",
-        "email":"user1@gmail.com",
+        "nickname":"路人丙",
+        "email":"user3@gmail.com",
         "password":"pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
         "is_staff":0,
         "is_active":1,
@@ -36,34 +34,23 @@
      }   
    },
    {
-    "model": "ls.Category",
-     "pk":1,
-     "fields":{
-     	"name":"未分类"
-     }
-   },
-   {
-    "model": "ls.Feed",
+   	 "model": "base.UserFollow",
      "pk":1,
      "fields":{
      	"userid":1,
-        "username":"桃花树下",
-         "created_at":"2013-01-13 12:34:34",
-        "docid":1,
-        "feed_type":1
-     }   
+        "username":"paul",
+        "followed_userid":2,
+        "followed_username":"user1"
+       }
    },
    {
-    "model": "ls.Feed",
+   	 "model": "base.UserFollow",
      "pk":2,
      "fields":{
-     	"userid":2,
-        "username":"路人甲",
-         "created_at":"2013-01-13 12:34:34",
-        "docid":2,
-        "feed_type":1
-        
-     }   
+     	"userid":1,
+        "username":"paul",
+        "followed_userid":3,
+        "followed_username":"user3"
+       }
    }
-   
 ]

@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 from ls.feed_view import FeedView
+from ls.feed_share_view import FeedShareView
+from ls.topic_view import TopicView,Topic,TopicReplyView
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -16,6 +18,10 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     (url(r'^$',FeedView.as_view(page_size=30))),
+    (url(r'^share$',FeedShareView.as_view())),
+    (url(r'^topic/(?P<topicid>\d+)$',TopicView.as_view())),
+    (url(r'^topic/(?P<topicid>\d+)/add_reply$',TopicReplyView.as_view())),
+    (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (r'^add$','album.views.add'),
     (r'^detail/(?P<doc_id>\d+)$','album.views.detail'),
     

@@ -93,12 +93,12 @@
             {% for field in form.visible_fields %}
             <div class="control-group">
                 <label style='float:left; margin-right: 30px'for="id_avatar">上传头像文件:</label>
-                {{ field }} <span class="help-inline">{{ field.errors.as_text }} </span> 
+                <input type="file" name="avatar" id="id_avatar" onchange="alert($('#id_avatar').val())"> <span class="help-inline">{{ field.errors.as_text }} </span> 
                 
                  <button type='submit' class="btn btn-primary" >
                 上传头像图片
-            </button>
-
+                </button>
+                 <input type='button' onclick='id_avatar.click()' value='选择图片'/>
             </div>
             {% endfor %}
            

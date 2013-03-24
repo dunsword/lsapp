@@ -118,6 +118,9 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.dirname(__file__)+'/templates'
 )
+FIXTURE_DIRS  = (
+                 'fixtures'
+            )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
