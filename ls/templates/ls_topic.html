@@ -115,14 +115,19 @@
                             </div>
                         </div>
                         <script>
-                            backdata=''
+                            
                             function postTopicReply(){
                                 $.post("/topic/{{topic.instance.id}}/add_reply", $("#postTopicReply").serialize()).done(
                                     function(data){
-                                        backdata=data
-                                        for(key in data){
-                                            alert(key+'='+data[key]);
+                                        if(data['success']=='false'){
+                                            str=''
+                                            for(key in data['errors']){
+                                                str+=(key+'='+data[key]+'\n');
+                                            }
+                                            alert(str)
+                                            
                                         }
+                                        
                                     }
                                 );
                                 return false;//不提交页面
