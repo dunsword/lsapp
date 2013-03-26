@@ -16,7 +16,13 @@ from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from django.utils import simplejson as json
 
-class TopicView(View):
+class BaseView(View):
+    def _get_json_respones(self,ctx, **httpresponse_kwargs):
+        content= json.dumps(ctx);
+        return HttpResponse(content,
+                                 content_type='application/json',
+                                 **httpresponse_kwargs)
+class TopicView(BaseView):
     def __init__(self, **kwargs):
         super(TopicView,self).__init__(**kwargs)
         self.tSrv=TopicService()
@@ -36,18 +42,14 @@ class TopicView(View):
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))
     
-    def _get_json_respones(self,ctx, **httpresponse_kwargs):
-        content= json.dumps(ctx);
-        return HttpResponse(content,
-                                 content_type='application/json',
-                                 **httpresponse_kwargs)
     
-class TopicReplyView(TopicView):
+    
+class TopicReplyView(BaseView):
     @method_decorator(login_required)
     def post(self,request,topicid,*args,**kwargs):
         rc=request.POST['replyContent']
         user=request.user
-        replyForm=TopicReplyForm({'userid':user.id,'username':user.username,'topicid':topicid,'content':rc})
+        replyForm=TopicReplyForm({'userid':user.id,'username':user.username,'topicid':topicid,'content':rc,'title':'','created_at':datetime.now(),'updated_at':datetime.now(),'status':1})
         if(replyForm.is_valid()):
             replyForm.save()
             ctx ={'success':'true'}

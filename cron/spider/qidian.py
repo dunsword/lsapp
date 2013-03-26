@@ -5,6 +5,7 @@ __author__ = 'yanggz'
 
 import urllib
 from sgmllib import SGMLParser
+import feedparser
 
 class WebPageContent:
     """ 根据url获得页面的内容用于数据分析 """
@@ -96,6 +97,11 @@ class ContentParser(SGMLParser):
         if self.isIntroConten:
             self.isNotProcess = True
 
+    def end_span(self):
+        if self.isIntroConten:
+            self.isNotProcess = False
+            self.isIntroConten = False
+
     def start_i(self,attris):
         if self.isCategory:
             self.isNotProcess = True
@@ -105,10 +111,6 @@ class ContentParser(SGMLParser):
             self.isNotProcess = False
             self.isCategory = False
 
-    def end_span(self):
-        if self.isIntroConten:
-            self.isNotProcess = False
-            self.isIntroConten = False
 
     #处理各个html标签中的数据
     def handle_data(self, text):
@@ -118,7 +120,7 @@ class ContentParser(SGMLParser):
         if self.isTitle and self.isTitleName:
             self.title = text
         if self.isIntroConten and not self.isNotProcess and len(str.strip(text)) > 0:
-            self.intro = text
+            self.intro += text
 
     #以下获得提供的数据方法
     def getTitle(self):
@@ -128,18 +130,28 @@ class ContentParser(SGMLParser):
         return self.intro
 
     def getCategoryUrls(self):
-        return self.categoryUrls[1:len(self.categoryUrls)-1]
+        return self.categoryUrls[1:len(self.categoryUrls) - 1]
 
     def getCategoryName(self):
-        return self.categoryName[1:len(self.categoryName)-1]
+        return self.categoryName[1:len(self.categoryName) - 1]
 
 if __name__ == "__main__":
-    myContent = WebPageContent("http://www.qidian.com/Book/2132495.aspx")
+
+    # 获得起点的rss列表
+    rss = feedparser.parse("http://www.qidian.com/rss.aspx")
+    itemNum = len(rss.items())
+    print "rss items num:%s" % (itemNum)
+
+    rsslink = rss.entries[1].link
+    print rsslink
+    # myContent = WebPageContent("http://www.qidian.com/Book/2132495.aspx")
+    myContent = WebPageContent(rsslink)
     parser = ContentParser()
     parser.feed(myContent.getData())
     parser.close()
 
     print parser.getTitle()
+
     print parser.getIntro()
 
     for url in parser.getCategoryUrls():

@@ -115,10 +115,19 @@
                             </div>
                         </div>
                         <script>
+                            
                             function postTopicReply(){
                                 $.post("/topic/{{topic.instance.id}}/add_reply", $("#postTopicReply").serialize()).done(
                                     function(data){
-                                        alert(data);
+                                        if(data['success']=='false'){
+                                            str=''
+                                            for(key in data['errors']){
+                                                str+=(key+'='+data[key]+'\n');
+                                            }
+                                            alert(str)
+                                            
+                                        }
+                                        
                                     }
                                 );
                                 return false;//不提交页面
@@ -139,7 +148,7 @@
                                     {% for doc in hot_docs %}
 
                                     <li>
-                                        <span><a href="{{doc.source_url}}" target='_blank' style="font-size: 16px">{{doc.title}}</a> 阅读：{{doc.read_count}}</span>
+                                        <span><a href="{{doc.source_url}}" target='_blank' style="font-size: 16px">{{doc.topic.title}}</a> 阅读：{{doc.topic.read_count}}</span>
                                     </li>
                                     {% endfor %}
                                 </ul>

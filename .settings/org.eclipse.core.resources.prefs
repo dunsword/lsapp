@@ -1,3 +1,4 @@
+#Mon Mar 25 16:49:07 CST 2013
 eclipse.preferences.version=1
 encoding//album/views.py=utf-8
 encoding//base/admin_forms.py=utf-8
@@ -9,8 +10,14 @@ encoding//base/models.py=utf-8
 encoding//base/storage/client.py=utf-8
 encoding//base/tests.py=utf-8
 encoding//base/views.py=utf-8
+encoding//ls/document_forms.py=utf8
+encoding//ls/feed_forms.py=utf-8
+encoding//ls/feed_share_view.py=utf-8
 encoding//ls/feed_view.py=utf-8
 encoding//ls/models.py=utf-8
+encoding//ls/tests.py=utf-8
+encoding//ls/topic_forms.py=utf-8
+encoding//ls/topic_view.py=utf-8
 encoding//sbs/__init__.py=utf-8
 encoding//sbs/api/BaseRequest.py=utf-8
 encoding//sbs/api/config.py=utf-8

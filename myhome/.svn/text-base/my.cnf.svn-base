@@ -1,5 +1,0 @@
-[client]
-database = myhome
-user = paul
-password = password
-default-character-set = utf8
