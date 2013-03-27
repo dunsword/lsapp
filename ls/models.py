@@ -1,11 +1,12 @@
 # coding=utf-8
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
 
 class BaseModel(models.Model):
     status=models.IntegerField('status',choices=[(1,"正常"),(2,"删除"),(3,"隐藏")],default=1,db_index=True)
-    created_at=models.DateTimeField('created time', default=timezone.now,db_index=True)
-    updated_at=models.DateTimeField('updated time', default=timezone.now,db_index=True)
+    created_at=models.DateTimeField('created time', default=datetime.now(),db_index=True)
+    updated_at=models.DateTimeField('updated time', default=datetime.now(),db_index=True,)
     class Meta:
         abstract=True
 
@@ -75,7 +76,7 @@ class TopicReply(BaseModel):
     userid=models.IntegerField('user id')
     username=models.CharField('user name',max_length=30)
     topicid=models.IntegerField('topic id',db_index=True)
-    title=models.CharField('topic title',max_length=255,default="")
+    title=models.CharField('topic title',max_length=255,default="",blank=True)
     content=models.CharField('topic content',max_length=2048)
     
  
