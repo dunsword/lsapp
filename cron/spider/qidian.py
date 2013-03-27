@@ -1,5 +1,8 @@
 # coding=utf-8
-__author__ = 'yanggz'
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 """ 根据特定的url获得具体的html内容，分析页面结构转化为结构化数据模型 """
 
@@ -21,9 +24,9 @@ class ContentParser(SGMLParser):
     """ 内容解析，获得：标题、作者、内容介绍、总点击数、最后更新时间等 """
     def reset(self):
         SGMLParser.reset(self)
-        self.intro = ""
-        self.author = ""
-        self.title = ""
+        self.intro = u""
+        self.author = u""
+        self.title = u""
         self.categoryUrls = []
         self.categoryName = []
         self.isBookInfo = False
@@ -136,25 +139,44 @@ class ContentParser(SGMLParser):
         return self.categoryName[1:len(self.categoryName) - 1]
 
 if __name__ == "__main__":
-
     # 获得起点的rss列表
     rss = feedparser.parse("http://www.qidian.com/rss.aspx")
-    itemNum = len(rss.items())
-    print "rss items num:%s" % (itemNum)
+    # itemNum = len(rss.items())
+    # print "rss items num:%s" % (itemNum)
+    #
+    # rsslink = rss.entries[1].link
+    # author = rss.entries[1].author_detail.name
+    #
+    # print rsslink
+    documents = []
 
-    rsslink = rss.entries[1].link
-    print rsslink
+    from ls.models import Document,Category
+    for item in rss.entries:
+        linkContent = WebPageContent(item.link)
+        parser = ContentParser()
+        parser.feed(linkContent.getData())
+        parser.close()
+        document = Document.objects.create()
+        document.author_name = item.author_detail.name
+        document.content = parser.getIntro()
+        document.title = parser.getTitle()
+        document.source_id = 1
+        document.save()
+        documents.append(document)
+
+
+
     # myContent = WebPageContent("http://www.qidian.com/Book/2132495.aspx")
-    myContent = WebPageContent(rsslink)
-    parser = ContentParser()
-    parser.feed(myContent.getData())
-    parser.close()
-
-    print parser.getTitle()
-
-    print parser.getIntro()
-
-    for url in parser.getCategoryUrls():
-        print url
-    for urlName in parser.getCategoryName():
-        print urlName
+    # myContent = WebPageContent(rsslink)
+    # parser = ContentParser()
+    # parser.feed(myContent.getData())
+    # parser.close()
+    #
+    # print parser.getTitle()
+    #
+    # print parser.getIntro()
+    #
+    # for url in parser.getCategoryUrls():
+    #     print url
+    # for urlName in parser.getCategoryName():
+    #     print urlName
