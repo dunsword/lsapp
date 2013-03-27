@@ -39,8 +39,7 @@ class TopicReplyService():
 class TopicService():
     PAGE_SIZE=10
     
-    def getTopicForm(self,topicId):
-        topic=Topic.objects.get(pk=topicId)
+    def getTopicForm(self,topic):
         topicForm=TopicForm(instance=topic)
         return topicForm
     

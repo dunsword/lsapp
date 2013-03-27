@@ -1,0 +1,47 @@
+<div class="row-fluid"  >
+	<div class="span2">
+		&nbsp;
+	</div>
+	
+	<div class="span10">
+		<div class="pagination" style="margin:10px 0;float: right">
+
+			<ul>
+				{% if pageInfo.previous %}
+				<li >
+					<a href="{{pageInfo.privious}}">&lt;</a>
+				</li>
+				{% endif%}
+				{% if pageInfo.first %}
+				<li>
+					<a 	href="{{pageInfo.first}}">{{pageInfo.first}}...</a>
+				</li>
+				{% endif %}
+				{% for pi in pageInfo.items %}
+
+				{% if pi.isCurrent %}
+				<li class='active'>
+					<a  href="./{{pi.page}}">{{pi.page}}</a>
+				</li>
+				{% else %}
+				<li>
+					<a  href="./{{pi.page}}">{{pi.page}}</a>
+				</li>
+				{% endif %}
+
+				{% endfor %}
+				{% if pageInfo.last %}
+				<li>
+					<a 	href="{{pageInfo.last}}">...{{pageInfo.last}}</a>
+				</li>
+				{% endif%}
+				{% if pageInfo.next %}
+				<li>
+					<a 	href="{{pageInfo.next}}">&gt;</a>
+				</li>
+				{% endif%}
+
+			</ul>
+		</div>
+	</div>
+</div>

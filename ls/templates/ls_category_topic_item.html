@@ -1,0 +1,38 @@
+<!-- need Topic instance -->
+<div class="row-fluid" style="border-top:1px solid #dddddd;margin-top: 10px" >
+	<div class="span2" style="margin-top: 10px">
+		<img
+		class="img-rounded"
+		alt="140x140"
+		style="width: 60px; height: 60px;"
+		src="http://static.lsapp.com/avatar/a_250X250_{{topic.userid}}.jpg"/>
+	</div>
+	<div class="span10">
+		<div class="row-fluid" >
+			<div class='span12'>
+				<h4 style="margin-bottom: 5px;"><a href="/topic/{{topic.categoryid}}/1">{{topic.title}}</a></h4>
+				
+			</div>
+		</div>
+		<div class="row-fluid" >
+			<div class='span2'>
+				{{topic.username}}   
+			</div>
+			<div class='span3'>
+			   {{topic.created_at|date:"Y-m-d f"}}
+			</div>
+			<div class='span7'>
+				<span style="margin-left:10px;float: right;width: 130px">阅读数：{{topic.read_count}}</span>
+				<span style="margin-left:10px;float: right;width: 130px">回复数：{{topic.reply_count}}</span>
+			</div>
+		</div>
+		
+		
+		<div class="row-fluid" >
+			<div class='span12'>
+				{{topic.content}}
+			</div>
+		</div>
+		
+	</div>
+</div>
