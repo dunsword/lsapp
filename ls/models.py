@@ -39,9 +39,9 @@ class Topic(BaseModel):
         return None
 
 class DocumentManager(models.Manager):
-    def create_document(self,userid,title,content,source_id,source_url,categoryid):
-        topic=Topic.objects.create(userid=userid,title=title,content=content,categoryid=categoryid,topic_type=Topic.TOPIC_TYPE_DOCUMENT)
-        doc=Document.objects.create(source_id=source_id,source_url=source_url,topic=topic)
+    def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name=''):
+        topic=Topic.objects.create(userid=userid,username=username,title=title,content=content,categoryid=categoryid,topic_type=Topic.TOPIC_TYPE_DOCUMENT)
+        doc=Document.objects.create(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name)
         doc.save()
         return doc
     
