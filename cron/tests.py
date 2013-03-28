@@ -4,16 +4,24 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
+import os
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myhome.settings")
 from django.test import TestCase
 from cron.models import DocumentMapping,SourceCategory
 
 class CronTest(TestCase):
     def test_add_documentMapping(self):
 
-        doc = DocumentMapping.objects.create(document_id=1, source_docid=2540310)
+        doc = DocumentMapping.objects.create(document_id=1, source_document_id=2540310,source_id=1)
         doc.save()
-        print "ok"
-        # doc2 = Document.objects.get(pk=doc.id)
-        # self.assertIsNotNone(doc2, 'doc save failed')
-        # self.assertIsNotNone(doc2.topic, 'topic save failed')
+        self.assertTrue(doc.id>=1,"doc save ok")
+
+
+    def test_isExist(self):
+        doc = DocumentMapping.objects.create(document_id=1, source_document_id=2540310,source_id=1)
+        doc.save()
+        # doc = DocumentMapping.objects.get(source_document_id=2540310)
+
+        doc =DocumentMapping().isExist(2540310)
+        self.assertTrue(doc)
