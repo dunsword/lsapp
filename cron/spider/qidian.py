@@ -1,10 +1,12 @@
 # coding=utf-8
 
-import sys
+import sys,os
 reload(sys)
 sys.setdefaultencoding('utf-8')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myhome.settings")
 
-""" 根据特定的url获得具体的html内容，分析页面结构转化为结构化数据模型 """
+importDataUserId = 1
+importDataUserName = u"ambler "
 
 import urllib
 from sgmllib import SGMLParser
@@ -139,16 +141,11 @@ class ContentParser(SGMLParser):
         return self.categoryName[1:len(self.categoryName) - 1]
 
 if __name__ == "__main__":
+
     # 获得起点的rss列表
     rss = feedparser.parse("http://www.qidian.com/rss.aspx")
-    # itemNum = len(rss.items())
-    # print "rss items num:%s" % (itemNum)
-    #
-    # rsslink = rss.entries[1].link
-    # author = rss.entries[1].author_detail.name
-    #
-    # print rsslink
-    documents = []
+    itemNum = len(rss.items())
+    print "rss items num:%s" % (itemNum)
 
     from ls.models import Document,Category
     for item in rss.entries:
@@ -156,22 +153,24 @@ if __name__ == "__main__":
         parser = ContentParser()
         parser.feed(linkContent.getData())
         parser.close()
-        document = Document.objects.create()
-        document.author_name = item.author_detail.name
-        document.content = parser.getIntro()
-        document.title = parser.getTitle()
-        document.source_id = 1
-        document.save()
-        documents.append(document)
+        try:
+            author_name = item.author_detail.name
+        except:
+            author_name = u""
 
+        document = Document.objects.create_document(userid=importDataUserId,
+                                                    username=importDataUserName,
+                                                    source_id=1,
+                                                    author_name=author_name,
+                                                    content=parser.getIntro(),
+                                                    title=parser.getTitle(),
+                                                    categoryid=1,
+                                                    source_url=item.link
+                                           )
+        # documents.append(document)
 
+    print "isOk"
 
-    # myContent = WebPageContent("http://www.qidian.com/Book/2132495.aspx")
-    # myContent = WebPageContent(rsslink)
-    # parser = ContentParser()
-    # parser.feed(myContent.getData())
-    # parser.close()
-    #
     # print parser.getTitle()
     #
     # print parser.getIntro()
