@@ -47,6 +47,12 @@ class ContentParser(SGMLParser):
             href = [v for k, v in attrs if k == 'href']
             if href:
                 self.categoryUrls.append(href)
+        if self.isTitle:
+            self.isAuthor = True
+    def end_a(self):
+        if self.isAuthor:
+            self.isAuthor = False
+            self.isTitle = False
 
     def start_div(self,attrs):
         """ 分析div 获得书籍的信息 """
@@ -80,7 +86,7 @@ class ContentParser(SGMLParser):
 
     def end_h1(self):
         self.isTitleName = False
-        self.isTitle = False
+        # self.isTitle = False
 
 
     def end_div(self):
@@ -126,6 +132,8 @@ class ContentParser(SGMLParser):
             self.title = text
         if self.isIntroConten and not self.isNotProcess and len(str.strip(text)) > 0:
             self.intro += text
+        if self.isAuthor:
+            self.author = text.strip("\r\n").strip()
 
     #以下获得提供的数据方法
     def getTitle(self):
@@ -156,7 +164,10 @@ if __name__ == "__main__":
         try:
             author_name = item.author_detail.name
         except:
-            author_name = u""
+            if parser.author:
+                author_name=parser.author
+            else:
+                author_name = u""
 
         document = Document.objects.create_document(userid=importDataUserId,
                                                     username=importDataUserName,
