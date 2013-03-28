@@ -11,7 +11,57 @@
 						<h3> {{category.name}}</h3>
 					</div>
 					<div class="span3" style="padding-top: 30px">
-						<span></span>
+						<span style="float: right;padding-right: 10px"> <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">发布新帖</a> </span>
+					</div>
+				</div>
+				<div class="row-fluid" style="height: 0px">
+					<div class="span12">
+						<!-- Modal -->
+						<div id="new_topic_modal"
+						class="modal hide fade"
+						tabindex="-1"
+						role="dialog"
+						aria-labelledby="myModalLabel"
+						aria-hidden="true"
+						style="width: 800px;margin-left:-450px"
+						>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									×
+								</button>
+								<h3 id="myModalLabel">发表新帖</h3>
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal">
+									<div class="control-group">
+										<div class="controls" style="margin-left: 100px">
+											<span class="label label-info">都市/言情</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="inputEmail" style="width: 80px">内容标题：</label>
+										<div class="controls" style="margin-left: 100px">
+											<input type="text" id="new_topic_title" placeholder="请输入帖子标题" style="width: 600px">
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="inputPassword"style="width: 80px">帖子内容：</label>
+										<div class="controls" style="margin-left: 100px">
+											<textarea rows="8" style="width: 600px"></textarea>
+										</div>
+									</div>
+									
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button class="btn" data-dismiss="modal" aria-hidden="true">
+									取消
+								</button>
+								<button class="btn btn-primary">
+									确认发表
+								</button>
+							</div>
+						</div>
 					</div>
 				</div>
 				{% for topic in topics %}
