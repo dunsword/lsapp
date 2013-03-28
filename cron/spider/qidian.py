@@ -144,10 +144,10 @@ if __name__ == "__main__":
 
     # 获得起点的rss列表
     rss = feedparser.parse("http://www.qidian.com/rss.aspx")
-    itemNum = len(rss.items())
-    print "rss items num:%s" % (itemNum)
+    # itemNum = len(rss.items())
+    # print "rss items num:%s" % (itemNum)
 
-    from ls.models import Document,Category
+    from ls.models import Document
     for item in rss.entries:
         linkContent = WebPageContent(item.link)
         parser = ContentParser()
@@ -165,8 +165,7 @@ if __name__ == "__main__":
                                                     content=parser.getIntro(),
                                                     title=parser.getTitle(),
                                                     categoryid=1,
-                                                    source_url=item.link
-                                           )
+                                                    source_url=item.link)
         # documents.append(document)
 
     print "isOk"
