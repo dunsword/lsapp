@@ -23,6 +23,18 @@ class SourceCategory(models.Model):
             return True
         return False
 
+    def saveOrReturn(self,name,url,parent_id=0,source_id=1):
+        category = SourceCategory.objects.get(name=name,url=url)
+        if category:
+            return category
+        else:
+            category = SourceCategory.objects.create_category(name='test1',
+                                                          url="http://sss",
+                                                          parent_id=0,
+                                                          source_id=1)
+            return category
+
+
 
 class DocumentMapping(models.Model):
     document_id = models.BigIntegerField()   #数据导入后的document id
