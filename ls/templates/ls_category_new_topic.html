@@ -57,6 +57,7 @@ style="width: 800px;margin-left:-450px"
 						var new_topic=$('#topic_item_'+data['topic_id']);
 						new_topic.hide();
 						$('#new_topic_modal').on('hidden', function () {
+										$(window).scrollTop(0);
 										new_topic.fadeIn('slow');
 						})
 						$('#new_topic_modal').modal('hide')
