@@ -1,0 +1,182 @@
+<div id="new_topic_modal"
+class="modal hide fade"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myModalLabel"
+aria-hidden="true"
+style="width: 800px;margin-left:-450px"
+>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			×
+		</button>
+		<h3 id="myModalLabel">发表新帖</h3>
+	</div>
+	<div class="modal-body">
+		<form class="form-horizontal" id='new-topic-form' action=''>
+				{% csrf_token %}
+			<div class="control-group">
+				<div class="controls" style="margin-left: 100px">
+					<span class="label label-info">{{category.name}}</span>
+					<input type="hidden" name="cat_id" value="{{category.id}}" />
+					<span id='tag0' class="label label-info"></span>
+					<span id='tag1' class="label label-info"></span>
+					<span id='tag2' class="label label-info"></span>
+				</div>
+			</div> 
+			<div class="control-group">
+				<label class="control-label" for="inputEmail" style="width: 80px">内容标题：</label>
+				<div class="controls" style="margin-left: 100px">
+					<input type="text" id="new_topic_title" name='topic_title' placeholder="请输入帖子标题" style="width: 600px">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassword"style="width: 80px">帖子内容：</label>
+				<div class="controls" style="margin-left: 100px">
+					<textarea id='new_topic_content' name='topic_content'rows="8" style="width: 600px"></textarea>
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">
+			取消
+		</button>
+		<button class="btn btn-primary" onclick="return postNewTopic()">
+			确认发表
+		</button>
+	</div>
+	<script>
+		 
+		function postNewTopic(){
+			$.post("/cat/new_topic", $("#new-topic-form").serialize()).done(function(data) {
+				if(data['success']=='true'){
+					$.get("/cat/new_topic?topic_id="+data['topic_id']).done(function(hdata){
+						$('#before_first_item').after(hdata);
+						var new_topic=$('#topic_item_'+data['topic_id']);
+						new_topic.hide();
+						$('#new_topic_modal').on('hidden', function () {
+										new_topic.fadeIn('slow');
+						})
+						$('#new_topic_modal').modal('hide')
+						$('#new_topic_modal').on('hidden', function () {
+						})
+					
+						
+					});
+				}
+			});
+			return false;
+		}
+		
+		
+		var title_and_content=""
+		var checkTagStated=false;
+		var checkInterval=null;
+		$('#new_topic_title').change(
+			function(){
+				//start check tags
+				if(!checkTagStated){
+					checkTagStated=true;
+					checkInterval=window.setInterval(checkTags,3000);
+				}
+			}
+		);
+		
+		function checkTags(){
+			content=$('#new_topic_title').val()+$('#new_topic_content').val();
+			
+			tags=getTags(content);
+			for(i in tags){
+				$('#tag'+i).html(tags[i][1]);
+			}
+		}
+		
+		
+		
+		//------------------------------------------------获取标签API，TODO抽取到单独文件
+		var categorylist=[
+			{%for cat in categorylist%}
+				{
+					id:{{category.id}},
+					name:"{{cat.name}}",
+					tags:[{%for tag in cat.getTags%}"{{tag}}"{% if not forloop.last%},{%endif%}{% endfor %}]
+				}{% if not forloop.last %},{%endif%}
+			{% endfor %}
+		];
+		var strReg;
+		function getTag(subtxt){
+			strReg="";
+			for( catid in categorylist){
+				cat=categorylist[catid];
+				for(tagid in cat['tags']){
+					if(strReg.length>0)
+						strReg+="|";
+					strReg+=cat['tags'][tagid];
+				}
+			}
+			//var reg=/都市|言情|玄幻|穿越|武侠|军事/;
+			var reg=RegExp(strReg);
+			return subtxt.match(reg);
+		}
+		function subtxts(txt){
+			var result=[];
+			var l=txt.length;
+			for(i=2;i<l;i=i+2){
+				var st=txt.slice(i-2,i+2);
+				result.push(st);
+			}
+			return result;
+		}
+		//返回文本中所有匹配到的标签
+		function getAllTags(txt){
+			var tags=[];
+			var sts=subtxts(txt);
+			for(var i=0;i<sts.length;i++){
+				st=sts[i];
+				tag=getTag(st);
+				
+				if(tag!=null){
+					
+					tags.push(tag[0]);
+				}
+			}
+			return tags;
+		}
+		//返回去重复后的标签，按照出现次数显示最多的3个
+		function getTags (txt) {
+			tags=[];
+			allTags=getAllTags(txt);
+			for(var i=0;i<allTags.length;i++){
+				tag=allTags[i];
+				contains=false;
+				for(var n=0;n<tags.length;n++){
+					t=tags[n];
+					if(t[1]==tag){
+						t[0]=t[0]+1;
+						contains=true;
+					}
+				}
+				if(!contains){
+					tags.push([1,tag])
+				}
+				
+			}	 
+			result=[]
+			for( i in tags){
+				result.push(tags[i]);
+				if(result.length>3){
+					min=0;
+					for(i2 in result){
+						if(result[i2][0]<result[min][0])
+							min=i2;
+					}
+					delete(result[min]);
+				}
+			} 
+			return result;
+		}
+		
+	</script>
+</div>

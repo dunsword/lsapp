@@ -1,5 +1,5 @@
 <!-- need Topic instance -->
-<div class="row-fluid" style="border-top:1px solid #dddddd;margin-top: 10px" >
+<div id='topic_item_{{topic.id}}' class="row-fluid" style="border-top:1px solid #dddddd;margin-top: 10px" >
 	<div class="span2" style="margin-top: 10px">
 		<img
 		class="img-rounded"
@@ -10,8 +10,7 @@
 	<div class="span10">
 		<div class="row-fluid" >
 			<div class='span12'>
-				<h4 style="margin-bottom: 5px;"><a href="/topic/{{topic.categoryid}}/1">{{topic.title}}</a></h4>
-				
+				<h4 style="margin-bottom: 5px;"><a href="/topic/{{topic.id}}/1">{{topic.title}}</a></h4>
 			</div>
 		</div>
 		<div class="row-fluid" >
