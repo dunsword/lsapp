@@ -25,3 +25,19 @@ class CronTest(TestCase):
 
         doc =DocumentMapping().isExist(2540310)
         self.assertTrue(doc)
+
+    def test_create_category(self):
+        category = SourceCategory.objects.create_category(name='test1',
+                                                          url="http://sss",
+                                                          parent_id=0,
+                                                          source_id=1)
+        self.assertTrue(category.id>=1,"category is save ok ")
+
+    def test_saveOrReturn(self):
+        category1 = SourceCategory.objects.create_category(name='test1',
+                                                          url="http://sss",
+                                                          parent_id=0,
+                                                          source_id=1)
+        category2 = SourceCategory().saveOrReturn(name="test1",url="http://sss")
+
+        self.assertTrue(category1.id==category2.id," ok")
