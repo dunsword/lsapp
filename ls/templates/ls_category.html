@@ -11,9 +11,18 @@
 						<h3> {{category.name}}</h3>
 					</div>
 					<div class="span3" style="padding-top: 30px">
-						<span></span>
+						<span style="float: right;padding-right: 10px">
+							<a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">发布新帖</a> 
+						</span>
 					</div>
 				</div>
+				<div id='before_first_item' class="row-fluid" style="height: 0px">
+					<div class="span12">
+						<!-- Modal -->
+						{% include 'ls_category_new_topic.html'%}
+					</div>
+				</div>
+				
 				{% for topic in topics %}
 				{% include 'ls_category_topic_item.html'%}
 				{% endfor %}

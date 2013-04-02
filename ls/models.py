@@ -16,8 +16,22 @@ class SiteSource(BaseModel):
     homepage=models.URLField('site home page')
     desc=models.CharField('description',max_length=2048)
 
-
+class TopicManager(models.Manager):
+    def create_topic(self,user,title,content,categoryid):
+        topic=Topic(userid=user.id,
+                    username=user.username,
+                    title=title,
+                    content=content,
+                    categoryid=categoryid,
+                    created_at=datetime.now(),
+                    updated_at=datetime.now(),
+                    topic_type=Topic.TOPIC_TYPE_NORMAL)
+        
+        topic.save()
+        return topic
+        
 class Topic(BaseModel):
+    objects=TopicManager()
     TOPIC_TYPE_NORMAL=1
     TOPIC_TYPE_DOCUMENT=2
     TOPIC_TYPE_VIDEO=3
@@ -32,6 +46,9 @@ class Topic(BaseModel):
     read_count=models.IntegerField('read count',default=0)
     reply_count=models.IntegerField('reply count',default=0)
     topic_type=models.IntegerField('topic type',choices=[(1,"普通"),(2,"小说"),(3,"视频"),(4,"购物")],default=1,db_index=True)
+    categoryid=models.IntegerField('category id',default=1)
+    catid1=models.IntegerField('category id2',default=0)
+    catid2=models.IntegerField('category id3',default=0)
     
     def getDocument(self):
         if self.topic_type==2:
@@ -40,7 +57,14 @@ class Topic(BaseModel):
 
 class DocumentManager(models.Manager):
     def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name=''):
-        topic=Topic.objects.create(userid=userid,username=username,title=title,content=content,categoryid=categoryid,topic_type=Topic.TOPIC_TYPE_DOCUMENT)
+        topic=Topic.objects.create(
+                                   userid=userid,
+                                   username=username,
+                                   title=title,content=content,
+                                   categoryid=categoryid,
+                                   catid1=0,
+                                   catid2=0,
+                                   topic_type=Topic.TOPIC_TYPE_DOCUMENT)
         doc=Document.objects.create(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name)
         doc.save()
         return doc
@@ -49,7 +73,7 @@ class Document(models.Model):
     objects=DocumentManager()
     author_name=models.CharField('author name',max_length=256,null=True,default=None)
     update_status=models.SmallIntegerField('status',default=0)
-    source_id=models.IntegerField('sourse id')
+    source_id=models.IntegerField('source id')
     source_url=models.URLField('source url')
     topic=models.OneToOneField(Topic,related_name='ref+')
 
@@ -69,9 +93,29 @@ class Feed(BaseModel):
     docid=models.IntegerField('doc id')
     feed_type=models.SmallIntegerField('feed type',default=1)
 
+class CategoryManager(models.Manager):
+    def getCategory(self,parent_id=0):
+        '''
+                        根据内容推荐标签，TODO性能优化
+        '''
+        if parent_id>0:
+            cats=self.filter(parent_id=parent_id).filter(level__exact=2)
+        else:
+            cats=self.filter(level__exact=1)
+        
+        return cats
+        
+        
+    
 class Category(BaseModel):
+    objects=CategoryManager()
     name=models.CharField('category name',max_length=100)
-
+    parent_id=models.IntegerField('parent category',default=0)
+    level=models.IntegerField('category level',default=1)
+    
+    def getTags(self):
+        return self.name.split('/')
+    
 class TopicReply(BaseModel):
     userid=models.IntegerField('user id')
     username=models.CharField('user name',max_length=30)
