@@ -30,6 +30,9 @@ class TopicView(BaseTopicView):
         topicid=int(topicid)
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
+        
+        if topic.getDocument() !=None:
+            return self.to_document(request, topic, page)
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=self.tSrv.getTopicForm(topic)
         topicForm.is_valid()
@@ -42,7 +45,19 @@ class TopicView(BaseTopicView):
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))
     
-    
+    def to_document(self,request, topic, page):
+        doc=topic.getDocument()
+        replyList=self.tSrv.getTopicReplyList(topic.id, page)
+        topicForm=self.tSrv.getTopicForm(topic)
+        topicForm.is_valid()
+        docs=self.docSrv.getHotDocuments(topicForm.instance.categoryid)
+        
+        pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
+        
+        replyForm=TopicReplyForm()
+        c = RequestContext(request, {'topic':topicForm,'doc':doc,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo})
+        tt = loader.get_template('ls_topic_document.html')
+        return HttpResponse(tt.render(c))
     
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)

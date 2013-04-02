@@ -31,6 +31,10 @@ class TopicManager(models.Manager):
         return topic
         
 class Topic(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super(Topic,self).__init__(*args, **kwargs)
+        self.document=None
+        
     objects=TopicManager()
     TOPIC_TYPE_NORMAL=1
     TOPIC_TYPE_DOCUMENT=2
@@ -50,9 +54,15 @@ class Topic(BaseModel):
     catid1=models.IntegerField('category id2',default=0)
     catid2=models.IntegerField('category id3',default=0)
     
+    def isDocument(self):
+        return self.topic_type==Topic.TOPIC_TYPE_DOCUMENT
+    
     def getDocument(self):
+        if self.document:
+            return self.document
         if self.topic_type==2:
-            return Document.objects.get(topic__exact=self)
+            self.document= Document.objects.get(topic__exact=self)
+            return self.document
         return None
 
 class DocumentManager(models.Manager):
@@ -72,7 +82,9 @@ class DocumentManager(models.Manager):
 class Document(models.Model):
     objects=DocumentManager()
     author_name=models.CharField('author name',max_length=256,null=True,default=None)
-    update_status=models.SmallIntegerField('status',default=0)
+    word_count=models.IntegerField('字数',default=0);
+    chapter_count=models.IntegerField('章节数',default=0)
+    update_status=models.SmallIntegerField('status',choices=[(1,"连载中"),(2,"已完结")],default=1,db_index=True)
     source_id=models.IntegerField('source id')
     source_url=models.URLField('source url')
     topic=models.OneToOneField(Topic,related_name='ref+')

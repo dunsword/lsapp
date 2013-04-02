@@ -10,12 +10,18 @@
 	<div class="span10">
 		<div class="row-fluid" >
 			<div class='span12'>
-				<h4 style="margin-bottom: 5px;"><a href="/topic/{{topic.id}}/1">{{topic.title}}</a></h4>
+				<span>
+				    <h4 style="margin-bottom: 5px;">
+				        {% if topic.isDocument %}<span class="label label-info" style="margin-right: 10px">小说</span>{% endif%}
+				        <a href="/topic/{{topic.id}}/1">{{topic.title}}</a>
+				      
+				    </h4>  
+			    </span>
 			</div>
 		</div>
 		<div class="row-fluid" >
 			<div class='span2'>
-				{{topic.username}}   
+				{{topic.username}} 
 			</div>
 			<div class='span3'>
 			   {{topic.created_at|date:"Y-m-d f"}}

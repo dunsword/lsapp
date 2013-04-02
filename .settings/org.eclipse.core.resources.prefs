@@ -10,6 +10,7 @@ encoding//base/models.py=utf-8
 encoding//base/storage/client.py=utf-8
 encoding//base/tests.py=utf-8
 encoding//base/views.py=utf-8
+encoding//cron/spider/qidian.py=utf-8
 encoding//ls/category_view.py=utf-8
 encoding//ls/document_forms.py=utf8
 encoding//ls/feed_forms.py=utf-8
