@@ -23,8 +23,10 @@
 			"author_name":"保卫萝卜",
 			"source_url":"http://www.qidian.com/Book/2574213.aspx",
 			"source_id": 1,
+			"word_count":466043,
+			"chapter_count":154,
 			"topic": 4,
-			"update_status": 0
+			"update_status": 2
 		}
 	}, 
 	{
@@ -51,8 +53,10 @@
 			"author_name":"我本疯狂",
 			"source_url":"http://www.qidian.com/Book/2166708.aspx",
 			"source_id": 1,
+			"word_count":1987924,
+			"chapter_count":500,
 			"topic": 5,
-			"update_status": 0
+			"update_status": 1
 		}
 	}
 ]
