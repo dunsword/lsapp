@@ -1,0 +1,32 @@
+[
+	{
+		"model": "base.User",
+		"pk": 10,
+		"fields": {
+			"username": "小赵同学",
+			"first_name": "",
+			"last_name": "",
+			"nickname": "小赵同学",
+			"email": "xiaozhao@lsapp.com",
+			"password": "pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
+			"is_staff": 0,
+			"is_active": 1,
+			"is_superuser": 0
+		}
+	},
+	{
+		"model": "base.User",
+		"pk": 11,
+		"fields": {
+			"username": "小白的海",
+			"first_name": "",
+			"last_name": "",
+			"nickname": "小白的海",
+			"email": "xiaobaidehai@lsapp.com",
+			"password": "pbkdf2_sha256$10000$PBCRMrIW6oLV$CFi7xtUK4g20loMBL/QFBGABp7u944TNJh5coLlBjvI=",
+			"is_staff": 0,
+			"is_active": 1,
+			"is_superuser": 0
+		}
+	}
+]
