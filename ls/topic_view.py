@@ -31,8 +31,8 @@ class TopicView(BaseTopicView):
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
         
-        if topic.getDocument() !=None:
-            return self.to_document(request, topic, page)
+#        if topic.getDocument() !=None:
+#            return self.to_document(request, topic, page)
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=self.tSrv.getTopicForm(topic)
         topicForm.is_valid()
@@ -67,9 +67,16 @@ class TopicReplyView(BaseTopicView):
         replyForm=TopicReplyForm({'userid':user.id,'username':user.username,'topicid':topicid,'content':rc,'title':'','created_at':datetime.now(),'updated_at':datetime.now(),'status':1})
         if(replyForm.is_valid()):
             self.tSrv.addReply(replyForm)
-            ctx ={'success':'true','time':replyForm.cleaned_data['created_at'].strftime('%H:%M'),'content':replyForm.cleaned_data['content']}
+            ctx ={'success':'true','replyid':replyForm.instance.id,'time':replyForm.cleaned_data['created_at'].strftime('%H:%M'),'content':replyForm.cleaned_data['content']}
         else:
             ctx={'success':'false','errors':replyForm.errors}
         return self._get_json_respones(ctx)
     
+    def get(self,request,replyid,*args,**kwargs):
+        topicReply=TopicReply.objects.get(pk=replyid)
+        c = RequestContext(request,{'reply':topicReply})
+        tt = loader.get_template('ls_topic_reply_item.html')
+        return HttpResponse(tt.render(c))
+        
+        
         

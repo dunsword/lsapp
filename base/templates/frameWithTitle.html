@@ -15,9 +15,10 @@
                           <form class='form-inline' style="height: 10px; margin-top: 5px;margin-left:10px;"><input type='text' placeholder="搜索" /></form>
                         </li>
                     </ul>
+                    {% if user.is_active %}
                     <ul class="nav pull-right">
                         <li>
-                            <a href="#">消息</a>
+                            <a href="#">消息 {{user.is_active}}</a>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="dropdown">
@@ -33,6 +34,38 @@
                             </ul>
                         </li>
                     </ul>
+                    {% else %}
+                     <ul class="nav pull-right">
+                        <li>
+                            <a href="#">注册</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li>
+                            <a href="#login_modal"  data-toggle="modal">登录</a>
+                        </li>
+                    </ul>
+                    
+                    
+                     <div id="login_modal" class="modal hide fade"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="myModalLabel"
+                        aria-hidden="true"
+                        style="width: 800px;height: 300px;margin-left:-450px">
+                            <div style="width:60px;margin: 120px auto;">Loading...</div>
+                    </div>
+                    <script>
+                        $('#login_modal').on('show', function () {
+                                $.get('/login/form').done(
+                                  function(data){
+                                      $('#login_modal').html(data);
+                                  }  
+                                );
+                        });
+                    </script>
+                   
+                    {% endif %}
+                    
                 </div>
             </div>
        

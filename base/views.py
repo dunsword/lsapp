@@ -46,6 +46,13 @@ def __render_login(request, loginForm, msg=None):
     tt = loader.get_template('login.html')
     return HttpResponse(tt.render(c))
 
+def login_form(request):
+    loginForm = LoginForm()
+    c = RequestContext(request, {'form':loginForm})
+    c.update(csrf(request))
+    tt = loader.get_template('base_login.html')
+    return HttpResponse(tt.render(c))
+
 def do_logout(request):
     logout(request)
     return HttpResponseRedirect("/login")
