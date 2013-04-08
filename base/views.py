@@ -14,7 +14,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
 from PIL import Image
-from base.storage.client import AvatarClient,CropClient
+from base.storage.client import AvatarClient, CropClient
 from datetime import datetime
 
 def do_login(request):
@@ -53,9 +53,19 @@ def login_form(request):
     tt = loader.get_template('base_login.html')
     return HttpResponse(tt.render(c))
 
+def login_action(request):
+    loginForm = LoginForm(request.POST)
+    if loginForm.is_valid():
+        username = loginForm.cleaned_data['username']
+        password = loginForm.cleaned_data['password']
+        remember = loginForm.changed_data['remember']
+        
+        
+
 def do_logout(request):
     logout(request)
     return HttpResponseRedirect("/login")
+
 
 def register(request):
     if request.method == 'POST':
@@ -188,24 +198,24 @@ def setAvatar(request):
         
         if form.is_valid():
             avatarTempFile = request.FILES['avatar']
-            fileName=AvatarClient.store(user.id, avatarTempFile) 
+            fileName = AvatarClient.store(user.id, avatarTempFile) 
 #            user.avatar=fileName
 #            user.save()
     
-    avatarUrl=user.get_avatar_url()  
+    avatarUrl = user.get_avatar_url()  
     
-    avatarFileName= AvatarClient.getSaveFileName(user.id)
+    avatarFileName = AvatarClient.getSaveFileName(user.id)
     
-    c = RequestContext(request, {'form':form, 
+    c = RequestContext(request, {'form':form,
                                  'head_template_file':'setavatar_head.html',
                                  'avatar_file_name':avatarFileName,
-                                 'avatar_url':avatarUrl,})
+                                 'avatar_url':avatarUrl, })
 
     tt = loader.get_template('setavatar.html')
     return HttpResponse(tt.render(c))
 
 def __jsonRespones(ctx, **httpresponse_kwargs):
-    content= json.dumps(ctx);
+    content = json.dumps(ctx);
     return HttpResponse(content,
                                  content_type='application/json',
                                  **httpresponse_kwargs)
@@ -223,20 +233,20 @@ def cropAvatar(request):
     
     user = request.user
     
-    originAvatar=AvatarClient.getStoreFileName(AvatarClient.getSaveFileName(user.id))
-    #afile=open(originAvatar)
+    originAvatar = AvatarClient.getStoreFileName(AvatarClient.getSaveFileName(user.id))
+    # afile=open(originAvatar)
     
-    cropedAvatar=CropClient.store(user.id,originAvatar,avatarRealWidth,avatarRealHeight,avatarMarginLeft,avatarMarginTop,avatarWidth,avatarHeight)    
+    cropedAvatar = CropClient.store(user.id, originAvatar, avatarRealWidth, avatarRealHeight, avatarMarginLeft, avatarMarginTop, avatarWidth, avatarHeight)    
     
-    now=datetime.now()
-    timestr=now.strftime('%y%m%d%H%M%S')
-    user.avatar=cropedAvatar+'?t='+timestr+'.jpg'
+    now = datetime.now()
+    timestr = now.strftime('%y%m%d%H%M%S')
+    user.avatar = cropedAvatar + '?t=' + timestr + '.jpg'
     user.save()
     
-    result={'avatar_url': user.get_avatar_url(), 'result':'success',}
+    result = {'avatar_url': user.get_avatar_url(), 'result':'success', }
     return __jsonRespones(result);
 
-#def handleFile(uid, f):
+# def handleFile(uid, f):
     
     
 #    fileName = settings.STATIC_ROOT + '/avatar/' + str(uid) + '.jpg'

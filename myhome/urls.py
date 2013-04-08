@@ -3,6 +3,7 @@ from ls.feed_view import FeedView
 from ls.feed_share_view import FeedShareView
 from ls.topic_view import TopicView,Topic,TopicReplyView
 from ls.category_view import CategoryView,CategoryNewTopicView
+from base.login_views import LoginView
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -34,7 +35,7 @@ urlpatterns = patterns('',
     (r'^setavatar','base.views.setAvatar'),
     (r'^cropAvatar','base.views.cropAvatar'),
     (r'^login$','base.views.do_login'),
-    (r'^login/form','base.views.login_form'),
+    (url(r'^login/form',LoginView.as_view())),
     (r'^logout$','base.views.do_logout'),
     (r'^register','base.views.register'),
     (r'^regsuccess','base.views.reg_success'),

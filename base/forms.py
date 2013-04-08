@@ -107,4 +107,5 @@ class SetpassForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100, label='用户名', error_messages={'required':'请输入用户名!'})
     password = forms.CharField(widget=forms.PasswordInput, label='密  码', error_messages={'required':'请输入密码！'})
+    remember = forms.BooleanField(widget=forms.CheckboxInput ,label='记住密码')
     
