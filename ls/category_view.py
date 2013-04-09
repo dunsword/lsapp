@@ -42,11 +42,18 @@ class CategoryView(BaseView):
         self.docSrv=DocumentService()
         
     def get(self,request, categoryid, page=1,*args, **kwargs):
+        #prepare parameters
         categoryid=int(categoryid)
         page=int(page)
+        
+        #TODO should be deferent page for top level cat and leaf level cat
         category=Category.objects.get(pk=categoryid)
-        cats=Category.objects.getCategory(category.parent_id)
-        topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')
+        if category.level==1:
+            topics=Topic.objects.filter(catid_parent__exact=categoryid).order_by('-created_at')
+            cats=Category.objects.getCategory(category.id)
+        else:
+            cats=Category.objects.getCategory(category.parent_id)
+            topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')
         count=topics.count()
         pageInfo=PageInfo(page,count,10)
         

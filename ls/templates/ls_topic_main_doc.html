@@ -4,13 +4,13 @@
         <h3 style='font-family: "Helvetica Neue",Arial,sans-serif'> {{topic.instance.title}}</h3>
     </div>
     <div class="span4" style="padding-top: 30px">
-        <span style="float: right">类别：<a href="/cat/{{topic.getCategory.id}}/1">{{topic.getCategory.name}}</a></span>
+        <span style="float: right">标签：<a href="/cat/{{topic.getCategory.id}}/1">{{topic.getCategory.name}}</a></span>
         {% if user.is_staff %}
         {% endif %}
     </div>
 </div>
 <div class="row-fluid" style="border-top: 1px solid #dddddd; margin-bottom: 10px">
-    <div class="span2" style="margin-top: 20px">
+    <div class="span2 lavatar" style="margin-top: 20px">
         <img
         class="img-rounded"
         alt="140x140"
@@ -18,7 +18,7 @@
         src="http://static.lsapp.com/avatar/a_250X250_{{topic.instance.userid}}.jpg">
         </img>
     </div>
-    <div  class="span10" style="margin-left: 0px">
+    <div  class="span10" >
         <div class="row-fluid">
             <div class="span12">
                 <div class="row-fluid">

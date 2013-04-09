@@ -31,17 +31,19 @@ class TopicView(BaseTopicView):
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
         
-#        if topic.getDocument() !=None:
-#            return self.to_document(request, topic, page)
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=self.tSrv.getTopicForm(topic)
         topicForm.is_valid()
         docs=self.docSrv.getHotDocuments(topicForm.instance.categoryid)
         
+        #标签推荐
+        
+        cats=Category.objects.getCategory(2)
+        
         pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
         
         replyForm=TopicReplyForm()
-        c = RequestContext(request, {'topic':topicForm,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo})
+        c = RequestContext(request, {'topic':topicForm,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo,"categorylist":cats})
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))
     
