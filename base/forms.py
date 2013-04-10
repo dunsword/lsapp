@@ -56,13 +56,13 @@ class RegisterUserForm(forms.Form):
         except User.DoesNotExist:
             return email
 class SetupForm(forms.Form):
-    firstName = forms.CharField(
-                              widget=forms.TextInput(attrs={'placeholder': u'请输入姓名'}),
-                              max_length=8,
-                              label=u'姓名',
-                              required=False,
-                              initial='姓名',
-                              error_messages={'max_length': '名字不能超过8个字！', })
+#    firstName = forms.CharField(
+#                              widget=forms.TextInput(attrs={'placeholder': u'请输入姓名'}),
+#                              max_length=8,
+#                              label=u'姓名',
+#                              required=False,
+#                              initial='姓名',
+#                              error_messages={'max_length': '名字不能超过8个字！', })
     #lastName=forms.CharField(max_length=20,label='名')
     nickname = forms.CharField(
                                widget=forms.TextInput(attrs={'placeholder': u'请输入昵称'}),
@@ -74,6 +74,7 @@ class SetupForm(forms.Form):
                                                'min_length':'不能少于3个字！',
                                                'max_length': '不能超过20个字！'
                                                })
+    gender = forms.IntegerField(widget=forms.RadioSelect(choices=[(1,u'女'),(2,u'男'),(3,u'保密')]))
     #email=forms.EmailField(label='电子邮箱')
     #avatar=forms.FileField()
     

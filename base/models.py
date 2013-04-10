@@ -27,7 +27,7 @@ class UserManager(models.Manager):
     def create_user(self, username, email, password,nickname=None,gender=1):
         if nickname == None:
             nickname=username
-        user = User(username=username, email=email)
+        user = User(username=username, email=email,nickname=nickname,gender=gender)
         user.set_password(password)
         user.save()
         return user
