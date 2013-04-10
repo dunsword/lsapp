@@ -12,30 +12,36 @@
                 <a href="/setpass">密码修改</a>
             </li>
             <li>
-                <a href="/setavatar">头像修改</a>
+                <a href="/setavatar">头像设置</a>
             </li>
         </ul>
     </div>
-    <form action='/setpass' method='post'  class='form-horizontal' style="margin-left:auto; margin-right:auto;width:230px">
+    <div class='span8'>
+    <form action='/setpass' method='post'  class='form-horizontal' style="">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        <div class="fieldWrapper">
-            {{ form.password.errors }} <label for="id_subject">{{ form.password.label }}:</label>
-            {{ form.password }}
+        
+       
+        <div class="control-group">
+            <label for="id_password" style="float:left; margin-right: 30px;width:60px;">原密码:</label>
+            {{ form.password }} 
+            <span style="display: inline-block">{{ form.password.errors }}</span>
         </div>
-        <div class="fieldWrapper">
-            {{ form.newPassword.errors }} <label for="id_subject">{{ form.newPassword.label }}:</label>
-            {{ form.newPassword }}
+        <div class="control-group">
+           <label for="id_subject" style="float:left; margin-right: 30px;width:60px;">{{ form.newPassword.label }}:</label>
+            {{ form.newPassword }} <span style="display: inline-block">{{ form.newPassword.errors }} </span>
         </div>
-        <div class="fieldWrapper">
-            {{ form.rePassword.errors }} <label for="id_subject">{{ form.rePassword.label }}:</label>
+        <div class="control-group" >
+            <label for="id_subject" style="float:left; margin-right: 30px;width:60px;">确认密码:</label>
             {{ form.rePassword }}
+            <span style="display: inline-block">{{ form.rePassword.errors }} </span>
         </div>
-        <button type='submit' class="btn" >
+        <button type='submit' class="btn btn-primary" >
             设置
         </button>
-        <br/>
+      
         
     </form>
+    </div>
 </div>
 {% endblock %}

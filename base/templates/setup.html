@@ -14,7 +14,7 @@
         
         <div class="control-group">
             <label style="float:left; margin-right: 30px" for="id_nickname">昵称:</label>
-            <input name="nickname" placeholder="请输入昵称" value="桃花树下" maxlength="20" type="text" id="id_nickname">
+            <input name="nickname" placeholder="请输入昵称" value="{{user.nickname}}" maxlength="20" type="text" id="id_nickname">
             <span class="help-inline"> </span>
         </div>
         <div class="control-group">
@@ -24,9 +24,9 @@
         </div>
         <div class="control-group">
             <label style="float:left; margin-right: 30px" for="id_nickname">性别:</label>
-            <span style="margin-right: 10px"><input type="radio" name="gender" value="1" {% if user.gender>1 %} checked="checked"{%endif%} style="margin-right: 3px">女</span>
-            <span style="margin-right: 10px"><input type="radio" name="gender" value="2" {% if user.gender  %}checked="checked"{%endif%} style="margin-right: 3px">男</span>
-            <span style="margin-right: 10px"><input type="radio" name="gender" value="3" {% if user.gender  %}checked="checked"{%endif%} style="margin-right: 3px">保密</span>
+            <span style="margin-right: 10px"><input type="radio" name="gender" value="1" {% if user.gender = 1 %} checked="checked"{%endif%} style="margin-right: 3px">女</span>
+            <span style="margin-right: 10px"><input type="radio" name="gender" value="2" {% if user.gender = 2 %}checked="checked"{%endif%} style="margin-right: 3px">男</span>
+            <span style="margin-right: 10px"><input type="radio" name="gender" value="3" {% if user.gender = 3 %}checked="checked"{%endif%} style="margin-right: 3px">保密</span>
             <span class="help-inline"> </span>
         </div>
         

@@ -182,7 +182,6 @@ def setpass(request):
                 errors = form.errors['password'] = u'密码错误！'
     else:  # GET
         user = request.user
-        
         form = SetpassForm()
     c = RequestContext(request, {'form':form})
     tt = loader.get_template('setpass.html')
