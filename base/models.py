@@ -24,7 +24,9 @@ from twisted.conch.test.test_insults import default
 #    user=models.OneToOneField(User)
 
 class UserManager(models.Manager):
-    def create_user(self, username, email, password):
+    def create_user(self, username, email, password,nickname=None,gender=1):
+        if nickname == None:
+            nickname=username
         user = User(username=username, email=email)
         user.set_password(password)
         user.save()
@@ -40,6 +42,7 @@ class User(models.Model):
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     nickname = models.CharField(_('nick name'), max_length=30, unique=True)
+    gender = models.SmallIntegerField(_('性别'),choices=[(1,"女"),(2,"男"),(3,'保密')],default=1)
     email = models.EmailField(_('e-mail address'), unique=True)
     avatar = models.URLField(_('avatar'), null=True)
     password = models.CharField(_('password'), max_length=128)

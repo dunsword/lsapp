@@ -17,6 +17,7 @@ encoding//ls/document_forms.py=utf8
 encoding//ls/feed_forms.py=utf-8
 encoding//ls/feed_share_view.py=utf-8
 encoding//ls/feed_view.py=utf-8
+encoding//ls/index_view.py=utf-8
 encoding//ls/models.py=utf-8
 encoding//ls/tests.py=utf-8
 encoding//ls/topic_forms.py=utf-8

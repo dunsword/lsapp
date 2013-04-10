@@ -144,12 +144,12 @@ def do_register(request):
 def setup(request):
     form = None
     if request.method == 'POST':
-        form = SetupForm(request.POST, request.FILES)
+        form = SetupForm(request.POST, request)
         user = request.user
         if form.is_valid():
             # avatarTempFile=request.FILES['avatar']
             # handleFile(user.id,avatarTempFile)
-            user.first_name = form.cleaned_data['firstName']
+            user.gender = form.cleaned_data['gender']
             # user.last_name=form.cleaned_data['lastName']
             user.nickname = form.cleaned_data['nickname']
             

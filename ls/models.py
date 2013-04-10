@@ -125,8 +125,25 @@ class Category(BaseModel):
     parent_id=models.IntegerField('parent category',default=0)
     level=models.IntegerField('category level',default=1)
     
+    def __init__(self, *args, **kwargs):
+        super(Category,self).__init__( *args, **kwargs)
+        self.parent=None
+    
+    def getParent(self):
+        if self.parent:
+            return self.parent
+        else:
+            self.parent=Category.objects.get(pk=self.parent_id)
+            return self.parent
+    
     def getTags(self):
         return self.name.split('/')
+    
+    def getDisplayName(self):
+        if self.level==1:
+            return self.name
+        else:
+            return self.name+self.getParent().name
     
 class TopicReply(BaseModel):
     userid=models.IntegerField('user id')

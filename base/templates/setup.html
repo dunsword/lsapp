@@ -4,30 +4,31 @@
 <div class="container">
     <h1 style="text-align: center">个人设置</h1>
     <div class='span3'>
-        <ul class="nav nav-list">
-            <li class="active">
-                <a href="/setup">个人设置</a>
-            </li>
-            <li>
-                <a href="/setpass">密码修改</a>
-            </li>
-            <li>
-                <a href="/setavatar">头像修改</a>
-            </li>
-        </ul>
+       {% include 'setup_leftbar.html' %}
     </div>
     <div class='span8'>
-    <form action='setup' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
+    <form action='setup' method='post' class='form-horizontal' style=" ">
         {% csrf_token %}
         {{ form.non_field_errors }}
-        {% for field in form.visible_fields %}
-        <div class="control-group">
-            <label style='float:left; margin-right: 30px'for="id_nickname">{{ field.label }}:</label>
-            {{ field }}
-            <span class="help-inline">{{ field.errors.as_text }} </span>
-        </div>
-        {% endfor %}
         
+        
+        <div class="control-group">
+            <label style="float:left; margin-right: 30px" for="id_nickname">昵称:</label>
+            <input name="nickname" placeholder="请输入昵称" value="桃花树下" maxlength="20" type="text" id="id_nickname">
+            <span class="help-inline"> </span>
+        </div>
+        <div class="control-group">
+            <label style="float:left; margin-right: 30px" for="id_nickname">邮箱:</label>
+            <input name="email" placeholder="请输入昵称" value="{{user.email}}" maxlength="20" type="text" id="id_email" readonly="readonly">
+            <span class="help-inline"> </span>
+        </div>
+        <div class="control-group">
+            <label style="float:left; margin-right: 30px" for="id_nickname">性别:</label>
+            <span style="margin-right: 10px"><input type="radio" name="gender" value="1" checked="checked" style="margin-right: 3px">女</span>
+            <span style="margin-right: 10px"><input type="radio" name="gender" value="2"  style="margin-right: 3px">男</span>
+            <span style="margin-right: 10px"><input type="radio" name="gender" value="3"  style="margin-right: 3px">保密</span>
+            <span class="help-inline"> </span>
+        </div>
         
         <button type='submit' class="btn btn-primary" >
             设置
