@@ -64,7 +64,7 @@ def login_action(request):
 
 def do_logout(request):
     logout(request)
-    return HttpResponseRedirect("/login")
+    return HttpResponseRedirect("/")
 
 
 def register(request):

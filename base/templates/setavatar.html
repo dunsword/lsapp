@@ -100,7 +100,32 @@
 		$pimg = $('#preview-pane .preview-container img');
 		xsize = $pcnt.width(), ysize = $pcnt.height();
 
-		console.log('init', [xsize, ysize]);
+		//console.log('init', [xsize, ysize]);
+		
+		
+		function updatePreview(c) {
+            if (parseInt(c.w) > 0) {
+                var rx = xsize / c.w;
+                var ry = ysize / c.h;
+                var avatarWidth = Math.round(rx * boundx);
+                var avfatarHeight = Math.round(ry * boundy);
+                var avartarMarginLeft = Math.round(rx * c.x);
+                var avartarMarginTop = Math.round(ry * c.y);
+                $pimg.css({
+                    width : Math.round(rx * boundx) + 'px',
+                    height : Math.round(ry * boundy) + 'px',
+                    marginLeft : '-' + Math.round(rx * c.x) + 'px',
+                    marginTop : '-' + Math.round(ry * c.y) + 'px'
+                });
+                $('#avatar_width').val(c.w);
+                $('#avatar_height').val(c.h);
+                $('#avatar_marginLeft').val(avartarMarginLeft);
+                $('#avatar_marginTop').val(avartarMarginTop);
+                $('#avatar_real_x').val(boundx);
+                $('#avatar_real_y').val(boundy);
+            }
+        };
+		
 		$('#target').Jcrop({
 			onChange : updatePreview,
 			onSelect : updatePreview,
@@ -115,32 +140,20 @@
 
 			// Move the preview into the jcrop container for css positioning
 			$preview.appendTo(jcrop_api.ui.holder);
+			
+			//init window
+		    //console.log(boundx);
+            initw=boundx<boundy? boundx:boundy;
+            initx=0;
+            if(boundx>boundy){
+                initx=boundx/2-boundy/2;
+            }
+            updatePreview({w:initw,h:initw,x:initx,y:0})
 		});
-		function updatePreview(c) {
-			if (parseInt(c.w) > 0) {
-				var rx = xsize / c.w;
-				var ry = ysize / c.h;
-				var avatarWidth = Math.round(rx * boundx);
-				var avatarHeight = Math.round(ry * boundy);
-				var avartarMarginLeft = Math.round(rx * c.x);
-				var avartarMarginTop = Math.round(ry * c.y);
-				$pimg.css({
-					width : Math.round(rx * boundx) + 'px',
-					height : Math.round(ry * boundy) + 'px',
-					marginLeft : '-' + Math.round(rx * c.x) + 'px',
-					marginTop : '-' + Math.round(ry * c.y) + 'px'
-				});
-				$('#avatar_width').val(c.w);
-				$('#avatar_height').val(c.h);
-				$('#avatar_marginLeft').val(avartarMarginLeft);
-				$('#avatar_marginTop').val(avartarMarginTop);
-				$('#avatar_real_x').val(boundx);
-				$('#avatar_real_y').val(boundy);
-			}
-		};
-
+		
+		
 	});
-
+	
 </script>
 
 <script>
