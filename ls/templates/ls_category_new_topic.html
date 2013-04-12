@@ -20,9 +20,7 @@ style="width: 800px;margin-left:-450px"
                 <div class="controls" style="margin-left: 100px">
 
                     <input type="hidden" name="cat_id" value="{{category.id}}" />
-                    <span id='tag0' class="label label-info" style="margin-right: 10px"></span>
-                    <span id='tag1' class="label label-info" style="margin-right: 10px"></span>
-                    <span id='tag2' class="label label-info" style="margin-right: 10px"></span>
+                 
 
                     <span id='id_catitem' class="label label-info" style="display:none; 10px;padding: 6px 12px; margin-right: 10px">
                         <button type="button" class="close" style="
@@ -33,16 +31,9 @@ style="width: 800px;margin-left:-450px"
                         "
                         >
                             ×
-                        </button> <span>&nbsp;</span> </span>
-                    <script>
-						$("#id_catitem > button").bind('click', function() {
-
-							$('#id_catitem').hide('fade', done = function() {
-								$('#id_catitem').remove();
-							});
-
-						});
-                    </script>
+                        </button> <span>&nbsp;</span> 
+                    </span>
+                    
                     <span id="id_dropdown" class="dropdown" data-toggle="popover" 
                             data-placement="right" 
                             data-content="请至少选择一个标签！"
@@ -50,12 +41,10 @@ style="width: 800px;margin-left:-450px"
                         <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">添加标签<b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="drop1" id="id_cat_dropdown">
                             {%for cat in categorylist%}
-
                             <a id='id_cat_{{cat.id}}' cat_id='{{cat.id}}' role="menuitem" tabindex="-1" href="#" > <span id='tag0' class="label label-info" style="margin-right: 10px">{{cat.name}}</span> </a>
-
                             {% endfor %}
-
-                        </ul> </span>
+                        </ul>
+                   </span>
                 </div>
             </div>
             <div class="control-group">
@@ -155,6 +144,9 @@ style="width: 800px;margin-left:-450px"
 	        var title=$('#new_topic_title').val('');
             var content=$('#new_topic_content').val('');
               _SelCat.clean();
+              if(currentCatLevel>1){
+                    _SelCat.push(currentCatId);
+                }
 	    }
 	    
 		function checkPostForm(){
@@ -244,7 +236,9 @@ style="width: 800px;margin-left:-450px"
                 return null;    
             },
             
-			push : function(cat) {
+			push : function(cid) {
+			    
+			    cat = getCateByID(cid);
 			    if(this.contains(cat.id)){
 			        return;
 			    }
@@ -283,6 +277,8 @@ style="width: 800px;margin-left:-450px"
 				//todo;
 			}
 		}
+		
+		
 
 		var title_and_content = ""
 		var checkTagStated = false;
@@ -319,8 +315,8 @@ style="width: 800px;margin-left:-450px"
 
 		$('#id_cat_dropdown > a').bind('click', function() {
 			cid = $(this).attr('cat_id');
-			cat = getCateByID(cid);
-			_SelCat.push(cat);
+			
+			_SelCat.push(cid);
 		});
 
 		function getCateByID(catid) {
@@ -436,5 +432,12 @@ style="width: 800px;margin-left:-450px"
 			}
 			return cats;
 		}
+		
+		
+		var currentCatId={{category.id}};
+        var currentCatLevel={{category.level}};
+        if(currentCatLevel>1){
+            _SelCat.push(currentCatId);
+        }
     </script>
 </div>
