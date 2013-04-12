@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="container">
-    <h1 style="text-align: center">个人设置</h1>
+    <h1 style="text-align: center">头像设置</h1>
+
     <div class='span3'>
         <ul class="nav nav-list">
             <li>
@@ -12,119 +13,156 @@
                 <a href="/setpass">密码修改</a>
             </li>
             <li class="active">
-                <a href="/setavatar">头像修改</a>
+                <a href="/setavatar">头像设置</a>
             </li>
         </ul>
     </div>
     <div class='span8'>
-    	当前头像：<img id='current_avatar' src='{{avatar_url}}'/>
-    	<span id="cropMessage"></span>
-        <script language="JavaScript">
-			jQuery(function($) {
-
-				// Create variables (in this scope) to hold the API and image size
-				var jcrop_api, boundx, boundy,
-
-				// Grab some information about the preview pane
-				$preview = $('#preview-pane');
-				$pcnt = $('#preview-pane .preview-container');
-				$pimg = $('#preview-pane .preview-container img');
-				xsize = $pcnt.width(), ysize = $pcnt.height();
-
-				console.log('init', [xsize, ysize]);
-				$('#target').Jcrop({
-					onChange : updatePreview,
-					onSelect : updatePreview,
-					aspectRatio : xsize / ysize
-				}, function() {
-					// Use the API to get the real image size
-					var bounds = this.getBounds();
-					boundx = bounds[0];
-					boundy = bounds[1];
-					// Store the API in the jcrop_api variable
-					jcrop_api = this;
-
-					// Move the preview into the jcrop container for css positioning
-					$preview.appendTo(jcrop_api.ui.holder);
-				});
-				function updatePreview(c) {
-					if (parseInt(c.w) > 0) {
-						var rx = xsize / c.w;
-						var ry = ysize / c.h;
-                        var avatarWidth=Math.round(rx * boundx);
-                        var avatarHeight=Math.round(ry * boundy);
-                        var avartarMarginLeft=Math.round(rx * c.x);
-                        var avartarMarginTop=Math.round(ry * c.y);
-						$pimg.css({
-							width : Math.round(rx * boundx) + 'px',
-							height : Math.round(ry * boundy) + 'px',
-							marginLeft : '-' + Math.round(rx * c.x) + 'px',
-							marginTop : '-' + Math.round(ry * c.y) + 'px'
-						});
-						$('#avatar_width').val(c.w);
-						$('#avatar_height').val(c.h);
-						$('#avatar_marginLeft').val(avartarMarginLeft);
-						$('#avatar_marginTop').val(avartarMarginTop);
-						$('#avatar_real_x').val(boundx);
-						$('#avatar_real_y').val(boundy);
-					}
-				};
-
-			});
-
-        </script>
-        <div>
-        头像图片：
-        <img id="target" src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" />
-        </div>
-        <div id="preview-pane">
-            <div class="preview-container">
-                <img src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" class="jcrop-preview" alt="Preview" />
-               
+        <div class="row-fluid" >
+            <div class='span12'>
+                当前头像：<img id='current_avatar' src='{{avatar_url}}'/>
+                <span id="cropMessage"></span>
             </div>
-             <button class="btn-primary" onclick="$('#cropAvatarForm').submit()">
-                设定头像
-                </button>
         </div>
-		
-        <form action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
-            {% csrf_token %}
-            {{ form.non_field_errors }}
-            {% for field in form.visible_fields %}
-            <div class="control-group">
-                <label style='float:left; margin-right: 30px'for="id_avatar">上传头像文件:</label>
-                <input type="file" name="avatar" id="id_avatar" onchange="alert($('#id_avatar').val())"> <span class="help-inline">{{ field.errors.as_text }} </span> 
+
+        <div class="row-fluid" >
+            <div class='span8'>
+                <div>
+                    <h4>头像图片：</h4>
+                    <img id="target" src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" />
+                </div>
+
+                <form id='upload_avatar_form' action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {% for field in form.visible_fields %}
+                    <div class="control-group">
+                        <label style='float:left; margin-right: 30px'for="id_avatar">上传头像文件:</label>
+                        <div style='display: none'>
+                        <input type="file" name="avatar" id="id_avatar" onchange="$('#upload_avatar_form').submit();">
+                        <span class="help-inline">{{ field.errors.as_text }} </span>
+
+                        <button type='submit' class="btn btn-primary" >
+                            上传头像图片
+                        </button>
+                        </div>
+                        <input type='button' class='btn btn-primary' onclick='id_avatar.click()' value='选择图片'/>
+                    </div>
+                    {% endfor %}
+
+                    <br/>
+                </form>
+
                 
-                 <button type='submit' class="btn btn-primary" >
-                上传头像图片
-                </button>
-                 <input type='button' onclick='id_avatar.click()' value='选择图片'/>
             </div>
-            {% endfor %}
-           
-            <br/>
-        </form>
-       
-        <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit="return postCropAvatar()" class='form-horizontal' style=" ">
-            <input type='hidden' id='avatar_width' name='avatar_width'/>
-            <input type='hidden' id='avatar_height' name='avatar_height'/>
-            <input type='hidden' id='avatar_marginLeft' name='avatar_marginLeft'/>
-            <input type='hidden' id='avatar_marginTop' name='avatar_marginTop'/>
-            <input type='hidden' id='avatar_real_x' name='avatar_real_x'/>
-            <input type='hidden' id='avatar_real_y' name='avatar_real_y'/>
-             {% csrf_token %}
-            
-        </form>
-        <script>
-            function postCropAvatar(){
-                $.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(
-                function(data){
-                    $('#current_avatar').attr('src',data['avatar_url']);
-                    $('#cropMessage').html("头像更新成功！");
-                });
-                return false;
-                }
-        </script>
+            <div class='span4'>
+                <div class='row-fluid' id='preview-block'>
+                <h4 style="margin-bottom: 290px;">预览：</h4>
+                <div id="preview-pane" >
+                    
+                    <div class="preview-container">
+                        <img src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" 
+                        class="jcrop-preview" 
+                        alt="Preview" 
+                        onerror ="$('#preview-block').hide();" 
+                        />
+
+                    </div>
+                   
+                </div>
+                <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit="return postCropAvatar()" class='form-horizontal' style=" ">
+                    <input type='hidden' id='avatar_width' name='avatar_width'/>
+                    <input type='hidden' id='avatar_height' name='avatar_height'/>
+                    <input type='hidden' id='avatar_marginLeft' name='avatar_marginLeft'/>
+                    <input type='hidden' id='avatar_marginTop' name='avatar_marginTop'/>
+                    <input type='hidden' id='avatar_real_x' name='avatar_real_x'/>
+                    <input type='hidden' id='avatar_real_y' name='avatar_real_y'/>
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type='submit'>
+                        设定头像
+                    </button>
+                </form>
+                 </div>
+            </div>
+
+        </div>
     </div>
 </div>
+<script>
+	jQuery(function($) {
+
+		// Create variables (in this scope) to hold the API and image size
+		var jcrop_api, boundx, boundy,
+
+		// Grab some information about the preview pane
+		$preview = $('#preview-pane');
+		$pcnt = $('#preview-pane .preview-container');
+		$pimg = $('#preview-pane .preview-container img');
+		xsize = $pcnt.width(), ysize = $pcnt.height();
+
+		//console.log('init', [xsize, ysize]);
+		
+		
+		function updatePreview(c) {
+            if (parseInt(c.w) > 0) {
+                var rx = xsize / c.w;
+                var ry = ysize / c.h;
+                var avatarWidth = Math.round(rx * boundx);
+                var avfatarHeight = Math.round(ry * boundy);
+                var avartarMarginLeft = Math.round(rx * c.x);
+                var avartarMarginTop = Math.round(ry * c.y);
+                $pimg.css({
+                    width : Math.round(rx * boundx) + 'px',
+                    height : Math.round(ry * boundy) + 'px',
+                    marginLeft : '-' + Math.round(rx * c.x) + 'px',
+                    marginTop : '-' + Math.round(ry * c.y) + 'px'
+                });
+                $('#avatar_width').val(c.w);
+                $('#avatar_height').val(c.h);
+                $('#avatar_marginLeft').val(avartarMarginLeft);
+                $('#avatar_marginTop').val(avartarMarginTop);
+                $('#avatar_real_x').val(boundx);
+                $('#avatar_real_y').val(boundy);
+            }
+        };
+		
+		$('#target').Jcrop({
+			onChange : updatePreview,
+			onSelect : updatePreview,
+			aspectRatio : xsize / ysize
+		}, function() {
+			// Use the API to get the real image size
+			var bounds = this.getBounds();
+			boundx = bounds[0];
+			boundy = bounds[1];
+			// Store the API in the jcrop_api variable
+			jcrop_api = this;
+
+			// Move the preview into the jcrop container for css positioning
+			$preview.appendTo(jcrop_api.ui.holder);
+			
+			//init window
+		    //console.log(boundx);
+            initw=boundx<boundy? boundx:boundy;
+            initx=0;
+            if(boundx>boundy){
+                initx=boundx/2-boundy/2;
+            }
+            updatePreview({w:initw,h:initw,x:initx,y:0})
+		});
+		
+		
+	});
+	
+</script>
+
+<script>
+	function postCropAvatar() {
+		$.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(function(data) {
+			$('#current_avatar').attr('src', data['avatar_url']);
+			$('#cropMessage').html("头像更新成功！");
+		});
+		return false;
+	}
+</script>
 {% endblock %}
