@@ -124,6 +124,8 @@ class Category(BaseModel):
     name=models.CharField('category name',max_length=100)
     parent_id=models.IntegerField('parent category',default=0)
     level=models.IntegerField('category level',default=1)
+    topic_count=models.IntegerField('topic count',default=0)
+    models.DateTimeField('updated time', default=datetime.now(),db_index=True,)
     
     def __init__(self, *args, **kwargs):
         super(Category,self).__init__( *args, **kwargs)

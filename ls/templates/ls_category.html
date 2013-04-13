@@ -30,6 +30,9 @@
                 {% for topic in topics %}
                 {% include 'ls_category_topic_item.html'%}
                 {% endfor %}
+                
+                 <!--翻页组建，需要PageInfo对象-->
+                {% include 'base_util_pagination.html' %}
             </div>
             <div class="span3">
                 <!--Sidebar content-->
