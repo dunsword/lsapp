@@ -1,114 +1,349 @@
 [
-   {
-    "model": "ls.Category",
-     "pk":1,
-     "fields":{
-     	"name":"讨论",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":2,
-     "fields":{
-     	"name":"阅读",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":3,
-     "fields":{
-     	"name":"影视",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":4,
-     "fields":{
-     	"name":"网购",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":5,
-     "fields":{
-     	"name":"二手",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":6,
-     "fields":{
-     	"name":"八卦",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":7,
-     "fields":{
-     	"name":"生活",
-     	"parent_id":0,
-     	"level":1
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":102,
-     "fields":{
-     	"name":"穿越/重生",
-     	"parent_id":2,
-     	"level":2
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":103,
-     "fields":{
-     	"name":"玄幻/奇幻",
-     	"parent_id":2,
-     	"level":2
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":104,
-     "fields":{
-     	"name":"都市/言情",
-     	"parent_id":2,
-     	"level":2
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":105,
-     "fields":{
-     	"name":"耽美/同人",
-     	"parent_id":2,
-     	"level":2
-     }
-   },
-   {
-    "model": "ls.Category",
-     "pk":106,
-     "fields":{
-     	"name":"武侠/仙侠",
-     	"parent_id":2,
-     	"level":2
-     }
-   },
-  
 	{
+		"model": "ls.Category",
+		"pk": 1,
+		"fields": {
+			"name": "讨论",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 2,
+		"fields": {
+			"name": "小说",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 3,
+		"fields": {
+			"name": "影视",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 4,
+		"fields": {
+			"name": "网购",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 5,
+		"fields": {
+			"name": "二手",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 6,
+		"fields": {
+			"name": "八卦",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 7,
+		"fields": {
+			"name": "生活",
+			"parent_id": 0,
+			"level": 1
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 101,
+		"fields": {
+			"name": "穿越",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 102,
+		"fields": {
+			"name": "重生",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 103,
+		"fields": {
+			"name": "都市",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 104,
+		"fields": {
+			"name": "言情",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 105,
+		"fields": {
+			"name": "玄幻",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 106,
+		"fields": {
+			"name": "奇幻",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 107,
+		"fields": {
+			"name": "耽美",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 108,
+		"fields": {
+			"name": "同人",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 109,
+		"fields": {
+			"name": "武侠",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 110,
+		"fields": {
+			"name": "仙侠",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 111,
+		"fields": {
+			"name": "末世",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 112,
+		"fields": {
+			"name": "甜宠",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 113,
+		"fields": {
+			"name": "女主",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 114,
+		"fields": {
+			"name": "修仙",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 115,
+		"fields": {
+			"name": "腹黑",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 116,
+		"fields": {
+			"name": "空间",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 117,
+		"fields": {
+			"name": "婚后",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 118,
+		"fields": {
+			"name": "女强",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 119,
+		"fields": {
+			"name": "女尊",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 120,
+		"fields": {
+			"name": "现代",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 121,
+		"fields": {
+			"name": "师徒",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 122,
+		"fields": {
+			"name": "清穿",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 123,
+		"fields": {
+			"name": "教授",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 124,
+		"fields": {
+			"name": "帝王",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 125,
+		"fields": {
+			"name": "架空",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 126,
+		"fields": {
+			"name": "姐弟",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 127,
+		"fields": {
+			"name": "小白",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 128,
+		"fields": {
+			"name": "民国",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 129,
+		"fields": {
+			"name": "修真",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 130,
+		"fields": {
+			"name": "复仇",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 131,
+		"fields": {
+			"name": "宫斗",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 132,
+		"fields": {
+			"name": "黑道",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 133,
+		"fields": {
+			"name": "总裁",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 134,
+		"fields": {
+			"name": "婚恋",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 135,
+		"fields": {
+			"name": "豪门",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 136,
+		"fields": {
+			"name": "宠文",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
 		"model": "ls.SiteSource",
 		"pk": 1,
 		"fields": {
@@ -128,13 +363,14 @@
 			"created_at": "2013-01-13 12:34:34",
 			"updated_at": "2013-01-13 12:34:34"
 		}
-	},  {
+	}, {
 		"model": "ls.Topic",
 		"pk": 1,
 		"fields": {
 			"userid": 1,
 			"username": "paul",
 			"categoryid": 104,
+			"catid_parent":2,
 			"title": "有什么好看的都市言情小说推荐下",
 			"content": "大家都喊着有什么好看的都市言情小说 ，自己漫无目地的去搜又太麻烦，所以今天就给大家推荐几部好看的都市言情小说，点击书名就直接可以看推荐的这些好看的都市言情小说啦~这些都是人气非常高的好看的都市言情小说~希望能够满足大家的书求~好看的都市言情小说一：《原来》【辛夷坞·完结】\n好看的都市言情小说二：超好看的高干文 翻译官，已完结！\n好看的都市言情小说三：我在回忆里等你 作者：辛夷坞（完结）\n好看的都市言情小说四：《心肝》作者：长着翅膀的大灰狼【已完结】\n好看的都市言情小说五：终点之前【月上无风·完结】\n好看的都市言情小说六：情陷黑色帝国：爱琴海的眼泪【安娜·完结】\n好看的都市言情小说七：婚过去后（高干） 作者：欣欣向荣\n好看的都市言情小说八：《摘星》 【林笛儿·完结】\n好看的都市言情小说九：符之一笑(高干) 作者：读读\n好看的都市言情小说十：《总裁的替身前妻》【安知晓 连载】",
 			"read_count": 1,

@@ -45,12 +45,12 @@ class Topic(BaseModel):
     username=models.CharField('user name',max_length=30)
     title=models.CharField('topic title',max_length=255)
     content=models.CharField('topic content',max_length=2048)
-    categoryid=models.IntegerField('category id',default=1)
+    categoryid=models.IntegerField('category id',default=104,db_index=True)
     like_count=models.IntegerField('like count',default=0)
     read_count=models.IntegerField('read count',default=0)
     reply_count=models.IntegerField('reply count',default=0)
     topic_type=models.IntegerField('topic type',choices=[(1,"普通"),(2,"小说"),(3,"视频"),(4,"购物")],default=1,db_index=True)
-    categoryid=models.IntegerField('category id',default=1)
+    catid_parent=models.IntegerField('parent category id',default=2,db_index=True)
     catid1=models.IntegerField('category id2',default=0)
     catid2=models.IntegerField('category id3',default=0)
     
@@ -124,9 +124,28 @@ class Category(BaseModel):
     name=models.CharField('category name',max_length=100)
     parent_id=models.IntegerField('parent category',default=0)
     level=models.IntegerField('category level',default=1)
+    topic_count=models.IntegerField('topic count',default=0)
+    models.DateTimeField('updated time', default=datetime.now(),db_index=True,)
+    
+    def __init__(self, *args, **kwargs):
+        super(Category,self).__init__( *args, **kwargs)
+        self.parent=None
+    
+    def getParent(self):
+        if self.parent:
+            return self.parent
+        else:
+            self.parent=Category.objects.get(pk=self.parent_id)
+            return self.parent
     
     def getTags(self):
         return self.name.split('/')
+    
+    def getDisplayName(self):
+        if self.level==1:
+            return self.name
+        else:
+            return self.name+self.getParent().name
     
 class TopicReply(BaseModel):
     userid=models.IntegerField('user id')

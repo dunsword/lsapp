@@ -3,8 +3,11 @@
    
             <div class="navbar-inner">
                 <div class="container" style="width:980px; margin: 0 auto;">
-                    <a class="brand" href="#">我家</a>
+                    <a   href="#" style="float: left;margin: 0px 10px">
+                        <img src="{{ STATIC_URL }}img/tuitui.png" class="img-rounded" style="width: 30px;height: 30px;margin-top: 5px"/>
+                    </a>
                     <ul class="nav">
+                        
                         <li class="active">
                             <a href="/">首页</a>
                         </li>
@@ -15,6 +18,7 @@
                           <form class='form-inline' style="height: 10px; margin-top: 5px;margin-left:10px;"><input type='text' placeholder="搜索" /></form>
                         </li>
                     </ul>
+                    {% if user.is_active %}
                     <ul class="nav pull-right">
                         <li>
                             <a href="#">消息</a>
@@ -33,6 +37,86 @@
                             </ul>
                         </li>
                     </ul>
+                    {% else %}
+                     <ul class="nav pull-right">
+                        <li>
+                            <a href="#">注册</a>
+                        </li>
+                        <li class="divider-vertical"></li>
+                        <li>
+                            <a href="#login_modal"  data-toggle="modal">登录</a>
+                        </li>
+                    </ul>
+                    
+                    
+                     <div id="login_modal" class="modal hide fade"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="myModalLabel"
+                        aria-hidden="true"
+                        style="width: 700px;height: 300px;margin-left:-350px">
+                            <div style="width:60px;margin: 120px auto;">Loading...</div>
+                    </div>
+                    <script>
+                        var _login_alert;
+                        
+                        function do_login(){
+                            $('#login_btn').attr('class','btn');
+                            $('#login_btn').attr('enabled','false');
+                            loginForm=$('#login_form');
+                            errUserName=$('#login_form_error_username');
+                            errPwd=$('#login_form_error_password');
+                            loginURL=loginForm.attr('action');
+                            $.post(loginURL,loginForm.serialize()).done(
+                              function(data){
+                                  if(data['result']=='success'){
+                                      location.reload();
+                                  }
+                                  else{
+                                       $('#login_btn').attr('class','btn btn-primary');
+                                       $('#login_btn').attr('enabled','true');
+                                      if(data['username']){
+                                           errUserName.show();                           
+                                      }
+                                      else{
+                                           errUserName.hide();
+                                      }
+                                      if(data['password']){
+                                          errPwd.show();
+                                      }
+                                      else{
+                                          errPwd.hide();
+                                      }
+                                      if(data['login_failed']){
+                                        if(_login_alert){
+                                             _login_alert.remove();
+                                        }
+                                        _login_alert= $('#login_form_alert').clone();
+                                        $('#id_username').before(_login_alert);
+                                        
+                                        _login_alert.show();
+                                        _login_alert.alert();
+                                       
+                                      }
+                                     
+                                     
+                                  }
+                              }  
+                              
+                            );
+                            return false;
+                        }
+                        $('#login_modal').on('show', function () {
+                                $.get('/login/form').done(
+                                  function(data){
+                                      $('#login_modal').html(data);
+                                  }  
+                                );
+                        });
+                    </script>
+                   
+                    {% endif %}
+                    
                 </div>
             </div>
        

@@ -1,6 +1,7 @@
-python sdk 目前还处于起步阶段，希望大家一起来完善它
+ 目前还处于起步阶段，希望大家一起来完善它
 
-Version 1.1
+VERSION 1.1
+
 
 设计背景：本SDK参考了facebook和twitter的pythonSDK的组织结构，同时结合top的SDK自动生成的机制，系统生成。
 
@@ -26,9 +27,6 @@ SDK在设计的时候，每次请求都让传入appkey和secret，但是一定�
 2.taobao.item.get 得到单个商品信息
 3、gw.api.taobao.com/router/rest
 
-App Key:100
-App Secret:accessTest7118jqq54113accessTest
 
-http://s.taobao.com/search?spm=a230r.1.6.2.H1lFl6&q=&initiative_id=staobaoz_20121203&cat=1512&sort=renqi-desc&atype=b&v=auction&tab=all&cd=false&filterFineness=2&fs=1&bcoffset=1&psrc=detail&dc=1&newpre=null&bcoffset=1&cps=yes&from=compass&ppath=20000:81156
 
 

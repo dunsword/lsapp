@@ -6,178 +6,438 @@ aria-labelledby="myModalLabel"
 aria-hidden="true"
 style="width: 800px;margin-left:-450px"
 >
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			×
-		</button>
-		<h3 id="myModalLabel">发表新帖</h3>
-	</div>
-	<div class="modal-body">
-		<form class="form-horizontal" id='new-topic-form' action=''>
-				{% csrf_token %}
-			<div class="control-group">
-				<div class="controls" style="margin-left: 100px">
-					<span class="label label-info">{{category.name}}</span>
-					<input type="hidden" name="cat_id" value="{{category.id}}" />
-					<span id='tag0' class="label label-info"></span>
-					<span id='tag1' class="label label-info"></span>
-					<span id='tag2' class="label label-info"></span>
-				</div>
-			</div> 
-			<div class="control-group">
-				<label class="control-label" for="inputEmail" style="width: 80px">内容标题：</label>
-				<div class="controls" style="margin-left: 100px">
-					<input type="text" id="new_topic_title" name='topic_title' placeholder="请输入帖子标题" style="width: 600px">
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="inputPassword"style="width: 80px">帖子内容：</label>
-				<div class="controls" style="margin-left: 100px">
-					<textarea id='new_topic_content' name='topic_content'rows="8" style="width: 600px"></textarea>
-				</div>
-			</div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+        </button>
+        <h3 id="myModalLabel">发表新帖</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" id='new-topic-form' action=''>
+            {% csrf_token %}
+            <input id='id_catlist' type='hidden' name='catlist' value=''/>
+            <div class="control-group">
+                <div class="controls" style="margin-left: 100px">
 
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">
-			取消
-		</button>
-		<button class="btn btn-primary" onclick="return postNewTopic()">
-			确认发表
-		</button>
-	</div>
-	<script>
-		 
-		function postNewTopic(){
+                    <input type="hidden" name="cat_id" value="{{category.id}}" />
+                 
+
+                    <span id='id_catitem' class="label label-info" style="display:none; 10px;padding: 6px 12px; margin-right: 10px">
+                        <button type="button" class="close" style="
+                        vertical-align: text-top;
+                        margin-left: 10px;
+                        margin-top: -8px;
+                        margin-right: -8px;
+                        "
+                        >
+                            ×
+                        </button> <span>&nbsp;</span> 
+                    </span>
+                    
+                    <span id="id_dropdown" class="dropdown" data-toggle="popover" 
+                            data-placement="right" 
+                            data-content="请至少选择一个标签！"
+                            onclick="_newpost_popitems.hide('catlist')"> 
+                        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">添加标签<b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="drop1" id="id_cat_dropdown">
+                            {%for cat in categorylist%}
+                            <a id='id_cat_{{cat.id}}' cat_id='{{cat.id}}' role="menuitem" tabindex="-1" href="#" > <span id='tag0' class="label label-info" style="margin-right: 10px">{{cat.name}}</span> </a>
+                            {% endfor %}
+                        </ul>
+                   </span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputEmail" style="width: 80px">内容标题：</label>
+                <div class="controls" style="margin-left: 100px">
+                    <input type="text" 
+                            id="new_topic_title" 
+                            name='topic_title' 
+                            placeholder="请输入帖子标题" 
+                            style="width: 600px" 
+                            data-toggle="popover" 
+                            data-placement="top" 
+                            data-content="请输入3-60字的标题！" 
+                            onclick='_newpost_popitems.hide("title")'/>
+                   
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputPassword"style="width: 80px">帖子内容：</label>
+                <div class="controls" style="margin-left: 100px">
+                    <textarea id='new_topic_content' name='topic_content'rows="8" style="width: 600px"
+                      data-toggle="popover" 
+                            data-placement="top" 
+                            data-content="文章内容不能少于10个字！" 
+                            onclick='_newpost_popitems.hide("content")'
+                    
+                    ></textarea>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            取消
+        </button>
+        <button class="btn btn-primary" onclick="return postNewTopic()">
+            确认发表
+        </button>
+    </div>
+    <script>
+		function postNewTopic() {
+		    $('#id_catlist').val(_SelCat.idlist());
+		    
+		    if(!checkPostForm()){
+		        return false;
+		    }
+		    
 			$.post("/cat/new_topic", $("#new-topic-form").serialize()).done(function(data) {
-				if(data['success']=='true'){
-					$.get("/cat/new_topic?topic_id="+data['topic_id']).done(function(hdata){
+				if (data['success'] == 'true') {
+				    //清除表单数据
+				    cleanPostForm();
+				    //显示新帖内容
+					$.get("/cat/new_topic?topic_id=" + data['topic_id']).done(function(hdata) {
 						$('#before_first_item').after(hdata);
-						var new_topic=$('#topic_item_'+data['topic_id']);
+						var new_topic = $('#topic_item_' + data['topic_id']);
 						new_topic.hide();
-						$('#new_topic_modal').on('hidden', function () {
-										$(window).scrollTop(0);
-										new_topic.fadeIn('slow');
-						})
-						$('#new_topic_modal').modal('hide')
-						$('#new_topic_modal').on('hidden', function () {
-						})
-					
-						
+						$('#new_topic_modal').on('hidden', function() {
+							$(window).scrollTop(0);
+							new_topic.fadeIn('slow');
+						});
+						$('#new_topic_modal').modal('hide');
+						$('#new_topic_modal').on('hidden', function() {
+						});
 					});
 				}
 			});
 			return false;
 		}
-		
-		
-		var title_and_content=""
-		var checkTagStated=false;
-		var checkInterval=null;
-		$('#new_topic_title').change(
-			function(){
-				//start check tags
-				if(!checkTagStated){
-					checkTagStated=true;
-					checkInterval=window.setInterval(checkTags,3000);
-				}
-			}
-		);
-		
-		function checkTags(){
-			content=$('#new_topic_title').val()+$('#new_topic_content').val();
+	    function hideAllPopover(){
+	        $('#new_topic_title').popover('hide');
+            $('#id_dropdown').popover('hide');
+          
+	    }
+	    
+	    var _newpost_popitems = {
+	          items:{'title':[false,$('#new_topic_title')],
+	                 'catlist':[false,$('#id_dropdown')],
+	                  'content':[false,$('#new_topic_content')]},
+	          
+	          
+	          show:function(name){
+	              item=this.items[name];
+	              item[0]=true;
+	              item[1].popover('show');
+	          },
+	          hide:function(name){
+	               item=this.items[name];
+	               if(item[0]){
+	                   item[1].popover('destroy');
+	                   item[0]=false;
+	               }
+	          }
+	    }
+	    
+	    function cleanPostForm(){
+	        var title=$('#new_topic_title').val('');
+            var content=$('#new_topic_content').val('');
+              _SelCat.clean();
+              if(currentCatLevel>1){
+                    _SelCat.push(currentCatId);
+                }
+	    }
+	    
+		function checkPostForm(){
+		    var title=$('#new_topic_title').val();
+		    var content=$('#new_topic_content').val();
+		    var idcatlist=$('#id_catlist').val();
+		    
+		    
+		    
+		    if(title.length<3||title.length>100){
+                _newpost_popitems.show('title');
+                return false;
+            }
+            
+            if(idcatlist.length<=1){
+                _newpost_popitems.show('catlist');
+                return false;
+            }  
+            
+            if(content.length<10||content.length>10000){
+                _newpost_popitems.show('content');
+                return false;
+            }
+            return true;
+		}
+
+		//添加制定的cat到选择框
+		function addCat(cat) {
+			console.log(cat);
+			catItem = $('#id_catitem').clone();
+			id_catItem = 'id_catitem' + cat.id;
+			catItem.attr('id', id_catItem);
+			$('#id_dropdown').before(catItem);
+			label = $('#' + id_catItem + " > span");
+			close = $('#' + id_catItem + " > button");
+			close.attr('cat_id', cat.id);
+			close.bind('click', function() {
+				c_catid = $(this).attr('cat_id');
+				_SelCat.pop(c_catid);
+			})
+			label.html(cat.name);
+			catItem.show('fade');
 			
-			tags=getTags(content);
-			for(i in tags){
-				$('#tag'+i).html(tags[i][1]);
+		}
+
+		function removeCat(c_catid) {
+			c_catItem = $('#id_catitem' + c_catid);
+			c_catItem.hide('fade', function() {
+				c_catItem.remove();
+				
+			});
+		}
+
+		
+		var _SelCat = {
+			a : null,
+			b : null,
+			c : null,
+            
+            idlist:function(){
+                str='';
+                if(this.a!=null) str+=this.a.id+',';
+                if(this.b!=null) str+=this.b.id+',';
+                if(this.c!=null) str+=this.c.id+',';
+                return str;
+            },
+            
+            contains: function(catid){
+                if(this.get(catid)!=null)
+                    return true;
+                return false;    
+            },
+            
+            clean: function(){
+                if(this.a!=null) this.pop(this.a.id);
+                if(this.b!=null) this.pop(this.b.id);
+                if(this.c!=null) this.pop(this.c.id);
+            },
+            
+            get:function(catid){
+                if(this.a!=null&&this.a.id==catid)
+                    return this.a;
+                if(this.b!=null&&this.b.id==catid)
+                    return this.b;
+                if(this.c!=null&&this.c.id==catid)
+                    return this.c;
+                return null;    
+            },
+            
+			push : function(cid) {
+			    
+			    cat = getCateByID(cid);
+			    if(this.contains(cat.id)){
+			        return;
+			    }
+			    if(this.a==null){
+			        this.a=cat; 
+			        addCat(cat);
+			        
+			    }
+			    else if(this.b==null){
+			        this.b=cat;
+			         addCat(cat);
+			        
+			    }
+			    else  if(this.c==null){
+			        this.c=cat;
+			         addCat(cat);
+			    }
+			    else{
+			        this.pop(this.c.id);
+			        this.c=cat;
+			        addCat(cat);
+			    }
+				
+				
+			},
+			pop : function(catid) {
+			    if(this.a!=null&&this.a.id==catid)
+                    this.a=null;
+                if(this.b!=null&&this.b.id==catid)
+                    this.b=null;
+                if(this.c!=null&&this.c.id==catid)
+                    this.c=null;
+                removeCat(catid);
+				//if (this.a.id == catid)
+				//	return;
+				//todo;
 			}
 		}
 		
 		
-		
+
+		var title_and_content = ""
+		var checkTagStated = false;
+		var checkInterval = null;
+		//TODO 完善这个功能
+		$('#new_topic_title').change(function() {
+			//start check tags
+			if (!checkTagStated) {
+				checkTagStated = true;
+				//checkInterval = window.setInterval(checkTags, 3000);
+			}
+		});
+		//检查输入中的内容，匹配tag
+		function checkTags() {
+			content = $('#new_topic_title').val() + $('#new_topic_content').val();
+
+			cats = getCats(content);
+
+			for (i in cats) {
+				cat = cats[i];
+				addCat(cat);
+			}
+		}
+
 		//------------------------------------------------获取标签API，TODO抽取到单独文件
 		var categorylist=[
-			{%for cat in categorylist%}
-				{
-					id:{{category.id}},
-					name:"{{cat.name}}",
-					tags:[{%for tag in cat.getTags%}"{{tag}}"{% if not forloop.last%},{%endif%}{% endfor %}]
-				}{% if not forloop.last %},{%endif%}
-			{% endfor %}
+		{%for cat in categorylist%}
+		{
+		id:{{cat.id}}, name:"{{cat.name}}",
+		tags:[{%for tag in cat.getTags%}"{{tag}}"{% if not forloop.last%},{%endif%}{% endfor %}]
+		}{% if not forloop.last %},{%endif%}
+		{% endfor %}
 		];
+
+		$('#id_cat_dropdown > a').bind('click', function() {
+			cid = $(this).attr('cat_id');
+			
+			_SelCat.push(cid);
+		});
+
+		function getCateByID(catid) {
+			cid = Number(catid)
+			for (i in categorylist) {
+				cat = categorylist[i];
+				if (cid == cat.id) {
+					return cat;
+				}
+			}
+		}
+
+		function getCatFromTag(tagname) {
+			for (i in categorylist) {
+				cat = categorylist[i];
+				for (j in cat.tags) {
+					tag = cat.tags[j];
+					if (tag == tagname)
+						return cat;
+				}
+			}
+			return null;
+		}
+
 		var strReg;
-		function getTag(subtxt){
-			strReg="";
-			for( catid in categorylist){
-				cat=categorylist[catid];
-				for(tagid in cat['tags']){
-					if(strReg.length>0)
-						strReg+="|";
-					strReg+=cat['tags'][tagid];
+
+		function getTag(subtxt) {
+			strReg = "";
+			for (catid in categorylist) {
+				cat = categorylist[catid];
+				for (tagid in cat['tags']) {
+					if (strReg.length > 0)
+						strReg += "|";
+					strReg += cat['tags'][tagid];
 				}
 			}
 			//var reg=/都市|言情|玄幻|穿越|武侠|军事/;
-			var reg=RegExp(strReg);
+			var reg = RegExp(strReg);
 			return subtxt.match(reg);
 		}
-		function subtxts(txt){
-			var result=[];
-			var l=txt.length;
-			for(i=2;i<l;i=i+2){
-				var st=txt.slice(i-2,i+2);
+
+		function subtxts(txt) {
+			var result = [];
+			var l = txt.length;
+			for ( i = 2; i < l; i = i + 2) {
+				var st = txt.slice(i - 2, i + 2);
 				result.push(st);
 			}
 			return result;
 		}
+
 		//返回文本中所有匹配到的标签
-		function getAllTags(txt){
-			var tags=[];
-			var sts=subtxts(txt);
-			for(var i=0;i<sts.length;i++){
-				st=sts[i];
-				tag=getTag(st);
-				
-				if(tag!=null){
-					
+		function getAllTags(txt) {
+			var tags = [];
+			var sts = subtxts(txt);
+			for (var i = 0; i < sts.length; i++) {
+				st = sts[i];
+				tag = getTag(st);
+
+				if (tag != null) {
+
 					tags.push(tag[0]);
 				}
 			}
 			return tags;
 		}
+
 		//返回去重复后的标签，按照出现次数显示最多的3个
-		function getTags (txt) {
-			tags=[];
-			allTags=getAllTags(txt);
-			for(var i=0;i<allTags.length;i++){
-				tag=allTags[i];
-				contains=false;
-				for(var n=0;n<tags.length;n++){
-					t=tags[n];
-					if(t[1]==tag){
-						t[0]=t[0]+1;
-						contains=true;
+		function getTags(txt) {
+			tags = [];
+			allTags = getAllTags(txt);
+			//合并重复，并标记显示次数
+			for (var i = 0; i < allTags.length; i++) {
+				tag = allTags[i];
+				contains = false;
+				for (var n = 0; n < tags.length; n++) {
+					t = tags[n];
+					if (t[1] == tag) {
+						t[0] = t[0] + 1;
+						contains = true;
 					}
 				}
-				if(!contains){
-					tags.push([1,tag])
+				if (!contains) {
+					tags.push([1, tag])
 				}
-				
-			}	 
-			result=[]
-			for( i in tags){
+
+			}
+
+			//留下出现最多3个
+			result = []
+			for (i in tags) {
 				result.push(tags[i]);
-				if(result.length>3){
-					min=0;
-					for(i2 in result){
-						if(result[i2][0]<result[min][0])
-							min=i2;
+				if (result.length > 3) {
+					min = 0;
+					for (i2 in result) {
+						if (result[i2][0] < result[min][0])
+							min = i2;
 					}
-					delete(result[min]);
+					delete (result[min]);
 				}
-			} 
+			}
 			return result;
+
+		}
+
+		function getCats(txt) {
+			tags = this.getTags(txt);
+
+			cats = []
+			for (i in tags) {
+
+				cats[i] = getCatFromTag(tags[i][1]);
+			}
+			return cats;
 		}
 		
-	</script>
+		
+		var currentCatId={{category.id}};
+        var currentCatLevel={{category.level}};
+        if(currentCatLevel>1){
+            _SelCat.push(currentCatId);
+        }
+    </script>
 </div>

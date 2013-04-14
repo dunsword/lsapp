@@ -18,11 +18,19 @@ class PageInfo(object):
             self.page=page
             self.isCurrent=isCurrent
         
-    def __init__(self,page,itemCount,pageSize):
+    def __init__(self,page,itemCount,pageSize,baseUrl='./'):
+        '''
+        page 当前页码
+        itemCount 总条目数
+        pageSize 每页显示条目数
+        '''
+        self.baseUrl=baseUrl
         self.page=page
         self.itemCount=itemCount
-        self.pageCount=self.getPageCount(itemCount, pageSize)
+        self.pageCount=self.getPageCount(itemCount, pageSize) #总页数
         self.items=self.getRange()
+        self.startNum=(page-1)*pageSize
+        self.endNum=self.startNum+pageSize
         
         #判断是否显示下一页
         if page<self.pageCount:

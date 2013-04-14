@@ -42,13 +42,26 @@ class CategoryView(BaseView):
         self.docSrv=DocumentService()
         
     def get(self,request, categoryid, page=1,*args, **kwargs):
+        #prepare parameters
         categoryid=int(categoryid)
         page=int(page)
+        
+        
+        #TODO should be deferent page for top level cat and leaf level cat
         category=Category.objects.get(pk=categoryid)
-        cats=Category.objects.getCategory(category.parent_id)
-        topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')
-        count=topics.count()
-        pageInfo=PageInfo(page,count,10)
+        if category.level==1:
+            topic_count=Topic.objects.filter(catid_parent__exact=categoryid).count()
+            pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(category.id)+'/')
+            topics=Topic.objects.filter(catid_parent__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            
+            cats=Category.objects.getCategory(category.id)
+        else:
+            topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
+            pageInfo=PageInfo(page,topic_count,30)
+            cats=Category.objects.getCategory(category.parent_id)
+            topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+       
+       
         
         docs=self.docSrv.getHotDocuments(categoryid)
         c = RequestContext(request, {'category':category,'topics':topics,'pageInfo':pageInfo,'hot_docs':docs,'categorylist':cats})
