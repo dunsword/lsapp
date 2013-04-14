@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
 from django.conf import settings
-from twisted.conch.test.test_insults import default
+#from twisted.conch.test.test_insults import default
 # from django.contrib.auth.models import User
 # Create your models here.
 # class UserProfileManager(models.Model):

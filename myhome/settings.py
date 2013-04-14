@@ -136,7 +136,6 @@ INSTALLED_APPS = (
     'base',
     'ls',
     'album',
-    'cron',
 )
 LOGIN_URL='/login'
 # A sample logging configuration. The only tangible logging
