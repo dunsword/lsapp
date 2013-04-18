@@ -54,6 +54,10 @@ class Topic(BaseModel):
     catid1=models.IntegerField('category id2',default=0)
     catid2=models.IntegerField('category id3',default=0)
     
+    def getCategory(self):
+        cat=Category.objects.get(pk=self.categoryid);
+        return cat
+    
     def isDocument(self):
         return self.topic_type==Topic.TOPIC_TYPE_DOCUMENT
     
