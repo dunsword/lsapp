@@ -5,14 +5,17 @@
 		class="img-rounded"
 		alt="140x140"
 		style="width: 60px; height: 60px;"
-		src="http://static.lsapp.com/avatar/a_250X250_{{topic.userid}}.jpg"/>
+		src="{{STATIC_URL}}avatar/a_250X250_{{topic.userid}}.jpg"
+		onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" />
 	</div>
 	<div class="span10">
 		<div class="row-fluid" >
 			<div class='span12'>
 				<span>
 				    <h4 style="margin-bottom: 5px;">
-				        {% if topic.isDocument %}<span class="label label-info" style="margin-right: 10px">小说</span>{% endif%}
+				        {% if topic.isDocument %}
+				            <span class="label label-info" style="margin-right: 10px">{{topic.getCategory.name}}</span>
+				        {% endif%}
 				        <a href="/topic/{{topic.id}}/1">{{topic.title}}</a>
 				      
 				    </h4>  
@@ -34,8 +37,8 @@
 		
 		
 		<div class="row-fluid" >
-			<div class='span12'>
-				{{topic.content}}
+			<div class='span12' style="max-height: 400px;overflow-y: hidden">
+				{{topic.content|linebreaksbr}}
 			</div>
 		</div>
 		
