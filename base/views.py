@@ -204,10 +204,11 @@ def setAvatar(request):
     avatarUrl = user.get_avatar_url()  
     
     avatarFileName = AvatarClient.getSaveFileName(user.id)
+    avatarImgUrl=AvatarClient.url(avatarFileName)
     
     c = RequestContext(request, {'form':form,
                                  'head_template_file':'setavatar_head.html',
-                                 'avatar_file_name':avatarFileName,
+                                 'avatar_img_url':avatarImgUrl,
                                  'avatar_url':avatarUrl, })
 
     tt = loader.get_template('setavatar.html')

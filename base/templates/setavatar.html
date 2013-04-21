@@ -29,7 +29,7 @@
             <div class='span8'>
                 <div>
                     <h4>头像图片：</h4>
-                    <img id="target" src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" />
+                    <img id="target" src="{{avatar_img_url}}?tag={% now  'U' %}" onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" />
                 </div>
 
                 <form id='upload_avatar_form' action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
@@ -61,7 +61,7 @@
                 <div id="preview-pane" >
                     
                     <div class="preview-container">
-                        <img src="{{STATIC_URL}}avatar/{{avatar_file_name}}?tag={% now  'U' %}" 
+                        <img src="{{avatar_img_url}}?tag={% now  'U' %}" 
                         class="jcrop-preview" 
                         alt="Preview" 
                         onerror ="$('#preview-block').hide();" 

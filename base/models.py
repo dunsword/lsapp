@@ -62,7 +62,8 @@ class User(models.Model):
         pass
     def get_avatar_url(self):
         if self.avatar:
-            return AvatarClient.url(self.avatar)
+            #return AvatarClient.url(self.avatar)#TODO
+            return AvatarClient.url('a_250X250_'+str(self.id)+'.jpg')
         else:
             return AvatarClient.url('a_250X250_'+str(self.id)+'.jpg')
             
