@@ -2,7 +2,8 @@
 from django.conf import settings
 from datetime import datetime
 from PIL import Image
-#import sae.storage
+
+
 class StorageClient():
     DOMAIN_AVATOR="avatar"
     DOMAIN_ATTACH="attach"
@@ -20,30 +21,55 @@ class StorageClient():
     
 
     def __init__(self,domain,supportedSizes=None):
+        try:
+            import sae.storage
+            self.storage=sae.storage
+            self.client=sae.storage.Client()
+        except RuntimeError, e:
+            self.client=None
+            self.storage=None
+        
         self.domain = domain
         self.supportedSizes=supportedSizes
     
     def store(self, uid,file):
         #obj = sae.storage.Object(fileData)
         #self.client.put('avatar', '001.jpg', obj)
-        im=Image.open(file)
+        
         fileName=self.getSaveFileName(uid,file.name)
         fullPathName=self.getStoreFileName(fileName)
-        im.save(fullPathName,"JPEG",quality=100)
-      
-
-        return fileName#self.client.url('avatar','001.jpg')
+       
+        if self.client==None:
+            im=Image.open(file)
+            im.save(fullPathName,"JPEG",quality=100)
+           
+        else:
+            
+            data=file.read();
+            
+            ob = self.storage.Object(data)
+            try:
+                self.client.delete(self.domain, fileName)
+            except self.storage.ObjectNotExistsError,e:
+                pass
+            self.client.put(self.domain, fileName, ob)
+        return fileName
+        #self.client.url('avatar','001.jpg')
     
     def getStoreFileName(self,fileName):        
         return settings.STATIC_ROOT+self.domain+"/"+fileName
         
     def url(self,fileName,size=None):
+        sFileName=None;
         if size:
-            return settings.STATIC_URL+self.domain+"/"+size+"_"+fileName
+            sFileName=size+"_"+fileName
         else:
-            return settings.STATIC_URL+self.domain+"/"+fileName
+            sFileName=fileName
     
-    
+        if self.client==None:
+            return settings.STATIC_URL+self.domain+"/"+sFileName
+        else:
+            return self.client.url(self.domain, sFileName)
     
     def getSaveFileName(self,uid,originName=None):
         '''

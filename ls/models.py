@@ -2,6 +2,7 @@
 from django.db import models
 from django.utils import timezone
 from datetime import datetime
+from base.storage.client import AvatarClient
 
 class BaseModel(models.Model):
     status=models.IntegerField('status',choices=[(1,"正常"),(2,"删除"),(3,"隐藏")],default=1,db_index=True)
@@ -34,6 +35,7 @@ class Topic(BaseModel):
     def __init__(self, *args, **kwargs):
         super(Topic,self).__init__(*args, **kwargs)
         self.document=None
+        self._avatar_url=None
         
     objects=TopicManager()
     TOPIC_TYPE_NORMAL=1
@@ -53,6 +55,11 @@ class Topic(BaseModel):
     catid_parent=models.IntegerField('parent category id',default=2,db_index=True)
     catid1=models.IntegerField('category id2',default=0)
     catid2=models.IntegerField('category id3',default=0)
+    
+    def getAvatarUrl(self):
+        if self._avatar_url==None:
+            self._avatar_url=AvatarClient.url('a_250X250_'+str(self.userid)+'.jpg')
+        return self._avatar_url
     
     def getCategory(self):
         cat=Category.objects.get(pk=self.categoryid);
@@ -152,10 +159,19 @@ class Category(BaseModel):
             return self.name+self.getParent().name
     
 class TopicReply(BaseModel):
+    def __init__(self, *args, **kwargs):
+        super(TopicReply,self).__init__(*args, **kwargs)
+        self._avatar_url=None
+    
     userid=models.IntegerField('user id')
     username=models.CharField('user name',max_length=30)
     topicid=models.IntegerField('topic id',db_index=True)
     title=models.CharField('topic title',max_length=255,default="",blank=True)
     content=models.CharField('topic content',max_length=2048)
+    
+    def getAvatarUrl(self):
+        if self._avatar_url==None:
+            self._avatar_url=AvatarClient.url('a_250X250_'+str(self.userid)+'.jpg')
+        return self._avatar_url
     
  
