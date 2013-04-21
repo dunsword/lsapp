@@ -2,6 +2,7 @@
 from django.conf import settings
 from datetime import datetime
 from PIL import Image
+from StringIO import StringIO
 
 
 class StorageClient():
@@ -100,19 +101,42 @@ class CAvatarCropClient(StorageClient):
 #        prefix="a_"+now.strftime('%y_%m_%d_%H_%M_%S_')
         return CAvatarCropClient.PREFIX+str(uid)+".jpg"
     
-    def store(self, uid,file,displayW,displayH,left,top,cropW,cropH):
+    def store(self, uid,fileName,displayW,displayH,left,top,cropW,cropH):
         #obj = sae.storage.Object(fileData)
         #self.client.put('avatar', '001.jpg', obj)
-        im=Image.open(file)
+        if self.client==None:
+            fullName = self.getStoreFileName(fileName)
+            im=Image.open(fullName)
+        else:
+            ob = self.client.get(self.domain, fileName)
+            
+            datain=StringIO()
+            datain.write(ob.data)
+            datain.seek(0)
+            im=Image.open(datain)
+            
         im.thumbnail((displayW,displayH), Image.ANTIALIAS)
         area=im.crop((left,top,left+cropW,top+cropH))
         
         fileName=self.getSaveFileName(uid)
 
-        fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName
-        area.thumbnail((250,250),Image.ANTIALIAS)
        
-        area.save(fullPathName,"JPEG",quality=100)
+        area.thumbnail((250,250),Image.ANTIALIAS)
+        
+        if self.client==None:
+            fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName
+            area.save(fullPathName,"JPEG",quality=100)
+        else:
+            out=StringIO()
+            area.save(out,"JPEG",quality=100)
+            ob = self.storage.Object(out.getvalue())
+            
+            try:
+                self.client.delete(self.domain, fileName)
+            except :
+                pass
+            
+            self.client.put(self.domain, fileName, ob)
          
         return fileName#self.client.url('avatar','001.jpg')
         

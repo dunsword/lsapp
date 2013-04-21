@@ -233,7 +233,7 @@ def cropAvatar(request):
     
     user = request.user
     
-    originAvatar = AvatarClient.getStoreFileName(AvatarClient.getSaveFileName(user.id))
+    originAvatar = AvatarClient.getSaveFileName(user.id)
     # afile=open(originAvatar)
     
     cropedAvatar = CropClient.store(user.id, originAvatar, avatarRealWidth, avatarRealHeight, avatarMarginLeft, avatarMarginTop, avatarWidth, avatarHeight)    

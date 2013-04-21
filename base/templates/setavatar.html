@@ -20,7 +20,7 @@
     <div class='span8'>
         <div class="row-fluid" >
             <div class='span12'>
-                当前头像：<img id='current_avatar' src='{{avatar_url}}'/>
+                当前头像：<img id='current_avatar' src="{{avatar_url}}?tag={% now  'U' %}"/>
                 <span id="cropMessage"></span>
             </div>
         </div>
@@ -159,7 +159,9 @@
 <script>
 	function postCropAvatar() {
 		$.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(function(data) {
-			$('#current_avatar').attr('src', data['avatar_url']);
+			time=new Date().getTime();
+			
+			$('#current_avatar').attr('src', data['avatar_url']+'?tag='+time);
 			$('#cropMessage').html("头像更新成功！");
 		});
 		return false;
