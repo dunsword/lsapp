@@ -21,11 +21,17 @@ class DocumentService():
         if categoryid:
             cat = Category.objects.get(pk=categoryid)
             if cat.level==1:
-                q=Document.objects.select_related().filter(topic__catid_parent__exact=categoryid)[:size]
+                q=Topic.objects.filter(catid_parent__exact=categoryid).filter(topic_type__exact=2).order_by('-read_count')[0:size]
+                #q=Document.objects.select_related().filter(topic__catid_parent__exact=categoryid).order_by('topic.read_count')[:size]
             else:
-                q=Document.objects.select_related().filter(topic__categoryid__exact=categoryid)[:size]
-            #q=Topic.objects.filter(categoryid__exact=categoryid)
+                #q=Document.objects.select_related().filter(topic__categoryid__exact=categoryid).order_by('topic.read_count')[:size]
+                q=Topic.objects.filter(categoryid__exact=categoryid).filter(topic_type__exact=2).order_by('-read_count')[0:size]
             #q=q.filter(topic_type__exact=2)[:size]
-            return q
+            
+            docs=[] 
+            for topic in q:
+                doc=topic.getDocument()  
+                docs.append(doc)
+            return docs
         else:
             docs=Topic.objects.filter()[:size]

@@ -363,7 +363,18 @@
 			"created_at": "2013-01-13 12:34:34",
 			"updated_at": "2013-01-13 12:34:34"
 		}
-	}, {
+	},{
+		"model": "ls.SiteSource",
+		"pk": 19,
+		"fields": {
+			"name": "19楼女性阅读",
+			"homepage": "http://book.19lou.com",
+			"desc": "19楼免费女性小说阅读",
+			"created_at": "2013-01-13 12:34:34",
+			"updated_at": "2013-01-13 12:34:34"
+		}
+	}, 
+	{
 		"model": "ls.Topic",
 		"pk": 1,
 		"fields": {

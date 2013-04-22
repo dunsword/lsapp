@@ -120,17 +120,7 @@
                 <div class="row-fluid">
                     <div class="span12">
 
-                        <ul class="nav nav-list">
-                            <li class="nav-header">
-                                同类热门小说：
-                            </li>
-                            {% for doc in hot_docs %}
-
-                            <li>
-                                <span><a href="{{doc.source_url}}" target='_blank' style="font-size: 16px">{{doc.topic.title}}</a> 阅读：{{doc.topic.read_count}}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        {% include 'ls_hot_documents.html'%}
                     </div>
                 </div>
                 <div class="row-fluid">

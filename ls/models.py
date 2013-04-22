@@ -73,8 +73,10 @@ class Topic(BaseModel):
             return self.document
         if self.topic_type==2:
             self.document= Document.objects.get(topic__exact=self)
+            self.document.topic=self
             return self.document
         return None
+    
 
 class DocumentManager(models.Manager):
     def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name=''):
@@ -99,6 +101,8 @@ class Document(models.Model):
     source_id=models.IntegerField('source id')
     source_url=models.URLField('source url')
     topic=models.OneToOneField(Topic,related_name='ref+')
+    def getSiteSource(self):
+        return SiteSource.objects.get(pk=self.source_id)
 
 class Feed(BaseModel):
 #    FEED_TYPE_RECOMMEND=1

@@ -14,7 +14,9 @@
 				<span>
 				    <h4 style="margin-bottom: 5px;">
 				        {% if topic.isDocument %}
-				            <span class="label label-info" style="margin-right: 10px">{{topic.getCategory.name}}</span>
+				            <span class="label label-info" style="margin-right: 10px">
+				                <a href='/cat/{{topic.categoryid}}/1' style="color:white">{{topic.getCategory.name}}</a>
+				            </span>
 				        {% endif%}
 				        <a href="/topic/{{topic.id}}/1">{{topic.title}}</a>
 				      
