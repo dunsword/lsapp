@@ -2,7 +2,9 @@
 from django.conf import settings
 from datetime import datetime
 from PIL import Image
-#import sae.storage
+#try
+#    import sae.storage
+
 class StorageClient():
     DOMAIN_AVATOR="avatar"
     DOMAIN_ATTACH="attach"
@@ -95,6 +97,10 @@ class CAvatarCropClient(StorageClient):
      
 AvatarClient=CAvatarStorageClient("avatar")
 CropClient=CAvatarCropClient("avatar")
+
+
+
+
 #
 #class ImageClient(StorageClient):
 #    URL_ROOT=settings.STATIC_URL
