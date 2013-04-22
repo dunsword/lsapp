@@ -30,7 +30,7 @@
                         class="img-rounded"
                         alt="140x140"
                         style="width: 60px; height: 60px;"
-                        src="http://static.lsapp.com/avatar/a_250X250_{{user.id}}.jpg"
+                        src="{{user.get_avatar_url}}"
                         onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" >
                         </img>
                     </div>

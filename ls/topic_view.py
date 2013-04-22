@@ -47,6 +47,8 @@ class TopicView(BaseTopicView):
     def to_document(self,request, topic, page):
         doc=topic.getDocument()
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
+        
+        
         topicForm=self.tSrv.getTopicForm(topic)
         topicForm.is_valid()
         docs=self.docSrv.getHotDocuments(topicForm.instance.categoryid)

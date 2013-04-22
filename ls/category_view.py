@@ -19,6 +19,7 @@ from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyServi
 from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
+from base.storage.client import AvatarClient
 
 class CategoryNewTopicView(BaseView):
     @method_decorator(login_required)
@@ -62,7 +63,6 @@ class CategoryView(BaseView):
             topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
        
        
-        
         docs=self.docSrv.getHotDocuments(categoryid)
         c = RequestContext(request, {'category':category,'topics':topics,'pageInfo':pageInfo,'hot_docs':docs,'categorylist':cats})
         tt = loader.get_template('ls_category.html')

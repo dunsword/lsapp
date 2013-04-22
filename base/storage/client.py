@@ -2,8 +2,10 @@
 from django.conf import settings
 from datetime import datetime
 from PIL import Image
-#try
-#    import sae.storage
+
+from StringIO import StringIO
+
+
 
 class StorageClient():
     DOMAIN_AVATOR="avatar"
@@ -22,30 +24,55 @@ class StorageClient():
     
 
     def __init__(self,domain,supportedSizes=None):
+        try:
+            import sae.storage
+            self.storage=sae.storage
+            self.client=sae.storage.Client()
+        except RuntimeError, e:
+            self.client=None
+            self.storage=None
+        
         self.domain = domain
         self.supportedSizes=supportedSizes
     
     def store(self, uid,file):
         #obj = sae.storage.Object(fileData)
         #self.client.put('avatar', '001.jpg', obj)
-        im=Image.open(file)
+        
         fileName=self.getSaveFileName(uid,file.name)
         fullPathName=self.getStoreFileName(fileName)
-        im.save(fullPathName,"JPEG",quality=100)
-      
-
-        return fileName#self.client.url('avatar','001.jpg')
+       
+        if self.client==None:
+            im=Image.open(file)
+            im.save(fullPathName,"JPEG",quality=100)
+           
+        else:
+            
+            data=file.read();
+            
+            ob = self.storage.Object(data)
+            try:
+                self.client.delete(self.domain, fileName)
+            except self.storage.ObjectNotExistsError,e:
+                pass
+            self.client.put(self.domain, fileName, ob)
+        return fileName
+        #self.client.url('avatar','001.jpg')
     
     def getStoreFileName(self,fileName):        
         return settings.STATIC_ROOT+self.domain+"/"+fileName
         
     def url(self,fileName,size=None):
+        sFileName=None;
         if size:
-            return settings.STATIC_URL+self.domain+"/"+size+"_"+fileName
+            sFileName=size+"_"+fileName
         else:
-            return settings.STATIC_URL+self.domain+"/"+fileName
+            sFileName=fileName
     
-    
+        if self.client==None:
+            return settings.STATIC_URL+self.domain+"/"+sFileName
+        else:
+            return self.client.url(self.domain, sFileName)
     
     def getSaveFileName(self,uid,originName=None):
         '''
@@ -76,19 +103,42 @@ class CAvatarCropClient(StorageClient):
 #        prefix="a_"+now.strftime('%y_%m_%d_%H_%M_%S_')
         return CAvatarCropClient.PREFIX+str(uid)+".jpg"
     
-    def store(self, uid,file,displayW,displayH,left,top,cropW,cropH):
+    def store(self, uid,fileName,displayW,displayH,left,top,cropW,cropH):
         #obj = sae.storage.Object(fileData)
         #self.client.put('avatar', '001.jpg', obj)
-        im=Image.open(file)
+        if self.client==None:
+            fullName = self.getStoreFileName(fileName)
+            im=Image.open(fullName)
+        else:
+            ob = self.client.get(self.domain, fileName)
+            
+            datain=StringIO()
+            datain.write(ob.data)
+            datain.seek(0)
+            im=Image.open(datain)
+            
         im.thumbnail((displayW,displayH), Image.ANTIALIAS)
         area=im.crop((left,top,left+cropW,top+cropH))
         
         fileName=self.getSaveFileName(uid)
 
-        fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName
-        area.thumbnail((250,250),Image.ANTIALIAS)
        
-        area.save(fullPathName,"JPEG",quality=100)
+        area.thumbnail((250,250),Image.ANTIALIAS)
+        
+        if self.client==None:
+            fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName
+            area.save(fullPathName,"JPEG",quality=100)
+        else:
+            out=StringIO()
+            area.save(out,"JPEG",quality=100)
+            ob = self.storage.Object(out.getvalue())
+            
+            try:
+                self.client.delete(self.domain, fileName)
+            except :
+                pass
+            
+            self.client.put(self.domain, fileName, ob)
          
         return fileName#self.client.url('avatar','001.jpg')
         

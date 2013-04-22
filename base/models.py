@@ -6,7 +6,8 @@ from django.utils import timezone
 from django.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
 from django.conf import settings
-from twisted.conch.test.test_insults import default
+from base.storage.client import AvatarClient
+#from twisted.conch.test.test_insults import default
 # from django.contrib.auth.models import User
 # Create your models here.
 # class UserProfileManager(models.Model):
@@ -61,9 +62,10 @@ class User(models.Model):
         pass
     def get_avatar_url(self):
         if self.avatar:
-            return settings.STATIC_URL + "avatar/" + self.avatar
+            #return AvatarClient.url(self.avatar)#TODO
+            return AvatarClient.url('a_250X250_'+str(self.id)+'.jpg')
         else:
-            return settings.STATIC_URL + "img/avatar_default.jpg"
+            return AvatarClient.url('a_250X250_'+str(self.id)+'.jpg')
             
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
