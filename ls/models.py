@@ -5,11 +5,24 @@ from datetime import datetime
 from base.storage.client import AvatarClient
 
 class BaseModel(models.Model):
-    status=models.IntegerField('status',choices=[(1,"正常"),(2,"删除"),(3,"隐藏")],default=1,db_index=True)
+    STATUS=[(1,"正常"),(2,"删除"),(3,"隐藏")]
+    status=models.IntegerField('status',choices=STATUS,default=1,db_index=True)
     created_at=models.DateTimeField('created time', default=datetime.now(),db_index=True)
-    updated_at=models.DateTimeField('updated time', default=datetime.now(),db_index=True,)
+    updated_at=models.DateTimeField('updated time', default=datetime.now(),db_index=True)
+    
+    def setStatus(self,status):
+        self.status=status
+        self.save()
+    
+    def save(self):
+        self.updated_at=datetime.now()
+        super(BaseModel,self).save()
+    
     class Meta:
         abstract=True
+        
+        
+    
 
 
 class SiteSource(BaseModel):
@@ -43,7 +56,7 @@ class Topic(BaseModel):
     TOPIC_TYPE_VIDEO=3
     TOPIC_TYPE_SHOP=4
     
-    userid=models.IntegerField('user id')
+    userid=models.IntegerField('user id',db_index=True)
     username=models.CharField('user name',max_length=30)
     title=models.CharField('topic title',max_length=255)
     content=models.CharField('topic content',max_length=2048)

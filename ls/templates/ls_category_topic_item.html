@@ -1,5 +1,5 @@
 <!-- need Topic instance -->
-<div id='topic_item_{{topic.id}}' class="row-fluid" style="border-top:1px solid #dddddd;margin-top: 10px" >
+<div id='topic_item_{{topic.id}}' class="row-fluid topic-item"  >
 	<div class="lavatar span2 " style="margin-top: 10px">
 		<img
 		class="img-rounded"
@@ -25,6 +25,14 @@
 			</div>
 		</div>
 		<div class="row-fluid" >
+			<ul class="unstyled inline">
+                                <li>来自:</li>
+                                <li><a href="">{{topic.username}} </a></li>
+                                <li>{{topic.created_at|date:"Y-m-d f"}}</li>
+                                <li>阅读:<a>{{topic.read_count}}</a></li>
+                                <li>评论:<a>{{topic.reply_count}}</a></li>
+            </ul>
+			<!--
 			<div class='span2'>
 				{{topic.username}} 
 			</div>
@@ -34,7 +42,7 @@
 			<div class='span7'>
 				<span style="margin-left:10px;float: right;width: 130px">阅读数：{{topic.read_count}}</span>
 				<span style="margin-left:10px;float: right;width: 130px">回复数：{{topic.reply_count}}</span>
-			</div>
+			</div>-->
 		</div>
 		
 		
