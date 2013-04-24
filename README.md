@@ -7,7 +7,7 @@
  静态文件路径改为：http://static.lsapp.com, 具体见settings文件的改动
 
 	nginx配置:
-	
+	<pre><code>
  	server {
         listen       80;
         server_name static.lsapp.com;
@@ -17,6 +17,7 @@
             index  index.html index.htm;
         }
     }
+ 	</code></pre>
 
 	本地host绑定
 	127.0.0.1 static.lsapp.com
