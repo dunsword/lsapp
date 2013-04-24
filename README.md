@@ -25,5 +25,5 @@
 ##2、配置过程
 1. 下载项目到本地（废话）
 2. 编辑myhome/settings.py, 修改数据库链接等参数
-3. 
-4. 在项目目录下，执行 ./cleardb (windows下执行cleardb.bat)
+3. 在项目目录下，执行 ./cleardb (windows下执行cleardb.bat)
+4. 启动项目：python manage.py runserver 127.0.0.1:8000 --noreload
