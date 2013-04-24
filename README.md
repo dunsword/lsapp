@@ -6,7 +6,8 @@
 4. 安装nginx
  静态文件路径改为：http://static.lsapp.com, 具体见settings文件的改动
 
-	nginx配置：
+	nginx配置:
+	
  	server {
         listen       80;
         server_name static.lsapp.com;
@@ -14,6 +15,8 @@
         location / {
             root   /workspace/myhome/static; #你的项目路径下的static目录
             index  index.html index.htm;
+        }
+    }
 
 	本地host绑定
 	127.0.0.1 static.lsapp.com
