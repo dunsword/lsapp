@@ -56,18 +56,18 @@ class Topic(BaseModel):
     TOPIC_TYPE_VIDEO=3
     TOPIC_TYPE_SHOP=4
     
-    userid=models.IntegerField('user id',db_index=True)
-    username=models.CharField('user name',max_length=30)
-    title=models.CharField('topic title',max_length=255)
-    content=models.CharField('topic content',max_length=2048)
-    categoryid=models.IntegerField('category id',default=104,db_index=True)
-    like_count=models.IntegerField('like count',default=0)
-    read_count=models.IntegerField('read count',default=0)
-    reply_count=models.IntegerField('reply count',default=0)
-    topic_type=models.IntegerField('topic type',choices=[(1,"普通"),(2,"小说"),(3,"视频"),(4,"购物")],default=1,db_index=True)
-    catid_parent=models.IntegerField('parent category id',default=2,db_index=True)
-    catid1=models.IntegerField('category id2',default=0)
-    catid2=models.IntegerField('category id3',default=0)
+    userid=models.IntegerField(u'用户ID',db_index=True)
+    username=models.CharField(u'用户名',max_length=30)
+    title=models.CharField(u'标题',max_length=255)
+    content=models.CharField(u'内容',max_length=2048)
+    categoryid=models.IntegerField(u'标签',default=104,db_index=True)
+    like_count=models.IntegerField(u'喜欢数',default=0)
+    read_count=models.IntegerField(u'阅读数',default=0)
+    reply_count=models.IntegerField(u'回复数',default=0)
+    topic_type=models.IntegerField(u'帖子类型',choices=[(1,"普通"),(2,"小说"),(3,"视频"),(4,"购物")],default=1,db_index=True)
+    catid_parent=models.IntegerField(u'分类',default=2,db_index=True)
+    catid1=models.IntegerField(u'标签',default=0)
+    catid2=models.IntegerField(u'标签',default=0)
     
     def getAvatarUrl(self):
         if self._avatar_url==None:
@@ -107,12 +107,12 @@ class DocumentManager(models.Manager):
     
 class Document(models.Model):
     objects=DocumentManager()
-    author_name=models.CharField('author name',max_length=256,null=True,default=None)
+    author_name=models.CharField(u'作者',max_length=256,null=True,default=None)
     word_count=models.IntegerField('字数',default=0);
     chapter_count=models.IntegerField('章节数',default=0)
-    update_status=models.SmallIntegerField('status',choices=[(1,"连载中"),(2,"已完结")],default=1,db_index=True)
-    source_id=models.IntegerField('source id')
-    source_url=models.URLField('source url')
+    update_status=models.SmallIntegerField('更新状态',choices=[(1,"连载中"),(2,"已完结")],default=1,db_index=True)
+    source_id=models.IntegerField('源网站')
+    source_url=models.URLField('源地址')
     topic=models.OneToOneField(Topic,related_name='ref+')
     def getSiteSource(self):
         return SiteSource.objects.get(pk=self.source_id)

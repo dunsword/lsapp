@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from ls.models import Feed,Document,Category,Topic,TopicReply
-from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyService
+from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyService,DocumentForm
 from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
@@ -30,9 +30,12 @@ class TopicView(BaseTopicView):
         topicid=int(topicid)
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
+        docForm=None
+        if topic.isDocument:
+            docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
         
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
-        topicForm=self.tSrv.getTopicForm(topic)
+        topicForm=TopicForm(instance=topic,prefix="topic")
         topicForm.is_valid()
         docs=self.docSrv.getHotDocuments(topicForm.instance.categoryid)
         
@@ -40,25 +43,14 @@ class TopicView(BaseTopicView):
         cats=Category.objects.getCategory(2)
         pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
         replyForm=TopicReplyForm()
-        c = RequestContext(request, {'topic':topicForm,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo,"categorylist":cats})
+        c = RequestContext(request, {'topic':topicForm,'docForm':docForm,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo,"categorylist":cats})
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))
     
-    def to_document(self,request, topic, page):
-        doc=topic.getDocument()
-        replyList=self.tSrv.getTopicReplyList(topic.id, page)
-        
-        
-        topicForm=self.tSrv.getTopicForm(topic)
-        topicForm.is_valid()
-        docs=self.docSrv.getHotDocuments(topicForm.instance.categoryid)
-        
-        pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
-        
-        replyForm=TopicReplyForm()
-        c = RequestContext(request, {'topic':topicForm,'doc':doc,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo})
-        tt = loader.get_template('ls_topic_document.html')
-        return HttpResponse(tt.render(c))
+    def post(self,request, topicid,*args, **kwargs):
+        docForm=DocumentForm(data=request.POST,prefix="doc")
+        topicForm=TopicForm(data=request.POST,prefix="topic")
+        return self._get_json_respones({});
     
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)
