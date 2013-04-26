@@ -8,8 +8,11 @@ from django.forms.util import ErrorList
 class TopicForm(forms.ModelForm):
         class Meta:
             model=Topic
-            fields = ('userid','title', 'content','categoryid','catid1','catid2','like_count','read_count','reply_count','topic_type')
-        
+            fields = ('title', 'categoryid','catid1','catid2','like_count','read_count','reply_count','topic_type','content')
+            widgets = {
+             'content': forms.Textarea   
+            #'update_status': forms.ChoiceField(label='status',choices=(('1',"连载中"),('2',"已完结")),widget=forms.RadioSelect),
+            }
         def __init__(self,  prefix=None, instance=None,data=None):
             super(TopicForm,self).__init__(prefix=prefix, data=data, instance=instance)
             self.category=None
@@ -64,26 +67,9 @@ class DocumentForm(forms.ModelForm):
        source_id=forms.IntegerField(lebal='source id')
        source_url=forms.URLField('source url')
        '''
-       title=forms.CharField(
-                               label='标题',
-                               min_length=1,
-                               max_length=256,
-                               error_messages={
-                                               'required': '昵称不能为空！',
-                                               'min_length':'标题不能为空！',
-                                               'max_length': '不能超过256个字！'
-                                               })
-       content=forms.CharField(
-                               label='内容摘要',
-                               min_length=10,
-                               max_length=1024,
-                               error_messages={
-                                               'required': '昵称不能为空！',
-                                               'min_length':'不能少于10个字！',
-                                               'max_length': '不能超过2000个字！'
-                                               })
+       
        class Meta:
-           
+           fields = ('author_name','word_count', 'chapter_count','update_status','source_id','source_url')
            model=Document
            widgets = {
              'update_status': forms.Select(choices=((1,"连载中"),(2,"已完结")))     

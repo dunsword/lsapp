@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from ls.feed_view import FeedView
 from ls.feed_share_view import FeedShareView
-from ls.topic_view import TopicView,Topic,TopicReplyView
+from ls.topic_view import TopicView,Topic,TopicReplyView,TopicEditView
 from ls.category_view import CategoryView,CategoryNewTopicView
 from base.login_views import LoginView
 from ls.index_view import IndexView
@@ -28,6 +28,7 @@ urlpatterns = patterns('',
     (url(r'^topic/(?P<topicid>\d+)/add_reply$',TopicReplyView.as_view())),
     (url(r'^topic/reply/(?P<replyid>\d+)$',TopicReplyView.as_view())),
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
+    (url(r'^topic/edit/(?P<topicid>\d+)$',TopicEditView.as_view())),
     (r'^add$','album.views.add'),
     (r'^detail/(?P<doc_id>\d+)$','album.views.detail'),
     

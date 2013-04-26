@@ -1,0 +1,37 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+
+<div class="container" style="width: 980px">
+
+    <div class="container-fluid">
+        <div class="row-fluid" > <form class="form-horizontal" id='new-topic-form' action='' method="post">
+            <div class="span6">
+               
+                    {% csrf_token %}
+                    {% for field in topic %}
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
+                        <div class="controls" style="margin-left: 100px">
+                            {{field}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    </button>
+               
+            </div>
+               <div class="span6">
+               
+                   
+                    {{docForm}}
+                    <input type='submit'>
+                    </button>
+               
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -50,7 +50,19 @@ class TopicView(BaseTopicView):
     def post(self,request, topicid,*args, **kwargs):
         docForm=DocumentForm(data=request.POST,prefix="doc")
         topicForm=TopicForm(data=request.POST,prefix="topic")
-        return self._get_json_respones({});
+        return self._get_json_respones({})
+
+class TopicEditView(BaseTopicView):
+    def get(self,request, topicid,*args, **kwargs):
+        topic=Topic.objects.get(pk=topicid)
+        docForm=None
+        if topic.isDocument:
+            docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
+       
+        topicForm=TopicForm(instance=topic,prefix="topic")
+        c = RequestContext(request, {'topic':topicForm,'docForm':docForm})
+        tt = loader.get_template('ls_topic_doc_edit.html')
+        return HttpResponse(tt.render(c))
     
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)
