@@ -95,11 +95,10 @@
                 <div class="row-fluid" style="margin-bottom: -15px">
                     <div class="span12">
                         <span style="float:right"> 
-                            <a href="#doc_edit_modal" role="button" data-toggle="modal">编辑</a> 
-                            <a href="#">隐藏</a> 
-                            <a href="#">删除</a> 
+                            <a href="/topic/edit/{{topic.instance.id}}" role="button" data-toggle="modal">编辑</a> 
+                            
                         </span>
-                        {% include 'ls_topic_main_doc_edit.html'%}
+                         
                     </div>
                 </div>
                 {% endif %}

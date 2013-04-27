@@ -156,3 +156,7 @@ footer {
 .comment > .comment-user > ul .comment-user-name h5 {
 	font: 100 12px/15px "Microsoft Yahei", Simsun, Arial;
 }
+
+.form-horizontal  textarea {
+	width: 600px
+}

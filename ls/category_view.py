@@ -60,7 +60,7 @@ class CategoryView(BaseView):
             topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30)
             cats=Category.objects.getCategory(category.parent_id)
-            topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=1).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
        
        
         docs=self.docSrv.getHotDocuments(categoryid)

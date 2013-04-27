@@ -5,10 +5,10 @@ from datetime import datetime
 from base.storage.client import AvatarClient
 
 class BaseModel(models.Model):
-    STATUS=[(1,"正常"),(2,"删除"),(3,"隐藏")]
-    status=models.IntegerField('status',choices=STATUS,default=1,db_index=True)
-    created_at=models.DateTimeField('created time', default=datetime.now(),db_index=True)
-    updated_at=models.DateTimeField('updated time', default=datetime.now(),db_index=True)
+    STATUS=[(1,u"正常"),(2,u"删除"),(3,u"隐藏")]
+    status=models.IntegerField(u'状态',choices=STATUS,default=1,db_index=True)
+    created_at=models.DateTimeField(u'创建时间', default=datetime.now(),db_index=True)
+    updated_at=models.DateTimeField(u'更新时间', default=datetime.now(),db_index=True)
     
     def setStatus(self,status):
         self.status=status

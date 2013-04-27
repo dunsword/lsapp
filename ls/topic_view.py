@@ -64,6 +64,27 @@ class TopicEditView(BaseTopicView):
         tt = loader.get_template('ls_topic_doc_edit.html')
         return HttpResponse(tt.render(c))
     
+    @method_decorator(login_required)
+    def post(self,request, topicid,*args, **kwargs):
+        user=request.user
+        if not user.is_staff:
+            return self._get_json_respones({'result':'error'})
+        
+        topic=Topic.objects.get(pk=topicid)
+        doc=topic.getDocument()
+        
+        docForm=DocumentForm(data=request.POST,prefix="doc",instance=doc)
+        topicForm=TopicForm(data=request.POST,prefix="topic",instance=topic)
+        
+        if topicForm.is_valid() and docForm.is_valid():
+            topicForm.save()
+            docForm.save()
+            return self._get_json_respones({'result':'success'})
+        
+        return self._get_json_respones({'result':'failed',
+                                        'topic_errors':topicForm.errors,
+                                        'document_errors':docForm.errors})
+    
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)
     def post(self,request,topicid,*args,**kwargs):

@@ -8,10 +8,10 @@ from django.forms.util import ErrorList
 class TopicForm(forms.ModelForm):
         class Meta:
             model=Topic
-            fields = ('title', 'categoryid','catid1','catid2','like_count','read_count','reply_count','topic_type','content')
+            fields = ('title', 'categoryid','catid1','catid2','like_count','read_count','reply_count','topic_type','status','content',)
             widgets = {
-             'content': forms.Textarea   
-            #'update_status': forms.ChoiceField(label='status',choices=(('1',"连载中"),('2',"已完结")),widget=forms.RadioSelect),
+             'content': forms.Textarea(),   
+             'categoryid': forms.TextInput(attrs={'size':'5'}),
             }
         def __init__(self,  prefix=None, instance=None,data=None):
             super(TopicForm,self).__init__(prefix=prefix, data=data, instance=instance)
