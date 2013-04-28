@@ -14,7 +14,7 @@
             <div class="span12">
                 <div class="row-fluid">
                     <div class="span3">
-                        <h5 style="margin: 0px"><span >来自： {{reply.username}}</span></h5>
+                        <h5 style="margin: 0px"><span >来自： <a href="/user/{{reply.userid}}">{{reply.username}}</a></span></h5>
                     </div>
                     <div class="span3">
                         <span style="margin-left: 10px">{{reply.created_at|date:"Y-m-d f"}}</span>

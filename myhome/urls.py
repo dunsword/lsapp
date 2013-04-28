@@ -5,6 +5,8 @@ from ls.topic_view import TopicView,Topic,TopicReplyView,TopicEditView
 from ls.category_view import CategoryView,CategoryNewTopicView
 from base.login_views import LoginView
 from ls.index_view import IndexView
+from ls.user_home_view import MyTopicView
+from ls.search_view import SearchView
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -29,6 +31,8 @@ urlpatterns = patterns('',
     (url(r'^topic/reply/(?P<replyid>\d+)$',TopicReplyView.as_view())),
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^topic/edit/(?P<topicid>\d+)$',TopicEditView.as_view())),
+    (url(r'^user/(?P<userid>\d+)$',MyTopicView.as_view())),
+    (url(r'^search/(?P<keyword>\w*)$',SearchView.as_view())),
     (r'^add$','album.views.add'),
     (r'^detail/(?P<doc_id>\d+)$','album.views.detail'),
     

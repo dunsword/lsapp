@@ -16,13 +16,13 @@ from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
 from base.models import User
+from django.db.models import Q
 
-class MyTopicView(BaseView):
-     def get(self,request, userid,page=1,*args, **kwargs):
-         user=User.objects.get(pk=userid)
-         topics=Topic.objects.filter(userid__exact=userid).order_by('-created_at')
-         topic_count=Topic.objects.filter(userid__exact=userid).count()
-         pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(userid)+'/')
-         c=RequestContext(request, {'topics':topics,'pageInfo':pageInfo,'cuser':user})
-         tt = loader.get_template('ls_user_home.html')
+class SearchView(BaseView):
+     def get(self,request,keyword,*args, **kwargs):
+         
+         topics=Topic.objects.filter(Q(title__contains=keyword))
+         result_count=topics.count()
+         c=RequestContext(request, {'keyword':keyword,'topics':topics})
+         tt = loader.get_template('ls_search.html')
          return HttpResponse(tt.render(c))

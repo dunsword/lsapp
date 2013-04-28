@@ -1,6 +1,7 @@
 <!-- need Topic instance -->
 <div id='topic_item_{{topic.id}}' class="row-fluid topic-item"  >
 	<div class="lavatar span2 " style="margin-top: 10px">
+	
 		<img
 		class="img-rounded"
 		alt="140x140"
@@ -27,7 +28,7 @@
 		<div class="row-fluid" >
 			<ul class="unstyled inline">
                                 <li>来自:</li>
-                                <li><a href="">{{topic.username}} </a></li>
+                                <li><a href="/user/{{topic.userid}}">{{topic.username}} </a></li>
                                 <li>{{topic.created_at|date:"Y-m-d f"}}</li>
                                 <li>阅读:<a>{{topic.read_count}}</a></li>
                                 <li>评论:<a>{{topic.reply_count}}</a></li>
