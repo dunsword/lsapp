@@ -20,3 +20,7 @@ from base.base_view import BaseView, PageInfo
 class MyTopicView(BaseView):
      def get(self,request, userid,page=1,*args, **kwargs):
          topics=Topic.objects.filter(userid__exact=userid).order_by('-created_at')
+         pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(category.id)+'/')
+         c=RequestContext(request, {'topics':topics})
+         tt = loader.get_template('ls_category_topic_item.html')
+         return HttpResponse(tt.render(c))
