@@ -3,19 +3,40 @@
    
             <div class="navbar-inner">
                 <div class="container" style="width:980px; margin: 0 auto;">
-                    <a   href="#" style="float: left;margin: 0px 10px">
-                        <img src="{{ STATIC_URL }}img/tuitui.png" class="img-rounded" style="width: 30px;height: 30px;margin-top: 5px"/>
+                	 
+                    <a   href="/" style="float: left;margin: 0px 10px">
+                    	
+	                        <img src="{{ STATIC_URL }}img/site_logo.png" class="img-rounded" style="width: 120px;height: 30px;margin-top: 5px"/>
+	                      
+	                     	
                     </a>
+                    
+                   
                     <ul class="nav">
-                        
+                        <!--
                         <li class="active">
                             <a href="/">首页</a>
                         </li>
+                        
                         <li>
                             <a href="#">发现</a>
                         </li>
+                        -->
                         <li>
-                          <form class='form-inline' style="height: 10px; margin-top: 5px;margin-left:10px;"><input type='text' placeholder="搜索" /></form>
+                          <form id='id_search_form' class='form-inline' style="height: 10px; margin-top: 5px;margin-left:10px;" onsubmit="search(); return false;">
+                          	<input type='text' placeholder="搜索" id='id_search_text'/>
+                         	
+                         	<a href="#" onclick="$('#id_search_form').submit();"><li class="icon-search"></li></a>
+                          </form>
+                          <script>
+                          	function search(){
+                          		var search_key=$('#id_search_text').val();
+                          		if(search_key.length>0){
+                          			window.location='/search/'+search_key;
+                          		}
+                          		
+                          	}
+                          </script>
                         </li>
                     </ul>
                     {% if user.is_active %}

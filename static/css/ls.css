@@ -16,7 +16,7 @@
 	color: #ec508b;
 }
 .topic-item {
-	border-top: 1px solid #dddddd;
+	border-top: 1px solid #C8C8A9;
 	position: relative;
 	padding-bottom: 10px;
 }
@@ -160,3 +160,9 @@ footer {
 .form-horizontal  textarea {
 	width: 600px
 }
+
+h1,h2,h3,h4,h5,h6{
+	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "宋体B8B\4F53", simsun, sans-serif;
+	color:#83AF9B;
+}
+	

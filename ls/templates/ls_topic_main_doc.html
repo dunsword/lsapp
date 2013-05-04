@@ -1,7 +1,7 @@
 {% with doc=topic.instance.getDocument %}
 <div class="row-fluid">
     <div class="span8" >
-        <h3 style='font-family: "Helvetica Neue",Arial,sans-serif'> {{topic.instance.title}}</h3>
+        <h3> {{topic.instance.title}}</h3>
     </div>
     <div class="span4" style="padding-top: 30px">
         <span style="float: right">标签：<a href="/cat/{{topic.getCategory.id}}/1">{{topic.getCategory.name}}</a></span>
