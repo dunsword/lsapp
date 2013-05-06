@@ -53,5 +53,8 @@ urlpatterns = patterns('',
     (r'^admin$','base.admin_views.index'),
     (r'^admin/user/list$','base.admin_views.user_list'),
     (r'^admin/user/edit/(?P<user_id>\d+)$','base.admin_views.user_edit'),
+
+    (r'^cron/add$', 'cron.views.create_topic'),
+
     
 )
