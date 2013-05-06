@@ -5,7 +5,7 @@ Created on 2012-11-26
 @author: DELL
 '''
 from django import forms
-from django.contrib.auth.models import User
+from base.models import User
 
 my_default_errors = {
     'required': '该项不能为空！',
@@ -13,10 +13,13 @@ my_default_errors = {
 }
 
 class RegisterUserForm(forms.Form):
-    username = forms.CharField(max_length=100, label='用户名', error_messages=my_default_errors)
-    email = forms.EmailField(label='电子邮箱', error_messages=my_default_errors)
+    username = forms.CharField(max_length=100, 
+                               label='用户名', 
+                               error_messages=my_default_errors, 
+                               widget=forms.TextInput(attrs={'placeholder': u'3-10个字母、数字或汉字'}))
+    email = forms.EmailField(label='电子邮箱', error_messages=my_default_errors,widget=forms.TextInput(attrs={'placeholder': u'请输入正确的邮箱地址'}))
     password = forms.CharField(widget=forms.PasswordInput, label='密 码', error_messages=my_default_errors)
-    repassword = forms.CharField(widget=forms.PasswordInput, label='重新输入密码', error_messages=my_default_errors)
+    repassword = forms.CharField(widget=forms.PasswordInput, label='确认密码', error_messages=my_default_errors)
     
     
     def clean_username(self):
@@ -24,7 +27,7 @@ class RegisterUserForm(forms.Form):
         if len(username) < 3:
             raise forms.ValidationError('用户名不能小于3个字符！')
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(username__exact=username)
             raise forms.ValidationError('用户名已经存在！')
         except User.DoesNotExist:
             pass

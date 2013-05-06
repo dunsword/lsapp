@@ -1,16 +1,53 @@
 {% extends "frameWithTitle.html" %}
 
 {% block content %}
-		<div class='container'>
-		<form action="do_register" method="post" class='form-horizontal' style="margin-left:auto; margin-right:auto;width:230px">
-		<h1 style="text-align: center">注册</h1>  
-		{% if exception %}
-		<p>错误信息：{{ exception }}</p>
-		{% endif %}		
-			{% csrf_token %}			
-			{{form.as_p}}
-			<input type='file' name='thefile' />
-			<input type="submit" />
-		</form>
-		</div>
+<div class='container'>
+    <form id="id_register_form" action="/register" method="post" onsubmit="postForm('id_register_form');return false;" class='form-horizontal' style="margin-left:auto; margin-right:auto;width:230px">
+        <h1 style="text-align: center">注册账号</h1>
+        {% if exception %}
+        <p>
+            错误信息：{{ exception }}
+        </p>
+        {% endif %}
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="control-group">
+            <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
+            <div class="controls" style="margin-left: 100px">
+                {{field}}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="control-group">
+            <label class="control-label" for="inputEmail" style="width: 80px"></label>
+            <div class="controls" style="margin-left: 100px">
+                <input id='id_submit_button' type="submit" class='btn btn-primary' value="注册"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script>
+	function postForm(formId) {
+		form = $('#' + formId);
+		$.post(form.attr('action'), form.serialize()).done(function(data) {
+			if (data['result'] != 'success') {
+				var errors = data['errors'];
+				
+				for (e in errors) {
+				    $("#id_" + e).bindPopover(errors[e]);
+					
+                }
+				
+			} else {
+				$("#id_submit_button").bindPopover("注册成功！", 'top');
+				window.location.href='/'
+			}
+			$("#id_submit_button").attr('class', 'btn btn-primary');
+			
+		});
+        return false;
+	}
+</script>
 {% endblock %}

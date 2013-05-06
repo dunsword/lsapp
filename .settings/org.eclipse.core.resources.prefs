@@ -8,6 +8,7 @@ encoding//base/forms.py=utf-8
 encoding//base/login_views.py=utf-8
 encoding//base/messages.py=utf-8
 encoding//base/models.py=utf-8
+encoding//base/register_view.py=utf-8
 encoding//base/storage/client.py=utf-8
 encoding//base/tests.py=utf-8
 encoding//base/views.py=utf-8
