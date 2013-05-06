@@ -50,7 +50,6 @@ def create_topic(request):
                   created_at=datetime.now(),
                   updated_at=datetime.now(),
                   topic_type=topic_type)
-
     topic.save()
 
     if topic.id:
