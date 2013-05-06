@@ -5,31 +5,37 @@
     <div class="container-fluid" style="padding-left: 0px;padding-right:0px;">
         <div class="row-fluid" >
             <div class="span9">
-                <div class="row-fluid" style="background: #ffffff;padding-left: 3px;-webkit-border-radius: 5px">
+                <div class="row-fluid"  style="padding-left: 3px;-webkit-border-radius: 5px">
                     <div class="span9" >
-                        <h3>好看的{{category.getDisplayName}}推荐</h3>
+                        <h3 >好看的{{category.getDisplayName}}推荐</h3>
                     </div>
                     <div class="span3" style="padding-top: 20px">
                         <span style="float: right;padding-right: 10px"> 
                             {% if user.is_active %} 
-                            <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">发布新帖</a> 
+                            <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐|求文</a> 
                             {% else %} 
                             <a href="#login_modal" role="button" class="btn btn-primary" data-toggle="modal">登录 | 发帖</a> 
                             {% endif %} 
                             </span>
                     </div>
-                </div>
-                <div id='before_first_item' class="row-fluid" style="height: 0px">
-                    <div class="span12">
-                        <!-- Modal -->
-                        {% if user.is_active %}
-                        {% include 'ls_category_new_topic.html'%}
-                        {% endif %}
-                    </div>
-                </div>
+                </div> <!-- Modal -->
+                
                 {% for topic in topics %}
                 {% include 'ls_category_topic_item.html'%}
                 {% endfor %}
+                
+                 <!--翻页组建，需要PageInfo对象-->
+                {% include 'base_util_pagination.html' %}
+                
+                {% if user.is_active %}
+                <div id='before_first_item' class="row-fluid" style="height: 0px;">
+                    <div class="span12">
+                       
+                        {% include 'ls_category_new_topic.html'%}
+                       
+                    </div>
+                </div>
+                {% endif %}
             </div>
             <div class="span3">
                 <!--Sidebar content-->
@@ -52,17 +58,7 @@
                 </div>
                 <div class="row-fluid">
                     <div class="span12">
-                        <ul class="nav nav-list">
-                            <li class="nav-header">
-                                热门推荐：
-                            </li>
-                            {% for doc in hot_docs %}
-                            <li>
-                                <span>
-                                    <a href="{{doc.source_url}}" target='_blank' style="font-size: 16px">{{doc.topic.title}}</a> 阅读：{{doc.topic.read_count}}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
+                         {% include 'ls_hot_documents.html'%}
                     </div>
                 </div>
                 <div class="row-fluid">

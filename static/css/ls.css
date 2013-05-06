@@ -1,4 +1,168 @@
-.row-fluid .lavatar{
-	width:70px;
+.row-fluid .lavatar {
+	width: 70px;
 	padding-left: 10px;
 }
+
+.recommend {
+	margin: 30px 0 30px 0;
+}
+.recommend span {
+	color: #C1595A;
+	font-weight: 600;
+	font-size: 12px;
+}
+.recommend a {
+	font-size: 12px;
+	color: #ec508b;
+}
+.topic-item {
+	border-top: 1px solid #C8C8A9;
+	position: relative;
+	padding-bottom: 10px;
+}
+/*
+.topic-item:after {
+	position: absolute;
+	display: block;
+	top:0;
+	left:0;
+	content:"";
+	border-top: 1px solid #ffffff;
+}*/
+.feed-item .feed-main {
+	margin-left: 40px;
+}
+.feed-item .feed-main h4 > a {
+	color: inherit;
+	font-family: inherit;
+	font-weight: bold;
+	line-height: 15px;
+	margin: 0 0 5px;
+}
+.feed-item .feed-main span {
+	font-size: 12px;
+	color: #999;
+	font-weight: 100;
+}
+.feed-item .feed-main .content .answer a {
+	color: #C1595A;
+}
+.crumb {
+	margin: 20px 0 20px 0;
+	display: block;
+	height: 30px;
+}
+.crumb .crumb-bg {
+	width: 55px;
+	float: left;
+	-webkit-border-top-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-bottom-left-radius: 4px;
+	background: url("images/book.jpg") no-repeat scroll 0 0 transparent;
+	height: 30px;
+}
+.crumb .crumb-guide {
+	float: left;
+	height: 30px;
+	background: url("images/read.jpg") no-repeat scroll right 0 transparent;
+	padding-right: 11px;
+}
+.crumb .crumb-guide a {
+	display: block;
+	font-size: 14px;
+	color: #666;
+	height: 30px;
+	background-color: #fee2ec;
+	line-height: 30px;
+	padding: 0 20px;
+}
+.crumb .crumb-guide-last {
+	float: left;
+	height: 30px;
+	background: url("images/read-last.png") no-repeat scroll right 0 transparent;
+	padding-right: 10px;
+}
+.crumb .crumb-guide-last a {
+	font-size: 14px;
+	color: #666;
+	display: block;
+	height: 30px;
+	width: auto;
+	background-color: #fee2ec;
+	padding: 0 12px;
+	line-height: 30px;
+}
+footer {
+	border-top: 1px dashed #DDDDDD;
+}
+.editable {
+	position: relative;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+.editable:after {
+	position: absolute;
+	display: block;
+	border-bottom: 1px solid #ffffff;
+	bottom: -2px;
+	content: "";
+	width: 100%;
+	left: 0;
+}
+.editable small {
+	font: 100 12px/20px "Microsoft Yahei", Simsun, Arial;
+}
+.editable > .user, .editable > h4, .editable > .usercontent {
+	margin-bottom: 20px;
+}
+.editable > .user > .userimg {
+	float: left;
+}
+.editable > .user > ul {
+	padding-left: 35px;
+}
+.editable > .user > ul li {
+	line-height: 13px;
+	margin-bottom: 5px;
+	color: #999;
+}
+.editable > .user > ul li a {
+	color: #c1595a;
+	padding: 0 5px;
+}
+.editable > .usercontent > h4 {
+	color: #ec508b;
+	font: 100 18px/20px "Microsoft Yahei", Simsun, Arial;
+}
+.comment > h4 {
+	color: #EC508B;
+	font: 100 18px/20px "Microsoft Yahei", Simsun, Arial;
+}
+.comment > .comment-user > ul {
+	height: 22px;
+}
+.comment > .comment-user > ul .comment-user-img {
+	float: left;
+	width: 30px;
+}
+.comment > .comment-user > ul .comment-user-name {
+	float: left;
+	padding-left: 10px;
+}
+.comment > .comment-user > ul .comment-user-name h5 {
+	font: 100 12px/15px "Microsoft Yahei", Simsun, Arial;
+}
+
+.form-horizontal  textarea {
+	width: 600px
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "宋体B8B\4F53", simsun, sans-serif;
+	color:#83AF9B;
+}
+	

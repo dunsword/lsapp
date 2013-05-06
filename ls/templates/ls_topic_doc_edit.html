@@ -1,0 +1,90 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+
+<div class="container" style="width: 980px">
+
+    <div class="container-fluid">
+        <div class="row-fluid" > 
+            <div class="span12">
+               <h3>编辑帖子：</h3>
+            </div>
+         </div>
+        <div class="row-fluid" > 
+            <form class="form-horizontal" id='edit-doc-form' action='' method="post" onsubmit="return postEditDocForm()">
+            <div class="span12">
+               
+                    {% csrf_token %}
+                    {% for field in docForm %}
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
+                        <div class="controls" style="margin-left: 100px">
+                            {{field}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% for field in topic %}
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
+                        <div class="controls" style="margin-left: 100px">
+                            {{field}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    
+                  
+                    
+                    <input type='submit' class='btn btn-primary' id="id_submit_button" value="提交"/>
+                    <a href='/topic/{{topic.instance.id}}/1' class='btn'>返回</a>
+                   
+               
+            </div>
+               
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function postEditDocForm(){
+        $("#id_submit_button").attr('class','btn');
+        $.post($('#edit-doc-form').attr('action'),$('#edit-doc-form').serialize()).done(
+            function(data){
+                
+                if(data['result']!='success'){
+                    var doc_errors=data['document_errors'];
+                    var topic_errors=data['topic_errors'];
+                    for(e in doc_errors){
+                        
+                        bindPopOver($("#id_doc-"+e),doc_errors[e]);
+                        
+                    }
+                    for(e in topic_errors){
+                        bindPopOver($("#id_topic-"+e),topic_errors[e]);
+                    }
+                }else{
+                    bindPopOver($("#id_submit_button"),"保存成功!",'top');
+                }
+                $("#id_submit_button").attr('class','btn btn-primary');
+            }
+        );
+        return false;
+    }
+    function bindPopOver(fieldItem,popoverContent,placement){
+         if(!placement){
+             placement='right'
+         }
+         popid=fieldItem.attr('id')+"_popover";   
+         pc="<div id='"+popid+"'>"+popoverContent+"</div>";
+         fieldItem.popover({'content':pc,'delay':{show: 500, hide: 100},'container':'body','html':true,'placement':placement});
+                             
+         var popover=fieldItem.popover('show');
+         //fieldItem.bind('click',function(){fieldItem.popover('hide');});
+         $('#'+popid).bind('click',function(){
+             fieldItem.popover('hide');
+         });
+        
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<ul class="nav nav-list">
+    <li class="nav-header">
+        同类热门小说：
+    </li>
+    {% for doc in hot_docs %}
+    <li>
+        <div style="width:200px">
+            <span><a href="/topic/{{doc.topic.id}}/1" target='_blank' style="font-size: 14px">{{doc.topic.title|truncatechars:11}}</a> </span>
+            <span style="float:right">{{doc.topic.read_count}}</span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

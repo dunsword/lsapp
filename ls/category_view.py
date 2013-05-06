@@ -19,6 +19,7 @@ from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyServi
 from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
+from base.storage.client import AvatarClient
 
 class CategoryNewTopicView(BaseView):
     @method_decorator(login_required)
@@ -46,17 +47,22 @@ class CategoryView(BaseView):
         categoryid=int(categoryid)
         page=int(page)
         
+        
         #TODO should be deferent page for top level cat and leaf level cat
         category=Category.objects.get(pk=categoryid)
         if category.level==1:
-            topics=Topic.objects.filter(catid_parent__exact=categoryid).order_by('-created_at')
+            topic_count=Topic.objects.filter(catid_parent__exact=categoryid).count()
+            pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(category.id)+'/')
+            topics=Topic.objects.filter(catid_parent__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            
             cats=Category.objects.getCategory(category.id)
         else:
+            topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
+            pageInfo=PageInfo(page,topic_count,30)
             cats=Category.objects.getCategory(category.parent_id)
-            topics=Topic.objects.filter(categoryid__exact=categoryid).order_by('-created_at')
-        count=topics.count()
-        pageInfo=PageInfo(page,count,10)
-        
+            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=1).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+       
+       
         docs=self.docSrv.getHotDocuments(categoryid)
         c = RequestContext(request, {'category':category,'topics':topics,'pageInfo':pageInfo,'hot_docs':docs,'categorylist':cats})
         tt = loader.get_template('ls_category.html')

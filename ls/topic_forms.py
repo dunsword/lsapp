@@ -2,14 +2,19 @@
 
     
 from django import forms
-from ls.models import Topic,TopicReply,Category
+from ls.models import Topic,TopicReply,Category,Document
+from django.forms.util import ErrorList
 
 class TopicForm(forms.ModelForm):
         class Meta:
             model=Topic
-        
-        def __init__(self,instance=None):
-            super(TopicForm,self).__init__(instance=instance)
+            fields = ('title', 'categoryid','catid1','catid2','like_count','read_count','reply_count','topic_type','status','content',)
+            widgets = {
+             'content': forms.Textarea(),   
+             'categoryid': forms.TextInput(attrs={'size':'5'}),
+            }
+        def __init__(self,  prefix=None, instance=None,data=None):
+            super(TopicForm,self).__init__(prefix=prefix, data=data, instance=instance)
             self.category=None
             
         def getCategory(self):
@@ -28,6 +33,52 @@ class TopicForm(forms.ModelForm):
             
             self.category=None
             return None
+
+class DocumentForm(forms.ModelForm):
+       '''
+       id=forms.IntegerField(label='docid',widget=forms.Field.hidden_widget)
+       topicid=forms.IntegerField(label='topicid',widget=forms.Field.hidden_widget)
+       title=forms.CharField(
+                               label='标题',
+                               min_length=1,
+                               max_length=256,
+                               error_messages={
+                                               'required': '昵称不能为空！',
+                                               'min_length':'标题不能为空！',
+                                               'max_length': '不能超过256个字！'
+                                               })
+       ontent=forms.CharField(
+                               label='内容摘要',
+                               min_length=10,
+                               max_length=1024,
+                               error_messages={
+                                               'required': '昵称不能为空！',
+                                               'min_length':'不能少于10个字！',
+                                               'max_length': '不能超过2000个字！'
+                                               })
+       
+       author_name=forms.CharField(label='作者',
+                                   max_length=256,
+                                   require=False,
+                                   default=None)
+       word_count=forms.IntegerField(lebal='字数');
+       chapter_count=forms.IntegerField(lebal='章节数')
+       update_status=forms.ChoiceField('status',choices=[(1,"连载中"),(2,"已完结")],widget=forms.RadioSelect)
+       source_id=forms.IntegerField(lebal='source id')
+       source_url=forms.URLField('source url')
+       '''
+       
+       class Meta:
+           fields = ('author_name','word_count', 'chapter_count','update_status','source_id','source_url')
+           model=Document
+           widgets = {
+             'update_status': forms.Select(choices=((1,"连载中"),(2,"已完结")))     
+            #'update_status': forms.ChoiceField(label='status',choices=(('1',"连载中"),('2',"已完结")),widget=forms.RadioSelect),
+           }
+    
+      
+            
+
         
 class TopicReplyForm(forms.ModelForm):
         class Meta:

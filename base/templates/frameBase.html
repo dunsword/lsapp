@@ -7,15 +7,16 @@
          {% include head_template_file %}
         
         {% else %}
+        <link rel="icon" href="{{ STATIC_URL }}/img/favicon.ico" mce_href="{{ STATIC_URL }}/img/favicon.ico" type="image/x-icon">
         <link  type="text/css" href="{{ STATIC_URL }}css/bootstrap.css" rel='stylesheet' media="screen"/>
         <link  type="text/css" href="{{ STATIC_URL }}css/custom.css" rel='stylesheet' media="screen"/>
         <link  type="text/css" href="{{ STATIC_URL }}css/ls.css" rel='stylesheet' media="screen"/>
         <script src="{{STATIC_URL}}js/jquery-1.9.0.js"></script>
         <script src="{{STATIC_URL}}js/bootstrap.js"></script>
         {% endif %}
-        <title>我家</title>
+        <title>小说推荐网</title>
     </head>
-    <body style="min-height: 600px; min-width: 1000">
+    <body style="min-height: 600px; min-width: 1000;">
         <div id='page-header-area'class="navbar">
             {% block topBar %}My amazine title{% endblock %}
         </div>

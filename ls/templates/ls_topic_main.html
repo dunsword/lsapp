@@ -14,18 +14,19 @@
         class="img-rounded"
         alt="140x140"
         style="width: 60px; height: 60px;"
-        src="http://static.lsapp.com/avatar/a_250X250_{{topic.instance.userid}}.jpg">
+        src="{{topic.instance.getAvatarUrl}}">
         </img>
     </div>
     <div  class="span10" >
         <div class="row-fluid">
             <div class="span12">
                 <div class="row-fluid">
-                    <div class="span9">
-                        <h5><span >来自： {{topic.instance.username}}</span><span>{{topic.instance.created_at|date:"Y-m-d f"}}</span></h5>
+                    <div class="span3">
+                        <h5><span >来自： <a href='/user/{{topic.instance.userid}}'>{{topic.instance.username}}</a></span>
+                           </h5>
                     </div>
-                    <div class="span3" style="height:30px;margin-top: 10px;">
-                        <span></span>
+                    <div class="span9" style="height:30px;margin-top: 10px;">
+                        <span>{{topic.instance.created_at|date:"Y-m-d f"}}</span>
                     </div>
                 </div>
                 <div class="row-fluid">

@@ -34,7 +34,7 @@ TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
 DEFAULT_CHARSET = 'utf-8'
 FILE_CHARSET = 'utf-8'
 
@@ -136,7 +136,6 @@ INSTALLED_APPS = (
     'base',
     'ls',
     'album',
-    'cron',
 )
 LOGIN_URL='/login'
 # A sample logging configuration. The only tangible logging
