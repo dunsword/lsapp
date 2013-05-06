@@ -7,6 +7,7 @@ from base.login_views import LoginView
 from ls.index_view import IndexView
 from ls.user_home_view import MyTopicView
 from ls.search_view import SearchView
+from base.register_view import RegisterView
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -44,7 +45,7 @@ urlpatterns = patterns('',
     (r'^login$','base.views.do_login'),
     (url(r'^login/form',LoginView.as_view())),
     (r'^logout$','base.views.do_logout'),
-    (r'^register','base.views.register'),
+    (url(r'^register',RegisterView.as_view())),
     (r'^regsuccess','base.views.reg_success'),
     (r'^do_register','base.views.do_register'),
     (r'^404','base.views.page_404'),
