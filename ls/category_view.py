@@ -63,7 +63,7 @@ class CategoryView(BaseView):
             topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=1).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
        
        
-        docs=self.docSrv.getHotDocuments(categoryid)
-        c = RequestContext(request, {'category':category,'topics':topics,'pageInfo':pageInfo,'hot_docs':docs,'categorylist':cats})
+        
+        c = RequestContext(request, {'category':category,'topics':topics,'pageInfo':pageInfo,'currentCategory':category,'categorylist':cats})
         tt = loader.get_template('ls_category.html')
         return HttpResponse(tt.render(c))

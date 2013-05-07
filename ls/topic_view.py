@@ -37,13 +37,13 @@ class TopicView(BaseTopicView):
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=TopicForm(instance=topic,prefix="topic")
         topicForm.is_valid()
-        docs=self.docSrv.getHotDocuments(topicForm.instance.categoryid)
-        
+        cat=topic.getCategory()
+      
         #标签推荐
         cats=Category.objects.getCategory(2)
         pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
         replyForm=TopicReplyForm()
-        c = RequestContext(request, {'topic':topicForm,'docForm':docForm,'reply_list':replyList,'hot_docs':docs,"replyForm":replyForm,"pageInfo":pageInfo,"categorylist":cats})
+        c = RequestContext(request, {'topic':topicForm,'docForm':docForm,'reply_list':replyList,'currentCategory':cat,"replyForm":replyForm,"pageInfo":pageInfo,"categorylist":cats})
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))
     

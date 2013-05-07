@@ -49,6 +49,7 @@ class Topic(BaseModel):
         super(Topic,self).__init__(*args, **kwargs)
         self.document=None
         self._avatar_url=None
+        self.category=None
         
     objects=TopicManager()
     TOPIC_TYPE_NORMAL=1
@@ -75,8 +76,10 @@ class Topic(BaseModel):
         return self._avatar_url
     
     def getCategory(self):
-        cat=Category.objects.get(pk=self.categoryid);
-        return cat
+        if self.category != None:
+            return self.category
+        self.category=Category.objects.get(pk=self.categoryid);
+        return self.category
     
     def isDocument(self):
         return self.topic_type==Topic.TOPIC_TYPE_DOCUMENT
@@ -175,6 +178,17 @@ class Category(BaseModel):
         else:
             return self.name+self.getParent().name
     
+    def getHotTopics(self,size=20):
+        #目前只推荐小说
+        if self.level==1:
+            q=Topic.objects.filter(catid_parent__exact=self.id).filter(topic_type__exact=2).order_by('-read_count')[0:size]
+                #q=Document.objects.select_related().filter(topic__catid_parent__exact=categoryid).order_by('topic.read_count')[:size]
+        else:
+                #q=Document.objects.select_related().filter(topic__categoryid__exact=categoryid).order_by('topic.read_count')[:size]
+            q=Topic.objects.filter(categoryid__exact=self.id).filter(topic_type__exact=2).order_by('-read_count')[0:size]
+            #q=q.filter(topic_type__exact=2)[:size]
+        return q    
+        
 class TopicReply(BaseModel):
     def __init__(self, *args, **kwargs):
         super(TopicReply,self).__init__(*args, **kwargs)
