@@ -108,7 +108,7 @@ if __name__ == "__main__":
     #beginId = 20396
     beginId = 3211000
     i = 0
-    while i<500:
+    while i<800:
         i += 1
         id  =beginId+i
         content = WebPageContent("http://me.qdmm.com/authorIndex.aspx?id=%s"%(id))
