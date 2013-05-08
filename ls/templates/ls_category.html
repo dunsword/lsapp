@@ -4,20 +4,12 @@
 <div class="container" style="width: 980px">
     <div class="container-fluid" style="padding-left: 0px;padding-right:0px;">
         <div class="row-fluid" >
-            <div class="span9">
-                <div class="row-fluid"  style="padding-left: 3px;-webkit-border-radius: 5px">
-                    <div class="span9" >
-                        <h3 >好看的{{category.getDisplayName}}推荐</h3>
+            <div class="span9  ls-main">
+                <div class="row-fluid ls-title">
+                    <div class="span9" style="" >
+                        <h4 style="padding-left: 20px;">好看的{{category.getDisplayName}}推荐</h4>
                     </div>
-                    <div class="span3" style="padding-top: 20px">
-                        <span style="float: right;padding-right: 10px"> 
-                            {% if user.is_active %} 
-                            <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐|求文</a> 
-                            {% else %} 
-                            <a href="#login_modal" role="button" class="btn btn-primary" data-toggle="modal">登录 | 发帖</a> 
-                            {% endif %} 
-                            </span>
-                    </div>
+                    
                 </div> <!-- Modal -->
                 
                 {% for topic in topics %}
