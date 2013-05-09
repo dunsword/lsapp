@@ -2,7 +2,33 @@
 	width: 70px;
 	padding-left: 10px;
 }
-
+.ls-avatar{
+	width: 60px; 
+	height: 60px;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+	-moz-box-shadow：0 1px 3px rgba(0,0,0,.3);
+	box-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+.ls-main{
+	box-shadow:0 1px 3px rgba(0,0,0,.3);
+	-moz-box-shadow:0 1px 3px rgba(0,0,0,.3);
+	-webkit-box-shadow:0 1px 3px rgba(0,0,0,.3);
+	
+	background: #FFFFFF;
+	margin-bottom: 10px;
+}
+.ls-title{
+	background:#ff74a1;
+}
+.ls-title  h4 {
+	margin-left:20px;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "宋体B8B\4F53", simsun, sans-serif;
+	color:#ffffff;
+}
+.ls-title span{
+	float:right;
+	margin-right:20px;
+}
 .recommend {
 	margin: 30px 0 30px 0;
 }
@@ -160,9 +186,46 @@ footer {
 .form-horizontal  textarea {
 	width: 600px
 }
+/* 覆盖 */
+.nav-header{
+	color: #ff74a1;
+}
+.label-tag{
+	background: #ff74a1;
+}
+
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #ff74a1;
+  *background-color: #fc9d9a;
+  background-image: -moz-linear-gradient(top,  #fc9d9a, #ff74a1);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from( #fc9d9a), to(#ff74a1));
+  background-image: -webkit-linear-gradient(top,  #fc9d9a, #ff74a1);
+  background-image: -o-linear-gradient(top,  #fc9d9a, #ff74a1);
+  background-image: linear-gradient(to bottom, #fc9d9a, #ff74a1);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #ff74a1;
+  *background-color: #ff74a1;
+}
+
+a{
+	color: #666;
+}
 
 h1,h2,h3,h4,h5,h6{
-	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "宋体B8B\4F53", simsun, sans-serif;
-	color:#83AF9B;
+	
 }
 	

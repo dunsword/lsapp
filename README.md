@@ -21,7 +21,14 @@
 
 	本地host绑定
 	127.0.0.1 static.lsapp.com
-
+5. 安装sae本地开发包
+  <pre><code>
+  $ git clone http://github.com/saepython/saepythondevguide.git
+  $ cd saepythondevguide/dev_server
+  $ python setup.py install
+  </code></pre>
+  *一般情况下不需要用sae开发环境。但代码中有import，不安装可能会导致页面错误。
+  
 ##2、配置过程
 1. 下载项目到本地（废话）
 2. 编辑myhome/settings.py, 修改数据库链接等参数

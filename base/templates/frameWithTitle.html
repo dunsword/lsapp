@@ -38,11 +38,24 @@
                           	}
                           </script>
                         </li>
+                        <li>
+                            
+                        <span style="float: right;padding-left: 30px"> 
+                            {% if user.id %} 
+                            <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐 | 求文</a> 
+                            {% else %} 
+                            <!--
+                            <a href="#login_modal" role="button" class="btn btn-primary"   data-toggle="modal">登录 | 发帖</a> 
+                            -->
+                            {% endif %} 
+                            </span>
+                    
+                        </li>
                     </ul>
-                    {% if user.is_active %}
+                    {% if user.id %}
                     <ul class="nav pull-right">
                         <li>
-                            <a href="#">消息</a>
+                            <a href="#"></a>
                         </li>
                         <li class="divider-vertical"></li>
                         <li class="dropdown">
@@ -61,7 +74,7 @@
                     {% else %}
                      <ul class="nav pull-right">
                         <li>
-                            <a href="#">注册</a>
+                            <a href="/register">注册</a>
                         </li>
                         <li class="divider-vertical"></li>
                         <li>

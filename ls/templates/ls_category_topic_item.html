@@ -3,9 +3,8 @@
 	<div class="lavatar span2 " style="margin-top: 10px">
 	
 		<img
-		class="img-rounded"
+		class="img-rounded ls-avatar"
 		alt="140x140"
-		style="width: 60px; height: 60px;"
 		src="{{topic.getAvatarUrl}}"
 		onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" />
 	</div>
@@ -15,7 +14,7 @@
 				<span>
 				    <h4 style="margin-bottom: 5px;">
 				        {% if topic.isDocument %}
-				            <span class="label label-info" style="margin-right: 10px">
+				            <span class="label label-tag" style="margin-right: 10px">
 				                <a href='/cat/{{topic.categoryid}}/1' style="color:white">{{topic.getCategory.name}}</a>
 				            </span>
 				        {% endif%}

@@ -9,7 +9,6 @@ from base.models import User
 from base.forms import RegisterUserForm, LoginForm, SetupForm, SetpassForm, SetAvatarForm
 from django.core.context_processors import csrf
 from django.contrib.auth import authenticate, login, logout
-from MySQLdb.connections import IntegrityError
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
