@@ -97,7 +97,7 @@ class Topic(BaseModel):
     
 
 class DocumentManager(models.Manager):
-    def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name=''):
+    def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name='',source_updated_at=datetime.now()):
         topic=Topic(
                                    userid=userid,
                                    username=username,
@@ -108,7 +108,7 @@ class DocumentManager(models.Manager):
                                    catid2=0,
                                    topic_type=Topic.TOPIC_TYPE_DOCUMENT)
         topic.save()
-        doc=Document(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name)
+        doc=Document(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name,source_updated_at=source_updated_at)
         doc.save()
         return doc
     
