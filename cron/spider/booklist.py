@@ -3,6 +3,7 @@ import re
 
 import sys
 import os
+from cron.spider.bookinfo import BookInfo
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -80,7 +81,7 @@ class BookListParser(SGMLParser):
         if self.isLink:
             self.isLink = False
 
-    def start_span(self,attrs):
+    def start_span(self, attrs):
         endContent = [v for k, v in attrs if k == 'id' and v == 'stxt']
         if endContent and self.isContent:
             self.isContent = False
@@ -106,14 +107,20 @@ class BookList:
         parser.close()
         for item in bookList:
             if item.linkUrl and item.title:
-                print item.title
                 lMatch = pattern.match(item.linkUrl)
+                isVip = True
                 if not lMatch:
                     item.linkUrl = self.domain + item.linkUrl
-                print item.linkUrl
+                    isVip = False
                 m = self.pidPattern.match(item.linkUrl)
+                pid = 0
                 if m:
-                    print m.group(2)
+                    pid = m.group(2)
+                print item.title
+                print item.linkUrl
+                print pid
+                if not isVip:
+                    BookInfo(item.linkUrl, pid)
 
 
 if __name__ == "__main__":
