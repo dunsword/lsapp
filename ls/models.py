@@ -92,19 +92,23 @@ class Topic(BaseModel):
             self.document.topic=self
             return self.document
         return None
+#    def save(self, *args, **kwargs): 
+#        super(Topic, self).save(*args, **kwargs) 
     
 
 class DocumentManager(models.Manager):
     def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name=''):
-        topic=Topic.objects.create(
+        topic=Topic(
                                    userid=userid,
                                    username=username,
-                                   title=title,content=content,
+                                   title=title,
+                                   content=content,
                                    categoryid=categoryid,
                                    catid1=0,
                                    catid2=0,
                                    topic_type=Topic.TOPIC_TYPE_DOCUMENT)
-        doc=Document.objects.create(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name)
+        topic.save()
+        doc=Document(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name)
         doc.save()
         return doc
     
@@ -117,6 +121,7 @@ class Document(models.Model):
     source_id=models.IntegerField('源网站')
     source_url=models.URLField('源地址')
     topic=models.OneToOneField(Topic,related_name='ref+')
+    #source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
     def getSiteSource(self):
         return SiteSource.objects.get(pk=self.source_id)
 

@@ -34,3 +34,11 @@
 2. 编辑myhome/settings.py, 修改数据库链接等参数
 3. 在项目目录下，执行 ./cleardb (windows下执行cleardb.bat)
 4. 启动项目：python manage.py runserver 127.0.0.1:8000 --noreload
+
+###数据库更新：
+1.2012-05-09
+Document： 
+<pre><code>
+  source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
+</code></pre>
+
