@@ -1,9 +1,9 @@
 {% with doc=topic.instance.getDocument %}
-<div class="row-fluid">
-    <div class="span8" >
-        <h3> {{topic.instance.title}}</h3>
+<div class="row-fluid ls-title">
+    <div class="span8">
+        <h4> {{topic.instance.title}}</h4>
     </div>
-    <div class="span4" style="padding-top: 30px">
+    <div class="span4" style="padding-top: 10px">
         <span style="float: right">标签：<a href="/cat/{{topic.getCategory.id}}/1">{{topic.getCategory.name}}</a></span>
         {% if user.is_staff %}
         {% endif %}
@@ -12,9 +12,8 @@
 <div class="row-fluid" style="border-top: 1px solid #dddddd; margin-bottom: 10px;padding-top: 10px">
     <div class="span2 lavatar" >
         <img
-        class="img-rounded"
+        class="img-rounded ls-avatar"
         alt="140x140"
-        style="width: 60px; height: 60px;"
         src="{{topic.instance.getAvatarUrl}}">
         </img>
     </div>
@@ -22,15 +21,16 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="row-fluid">
-                    <div class="span3">
-                         <span >来自： <a href="/user/{{doc.topic.userid}}">{{doc.topic.username}}</a></span> 
+                    <div class="span12">
+                        <ul class="unstyled inline">
+                                <li>来自:</li>
+                                <li><a href="/user/{{doc.topic.userid}}">{{doc.topic.username}} </a></li>
+                                <li>{{doc.topic.created_at|date:"Y-m-d f"}}</li>
+                                
+                        </ul>
+                        
                     </div>
-                    <div class="span6">
-                         <span >{{doc.topic.created_at|date:"Y-m-d f"}}</span> 
-                    </div>
-                    <div class="span3" >
-                        <span></span>
-                    </div>
+                    
                 </div>
                 {% if doc.author_name %}
                 <div class="row-fluid">
@@ -38,13 +38,18 @@
                          <span >作者： {{doc.author_name}}</span> 
                     </div>
                     <div class="span3" >
-                        <span></span>
+                        
                     </div>
                 </div>
                 {% endif %}
                 <div class="row-fluid">
                     <div class="span12">
-                        <span >发布： {{topic.instance.created_at|date:"Y-m-d f"}}</span></h5>
+                         <ul class="unstyled inline">
+                                <li>发布:</li>
+                                <li>{{topic.instance.created_at|date:"Y-m-d f"}}</li>
+                                
+                        </ul>
+                       
                     </div>
                 </div>
                 <div class="row-fluid">

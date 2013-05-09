@@ -6,6 +6,7 @@ encoding//base/backend.py=utf-8
 encoding//base/base_view.py=utf-8
 encoding//base/forms.py=utf-8
 encoding//base/login_views.py=utf-8
+encoding//base/mail/mail.py=utf-8
 encoding//base/messages.py=utf-8
 encoding//base/models.py=utf-8
 encoding//base/register_view.py=utf-8

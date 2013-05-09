@@ -6,11 +6,11 @@ aria-labelledby="myModalLabel"
 aria-hidden="true"
 style="width: 800px;margin-left:-450px"
 >
-    <div class="modal-header">
+    <div class="modal-header ls-title">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             ×
         </button>
-        <h3 id="myModalLabel">发表新帖</h3>
+        <h4 id="myModalLabel">发表新帖</h4>
     </div>
     <div class="modal-body">
         <form class="form-horizontal" id='new-topic-form' action=''>
@@ -22,7 +22,7 @@ style="width: 800px;margin-left:-450px"
                     <input type="hidden" name="cat_id" value="{{category.id}}" />
                  
 
-                    <span id='id_catitem' class="label label-info" style="display:none; 10px;padding: 6px 12px; margin-right: 10px">
+                    <span id='id_catitem' class="label label-tag" style="display:none; 10px;padding: 6px 12px; margin-right: 10px">
                         <button type="button" class="close" style="
                         vertical-align: text-top;
                         margin-left: 10px;
@@ -41,7 +41,7 @@ style="width: 800px;margin-left:-450px"
                         <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">添加标签<b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="drop1" id="id_cat_dropdown">
                             {%for cat in categorylist%}
-                            <a id='id_cat_{{cat.id}}' cat_id='{{cat.id}}' role="menuitem" tabindex="-1" href="#" > <span id='tag0' class="label label-info" style="margin-right: 10px">{{cat.name}}</span> </a>
+                            <a id='id_cat_{{cat.id}}' cat_id='{{cat.id}}' role="menuitem" tabindex="-1" href="#" > <span id='tag0' class="label label-tag" style="margin-right: 10px">{{cat.name}}</span> </a>
                             {% endfor %}
                         </ul>
                    </span>
