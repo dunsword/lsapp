@@ -8,6 +8,7 @@ from ls.index_view import IndexView
 from ls.user_home_view import MyTopicView
 from ls.search_view import SearchView
 from base.register_view import RegisterView
+
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -55,6 +56,5 @@ urlpatterns = patterns('',
     (r'^admin/user/list$','base.admin_views.user_list'),
     (r'^admin/user/edit/(?P<user_id>\d+)$','base.admin_views.user_edit'),
 
-    (r'^cron/add$', 'cron.views.create_topic'),
-    
+    (r'^cron/add$', 'cron.views.newDocument'),
 )
