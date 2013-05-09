@@ -3,7 +3,7 @@
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from ls.models import Document,Topic
-from cron.models import DocumentMapping
+from cron.models import DocumentMapping,CategoryAuthor
 from datetime import datetime
 from django.utils import simplejson as json
 
@@ -101,3 +101,19 @@ def newDocument(request):
             error.append({'errormsg':e.message,'refId':refId})
 
     return HttpResponse({'message':'data saved', 'errormsg':error, 'result': True}, content_type='application/json')
+
+
+@csrf_exempt
+def getAuthors(request):
+    """
+    根据指定的小说分类的到相应作者列表。
+    """
+    cid = request.GET.get("cid")
+    authors = CategoryAuthor.objects.filter(cid=cid)
+    datas =[]
+    for item in authors:
+        author = {'uid': item.uid, 'name': item.authorName}
+        datas.append(author)
+    result = json.dumps({'datas': datas})
+    return HttpResponse(result, content_type='application/json')
+
