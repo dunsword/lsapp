@@ -1,59 +1,101 @@
-# Create your views here.
+# coding=utf-8
+
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from base.models import User
-from ls.models import Topic, TopicManager
+from ls.models import Document
+from cron.models import DocumentMapping
 from datetime import datetime
+from django.utils import simplejson as json
 
+
+"""
+        内容相关数据结构的定义：
+        2.回复
+            发帖人，章节名称、章节内容、章节更新时间、章节url地址、章节唯一的id
+        {'uid':122,
+         'userName':"",
+         'title':"",
+         'content':"",
+         'date':"",
+         'refUrl':"",
+         'refId':122
+        }
+
+        3.评论
+            评论人、评论时间、评论内容
+
+"""
 
 @csrf_exempt
-def create_topic(request):
-    data = {}
-    userId = request.POST['user_id']
-    topicTitle = request.POST['topic_title']
-    topicContent = request.POST['topic_content']
-    catId = request.POST['cat_id']
-    topicType = request.POST['topic_type']
-    user = User.objects.get(pk=userId)
-    # 如果用户不存在，则返回对应的错误
-    if not user:
-        data['result'] = False
-        data['message'] = 'user not exist!'
-        return HttpResponse(data, content_type='application/json')
+def newDocument(request):
+    """
+    1.主贴：
+        发帖人、标题、内容简介、发帖时间、所属分类id、来源站点id，来源站点小说的唯一id,小说原站url
+        {'uid':122,
+         'userName':"",
+         'title':u"aaa",
+         'content':"",
+         'date':"",
+         'cid':111,
+         'refSiteId':1,
+         'refId':1223,
+         'refUrl':""
+        }
+    :param request:
+    :return:
+    """
+    error =[]
 
-    # 验证标题名称，如果没有，暂时先返回
-    if not topicTitle:
-        data['result'] = False
-        data['message'] = 'topic title need!'
-        return HttpResponse(data, content_type='application/json')
+    for item in json.loads(request.body).get("datas"):
+        try:
+            uid = item.get("uid", 0)
+            userName = item.get("userName", "")
+            title = item.get("title", "")
+            content = item.get("content", "")
+            date = item.get("date", "")
+            cid = item.get("cid", 0)
+            refSiteId = item.get("refSiteId", 0)
+            refId = item.get("refId", 0)
+            refUrl = item.get("refUrl", "")
 
-    # 验证内容，如果没有，暂时先返回
-    if not topicContent:
-        data['result'] = False
-        data['message'] = 'topic content need!'
-        return HttpResponse(data, content_type='application/json')
-    topic_type = Topic.TOPIC_TYPE_NORMAL
-    if topicType == Topic.TOPIC_TYPE_DOCUMENT or topicType == Topic.TOPIC_TYPE_VIDEO or topicType == Topic.TOPIC_TYPE_SHOP:
-        topic_type = topicType
+            try:
+                dt = datetime.strptime(date, "%Y-%m-%d %H:%M")
+            except:
+                dt = datetime.now()
 
-    # 验证内容，如果没有，暂时先返回
-    if not catId:
-        data['result'] = False
-        data['message'] = 'topic category id need!'
-        return HttpResponse(data, content_type='application/json')
+            # 先根据站点id和内容id验证是否已经存在。如果存在，只需要更新时间，如果不存在完成新增操作。
+            docObj = DocumentMapping.objects.filter(source_id=refSiteId,source_document_id=refId)
+            if docObj:
+                try:
+                    topic = Document.objects.get(id=docObj.document_id).topic
+                    topic.update(updated_at=dt)
+                except:
+                    document = Document.objects.create_document(userid=uid,
+                                                                username=userName,
+                                                                title=title,
+                                                                content=content,
+                                                                source_id=refSiteId,
+                                                                source_url=refUrl,
+                                                                categoryid=cid,
+                                                                created_at=dt,
+                                                                updated_at=dt
+                                                                )
+            else:
+                document = Document.objects.create_document(userid=uid,
+                                                            username=userName,
+                                                            title=title,
+                                                            content=content,
+                                                            source_id=refSiteId,
+                                                            source_url=refUrl,
+                                                            categoryid=cid,
+                                                            created_at=dt,
+                                                            updated_at=dt
+                                                            )
+                # 保存来源数据到数据同步表中
+                docMapping = DocumentMapping(document_id=document.id, source_document_id=refId, source_id=refSiteId)
+                docMapping.save()
+        except Exception, e:
+            print e
+            error.append({'errormsg':e.message,'refId':refId})
 
-    topic = Topic(userid=user.id,
-                  username=user.username,
-                  title=topicTitle,
-                  content=topicContent,
-                  categoryid=catId,
-                  created_at=datetime.now(),
-                  updated_at=datetime.now(),
-                  topic_type=topic_type)
-    topic.save()
-
-    if topic.id:
-        data['result'] = True
-    else:
-        data['result'] = False
-    return HttpResponse(data, content_type='application/json')
+    return HttpResponse({'message':'data saved', 'errormsg':error, 'result': True}, content_type='application/json')
