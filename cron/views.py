@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from ls.models import Document
+from ls.models import Document,Topic
 from cron.models import DocumentMapping
 from datetime import datetime
 from django.utils import simplejson as json
@@ -64,12 +64,13 @@ def newDocument(request):
                 dt = datetime.now()
 
             # 先根据站点id和内容id验证是否已经存在。如果存在，只需要更新时间，如果不存在完成新增操作。
-            docObj = DocumentMapping.objects.filter(source_id=refSiteId,source_document_id=refId)
+            docObj = DocumentMapping.objects.get(source_id=refSiteId,source_document_id=refId)
             if docObj:
                 try:
                     topic = Document.objects.get(id=docObj.document_id).topic
-                    topic.update(updated_at=dt)
-                except:
+                    Topic.objects.filter(id=topic.id).update(updated_at=dt)
+                except Exception,e2:
+                    print e2.message
                     document = Document.objects.create_document(userid=uid,
                                                                 username=userName,
                                                                 title=title,
@@ -77,9 +78,9 @@ def newDocument(request):
                                                                 source_id=refSiteId,
                                                                 source_url=refUrl,
                                                                 categoryid=cid,
-                                                                created_at=dt,
-                                                                updated_at=dt
+                                                                source_updated_at=dt
                                                                 )
+                    Topic.objects.filter(id=document.topic.id).update(updated_at=dt,created_at=dt)
             else:
                 document = Document.objects.create_document(userid=uid,
                                                             username=userName,
@@ -88,9 +89,10 @@ def newDocument(request):
                                                             source_id=refSiteId,
                                                             source_url=refUrl,
                                                             categoryid=cid,
-                                                            created_at=dt,
-                                                            updated_at=dt
+                                                            source_updated_at=dt
                                                             )
+                Topic.objects.filter(id=document.topic.id).update(updated_at=dt,created_at=dt)
+
                 # 保存来源数据到数据同步表中
                 docMapping = DocumentMapping(document_id=document.id, source_document_id=refId, source_id=refSiteId)
                 docMapping.save()
