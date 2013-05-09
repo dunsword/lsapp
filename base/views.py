@@ -28,9 +28,9 @@ def do_login(request):
                     login(request, user)
                     return HttpResponseRedirect('/setup')
                 else:
-                    return __render_login(request, loginForm, msg="用户帐号被禁用！")
+                    return __render_login(request, loginForm, msg=u"用户帐号被禁用！")
             else:
-                return __render_login(request, loginForm, msg="用户名或密码错误！")
+                return __render_login(request, loginForm, msg=u"用户名或密码错误！")
         else:
             return __render_login(request, loginForm)
     else:

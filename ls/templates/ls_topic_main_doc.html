@@ -1,9 +1,9 @@
 {% with doc=topic.instance.getDocument %}
 <div class="row-fluid ls-title">
-    <div class="span8">
+    <div class="span9">
         <h4> {{topic.instance.title}}</h4>
     </div>
-    <div class="span4" style="padding-top: 10px">
+    <div class="span3" style="padding-top: 10px">
         <span style="float: right">标签：<a href="/cat/{{topic.getCategory.id}}/1">{{topic.getCategory.name}}</a></span>
         {% if user.is_staff %}
         {% endif %}

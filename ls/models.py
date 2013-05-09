@@ -14,9 +14,9 @@ class BaseModel(models.Model):
         self.status=status
         self.save()
     
-    def save(self):
+    def save(self, *args, **kwargs):
         self.updated_at=datetime.now()
-        super(BaseModel,self).save()
+        super(BaseModel,self).save(*args, **kwargs)
     
     class Meta:
         abstract=True
@@ -121,7 +121,7 @@ class Document(models.Model):
     source_id=models.IntegerField('源网站')
     source_url=models.URLField('源地址')
     topic=models.OneToOneField(Topic,related_name='ref+')
-    #source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
+    source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
     def getSiteSource(self):
         return SiteSource.objects.get(pk=self.source_id)
 
