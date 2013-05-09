@@ -170,7 +170,7 @@ class RecursionPage:
             # print item.categoryName
             # print item.categoryUrl
             # print item.title
-            url = u''
+            # url = u''
             lMatch = pattern.match(item.linkUrl)
             if lMatch:
                 url = item.linkUrl

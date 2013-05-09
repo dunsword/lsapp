@@ -40,7 +40,6 @@ class BookParser(SGMLParser):
         self.deepUpdateTime = 4
         self.deepLastPostTitle = 4
         self.deepLastPostContent = 4
-
         #done
         self.title = u''
         #done
