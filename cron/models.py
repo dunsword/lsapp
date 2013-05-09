@@ -48,3 +48,7 @@ class DocumentMapping(models.Model):
         return False
 
 
+class CategoryAuthor(models.Model):
+    uid = models.BigIntegerField()  #作者id
+    authorName = models.CharField(max_length=256, null=False)
+    cid = models.BigIntegerField() #分类id
