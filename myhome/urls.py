@@ -57,4 +57,5 @@ urlpatterns = patterns('',
     (r'^admin/user/edit/(?P<user_id>\d+)$','base.admin_views.user_edit'),
 
     (r'^cron/add$', 'cron.views.newDocument'),
+    (r'^cron/getAuthors$', 'cron.views.getAuthors'),
 )
