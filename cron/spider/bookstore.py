@@ -1,6 +1,7 @@
 import re
 import sys
 import os
+from cron.spider.book import BookInfo
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -140,7 +141,7 @@ class ContentParser(SGMLParser):
 
 
 class RecursionPage:
-    def __init__(self, url, startPage=0, totalPage=3):
+    def __init__(self, url, startPage=1, totalPage=1):
         self.url = url
         self.start = startPage
         self.end = totalPage
@@ -164,17 +165,18 @@ class RecursionPage:
         parser.feed(content.getData())
         parser.close()
         for item in bookContent:
-            print item.parentCategoryName
-            print item.parentCategoryUrl
-            print item.categoryName
-            print item.categoryUrl
-            print item.title
+            # print item.parentCategoryName
+            # print item.parentCategoryUrl
+            # print item.categoryName
+            # print item.categoryUrl
+            # print item.title
+            # url = u''
             lMatch = pattern.match(item.linkUrl)
             if lMatch:
-                print item.linkUrl
+                url = item.linkUrl
             else:
-                print domain + item.linkUrl
-            print
+                url = domain + item.linkUrl
+            BookInfo(url)
         if self.start < self.end:
             if nextUrl:
                 RecursionPage(nextUrl, self.start + 1, self.end)
