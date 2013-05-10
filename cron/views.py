@@ -64,8 +64,8 @@ def newDocument(request):
                 dt = datetime.now()
 
             # 先根据站点id和内容id验证是否已经存在。如果存在，只需要更新时间，如果不存在完成新增操作。
-            docObj = DocumentMapping.objects.get(source_id=refSiteId,source_document_id=refId)
-            if docObj:
+            docObj = DocumentMapping.objects.filter(source_id=refSiteId,source_document_id=refId)
+            if docObj and docObj[0]:
                 try:
                     topic = Document.objects.get(id=docObj.document_id).topic
                     Topic.objects.filter(id=topic.id).update(updated_at=dt)
