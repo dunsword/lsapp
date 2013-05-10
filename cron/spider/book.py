@@ -1,5 +1,4 @@
 # coding=utf-8
-import re
 
 import sys
 import os
@@ -8,8 +7,52 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myhome.settings")
 
+import random
+import re
 import urllib
 from sgmllib import SGMLParser
+from django.utils import simplejson as json
+from httplib2 import Http
+
+userList = {}
+count = 0
+
+
+class User:
+    def __init__(self, uid=0, name=u''):
+        self.uid = uid
+        self.name = name
+
+
+class HttpMonitor:
+
+    def user(self, cid=0):
+        if not userList.get(cid):
+            url = u"http://127.0.0.1:8000/cron/getAuthors?cid=%d" % cid
+            userCatatoryList = []
+            h = Http()
+            resp, content = h.request(url, "GET")
+            for item in json.loads(content).get("datas"):
+                user = User(int(item.get("uid")), item.get("name"))
+                userCatatoryList.append(user)
+            if userCatatoryList:
+                print 'this is init time'
+                userList[cid] = userCatatoryList
+            else:
+                return User(2, u'user1')
+        return random.choice(userList.get(cid))
+
+    def postContent(self, uid, userName, title, content, date, cid, refSiteId, refId, refUrl):
+        params = json.dumps({'datas': [
+            {'uid': uid, 'userName': userName, 'title': title,
+             'content': content, 'date': date,
+             'cid': cid, 'refSiteId': refSiteId, 'refId': refId, 'refUrl': refUrl}
+        ]})
+        headers = {"Content-type": "application/json", "Accept": "text/plain", "User-Agent": "Magic Browser"}
+        h = Http()
+        resp, content = h.request("http://127.0.0.1:8000/cron/add", "POST", body=params, headers=headers)
+        print resp
+        print content
 
 
 class WebPageContent:
@@ -252,7 +295,8 @@ class BookParser(SGMLParser):
 
 
 class BookInfo:
-    def __init__(self, url):
+    def __init__(self, url, cid=0):
+        self.cid = cid
         self.url = url
         self.fid = 0
         self.run()
@@ -261,8 +305,8 @@ class BookInfo:
         pattern = re.compile(r'http://.*?/([0-9]+)\.aspx')
         m = pattern.match(self.url)
         if m:
-            self.fid = m.group(1)
-            print self.fid
+            self.fid = int(m.group(1))
+            # print self.fid
 
     def run(self):
         self.setUp()
@@ -270,14 +314,23 @@ class BookInfo:
         parser = BookParser()
         parser.feed(content.getData())
         parser.close()
-        print u'作者：' + parser.author
-        print u'标题：' + parser.title
-        print u'简介：' + parser.intro
-        print u'时间：' + parser.updateTime
-        print u'深度：%d' % parser.deep
-        print u'vip标题：' + parser.lastVipPostTitle
-        print u'vip链接：' + parser.lastVipPostLink
-        print u'vip内容：' + parser.lastVipPostContent
+        # print u'作者：' + parser.author
+        # print u'标题：' + parser.title
+        # print u'简介：' + parser.intro
+        # print u'时间：' + parser.updateTime
+        # #print u'深度：%d' % parser.deep
+        # print u'vip标题：' + parser.lastVipPostTitle
+        # print u'vip链接：' + parser.lastVipPostLink
+        # print u'vip内容：' + parser.lastVipPostContent
+        hm = HttpMonitor()
+        user = hm.user(self.cid)
+        if user:
+            global count
+            count += 1
+        hm.postContent(user.uid, user.name, parser.title, parser.intro, parser.updateTime, self.cid, 1, self.fid,
+                       self.url)
+        # print user.name
+        # print user.uid
 
 if __name__ == "__main__":
     BookInfo("http://www.qidian.com/Book/2517792.aspx")

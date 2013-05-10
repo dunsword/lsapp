@@ -1,6 +1,9 @@
+# coding=utf-8
 import re
 import sys
 import os
+import thread
+import threading
 from cron.spider.book import BookInfo
 
 reload(sys)
@@ -12,6 +15,44 @@ from sgmllib import SGMLParser
 
 bookContent = []
 nextUrl = u''
+
+'''
+    1   : 106   # 奇幻
+    21  : 105   # 玄幻
+    2   : 109   # 武侠
+    22  : 110   # 仙侠
+    4   : 103   # 都市
+    15  : 104   # 青春 这个暂时先对应 言情
+    5   : xxx   # 历史 这个没法对应
+    6   : 120   # 军事  这个暂时先对应 现代
+    7   :       # 游戏
+    8   :       # 竞技
+    9   : 105   # 科幻
+    10  :       # 灵异
+    12  : 108   # 同人
+    14  :       # 图文
+    31  :       # 文学
+    41  :       # 女生
+'''
+
+categoryDict = {
+    '1': 106, # 奇幻
+    # '21': 105, # 玄幻
+    # '2': 109, # 武侠
+    # '22': 110, # 仙侠
+    # '4': 103, # 都市
+    # '15': 104, # 青春 这个暂时先对应 言情
+    # #'5': xxx, # 历史 这个没法对应
+    # '6': 120, # 军事  这个暂时先对应 现代
+    # #'7': '', # 游戏
+    # #'8': '', # 竞技
+    # '9': 105, # 科幻
+    # #'10': '', # 灵异
+    # '12': 108, # 同人
+    #'14': '', # 图文
+    #'31': '', # 文学
+    #'41': '', # 女生
+}
 
 
 class BookStoreData:
@@ -141,7 +182,8 @@ class ContentParser(SGMLParser):
 
 
 class RecursionPage:
-    def __init__(self, url, startPage=1, totalPage=1):
+    def __init__(self, url, cid=0, startPage=1, totalPage=1):
+        self.cid = cid
         self.url = url
         self.start = startPage
         self.end = totalPage
@@ -176,11 +218,32 @@ class RecursionPage:
                 url = item.linkUrl
             else:
                 url = domain + item.linkUrl
-            BookInfo(url)
+            BookInfo(url, self.cid)
         if self.start < self.end:
             if nextUrl:
-                RecursionPage(nextUrl, self.start + 1, self.end)
+                RecursionPage(nextUrl, self.cid, self.start + 1, self.end)
+        thread.exit_thread()
+
+
+class timer(threading.Thread):
+    def __init__(self, url, cid):
+        threading.Thread.__init__(self)
+        self.url = url
+        self.cid = cid
+        self.thread_stop = False
+
+    def run(self):
+        RecursionPage(self.url, self.cid)
+
+
+class Sender():
+    for key in categoryDict:
+        url = u'http://all.qidian.com/Book/BookStore.aspx?ChannelId=%s' % key
+        thread = timer(url, categoryDict[key])
+        thread.start()
 
 
 if __name__ == "__main__":
-    RecursionPage("http://all.qidian.com/book/bookstore.aspx")
+    Sender()
+    # RecursionPage("http://all.qidian.com/book/bookstore.aspx")
+    # RecursionPage("http://all.qidian.com/book/bookstore.aspx")
