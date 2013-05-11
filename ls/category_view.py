@@ -8,17 +8,17 @@ from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
 import os
 from django.template import RequestContext
-from base.models import User,UserFollow
+from base.models import User
 from django.core.context_processors import csrf
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
 from ls.models import Feed,Document,Category,Topic,TopicReply
 from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyService
 from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
+from ls.views import LsView
 from base.storage.client import AvatarClient
 
 class CategoryNewTopicView(BaseView):
@@ -38,7 +38,7 @@ class CategoryNewTopicView(BaseView):
         tt = loader.get_template('ls_category_topic_item.html')
         return HttpResponse(tt.render(c))
         
-class CategoryView(BaseView):
+class CategoryView(LsView):
     def __init__(self):
         self.docSrv=DocumentService()
         
@@ -47,7 +47,7 @@ class CategoryView(BaseView):
         categoryid=int(categoryid)
         page=int(page)
         
-        
+        cats=None
         #TODO should be deferent page for top level cat and leaf level cat
         category=Category.objects.get(pk=categoryid)
         if category.level==1:
@@ -55,15 +55,16 @@ class CategoryView(BaseView):
             pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(category.id)+'/')
             topics=Topic.objects.filter(catid_parent__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
             
-            cats=Category.objects.getCategory(category.id)
+            
         else:
             topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30)
-            cats=Category.objects.getCategory(category.parent_id)
+            cats=Category.objects.getCategory(category.parent_id) 
             topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=1).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
        
-       
-        
-        c = RequestContext(request, {'category':category,'topics':topics,'pageInfo':pageInfo,'currentCategory':category,'categorylist':cats})
+      
+        c = self.getContext(request,{'category':category,'topics':topics,'pageInfo':pageInfo})
+        if cats:
+            c.update({'categorylist':cats})
         tt = loader.get_template('ls_category.html')
         return HttpResponse(tt.render(c))

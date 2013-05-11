@@ -19,9 +19,9 @@
     <div class="span12">
         <ul class="nav nav-list">
             <li class="nav-header">
-                被推荐最多的{{currentCategory.getDisplayName}}：
+                被推荐最多的{{category.getDisplayName}}：
             </li>
-            {% for doc in currentCategory.getHotTopics %}
+            {% for doc in category.getHotTopics %}
             <li>
                 <div style="width:200px">
                     <span><a href="/topic/{{doc.id}}/1" target='_blank' style="font-size: 14px">{{doc.title|truncatechars:11}}</a> </span>

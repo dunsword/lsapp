@@ -40,5 +40,8 @@
 Document： 
 <pre><code>
   source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
+  
+  ALTER TABLE  `ls_document` ADD  `source_updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER  `topic_id` ,
+  ADD INDEX (  `source_updated_at` )
 </code></pre>
 
