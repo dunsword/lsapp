@@ -14,9 +14,9 @@ from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyServi
 from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
+from ls.views import LsView
 
-
-class BaseTopicView(BaseView):
+class BaseTopicView(LsView):
     def __init__(self, **kwargs):
         super(BaseTopicView,self).__init__(**kwargs)
         self.tSrv=TopicService()
@@ -40,10 +40,17 @@ class TopicView(BaseTopicView):
         cat=topic.getCategory()
       
         #标签推荐
-        cats=Category.objects.getCategory(2)
+        
         pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
         replyForm=TopicReplyForm()
-        c = RequestContext(request, {'topic':topicForm,'docForm':docForm,'reply_list':replyList,'currentCategory':cat,"replyForm":replyForm,"pageInfo":pageInfo,"categorylist":cats})
+        c = self.getContext(request,
+                            {'topic':topicForm,
+                             'docForm':docForm,
+                             'reply_list':replyList,
+                             'category':cat,
+                             "replyForm":replyForm,
+                             "pageInfo":pageInfo
+                             })
         tt = loader.get_template('ls_topic.html')
         return HttpResponse(tt.render(c))
     
