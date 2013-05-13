@@ -42,7 +42,10 @@ Document：
   source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
 </code></pre>
 
-####添加数据表：用于记录收录过的来源站点document信息。
+2.添加数据表：用于记录收录过的来源站点document信息。
 cron_documentmapping
+3.添加数据库表：用户记录每个分类下相应的作者uid和name,有初始化数据cron-0509.json
+cron_categoryauthor
+
 
 
