@@ -45,7 +45,28 @@ Document：
   ADD INDEX (  `source_updated_at` )
 </code></pre>
 
-####添加数据表：用于记录收录过的来源站点document信息。
+2.添加数据表：用于记录收录过的来源站点document信息。
 cron_documentmapping
+<pre><code>
+CREATE TABLE `cron_documentmapping` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_id` bigint(20) NOT NULL,
+  `source_document_id` bigint(20) NOT NULL,
+  `source_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+</code></pre>
 
+3.添加数据库表：用户记录每个分类下相应的作者uid和name,有初始化数据cron-0509.json
+cron_categoryauthor
+<pre><code>
+CREATE TABLE `cron_categoryauthor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` bigint(20) NOT NULL,
+  `authorName` varchar(256) COLLATE utf8_bin NOT NULL,
+  `cid` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=512 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+</code></pre>
 
