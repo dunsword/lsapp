@@ -20,7 +20,7 @@
     <div class='span8'>
         <div class="row-fluid" >
             <div class='span12'>
-                当前头像：<img id='current_avatar' src="{{avatar_url}}?tag={% now  'U' %}" style="width:200px;height:200px"/>
+                当前头像：<img id='current_avatar' src="{{avatar_url}}?tag={% now  'U' %}" style="width:200px;height:200px" onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'"/>
                 <span id="cropMessage"></span>
             </div>
         </div>
@@ -31,7 +31,7 @@
                     <h4>头像图片：</h4>
                     <img id="target" src="{{avatar_img_url}}?tag={% now  'U' %}" 
                         style='width:400px;'
-                        onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'" />
+                        onerror="$('#target').hide()" />
                 </div>
 
                 <form id='upload_avatar_form' action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">

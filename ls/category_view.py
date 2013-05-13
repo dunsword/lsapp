@@ -47,20 +47,25 @@ class CategoryView(LsView):
         categoryid=int(categoryid)
         page=int(page)
         
+        #默认是显示正常状态的帖子，为管理需要，可以通过指定状态显示（TODO：以后要加权限判断）
+        if 'status' not in request.GET:
+            status=1
+        else:
+            status=request.GET['status']
+        
         cats=None
         #TODO should be deferent page for top level cat and leaf level cat
         category=Category.objects.get(pk=categoryid)
         if category.level==1:
             topic_count=Topic.objects.filter(catid_parent__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(category.id)+'/')
-            topics=Topic.objects.filter(catid_parent__exact=categoryid).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
-            
-            
+            topics=Topic.objects.filter(catid_parent__exact=categoryid).filter(status__exact=status).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+   
         else:
             topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30)
             cats=Category.objects.getCategory(category.parent_id) 
-            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=1).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=status).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
        
       
         c = self.getContext(request,{'category':category,'topics':topics,'pageInfo':pageInfo})
