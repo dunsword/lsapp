@@ -197,8 +197,8 @@ def setAvatar(request):
         if form.is_valid():
             avatarTempFile = request.FILES['avatar']
             fileName = AvatarClient.store(user.id, avatarTempFile) 
-#            user.avatar=fileName
-#            user.save()
+            #    user.avatar=fileName
+            #    user.save()
     
     avatarUrl = user.get_avatar_url()  
     

@@ -110,6 +110,7 @@ style="width: 800px;margin-left:-450px"
 						$('#new_topic_modal').on('hidden', function() {
 						});
 					});
+					window.location.href='/'
 				}
 			});
 			return false;
@@ -181,9 +182,9 @@ style="width: 800px;margin-left:-450px"
 			catItem.attr('id', id_catItem);
 			$('#id_dropdown').before(catItem);
 			label = $('#' + id_catItem + " > span");
-			close = $('#' + id_catItem + " > button");
-			close.attr('cat_id', cat.id);
-			close.bind('click', function() {
+			clsbtn = $('#' + id_catItem + " > button");
+			clsbtn.attr('cat_id', cat.id);
+			clsbtn.bind('click', function() {
 				c_catid = $(this).attr('cat_id');
 				_SelCat.pop(c_catid);
 			})

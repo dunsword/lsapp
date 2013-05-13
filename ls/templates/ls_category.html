@@ -18,16 +18,7 @@
                 
                  <!--翻页组建，需要PageInfo对象-->
                 {% include 'base_util_pagination.html' %}
-                
-                {% if user.is_active %}
-                <div id='before_first_item' class="row-fluid" style="height: 0px;">
-                    <div class="span12">
-                       
-                        {% include 'ls_category_new_topic.html'%}
-                       
-                    </div>
-                </div>
-                {% endif %}
+               
             </div>
             <div class="span3">
                 {% include 'ls_right.html' %}

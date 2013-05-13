@@ -1,158 +1,135 @@
 {% extends "frameBase.html" %}
 {% block topBar %}
-   
-            <div class="navbar-inner">
-                <div class="container" style="width:980px; margin: 0 auto;">
-                	 
-                    <a   href="/" style="float: left;margin: 0px 10px">
-                    	
-	                        <img src="{{ STATIC_URL }}img/site_logo.png" class="img-rounded" style="width: 120px;height: 30px;margin-top: 5px"/>
-	                      
-	                     	
-                    </a>
-                    
-                   
-                    <ul class="nav">
-                        <!--
-                        <li class="active">
-                            <a href="/">首页</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#">发现</a>
-                        </li>
-                        -->
-                        <li>
-                          <form id='id_search_form' class='form-inline' style="height: 10px; margin-top: 5px;margin-left:10px;" onsubmit="search(); return false;">
-                          	<input type='text' placeholder="搜索" id='id_search_text'/>
-                         	
-                         	<a href="#" onclick="$('#id_search_form').submit();"><li class="icon-search"></li></a>
-                          </form>
-                          <script>
-                          	function search(){
-                          		var search_key=$('#id_search_text').val();
-                          		if(search_key.length>0){
-                          			window.location='/search/'+search_key;
-                          		}
-                          		
-                          	}
-                          </script>
-                        </li>
-                        <li>
-                            
-                        <span style="float: right;padding-left: 30px"> 
-                            {% if user.id %} 
-                            <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐 | 求文</a> 
-                            {% else %} 
-                            <!--
-                            <a href="#login_modal" role="button" class="btn btn-primary"   data-toggle="modal">登录 | 发帖</a> 
-                            -->
-                            {% endif %} 
-                            </span>
-                    
-                        </li>
-                    </ul>
-                    {% if user.id %}
-                    <ul class="nav pull-right">
-                        <li>
-                            <a href="#"></a>
-                        </li>
-                        <li class="divider-vertical"></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}} <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/setup">设置</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="/logout">退出</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    {% else %}
-                     <ul class="nav pull-right">
-                        <li>
-                            <a href="/register">注册</a>
-                        </li>
-                        <li class="divider-vertical"></li>
-                        <li>
-                            <a href="#login_modal"  data-toggle="modal">登录</a>
-                        </li>
-                    </ul>
-                    
-                    
-                     <div id="login_modal" class="modal hide fade"
-                        tabindex="-1"
-                        role="dialog"
-                        aria-labelledby="myModalLabel"
-                        aria-hidden="true"
-                        style="width: 700px;height: 300px;margin-left:-350px">
-                            <div style="width:60px;margin: 120px auto;">Loading...</div>
-                    </div>
-                    <script>
-                        var _login_alert;
-                        
-                        function do_login(){
-                            $('#login_btn').attr('class','btn');
-                            $('#login_btn').attr('enabled','false');
-                            loginForm=$('#login_form');
-                            errUserName=$('#login_form_error_username');
-                            errPwd=$('#login_form_error_password');
-                            loginURL=loginForm.attr('action');
-                            $.post(loginURL,loginForm.serialize()).done(
-                              function(data){
-                                  if(data['result']=='success'){
-                                      location.reload();
-                                  }
-                                  else{
-                                       $('#login_btn').attr('class','btn btn-primary');
-                                       $('#login_btn').attr('enabled','true');
-                                      if(data['username']){
-                                           errUserName.show();                           
-                                      }
-                                      else{
-                                           errUserName.hide();
-                                      }
-                                      if(data['password']){
-                                          errPwd.show();
-                                      }
-                                      else{
-                                          errPwd.hide();
-                                      }
-                                      if(data['login_failed']){
-                                        if(_login_alert){
-                                             _login_alert.remove();
-                                        }
-                                        _login_alert= $('#login_form_alert').clone();
-                                        $('#id_username').before(_login_alert);
-                                        
-                                        _login_alert.show();
-                                        _login_alert.alert();
-                                       
-                                      }
-                                     
-                                     
-                                  }
-                              }  
-                              
-                            );
-                            return false;
-                        }
-                        $('#login_modal').on('show', function () {
-                                $.get('/login/form').done(
-                                  function(data){
-                                      $('#login_modal').html(data);
-                                  }  
-                                );
-                        });
-                    </script>
-                   
-                    {% endif %}
-                    
-                </div>
-            </div>
-       
+
+<div class="navbar-inner">
+	<div class="container" style="width:980px; margin: 0 auto;">
+
+		<a   href="/" style="float: left;margin: 0px 10px"> <img src="{{ STATIC_URL }}img/site_logo.png" class="img-rounded" style="width: 120px;height: 30px;margin-top: 5px"/> </a>
+
+		<ul class="nav">
+			<li>
+				<form id='id_search_form' class='form-inline' style="height: 10px; margin-top: 5px;margin-left:10px;" onsubmit="search(); return false;">
+					<input type='text' placeholder="搜索" id='id_search_text'/>
+
+					<a href="#" onclick="$('#id_search_form').submit();"><li class="icon-search"></li></a>
+				</form>
+				<script>
+					function search() {
+						var search_key = $('#id_search_text').val();
+						if (search_key.length > 0) {
+							window.location = '/search/' + search_key;
+						}
+
+					}
+				</script>
+			</li>
+			<li>
+
+				<span style="float: right;padding-left: 30px"> {% if user.id %} <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐 | 求文</a> {% else %} <!--
+					<a href="#login_modal" role="button" class="btn btn-primary"   data-toggle="modal">登录 | 发帖</a>
+					--> {% endif %} </span>
+
+			</li>
+		</ul>
+		{% if user.id %}
+		<ul class="nav pull-right">
+			<li>
+				<a href="#"></a>
+			</li>
+			<li class="divider-vertical"></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.username}} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="/setup">设置</a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="/logout">退出</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		{% else %}
+		<ul class="nav pull-right">
+			<li>
+				<a href="/register">注册</a>
+			</li>
+			<li class="divider-vertical"></li>
+			<li>
+				<a href="#login_modal"  data-toggle="modal">登录</a>
+			</li>
+		</ul>
+
+		<div id="login_modal" class="modal hide fade"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="myModalLabel"
+		aria-hidden="true"
+		style="width: 700px;height: 300px;margin-left:-350px">
+			<div style="width:60px;margin: 120px auto;">
+				Loading...
+			</div>
+		</div>
+		<script>
+			var _login_alert;
+
+			function do_login() {
+				$('#login_btn').attr('class', 'btn');
+				$('#login_btn').attr('enabled', 'false');
+				loginForm = $('#login_form');
+				errUserName = $('#login_form_error_username');
+				errPwd = $('#login_form_error_password');
+				loginURL = loginForm.attr('action');
+				$.post(loginURL, loginForm.serialize()).done(function(data) {
+					if (data['result'] == 'success') {
+						location.reload();
+					} else {
+						$('#login_btn').attr('class', 'btn btn-primary');
+						$('#login_btn').attr('enabled', 'true');
+						if (data['username']) {
+							errUserName.show();
+						} else {
+							errUserName.hide();
+						}
+						if (data['password']) {
+							errPwd.show();
+						} else {
+							errPwd.hide();
+						}
+						if (data['login_failed']) {
+							if (_login_alert) {
+								_login_alert.remove();
+							}
+							_login_alert = $('#login_form_alert').clone();
+							$('#id_username').before(_login_alert);
+
+							_login_alert.show();
+							_login_alert.alert();
+
+						}
+
+					}
+				});
+				return false;
+			}
+
+
+			$('#login_modal').on('show', function() {
+				$.get('/login/form').done(function(data) {
+					$('#login_modal').html(data);
+				});
+			});
+		</script>
+
+		{% endif %}
+
+		{% if user.is_active %}
+
+		{% include 'ls_category_new_topic.html'%}
+
+		{% endif %}
+	</div>
+</div>
+
 {% endblock %}
-    
