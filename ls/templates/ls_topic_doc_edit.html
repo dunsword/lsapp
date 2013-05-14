@@ -15,6 +15,7 @@
             <div class="span12">
                
                     {% csrf_token %}
+                    
                     {% for field in docForm %}
                     <div class="control-group">
                         <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
