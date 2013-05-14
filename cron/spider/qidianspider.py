@@ -58,7 +58,6 @@ class BookAccessLog:
         if not os.path.isfile(dirFileName):
             temp = open(dirFileName, 'w')
             temp.close()
-            #os.mknod(dirFileName)
         global fileContent
         if not fileContent:
             file_object = open(fileName)
@@ -88,6 +87,7 @@ class BookStoreData:
         self.parentCategoryUrl = u""
         self.parentCategoryName = u""
         self.updateTime = u''
+        self.totalCount = 0
 
 
 class User:
@@ -126,18 +126,44 @@ class HttpMonitor:
         userDict = random.choice(userList)
         return User(userDict['uid'], userDict['name'])
 
-    def postContent(self, uid, userName, title, content, date, cid, refSiteId, refId, refUrl):
+    def postContent(self, uid, userName, title, content, date, cid, refSiteId, refId, refUrl, wordnum, readnum, author):
         params = json.dumps({'datas': [
             {'uid': uid, 'userName': userName, 'title': title,
              'content': content, 'date': date,
-             'cid': cid, 'refSiteId': refSiteId, 'refId': refId, 'refUrl': refUrl}
+             'cid': cid, 'refSiteId': refSiteId, 'refId': refId, 'refUrl': refUrl,
+             'wordnum': wordnum, 'readnum': readnum, 'author': author}
         ]})
         headers = {"Content-type": "application/json", "Accept": "text/plain", "User-Agent": "Magic Browser"}
         h = Http()
         url = u"%s/cron/add" % localDomain
         resp, content = h.request(url, "POST", body=params, headers=headers)
-        print resp
-        print content
+        docId = 0
+        if json.loads(content).get("errormsg"):
+            print json.loads(content).get("errormsg")
+            return docId
+        for item in json.loads(content).get("result"):
+            docId = int(item.get("docId"))
+        print docId
+        return docId
+
+    def updateContent(self, docId, refId, readnum, wordnum, date):
+        try:
+            params = json.dumps({'datas': [
+                {'docId': docId, 'refId': refId, 'readnum': readnum,
+                 'wordnum': wordnum, 'date': date}
+            ]})
+            headers = {"Content-type": "application/json", "Accept": "text/plain", "User-Agent": "Magic Browser"}
+            h = Http()
+            url = u"%s/cron/update$" % localDomain
+            resp, content = h.request(url, "POST", body=params, headers=headers)
+            if json.loads(content).get("errormsg"):
+                print json.loads(content).get("errormsg")
+                return 0
+            return 1
+        except Exception, e :
+            print e
+            pass
+        return 0
 
 
 class BookStoreParser(SGMLParser):
@@ -145,6 +171,7 @@ class BookStoreParser(SGMLParser):
         SGMLParser.reset(self)
         self.bookStoreData = None
         self.bookCategoryList = []
+        self.bookBaseUrl = u''
         self.isContent = False
         self.isTitle = False
         self.isTitleSpan = False
@@ -155,6 +182,7 @@ class BookStoreParser(SGMLParser):
         self.hasPrevious = False
         self.hasNextUrl = False
         self.isUpdateTime = False
+        self.isTotalCount = False
 
     def getBookList(self):
         return self.bookCategoryList
@@ -170,6 +198,8 @@ class BookStoreParser(SGMLParser):
                 self.bookStoreData.parentCategoryName = text.strip("\r\n").strip()
         if self.isUpdateTime:
             self.bookStoreData.updateTime = u'20%s' % text.strip("\r\n").strip()
+        if self.isTotalCount:
+            self.bookStoreData.totalCount = text.strip("\r\n").strip()
 
     def start_div(self, attrs):
         contentDiv = [v for k, v in attrs if k == 'class' and v == 'swz']
@@ -194,6 +224,9 @@ class BookStoreParser(SGMLParser):
         updateDiv =  [v for k, v in attrs if k == 'class' and v == 'swe']
         if updateDiv:
             self.isUpdateTime = True
+        totalCountDiv =  [v for k, v in attrs if k == 'class' and v == 'swc']
+        if totalCountDiv:
+            self.isTotalCount = True
 
     def end_div(self):
         if self.isContent:
@@ -204,6 +237,8 @@ class BookStoreParser(SGMLParser):
             self.isNextDiv = False
         if self.isUpdateTime:
             self.isUpdateTime = False
+        if self.isTotalCount:
+            self.isTotalCount = False
 
     def start_span(self, attrs):
         if self.isTitleDiv:
@@ -252,6 +287,13 @@ class BookStoreParser(SGMLParser):
         if self.hasNextUrl:
             self.hasPrevious = False
 
+    def start_base(self, attrs):
+        try:
+            linkUrl = [v for k, v in attrs if k == 'href'][0]
+            self.bookBaseUrl = linkUrl
+        except IndexError:
+            pass
+
 
 class BookInfoParser(SGMLParser):
     def reset(self):
@@ -272,6 +314,7 @@ class BookInfoParser(SGMLParser):
         #done
         self.author = u''
         #done
+        self.totalClick = u''
         self.updateTime = u''
         self.category = u''
         self.lastPostContent = u''
@@ -295,6 +338,13 @@ class BookInfoParser(SGMLParser):
         #author tag
         self.isAuthor = False
         self.isAuthorName = False
+        self.isTotalClick = False
+        self.isTotalClickContentDiv = False
+        self.isTotalClickIntro = False
+        self.isTotalClickTBody = False
+        self.isTotalClickTR = False
+        self.isTotalClickTD = False
+        self.isTotalClickB = False
         #update tag
         self.isUpdateTime = False
         self.isUpdateTimeDiv = False
@@ -326,6 +376,8 @@ class BookInfoParser(SGMLParser):
             self.lastVipPostTitle = text.strip("\r\n").strip()
         if self.isLastVipPostContentLink:
             self.lastVipPostContent += text.strip("\r\n").strip(u"　").strip()
+        if self.isTotalClickTD and not self.isTotalClickB:
+            self.totalClick += text.strip("\r\n").strip(u"　").strip()
 
     def start_div(self, attrs):
         contentDiv = [v for k, v in attrs if k == 'id' and v == 'mainContent']
@@ -344,6 +396,19 @@ class BookInfoParser(SGMLParser):
                 if titleDepthDiv:
                     self.isTitle = True
                     self.isAuthor = True
+
+            if not self.totalClick:
+                dataDiv = [v for k, v in attrs if k == 'id' and v == 'contentdiv']
+                if dataDiv:
+                    self.isTotalClickContentDiv = True
+                if self.isTotalClickContentDiv:
+                    dataIntro = [v for k, v in attrs if k == 'class' and v == 'intro']
+                    if dataIntro:
+                        self.isTotalClickIntro = True
+                if self.isTotalClickIntro:
+                    dataLi = [v for k, v in attrs if k == 'class' and v == 'data']
+                    if dataLi:
+                        self.isTotalClick = True
 
             if not self.updateTime:
                 updateTimeDiv = [v for k, v in attrs if k == 'class' and v == 'tabs']
@@ -402,6 +467,8 @@ class BookInfoParser(SGMLParser):
         if self.isLastVipPostTitle and self.deep == self.deepLastPostTitle:
             self.isLastVipPostTitle = False
             self.deep -= 1
+        # if self.isTotalClick:
+        #     self.isTotalClick = False
 
     def start_h1(self, attrs):
         if self.isTitle and self.deep == self.deepBookInfo:
@@ -451,10 +518,14 @@ class BookInfoParser(SGMLParser):
             removeTag = [v for k, v in attrs if k == 'id' and v == 'essactive']
             if removeTag:
                 self.isNotProcess = True
+        if self.isTotalClickTD:
+            self.isTotalClickB = True
 
     def end_b(self):
         if self.isIntro and self.isNotProcess:
             self.isNotProcess = False
+        if self.isTotalClickB:
+            self.isTotalClickB = False
 
     def start_span(self, attrs):
         if self.isIntro:
@@ -474,9 +545,38 @@ class BookInfoParser(SGMLParser):
         if self.isLastVipPostTitleName:
             self.isLastVipPostTitleName = False
 
+    def start_table(self,attrs):
+        if self.isTotalClick:
+            self.isTotalClickTBody = True
+
+    def end_table(self):
+        if self.isTotalClickTBody:
+            self.isTotalClickTBody = False
+
+    def start_tr(self,attrs):
+        if self.isTotalClickTBody:
+            self.isTotalClickTR = True
+
+    def end_tr(self):
+        if self.isTotalClickTR:
+            self.isTotalClickTR = False
+
+    def start_td(self,attrs):
+        if self.isTotalClickTR:
+            self.isTotalClickTD = True
+
+    def end_td(self):
+        if self.isTotalClickTD:
+            self.isTotalClickTD = False
+            self.isTotalClickTR = False
+            self.isTotalClickTBody = False
+            self.isTotalClick = False
+            self.isTotalClickContentDiv = False
+            self.isTotalClickIntro = False
+
 
 class RecursionPage:
-    def __init__(self, url, cid=0, startPage=1, totalPage=1):
+    def __init__(self, url, cid=0, startPage=1, totalPage=3):
         self.cid = cid
         self.url = url
         self.start = startPage
@@ -492,38 +592,36 @@ class RecursionPage:
         content = WebPageContent(self.url)
         pattern = re.compile(r'http://.*?/')
         fidPattern = re.compile(r'http://.*?/([0-9]+)\.aspx')
-        match = pattern.match(self.url)
-        domain = ''
-        if match:
-            domain = match.group()
-            domain = domain[0: int(len(domain)) - 1]
         parser = BookStoreParser()
         parser.feed(content.getData())
         parser.close()
         bookContent = parser.getBookList()
 
         if bookContent:
+            global fileContent
+            logFile = BookAccessLog()
+            logFile.open()
             for item in bookContent:
                 lMatch = pattern.match(item.linkUrl)
                 if lMatch:
                     url = item.linkUrl
                 else:
-                    url = domain + item.linkUrl
+                    url = parser.bookBaseUrl + item.linkUrl
                 m = fidPattern.match(url)
                 fid = 0
                 if m:
                     fid = int(m.group(1))
+                bi = BookInfo(url, self.cid, fid=fid,totalCount=item.totalCount)
                 fidAccessPattern = re.compile(".*?\[%d,([0-9]+)\].*?" % fid)
-                readFile = BookAccessLog()
-                readFile.open()
                 fa = fidAccessPattern.match(fileContent)
                 if fa:
-                    # update fa.group(1) updatetime
-                    # fa.group(1)
-                    print fa.group(1), item.updateTime
+                    bi.run(fa.group(1))
                 else:
-                    # print url, self.cid, item.updateTime
-                    BookInfo(url, self.cid)
+                    res = bi.run()
+                    if res > 0:
+                        fileContent += u"[%d,%d]" % (fid, res)
+            logFile.write()
+
             if self.start < self.end:
                 if nextUrl:
                     RecursionPage(nextUrl, self.cid, self.start + 1, self.end)
@@ -531,19 +629,20 @@ class RecursionPage:
 
 
 class BookInfo:
-    def __init__(self, url, cid=0):
+    def __init__(self, url, cid=0, fid=0, totalCount=0):
         self.cid = cid
         self.url = url
-        self.fid = 0
-        self.run()
+        self.fid = fid
+        self.totalCount = totalCount
 
     def setUp(self):
-        pattern = re.compile(r'http://.*?/([0-9]+)\.aspx')
-        m = pattern.match(self.url)
-        if m:
-            self.fid = int(m.group(1))
+        if not self.fid:
+            pattern = re.compile(r'http://.*?/([0-9]+)\.aspx')
+            m = pattern.match(self.url)
+            if m:
+                self.fid = int(m.group(1))
 
-    def run(self):
+    def run(self, pid=0):
         self.setUp()
         content = WebPageContent(self.url)
         parser = BookInfoParser()
@@ -552,14 +651,14 @@ class BookInfo:
         hm = HttpMonitor()
         user = hm.user(self.cid)
         if user:
-            # print parser.title, user.name, self.cid, self.fid
-            hm.postContent(user.uid, user.name, parser.title, parser.intro, parser.updateTime, self.cid, 1, self.fid,
-                           self.url)
-            global fileContent
-            fileContent += u"[%d,111]" % self.fid
-
-        writeFile = BookAccessLog()
-        writeFile.write()
+            if pid > 0:
+                hm.updateContent(pid, self.fid, self.totalCount, parser.totalClick, parser.updateTime)
+            else:
+                resPid = hm.postContent(user.uid, user.name, parser.title, parser.intro,
+                               parser.updateTime, self.cid, 1, self.fid, self.url, self.totalCount, parser.totalClick,
+                               parser.author)
+                return resPid
+        return 0
 
 
 class Timer(threading.Thread):
