@@ -143,7 +143,6 @@ class HttpMonitor:
             return docId
         for item in json.loads(content).get("result"):
             docId = int(item.get("docId"))
-        print docId
         return docId
 
     def updateContent(self, docId, refId, readnum, wordnum, date):
@@ -154,7 +153,7 @@ class HttpMonitor:
             ]})
             headers = {"Content-type": "application/json", "Accept": "text/plain", "User-Agent": "Magic Browser"}
             h = Http()
-            url = u"%s/cron/update$" % localDomain
+            url = u"%s/cron/update" % localDomain
             resp, content = h.request(url, "POST", body=params, headers=headers)
             if json.loads(content).get("errormsg"):
                 print json.loads(content).get("errormsg")
