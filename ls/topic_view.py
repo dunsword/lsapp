@@ -63,12 +63,15 @@ class TopicEditView(BaseTopicView):
     def get(self,request, topicid,*args, **kwargs):
         topic=Topic.objects.get(pk=topicid)
         docForm=None
-        if topic.isDocument:
+        if topic.isDocument():
             docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
-       
-        topicForm=TopicForm(instance=topic,prefix="topic")
-        c = RequestContext(request, {'topic':topicForm,'docForm':docForm})
-        tt = loader.get_template('ls_topic_doc_edit.html')
+            topicForm=TopicForm(instance=topic,prefix="topic")
+            c = RequestContext(request, {'topic':topicForm,'docForm':docForm})
+            tt = loader.get_template('ls_topic_doc_edit.html')
+        else:
+            topicForm=TopicForm(instance=topic)
+            c = RequestContext(request, {'topic':topicForm})
+            tt = loader.get_template('ls_topic_edit.html')
         return HttpResponse(tt.render(c))
     
     @method_decorator(login_required)
@@ -78,19 +81,28 @@ class TopicEditView(BaseTopicView):
             return self._get_json_respones({'result':'error'})
         
         topic=Topic.objects.get(pk=topicid)
-        doc=topic.getDocument()
+        if topic.isDocument():
+            doc=topic.getDocument()
         
-        docForm=DocumentForm(data=request.POST,prefix="doc",instance=doc)
-        topicForm=TopicForm(data=request.POST,prefix="topic",instance=topic)
+            docForm=DocumentForm(data=request.POST,prefix="doc",instance=doc)
+            topicForm=TopicForm(data=request.POST,prefix="topic",instance=topic)
         
-        if topicForm.is_valid() and docForm.is_valid():
-            topicForm.save()
-            docForm.save()
-            return self._get_json_respones({'result':'success'})
-        
-        return self._get_json_respones({'result':'failed',
+            if topicForm.is_valid() and docForm.is_valid():
+                topicForm.save()
+                docForm.save()
+                return self._get_json_respones({'result':'success'})
+            else:
+                return self._get_json_respones({'result':'failed',
                                         'topic_errors':topicForm.errors,
                                         'document_errors':docForm.errors})
+        else:
+            topicForm=TopicForm(data=request.POST,instance=topic) 
+            if topicForm.is_valid():
+                topicForm.save()
+                return self._get_json_respones({'result':'success'})
+            else:
+                return self._get_json_respones({'result':'failed',
+                                        'errors':topicForm.errors})
     
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)
