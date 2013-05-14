@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from ls.models import Document,Topic
 from cron.models import DocumentMapping,CategoryAuthor
 from datetime import datetime
+import random
 from django.utils import simplejson as json
 
 
@@ -31,20 +32,27 @@ def newDocument(request):
     """
     1.主贴：
         发帖人、标题、内容简介、发帖时间、所属分类id、来源站点id，来源站点小说的唯一id,小说原站url
-        {'uid':122,
-         'userName':"",
-         'title':u"aaa",
-         'content':"",
-         'date':"",
-         'cid':111,
-         'refSiteId':1,
-         'refId':1223,
-         'refUrl':""
+        {'datas':[
+            {'uid':122,
+             'userName':"",
+             'title':u"aaa",
+             'content':"",
+             'date':"",
+             'cid':111,
+             'refSiteId':1,
+             'refId':1223,
+             'refUrl':"",
+             'wordnum',5678,
+             'readnum':123,
+             'author':''
+            }
+        ]
         }
     :param request:
     :return:
     """
-    error =[]
+    error = []
+    result = []
 
     for item in json.loads(request.body).get("datas"):
         try:
@@ -57,63 +65,87 @@ def newDocument(request):
             refSiteId = item.get("refSiteId", 0)
             refId = item.get("refId", 0)
             refUrl = item.get("refUrl", "")
-
-            try:
-                dt = datetime.strptime(date, "%Y-%m-%d %H:%M")
-            except:
-                dt = datetime.now()
-
-            # 先根据站点id和内容id验证是否已经存在。如果存在，只需要更新时间，如果不存在完成新增操作。
-            docObj = DocumentMapping.objects.filter(source_id=refSiteId,source_document_id=refId)
-            if docObj and docObj[0]:
+            wordnum = item.get('wordnum',0)
+            readnum = item.get('readnum',0)
+            author = item.get('author','')
+            if  len(title.strip())>0 and  len(content.strip())>0:
+                if readnum ==0:
+                    readnum = random.randint(1000, 5000)
                 try:
-                    topic = Document.objects.get(id=docObj.document_id).topic
-                    Topic.objects.filter(id=topic.id).update(updated_at=dt)
-                except Exception,e2:
-                    print e2.message
-                    document = Document.objects.create_document(userid=uid,
-                                                                username=userName,
-                                                                title=title,
-                                                                content=content,
-                                                                source_id=refSiteId,
-                                                                source_url=refUrl,
-                                                                categoryid=cid,
-                                                                source_updated_at=dt
-                                                                )
-                    Topic.objects.filter(id=document.topic.id).update(updated_at=dt,created_at=dt)
-            else:
-                document = Document.objects.create_document(userid=uid,
-                                                            username=userName,
-                                                            title=title,
-                                                            content=content,
-                                                            source_id=refSiteId,
-                                                            source_url=refUrl,
-                                                            categoryid=cid,
-                                                            source_updated_at=dt
-                                                            )
-                Topic.objects.filter(id=document.topic.id).update(updated_at=dt,created_at=dt)
+                    dt = datetime.strptime(date, "%Y-%m-%d %H:%M")
+                except Exception,e:
+                    print e
+                    dt = datetime.now()
 
-                # 保存来源数据到数据同步表中
-                docMapping = DocumentMapping(document_id=document.id, source_document_id=refId, source_id=refSiteId)
-                docMapping.save()
+                # 只完成新增数据
+                topic=Topic(userid=uid,
+                            username=userName,
+                            title=title,
+                            content=content,
+                            categoryid=cid,
+                            catid1=0,
+                            catid2=0,
+                            updated_at=dt,
+                            created_at=dt,
+                            read_count=readnum,
+                            topic_type=Topic.TOPIC_TYPE_DOCUMENT)
+                topic.save()
+
+                doc=Document(source_id=refSiteId,
+                             source_url=refUrl,
+                             topic=topic,
+                             word_count=wordnum,
+                             author_name=author,
+                             source_updated_at=dt)
+                doc.save()
+
+                result.append({'docId':doc.id,'refid':refId})
+
         except Exception, e:
             print e
             error.append({'errormsg':e.message,'refId':refId})
 
-    return HttpResponse({'message':'data saved', 'errormsg':error, 'result': True}, content_type='application/json')
+    return HttpResponse({'message':'data saved', 'errormsg':error, 'result': result}, content_type='application/json')
+
 
 
 @csrf_exempt
-def getAuthors(request):
+def updateDocument(request):
     """
-    根据指定的小说分类的到相应作者列表。
+    1.主贴：
+        发帖人、标题、内容简介、发帖时间、所属分类id、来源站点id，来源站点小说的唯一id,小说原站url
+        {'datas':[
+        {'docId':122,
+         'refId':12345,
+         'readnum':333,
+         'wordnum',5678,
+         'date':""
+        }]
+        }
+    :param request:
+    :return:
     """
-    cid = request.GET.get("cid")
-    authors = CategoryAuthor.objects.filter(cid=cid)
-    datas =[]
-    for item in authors:
-        author = {'uid': item.uid, 'name': item.authorName}
-        datas.append(author)
-    result = json.dumps({'datas': datas})
-    return HttpResponse(result, content_type='application/json')
+    error = []
+    for item in json.loads(request.body).get("datas"):
+        try:
+            docId = item.get("docId", 0)
+            refId = item.get("refId", 0)
+            readnum = item.get("readnum", 0)
+            wordnum = item.get("wordnum", 0)
+            date = item.get("date", "")
+            if not docId==0:
+                if readnum ==0:
+                    readnum = random.randint(1000, 10000)
+                try:
+                    dt = datetime.strptime(date, "%Y-%m-%d %H:%M")
+                except:
+                    dt = datetime.now()
+                #更新数据
+                doc = Document.objects.filter(id=docId).update(word_count=wordnum)
+                Topic.objects.filter(id=doc.topic.id).update(read_count=readnum,updated_at=dt)
+        except Exception, e:
+            print e
+            error.append({'errormsg':e.message,'refId':refId})
+
+    return HttpResponse({'message':'data updated', 'errormsg':error, 'result': 'Ok'}, content_type='application/json')
 
