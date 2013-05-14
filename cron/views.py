@@ -105,7 +105,7 @@ def newDocument(request):
             print e
             error.append({'errormsg':e.message,'refId':refId})
 
-    return HttpResponse({'message':'data saved', 'errormsg':error, 'result': result}, content_type='application/json')
+    return HttpResponse(json.dumps({'message':'data saved', 'errormsg':error, 'result': result}), content_type='application/json')
 
 
 
@@ -147,5 +147,5 @@ def updateDocument(request):
             print e
             error.append({'errormsg':e.message,'refId':refId})
 
-    return HttpResponse({'message':'data updated', 'errormsg':error, 'result': 'Ok'}, content_type='application/json')
+    return HttpResponse(json.dumps({'message':'data updated', 'errormsg':error, 'result': 'Ok'}), content_type='application/json')
 
