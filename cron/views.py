@@ -141,8 +141,9 @@ def updateDocument(request):
                 except:
                     dt = datetime.now()
                 #更新数据
-                doc = Document.objects.filter(id=docId).update(word_count=wordnum)
-                Topic.objects.filter(id=doc.topic.id).update(read_count=readnum,updated_at=dt)
+                docs = Document.objects.filter(id=docId)
+                docs.update(word_count=wordnum)
+                Topic.objects.filter(id=docs[0].topic.id).update(read_count=readnum,updated_at=dt)
         except Exception, e:
             print e
             error.append({'errormsg':e.message,'refId':refId})
