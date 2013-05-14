@@ -143,6 +143,7 @@ class HttpMonitor:
             return docId
         for item in json.loads(content).get("result"):
             docId = int(item.get("docId"))
+
         return docId
 
     def updateContent(self, docId, refId, readnum, wordnum, date):
