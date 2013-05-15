@@ -58,6 +58,17 @@ class RegisterUserForm(forms.Form):
             raise forms.ValidationError('该电子邮箱已经被使用！')
         except User.DoesNotExist:
             return email
+        
+        
+class UserForm(forms.ModelForm):
+    #password=forms.CharField(label=u'密码',required=False,widget=forms.PasswordInput)
+    class Meta:
+            model=User
+            exclude = ('avatar','password')
+            widgets = {
+              #'password':forms.PasswordInput
+            }
+            
 class SetupForm(forms.Form):
 #    firstName = forms.CharField(
 #                              widget=forms.TextInput(attrs={'placeholder': u'请输入姓名'}),

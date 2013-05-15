@@ -7,6 +7,8 @@ from django.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
 from django.conf import settings
 from base.storage.client import AvatarClient
+import pickle
+from StringIO import StringIO
 #from twisted.conch.test.test_insults import default
 # from django.contrib.auth.models import User
 # Create your models here.
@@ -25,6 +27,25 @@ from base.storage.client import AvatarClient
 #    user=models.OneToOneField(User)
 
 class UserManager(models.Manager):
+    def __init__(self):
+        self.count=0
+        self.users={}
+        
+        super(UserManager, self).__init__()
+    
+    def get(self,*args,**kwargs):
+        self.count+=1 #这是看看效果
+        if kwargs.has_key('pk'):
+            uid=int(kwargs['pk'])
+            if self.users.has_key(uid):
+                return self.users[uid].clone()
+            else:
+                user = super(UserManager,self).get(pk=uid)
+                self.users[uid]=user
+                return user.clone()
+        else:
+            user = super(UserManager,self).get(pk=uid)
+        
     def create_user(self, username, email, password,nickname=None,gender=1):
         if nickname == None:
             nickname=username
@@ -42,24 +63,38 @@ class User(models.Model):
         help_text=_('必须包含3-30个数字、英文字母或者下划线！'))
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    nickname = models.CharField(_('nick name'), max_length=30, unique=True)
+    nickname = models.CharField(_('昵称'), max_length=30, unique=True)
     gender = models.SmallIntegerField(_('性别'),choices=[(1,"女"),(2,"男"),(3,'保密')],default=1)
-    email = models.EmailField(_('e-mail address'), unique=True)
-    avatar = models.URLField(_('avatar'), null=True)
-    password = models.CharField(_('password'), max_length=128)
-    is_staff = models.BooleanField(_('staff status'), default=False,
-        help_text=_('确定是否管理员.'))
-    is_active = models.BooleanField(_('active'), default=True,
+    email = models.EmailField(_('邮箱地址'), unique=True)
+    avatar = models.URLField(_('头像'), null=True, blank=True)
+    password = models.CharField(_('密码'), max_length=128)
+    is_active = models.BooleanField(_('激活'), default=True,
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
-    is_superuser = models.BooleanField(_('superuser status'), default=False,
+    is_staff = models.BooleanField(_('管理员'), default=False,
+        help_text=_('确定是否管理员.'))
+    
+    is_superuser = models.BooleanField(_('超级用户'), default=False,
         help_text=_('超级用户，拥有所有权限'))
-    last_login = models.DateTimeField(_('last login'), default=timezone.now)
-    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    last_login = models.DateTimeField(_('最近登录'), default=timezone.now)
+    date_joined = models.DateTimeField(_('注册时间'), default=timezone.now)
+
     
     class Meta:
         # abstract = True
         pass
+    
+    def save(self,*args,**kwargs):
+        super(User,self).save(*args,**kwargs)
+        
+        if User.objects.users.has_key(self.id):
+            User.objects.users.pop(self.id)
+    def clone(self):
+        s=StringIO()
+        pickle.dump(self,s)
+        s.seek(0)
+        return pickle.load(s)
+    
     def get_avatar_url(self):
         if self.avatar:
             #return AvatarClient.url(self.avatar)#TODO
