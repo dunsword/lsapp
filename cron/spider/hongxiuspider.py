@@ -28,7 +28,7 @@ type = sys.getfilesystemencoding()
 #全局变量
 localDomain = u'http://127.0.0.1:8000'
 #全局文件日志
-dirFileName = u"../hongxiuspider.log"
+dirFileName = u"hongxiuspider.log"
 
 #全局变量
 # localDomain = u'http://weibols.sinaapp.com'
@@ -508,7 +508,7 @@ class BookInfoParser(SGMLParser):
 
     def handle_data(self, text):
         if self.isIntro:
-            self.intro = text.strip("\r\n").strip()
+            self.intro += text.strip("\r\n").strip()
         if self.isWordNum:
             self.wordNum = int(text.strip("\r\n").strip())
 
@@ -567,7 +567,7 @@ class RecursionPage:
                 if fa:
                     pid = int(fa.group(1))
                 bi = BookInfo(url, self.cid, fid=fid, item=item)
-                # bi = BookInfo(u'http://novel.hongxiu.com/a/615324/', self.cid, fid=fid, item=item)
+                # bi = BookInfo(u'http://novel.hongxiu.com/a/643818/"', self.cid, fid=fid, item=item)
                 res = bi.run(pid)
                 if res > 0:
                     fileContent += u"[%d,%d]" % (fid, res)
@@ -620,7 +620,7 @@ class BookInfo:
                 print self.url
             else:
                 resPid = hm.postContent(user.uid, user.name, self.book.title, parser.intro,
-                                        self.book.updateTime, self.cid, 1, self.fid, self.url, utf8Parser.wordNum,
+                                        self.book.updateTime, self.cid, 2, self.fid, self.url, utf8Parser.wordNum,
                                         utf8Parser.readNum,
                                         self.book.author)
                 # resPid = 1
