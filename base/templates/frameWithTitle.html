@@ -25,9 +25,13 @@
 			</li>
 			<li>
 
-				<span style="float: right;padding-left: 30px"> {% if user.id %} <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐 | 求文</a> {% else %} <!--
+				<span style="float: right;padding-left: 30px"> {% if user.id %} 
+				    {% if category%}
+				    <a href="#new_topic_modal" role="button" class="btn btn-primary" data-toggle="modal">推荐 | 求文</a> {% else %} <!--
 					<a href="#login_modal" role="button" class="btn btn-primary"   data-toggle="modal">登录 | 发帖</a>
-					--> {% endif %} </span>
+					--> 
+					{% endif %}
+					{% endif %} </span>
 
 			</li>
 		</ul>
@@ -124,7 +128,7 @@
 
 		{% endif %}
 
-		{% if user.is_active %}
+		{% if user.is_active and category %}
 
 		{% include 'ls_category_new_topic.html'%}
 

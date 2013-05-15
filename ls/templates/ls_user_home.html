@@ -5,14 +5,24 @@
     <div class="container-fluid" style="padding-left: 0px;padding-right:0px;">
         <div class="row-fluid" >
             <div class="span9">
-                <div class="row-fluid"  style="padding-left: 3px;-webkit-border-radius: 5px">
+                <div class='row-fluid ls-main'><div class="span12">
+                <div class="row-fluid ls-title"  >
                     <div class="span9" >
                         <h4>{{cuser.username}} 的推荐：</h4>
                     </div>
-                    <div class="span3" style="padding-top: 20px">
-                        <span style="float: right;padding-right: 10px"> {% if user.is_active %}
+                    <div class="span3" style="padding-top: 12px">
+                        <span style="float: right;padding-right: 10px"> 
+                             {% if user.is_staff %}
+                             <a href=/admin/user/edit/{{cuser.id}}>
+                                 <i class='icon-edit'></i>编辑
+                             </a>
+                             {% endif %}
+                            <!--
+                            {% if user.is_active %}
 
-                            {% else %} <a href="#login_modal" role="button" class="btn btn-primary" data-toggle="modal">登录 | 发帖</a> {% endif %} </span>
+                            {% else %} <a href="#login_modal" role="button" class="btn btn-primary" data-toggle="modal">登录 | 发帖</a> 
+                            {% endif %} </span>
+                            -->
                     </div>
                 </div>
                 <!-- Modal -->
@@ -23,7 +33,7 @@
 
                 <!--翻页组建，需要PageInfo对象-->
                 {% include 'base_util_pagination.html' %}
-
+</div></div>
             </div>
             <div class="span3">
                 <!--Sidebar content-->
