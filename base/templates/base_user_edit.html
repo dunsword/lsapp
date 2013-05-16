@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container" style="width: 980px">
-
+    
     <div class="container-fluid">
         <div class="row-fluid" > 
             <div class="span12">
@@ -24,7 +24,13 @@
                         </div>
                     </div>
                     {% endfor %}
-                    
+                     <div class="control-group">
+                        <label class="control-label" for="inputEmail" style="width: 80px">头像：</label>
+                        <div class="controls" style="margin-left: 100px">
+                           <img src='{{userForm.instance.get_avatar_url}}' style="width: 100px;height: 100px"></img>
+                           <a href='/admin/user/edit/avatar/{{userForm.instance.id}}'>修改</a>
+                        </div>
+                    </div>
                     
                   
                     

@@ -95,6 +95,11 @@ class User(models.Model):
         s.seek(0)
         return pickle.load(s)
     
+    def get_origin_avatar_url(self):
+        avatarFileName = AvatarClient.getSaveFileName(self.id)
+        avatarImgUrl=AvatarClient.url(avatarFileName)
+        return avatarImgUrl
+    
     def get_avatar_url(self):
         if self.avatar:
             #return AvatarClient.url(self.avatar)#TODO

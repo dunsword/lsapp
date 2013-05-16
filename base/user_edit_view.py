@@ -15,7 +15,11 @@ from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
 from base.models import User
-from base.forms import UserForm
+from base.forms import UserForm,SetAvatarForm
+from base.storage.client import AvatarClient, CropClient
+
+
+    
 class UserEditView(BaseView):
     def get(self,request, userid,*args, **kwargs):
         user=request.user
@@ -58,3 +62,31 @@ class UserEditView(BaseView):
         else:
             return self._get_json_respones({'result':'failed',
                                         'errors':userForm.errors})
+            
+class UserEditAvatarView(BaseView):
+    
+    def post(self,request, userid,*args, **kwargs):
+        form = SetAvatarForm(request.POST, request.FILES)
+        cuser=User.objects.get(pk=userid)
+        if form.is_valid():
+            avatarTempFile = request.FILES['avatar']
+            fileName = AvatarClient.store(cuser.id, avatarTempFile) 
+        return self.get(request, userid,*args, **kwargs)
+             
+    def get(self,request, userid,*args, **kwargs):
+        user=request.user
+        if not user.is_staff:
+            return HttpResponseRedirect("/404")
+        
+        
+        form = SetAvatarForm()
+        cuser=User.objects.get(pk=userid)
+        
+    
+        c = RequestContext(request, {'form':form,
+                                 'head_template_file':'setavatar_head.html',"cuser":cuser
+                                  })
+        
+       
+        tt = loader.get_template('base_user_edit_avatar.html')
+        return HttpResponse(tt.render(c))
