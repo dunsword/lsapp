@@ -28,19 +28,27 @@ if __name__ == "__main__":
 
     params = json.dumps({'datas':[{'uid': 12524, 'userName': '杨广钊◎123', 'title': '历史说《大宋私生子》',
                                'content': content,'date': '2013-05-07 18:09',
-                               'cid': 0,'refSiteId': 1,'refId': 123456,'refUrl':'http://19lou.com/'},
+                               'cid': 0,'refSiteId': 1,'refId': 2767370,'refUrl': 'http://19lou.com/','readnum':10,'author': 'test大海哥'},
                                 {'uid': 7890, 'userName': '天天快乐◎123', 'title': '历史说1111《大宋私生子》',
                                'content': content,'date': '2013-05-09 18:09',
-                               'cid': 0,'refSiteId': 1,'refId': 123456,'refUrl':'http://19lou.com/'}
+                               'cid': 0,'refSiteId': 1,'refId': 123456,'refUrl': 'http://19lou.com/','readnum':5,'author': 'test1桃花妹'}
+                                ]})
+
+    paramsUpdate = json.dumps({'datas':[{'docId': 6, 'refId': 12345, 'readnum': 500,
+                               'wordnum': 12345,'date': '2013-05-07 18:09'
+                               }
                                 ]})
 
     headers = {"Content-type": "application/json", "Accept": "text/plain","User-Agent": "Magic Browser"}
     h = Http()
     # resp, content = h.request("http://127.0.0.1:8000/cron/add", "POST",body=params,headers=headers)
-    resp, content = h.request("http://127.0.0.1:8000/cron/getAuthors?cid=101", "GET")
+    # resp, content = h.request("http://127.0.0.1:8000/cron/getAuthors?cid=101", "GET")
+    # resp, content = h.request("http://weibols.sinaapp.com/cron/getAuthors?cid=101", "GET")
+    resp, content = h.request("http://127.0.0.1:8000/cron/update", "POST",body=paramsUpdate,headers=headers)
     print resp
-    a =json.loads(content)
-    for item in json.loads(content).get("datas"):
-        print item.get("uid")
-        print item.get("name")
-    print json.loads(content)
+    print
+    # a =json.loads(content)
+    # for item in json.loads(content).get("datas"):
+    #     print item.get("uid")
+    #     print item.get("name")
+    # print json.loads(content)
