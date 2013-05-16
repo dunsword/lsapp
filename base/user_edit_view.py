@@ -31,14 +31,29 @@ class UserEditView(BaseView):
         user=request.user
         if not user.is_staff:
             return self._get_json_respones({'result':'error'})
+        
         euser=User.objects.get(pk=userid)
-        userForm=UserForm(data=request.POST,instance=euser)
-#        password=userForm.data['password']
-#        if password==None or password=='':
-#            userForm.data['password']=euser.password
+        former_password=euser.password
+        
+        password=request.POST['password']
+        change_password=True
+        if password==None or password==u'':
+            data=request.POST.copy()
+            data['password']=former_password
+            change_password=False
+        else:
+            data=request.POST
+            
+        userForm=UserForm(data=data,instance=euser)
+        
+            
         if userForm.is_valid():
-            userForm.cleaned_data['password']='password'
-            userForm.save()
+            euser2=userForm.save(commit=False)
+            if change_password:
+                euser2.set_password(userForm.cleaned_data['password'])
+            else:
+                euser2.password=former_password
+            euser2.save()
             return self._get_json_respones({'result':'success'})
         else:
             return self._get_json_respones({'result':'failed',

@@ -44,7 +44,7 @@ class UserManager(models.Manager):
                 self.users[uid]=user
                 return user.clone()
         else:
-            user = super(UserManager,self).get(pk=uid)
+            return super(UserManager,self).get(*args,**kwargs)
         
     def create_user(self, username, email, password,nickname=None,gender=1):
         if nickname == None:
