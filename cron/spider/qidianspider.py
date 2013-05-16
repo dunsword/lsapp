@@ -662,7 +662,7 @@ class BookInfo:
         if user:
             if pid > 0:
                 hm.updateContent(pid, self.fid, parser.totalClick, self.totalCount, parser.updateTime)
-                print u'pid[%d], fid[%d] is update success; word count is [%s]; read number is [%s]; update time is [%s];' % (pid, self.fid, self.totalCount, parser.totalClick, parser.updateTime)
+                print u'pid[%d], fid[%d] is update success; word count is [%s]; read number is [%s]; update time is [%s];' % (int(pid), self.fid, self.totalCount, parser.totalClick, parser.updateTime)
             else:
                 resPid = hm.postContent(user.uid, user.name, parser.title, parser.intro,
                                parser.updateTime, self.cid, 1, self.fid, self.url, self.totalCount, parser.totalClick,
