@@ -1,26 +1,13 @@
-{% extends "frameWithTitle.html" %}
-
-{% block content %}
-<div class="container">
-    <h1 style="text-align: center">头像设置</h1>
-
-    <div class='span3'>
-        <ul class="nav nav-list">
-            <li>
-                <a href="/setup">个人设置</a>
-            </li>
-            <li>
-                <a href="/setpass">密码修改</a>
-            </li>
-            <li class="active">
-                <a href="/setavatar">头像设置</a>
-            </li>
-        </ul>
-    </div>
-    <div class='span8'>
+        
         <div class="row-fluid" >
             <div class='span12'>
-                当前头像：<img id='current_avatar' src="{{avatar_url}}?tag={% now  'U' %}" style="width:200px;height:200px" onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'"/>
+                <a href="/admin/user/edit/{{cuser.id}}">编辑用户&gt;返回</a>
+            </div>
+        </div>
+        
+        <div class="row-fluid" >
+            <div class='span12'>
+                当前头像：<img id='current_avatar' src="{{cuser.get_avatar_url}}?tag={% now  'U' %}" style="width:200px;height:200px" onerror="javascript:this.src='{{STATIC_URL}}img/avatar_default.jpg'"/>
                 <span id="cropMessage"></span>
             </div>
         </div>
@@ -29,12 +16,12 @@
             <div class='span8'>
                 <div>
                     <h4>头像图片：</h4>
-                    <img id="target" src="{{avatar_img_url}}?tag={% now  'U' %}" 
+                    <img id="target" src="{{cuser.get_origin_avatar_url}}?tag={% now  'U' %}" 
                         style='width:400px;'
                         onerror="$('#target').hide()" />
                 </div>
 
-                <form id='upload_avatar_form' action='setavatar' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
+                <form id='upload_avatar_form' action='' method='post' enctype="multipart/form-data" class='form-horizontal' style=" ">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     {% for field in form.visible_fields %}
@@ -63,7 +50,7 @@
                 <div id="preview-pane">
                     
                     <div class="preview-container" id='preview'  style='width: 200px; height: 200px; overflow: hidden;'>
-                        <img src="{{avatar_img_url}}?tag={% now  'U' %}" 
+                        <img src="{{cuser.get_origin_avatar_url}}?tag={% now  'U' %}" 
                         class="jcrop-preview" 
                         alt="Preview" 
                         onerror ="$('#preview-block').hide();" 
@@ -74,14 +61,14 @@
                     </div>
                    
                 </div>
-                <form action='cropAvatar' id='cropAvatarForm' method='post' onsubmit="return postCropAvatar()" class='form-horizontal' style=" ">
+                <form action='/cropAvatar' id='cropAvatarForm' method='post' onsubmit="return postCropAvatar()" class='form-horizontal' style=" ">
                     <input type='hidden' id='avatar_width' name='avatar_width'/>
                     <input type='hidden' id='avatar_height' name='avatar_height'/>
                     <input type='hidden' id='avatar_marginLeft' name='avatar_marginLeft'/>
                     <input type='hidden' id='avatar_marginTop' name='avatar_marginTop'/>
                     <input type='hidden' id='avatar_real_x' name='avatar_real_x'/>
                     <input type='hidden' id='avatar_real_y' name='avatar_real_y'/>
-                    <input type='hidden' name='userid' value='{{user.id}}'/>
+                    <input type='hidden' name='userid' value='{{cuser.id}}'/>
                     {% csrf_token %}
                     <button class="btn btn-primary" type='submit'>
                         设定头像
@@ -91,9 +78,8 @@
             </div>
 
         </div>
-    </div>
-</div>
-<script>
+        
+        <script>
     var gimg=null;
     var t=null;
     var ix1=0;
@@ -159,86 +145,14 @@
         $('#avatar_real_x').val(iw);
         $('#avatar_real_y').val(ih);
     }
+    function postCropAvatar() {
+        $.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(function(data) {
+            time=new Date().getTime();
+            
+            $('#current_avatar').attr('src', data['avatar_url']+'?tag='+time);
+            $('#cropMessage').html("头像更新成功！");
+        });
+        return false;
+    }
 </script>
-<script>
-/**
-	jQuery(function($) {
-
-		// Create variables (in this scope) to hold the API and image size
-		var jcrop_api, boundx, boundy,
-
-		// Grab some information about the preview pane
-		$preview = $('#preview-pane');
-		$pcnt = $('#preview-pane .preview-container');
-		$pimg = $('#preview-pane .preview-container img');
-		xsize = $pcnt.width(), ysize = $pcnt.height();
-
-		//console.log('init', [xsize, ysize]);
-		
-		
-		function updatePreview(c) {
-            if (parseInt(c.w) > 0) {
-                var rx = xsize / c.w;
-                var ry = ysize / c.h;
-                var avatarWidth = Math.round(rx * boundx);
-                var avfatarHeight = Math.round(ry * boundy);
-                var avartarMarginLeft = Math.round(rx * c.x);
-                var avartarMarginTop = Math.round(ry * c.y);
-                $pimg.css({
-                    width : Math.round(rx * boundx) + 'px',
-                    height : Math.round(ry * boundy) + 'px',
-                    marginLeft : '-' + Math.round(rx * c.x) + 'px',
-                    marginTop : '-' + Math.round(ry * c.y) + 'px'
-                });
-                $('#avatar_width').val(c.w);
-                $('#avatar_height').val(c.h);
-                $('#avatar_marginLeft').val(avartarMarginLeft);
-                $('#avatar_marginTop').val(avartarMarginTop);
-                $('#avatar_real_x').val(boundx);
-                $('#avatar_real_y').val(boundy);
-            }
-        };
-		
-		$('#target').Jcrop({
-			onChange : updatePreview,
-			onSelect : updatePreview,
-			aspectRatio : xsize / ysize
-		}, function() {
-			// Use the API to get the real image size
-			var bounds = this.getBounds();
-			boundx = bounds[0];
-			boundy = bounds[1];
-			// Store the API in the jcrop_api variable
-			jcrop_api = this;
-
-			// Move the preview into the jcrop container for css positioning
-			$preview.appendTo(jcrop_api.ui.holder);
-			
-			//init window
-		    //console.log(boundx);
-            initw=boundx<boundy? boundx:boundy;
-            initx=0;
-            if(boundx>boundy){
-                initx=boundx/2-boundy/2;
-            }
-            updatePreview({w:initw,h:initw,x:initx,y:0})
-		});
-		
-		
-	});
-	**/
-</script>
-
-<script>
-
-	function postCropAvatar() {
-		$.post("/cropAvatar", $("#cropAvatarForm").serialize()).done(function(data) {
-			time=new Date().getTime();
-			
-			$('#current_avatar').attr('src', data['avatar_url']+'?tag='+time);
-			$('#cropMessage').html("头像更新成功！");
-		});
-		return false;
-	}
-</script>
-{% endblock %}
+   

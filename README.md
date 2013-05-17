@@ -70,3 +70,10 @@ CREATE TABLE `cron_categoryauthor` (
 ) ENGINE=InnoDB AUTO_INCREMENT=512 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 </code></pre>
 
+4、Topic，添加last_reply_at
+<pre><code>
+ALTER TABLE  `ls_topic` ADD  `last_reply_at` DATETIME NULL AFTER  `reply_count` ,
+ADD INDEX (  `last_reply_at` );
+update ls_topic set last_reply_at=updated_at;
+</code></pre>
+

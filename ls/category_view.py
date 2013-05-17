@@ -59,13 +59,13 @@ class CategoryView(LsView):
         if category.level==1:
             topic_count=Topic.objects.filter(catid_parent__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30,'/cat/'+str(category.id)+'/')
-            topics=Topic.objects.filter(catid_parent__exact=categoryid).filter(status__exact=status).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            topics=Topic.objects.filter(catid_parent__exact=categoryid).filter(status__exact=status).order_by('-updated_at')[pageInfo.startNum:pageInfo.endNum]
    
         else:
             topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30)
             cats=Category.objects.getCategory(category.parent_id) 
-            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=status).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=status).order_by('-updated_at')[pageInfo.startNum:pageInfo.endNum]
        
       
         c = self.getContext(request,{'category':category,'topics':topics,'pageInfo':pageInfo})

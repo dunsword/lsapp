@@ -61,10 +61,18 @@ class RegisterUserForm(forms.Form):
         
         
 class UserForm(forms.ModelForm):
-    #password=forms.CharField(label=u'密码',required=False,widget=forms.PasswordInput)
+    password=forms.CharField(label=u'密码',
+                             required=True,
+                             max_length=80,
+                             min_length=6,
+                             widget=forms.PasswordInput,
+                             error_messages={
+                                               'required': '不能为空！',
+                                               'min_length':'不能少于6个字符！',
+                                               'max_length': '不能超过80个字符！'})
     class Meta:
             model=User
-            exclude = ('avatar','password')
+            exclude = ('avatar',)
             widgets = {
               #'password':forms.PasswordInput
             }

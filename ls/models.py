@@ -20,10 +20,6 @@ class BaseModel(models.Model):
     
     class Meta:
         abstract=True
-        
-        
-    
-
 
 class SiteSource(BaseModel):
     name=models.CharField('site name',max_length=256)
@@ -65,6 +61,8 @@ class Topic(BaseModel):
     like_count=models.IntegerField(u'喜欢数',default=0)
     read_count=models.IntegerField(u'阅读数',default=0)
     reply_count=models.IntegerField(u'回复数',default=0)
+    last_reply_at=models.DateTimeField(u'最新回复', default=datetime.now(),db_index=True)
+
     topic_type=models.IntegerField(u'帖子类型',choices=[(1,"普通"),(2,"小说"),(3,"视频"),(4,"购物")],default=1,db_index=True)
     catid_parent=models.IntegerField(u'分类',default=2,db_index=True)
     catid1=models.IntegerField(u'标签',default=0)

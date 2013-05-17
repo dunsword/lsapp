@@ -8,7 +8,7 @@ from ls.index_view import IndexView
 from ls.user_home_view import MyTopicView
 from ls.search_view import SearchView
 from base.register_view import RegisterView
-from base.user_edit_view import UserEditView
+from base.user_edit_view import UserEditView,UserEditAvatarView
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -49,6 +49,7 @@ urlpatterns = patterns('',
     (r'^logout$','base.views.do_logout'),
     (url(r'^register',RegisterView.as_view())),
     (url(r'^admin/user/edit/(?P<userid>\d+)',UserEditView.as_view())),
+    (url(r'^admin/user/edit/avatar/(?P<userid>\d+)',UserEditAvatarView.as_view())),
     (r'^regsuccess','base.views.reg_success'),
     (r'^do_register','base.views.do_register'),
     (r'^404','base.views.page_404'),

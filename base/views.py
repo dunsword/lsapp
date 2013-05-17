@@ -229,20 +229,25 @@ def cropAvatar(request):
     avatarRealHeight = int(request.POST['avatar_real_y'])
     
    
+    #编辑的用户头像
+    userid=int(request.POST['userid'])
+    #权限检查
+    user=request.user
+    if (not user.id==userid) and (not user.is_staff): 
+        return __jsonRespones({'result':'failed'});
     
-    user = request.user
-    
-    originAvatar = AvatarClient.getSaveFileName(user.id)
+    cuser=User.objects.get(pk=userid)
+    originAvatar = AvatarClient.getSaveFileName(userid)
     # afile=open(originAvatar)
     
-    cropedAvatar = CropClient.store(user.id, originAvatar, avatarRealWidth, avatarRealHeight, avatarMarginLeft, avatarMarginTop, avatarWidth, avatarHeight)    
+    cropedAvatar = CropClient.store(userid, originAvatar, avatarRealWidth, avatarRealHeight, avatarMarginLeft, avatarMarginTop, avatarWidth, avatarHeight)    
     
     now = datetime.now()
     timestr = now.strftime('%y%m%d%H%M%S')
     user.avatar = cropedAvatar + '?t=' + timestr + '.jpg'
     user.save()
     
-    result = {'avatar_url': user.get_avatar_url(), 'result':'success', }
+    result = {'avatar_url': cuser.get_avatar_url(), 'result':'success', }
     return __jsonRespones(result);
 
 # def handleFile(uid, f):

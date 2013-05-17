@@ -44,7 +44,7 @@ class UserManager(models.Manager):
                 self.users[uid]=user
                 return user.clone()
         else:
-            user = super(UserManager,self).get(pk=uid)
+            return super(UserManager,self).get(*args,**kwargs)
         
     def create_user(self, username, email, password,nickname=None,gender=1):
         if nickname == None:
@@ -94,6 +94,11 @@ class User(models.Model):
         pickle.dump(self,s)
         s.seek(0)
         return pickle.load(s)
+    
+    def get_origin_avatar_url(self):
+        avatarFileName = AvatarClient.getSaveFileName(self.id)
+        avatarImgUrl=AvatarClient.url(avatarFileName)
+        return avatarImgUrl
     
     def get_avatar_url(self):
         if self.avatar:

@@ -3,12 +3,24 @@
     
 from django import forms
 from ls.models import Topic,TopicReply,Category,Document
-from django.forms.util import ErrorList
+from datetime import datetime
 
 class TopicForm(forms.ModelForm):
         class Meta:
             model=Topic
-            fields = ('title', 'categoryid','catid1','catid2','like_count','read_count','reply_count','topic_type','status','content',)
+            fields = ('title', 
+                      'categoryid',
+                      'catid1',
+                      'catid2',
+                      'like_count',
+                      'read_count',
+                      'reply_count',
+                      'last_reply_at',
+                      'topic_type',
+                      'created_at',
+                      'updated_at',
+                      'status',
+                      'content',)
             widgets = {
              'content': forms.Textarea(),   
              'categoryid': forms.TextInput(attrs={'size':'5'}),
@@ -102,6 +114,7 @@ class TopicService():
         #这里应该优化为直接加reply_count，而不是取出整个对象
         topic=Topic.objects.get(pk=topicid)
         topic.reply_count +=1
+        topic.last_reply_at=datetime.now()
         replyForm.save()
         topic.save()
         return replyForm
