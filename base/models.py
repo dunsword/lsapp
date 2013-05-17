@@ -59,25 +59,25 @@ class UserManager(models.Manager):
         
 class User(models.Model):
     objects = UserManager()
-    username = models.CharField(_('username'), max_length=30, unique=True,
-        help_text=_('必须包含3-30个数字、英文字母或者下划线！'))
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
-    nickname = models.CharField(_('昵称'), max_length=30, unique=True)
-    gender = models.SmallIntegerField(_('性别'),choices=[(1,"女"),(2,"男"),(3,'保密')],default=1)
-    email = models.EmailField(_('邮箱地址'), unique=True)
-    avatar = models.URLField(_('头像'), null=True, blank=True)
-    password = models.CharField(_('密码'), max_length=128)
-    is_active = models.BooleanField(_('激活'), default=True,
-        help_text=_('Designates whether this user should be treated as '
-                    'active. Unselect this instead of deleting accounts.'))
-    is_staff = models.BooleanField(_('管理员'), default=False,
-        help_text=_('确定是否管理员.'))
+    username = models.CharField(_(u'用户名'), max_length=30, unique=True,
+        help_text=_(u'必须包含3-30个数字、英文字母或者下划线！'))
+    first_name = models.CharField(_(u'名'), max_length=30, blank=True)
+    last_name = models.CharField(_(u'姓'), max_length=30, blank=True)
+    nickname = models.CharField(_(u'昵称'), max_length=30, unique=True)
+    gender = models.SmallIntegerField(_(u'性别'),choices=[(1,u"女"),(2,u"男"),(3,u'保密')],default=1)
+    email = models.EmailField(_(u'邮箱地址'), unique=True)
+    avatar = models.URLField(_(u'头像'), null=True, blank=True)
+    password = models.CharField(_(u'密码'), max_length=128)
+    is_active = models.BooleanField(_(u'激活'), default=True,
+        help_text=_(u'Designates whether this user should be treated as '
+                    u'active. Unselect this instead of deleting accounts.'))
+    is_staff = models.BooleanField(_(u'管理员'), default=False,
+        help_text=_(u'确定是否管理员.'))
     
-    is_superuser = models.BooleanField(_('超级用户'), default=False,
-        help_text=_('超级用户，拥有所有权限'))
-    last_login = models.DateTimeField(_('最近登录'), default=timezone.now)
-    date_joined = models.DateTimeField(_('注册时间'), default=timezone.now)
+    is_superuser = models.BooleanField(_(u'超级用户'), default=False,
+        help_text=_(u'超级用户，拥有所有权限'))
+    last_login = models.DateTimeField(_(u'最近登录'), default=timezone.now)
+    date_joined = models.DateTimeField(_(u'注册时间'), default=timezone.now)
 
     
     class Meta:
