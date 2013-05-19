@@ -83,3 +83,10 @@ Topic,TopicReply，扩展content长度
 alter table ls_topic change content content text null;
 alter table ls_topic_reply change content content text null;
 </code></pre>
+
+5.2013-5-19
+User,添加bind字段
+<pre><code>
+ALTER TABLE  `base_user` ADD  `email_bind` tinyint(1)  default 0 not NULL AFTER  `email`;
+ALTER TABLE  `base_user` ADD  `is_bind` tinyint(1)  default 0 not NULL AFTER  `is_active`;
+</code></pre>
