@@ -5,7 +5,7 @@ Created on 2013-5-7
 @author: paul
 '''
 
-from sae.mail import EmailMessage
+
 
 class MailClient:
     def __init__(self,smtp):
@@ -14,15 +14,23 @@ class MailClient:
              (smtp主机，smtp端口， 用户名，密码，是否启用TLS）
         
         """
+
         self.__smtp=smtp
         
     def sentMail(self,to,subject,html):
-        m = EmailMessage()
-        m.to = to
-        m.subject = subject
-        m.html = html
-        m.smtp = self.__smtp
-        m.send()
+        try:
+            from sae.mail import EmailMessage
+            m = EmailMessage()
+            m.to = to
+            m.subject = subject
+            m.html = html
+            m.smtp = self.__smtp
+            m.send()
+            return True
+
+        except RuntimeError, e:
+            return False
+
 
 smtp1=("smtp.163.com",25,"tuiadmin@163.com","tuitui2",False)
 

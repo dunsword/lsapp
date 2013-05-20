@@ -6,6 +6,7 @@ Created on 2012-11-26
 '''
 from django import forms
 from base.models import User
+from base.utils import is_legal
 
 my_default_errors = {
     'required': '该项不能为空！',
@@ -26,6 +27,9 @@ class RegisterUserForm(forms.Form):
         username = self.cleaned_data['username']
         if len(username) < 3:
             raise forms.ValidationError('用户名不能小于3个字符！')
+        for c in username:
+            if not is_legal(c):
+                raise forms.ValidationError('只能包含字母、数字和下划线！')
         try:
             user = User.objects.get(username__exact=username)
             raise forms.ValidationError('用户名已经存在！')

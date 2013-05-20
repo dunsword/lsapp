@@ -7,7 +7,7 @@ from base.login_views import LoginView
 from ls.index_view import IndexView
 from ls.user_home_view import MyTopicView
 from ls.search_view import SearchView
-from base.register_view import RegisterView
+from base.register_view import RegisterView,EmailBindView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
 
@@ -49,6 +49,7 @@ urlpatterns = patterns('',
     (url(r'^login/form',LoginView.as_view())),
     (r'^logout$','base.views.do_logout'),
     (url(r'^register',RegisterView.as_view())),
+    (url(r'^email_bind',EmailBindView.as_view())),
     (url(r'^admin/user/edit/(?P<userid>\d+)',UserEditView.as_view())),
     (url(r'^admin/user/edit/avatar/(?P<userid>\d+)',UserEditAvatarView.as_view())),
     (r'^regsuccess','base.views.reg_success'),

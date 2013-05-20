@@ -2,32 +2,31 @@
 
 {% block content %}
 <div class='container'>
-    <form id="id_register_form" action="/register" method="post" onsubmit="postForm('id_register_form');return false;" class='form-horizontal' style="margin-left:auto; margin-right:auto;width:230px">
-        <h1 style="text-align: center">注册账号</h1>
-        {% if exception %}
-        <p>
-            错误信息：{{ exception }}
-        </p>
-        {% endif %}
-        {% csrf_token %}
+ <h4 style="text-align: center">邮箱激活</h4>
+    {% if user.email_bind %}
+        您的邮箱地址是{{ user.email }},已经绑定！
 
-        {% for field in form %}
-        <div class="control-group">
-            <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
+    {% else %}
+         <form id="id_email_form" action="/email_bind" method="post" onsubmit="postForm('id_email_form');return false;" class='form-horizontal' style="margin-left:auto; margin-right:auto;width:230px">
+        {% csrf_token %}
+         <div class="control-group">
+            <label class="control-label" for="inputEmail" style="width: 80px">邮箱地址：</label>
             <div class="controls" style="margin-left: 100px">
-                {{field}}
+                <input type='text' name='email' value='{{ user.email }}'/>
             </div>
         </div>
-        {% endfor %}
+
         <div class="control-group">
             <label class="control-label" for="inputEmail" style="width: 80px"></label>
             <div class="controls" style="margin-left: 100px">
-                <input id='id_submit_button' type="submit" class='btn btn-primary' value="注册"/>
+                <input id='id_submit_button' type="submit" class='btn btn-primary' value="发送激活邮件"/>
             </div>
         </div>
+        </form>
 
-    </form>
-</div>
+    {% endif %}
+
+
 <script>
 	function postForm(formId) {
         $("#id_submit_button").attr('class', 'btn');
@@ -44,8 +43,8 @@
 				$("#id_submit_button").attr('class', 'btn btn-primary');
                 $("#id_submit_button").removeAttr('disabled');
 			} else {
-				$("#id_submit_button").bindPopover("注册成功！", 'top');
-				window.location.href='/'
+				$("#id_submit_button").bindPopover("发送成功！", 'top');
+
 			}
 
 			
