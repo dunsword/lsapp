@@ -27,11 +27,11 @@ type = sys.getfilesystemencoding()
 
 #全局变量
 localDomain = u'http://127.0.0.1:8000'
-jumpFlagFile = u'hongxiujump'
 
 #全局变量
 # localDomain = u'http://weibols.sinaapp.com'
 
+jumpFlagFile = u'hongxiujump'
 
 #分类的对应，前面是起点的categoryId，后面对应接口的categoryId
 categoryDict = {
@@ -209,12 +209,12 @@ class SpiderLog:
 class DBManage:
     def __init__(self):
         # 表名
-        self.tableName = u'qd_spider_log'
+        self.tableName = u'hongxiu_spider_log'
         # 内存数据库
         self.dbName = u':memory:'
         self.db = sqlite3.connect(self.dbName)
         # 文件数据库
-        self.fileDBName = u'qd_spider_log.db'
+        self.fileDBName = u'hongxiu_spider_log.db'
         self.fileDB = sqlite3.connect(self.fileDBName)
 
     def hasSync(self, fid, pid):
@@ -366,7 +366,7 @@ class SpiderContent:
 class ContentDBManage:
     def __init__(self):
         # 表名
-        self.tableName = u'qd_spider_content'
+        self.tableName = u'hongxiu_spider_content'
         # 内存数据库
         self.dbName = u':memory:'
         self.db = sqlite3.connect(self.dbName)
@@ -840,8 +840,8 @@ class RecursionPage:
                     fid = int(m.group(1))
                 else:
                     continue
-                bi = BookInfo(url, self.db, self.cdb, self.cid, fid=fid, item=item)
-                # bi = BookInfo(u'http://novel.hongxiu.com/a/643818/', self.db, self.cdb, self.cid, fid=fid, item=item)
+                BookInfo(url, self.db, self.cdb, self.cid, fid=fid, item=item)
+                #BookInfo(u'http://novel.hongxiu.com/a/643818/', self.db, self.cdb, self.cid, fid=fid, item=item)
 
             if self.start < self.end:
                 if parser.nextUrl:
@@ -885,7 +885,6 @@ class BookInfo:
             parser.feed(content.getData())
         else:
             parser.feed(content.getData().decode('gb2312', 'ignore').encode('utf-8'))
-
         parser.close()
         book = self.db.select(self.fid)
         if book:
@@ -899,7 +898,6 @@ class BookInfo:
                                           updateTime=self.book.updateTime, title=self.book.title, intro=parser.intro,
                                           cid=self.cid, url=self.url, author=self.book.author, isAdd=1))
             print u"insert into content db for insert"
-        return 0
 
 
 class Spider():
