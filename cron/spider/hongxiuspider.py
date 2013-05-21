@@ -327,7 +327,8 @@ class DBManage:
             cur_file.execute(u"select * from %s limit 1" % self.tableName)
         except sqlite3.OperationalError:
             # 如果这里是测试，则不需要退出，如果不是测试，则需要退出
-            exit()
+            # 第一次跑的时候，需要注释，生成db表
+            # exit()
             sql = u"""create table %s (
             fid integer primary key,
             last_pid integer,
