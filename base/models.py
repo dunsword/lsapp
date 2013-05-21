@@ -66,11 +66,13 @@ class User(models.Model):
     nickname = models.CharField(_(u'昵称'), max_length=30, unique=True)
     gender = models.SmallIntegerField(_(u'性别'),choices=[(1,u"女"),(2,u"男"),(3,u'保密')],default=1)
     email = models.EmailField(_(u'邮箱地址'), unique=True)
+    email_bind=models.BooleanField(_(u'邮箱绑定'),default=False)
     avatar = models.URLField(_(u'头像'), null=True, blank=True)
     password = models.CharField(_(u'密码'), max_length=128)
     is_active = models.BooleanField(_(u'激活'), default=True,
         help_text=_(u'Designates whether this user should be treated as '
                     u'active. Unselect this instead of deleting accounts.'))
+    is_bind = models.BooleanField(_(u'绑定状态'),default=False)
     is_staff = models.BooleanField(_(u'管理员'), default=False,
         help_text=_(u'确定是否管理员.'))
     
