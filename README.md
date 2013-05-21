@@ -96,11 +96,16 @@ base.EmailBindRecord
 <pre></code>
 CREATE TABLE `base_emailbindrecord` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
     `userid` integer NOT NULL,
     `email` varchar(75) NOT NULL,
     `active_code` varchar(128) NOT NULL,
     `is_used` bool NOT NULL
-);
+)
+;
+CREATE INDEX `base_emailbindrecord_3b1c9c31` ON `base_emailbindrecord` (`created_at`);
+CREATE INDEX `base_emailbindrecord_f84f7de6` ON `base_emailbindrecord` (`updated_at`);
 CREATE INDEX `base_emailbindrecord_7444f637` ON `base_emailbindrecord` (`userid`);
 COMMIT;
 </code></pre>

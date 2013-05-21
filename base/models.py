@@ -83,7 +83,7 @@ class User(models.Model):
     avatar = models.URLField(_(u'头像'), null=True, blank=True)
     password = models.CharField(_(u'密码'), max_length=128)
     is_active = models.BooleanField(_(u'激活'), default=True,
-        help_text=_(u'Designates whether this user should be treated as '
+        help_text=_(u'Designates whether this user should be treated as. '
                     u'active. Unselect this instead of deleting accounts.'))
     is_bind = models.BooleanField(_(u'绑定状态'),default=False)
     is_staff = models.BooleanField(_(u'管理员'), default=False,
