@@ -83,3 +83,18 @@ Topic,TopicReply，扩展content长度
 alter table ls_topic change content content text null;
 alter table ls_topic_reply change content content text null;
 </code></pre>
+
+
+6.2013-5-21
+base.EmailBindRecord
+<pre></code>
+CREATE TABLE `base_emailbindrecord` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `userid` integer NOT NULL,
+    `email` varchar(75) NOT NULL,
+    `active_code` varchar(128) NOT NULL,
+    `is_used` bool NOT NULL
+);
+CREATE INDEX `base_emailbindrecord_7444f637` ON `base_emailbindrecord` (`userid`);
+COMMIT;
+</code></pre>
