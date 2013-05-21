@@ -3,6 +3,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
 from django.contrib.auth.hashers import (
     check_password, make_password, is_password_usable, UNUSABLE_PASSWORD)
 from django.conf import settings
@@ -25,6 +26,18 @@ from StringIO import StringIO
 #        )
 #        
 #    user=models.OneToOneField(User)
+
+class BaseModel(models.Model):
+    created_at=models.DateTimeField(u'创建时间', default=datetime.now(),db_index=True)
+    updated_at=models.DateTimeField(u'更新时间', default=datetime.now(),db_index=True)
+
+
+    def save(self, *args, **kwargs):
+        self.updated_at=datetime.now()
+        super(BaseModel,self).save(*args, **kwargs)
+
+    class Meta:
+        abstract=True
 
 class UserManager(models.Manager):
     def __init__(self):

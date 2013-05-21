@@ -34,4 +34,5 @@ class MailClient:
 
 smtp1=("smtp.163.com",25,"tuiadmin@163.com","tuitui2",False)
 
+
 SentMail=MailClient(smtp1)

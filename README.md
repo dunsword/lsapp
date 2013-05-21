@@ -90,3 +90,17 @@ User,添加bind字段
 ALTER TABLE  `base_user` ADD  `email_bind` tinyint(1)  default 0 not NULL AFTER  `email`;
 ALTER TABLE  `base_user` ADD  `is_bind` tinyint(1)  default 0 not NULL AFTER  `is_active`;
 </code></pre>
+
+6.2013-5-21
+base.EmailBindRecord
+<pre></code>
+CREATE TABLE `base_emailbindrecord` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `userid` integer NOT NULL,
+    `email` varchar(75) NOT NULL,
+    `active_code` varchar(128) NOT NULL,
+    `is_used` bool NOT NULL
+);
+CREATE INDEX `base_emailbindrecord_7444f637` ON `base_emailbindrecord` (`userid`);
+COMMIT;
+</code></pre>
