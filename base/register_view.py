@@ -34,8 +34,8 @@ class EmailBindView(BaseView):
         user=request.user
         email=request.POST['email']
 
-        EmailBindRecord.objects.filter(userid__exact=user.id).order_by('-created_at')
-
+        records=EmailBindRecord.objects.filter(userid__exact=user.id).order_by('-created_at')[0:5]
+        records.
         bind=EmailBindRecord.objects.createEmailBindRecord(user.id,email)
 
 
