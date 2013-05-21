@@ -1,10 +1,11 @@
 # coding=utf-8
-import sys
 import os
+import sys
 import re
 import urllib
-import threading
 import random
+import StringIO
+import sqlite3
 from sgmllib import SGMLParser
 from httplib2 import Http
 from django.utils import simplejson as json
@@ -21,19 +22,15 @@ type = sys.getfilesystemencoding()
       localDomain：远程需要调用写入接口的域名
       categoryDict：红袖和本地的对应关系，有些起点有的本地没有，暂时不调用
       userMap：用户字典，形式为cid对应一个用户list
-      dirFileName：hongxiu的日志，说明跑过那些东西，下次跑的时候只需要修改就行了
 '''
 
 
 #全局变量
 localDomain = u'http://127.0.0.1:8000'
-#全局文件日志
-dirFileName = u"hongxiuspider.log"
+jumpFlagFile = u'hongxiujump'
 
 #全局变量
 # localDomain = u'http://weibols.sinaapp.com'
-#全局文件日志
-# dirFileName = u"hongxiuspider.log"
 
 
 #分类的对应，前面是起点的categoryId，后面对应接口的categoryId
@@ -183,14 +180,285 @@ userMap = {101: [{"name": "九城烟岚", "uid": 731}, {"name": "人品棣", "ui
            136: [{"name": "DaveWong", "uid": 40}, {"name": "mayyico", "uid": 409}, {"name": "skyyl2010", "uid": 342},
                  {"name": "亦我非我", "uid": 349}, {"name": "孤雨寂云", "uid": 17}, {"name": "摩根席尔瓦", "uid": 356}]}#下一页的url
 
-# 文件的临时内存存放地点，这个不需要修改
-fileContent = u""
-
 
 class User:
     def __init__(self, uid=0, name=u''):
         self.uid = uid
         self.name = name
+
+
+class SpiderLog:
+    def __init__(self, fid=0, lastPid=0, lsPid=0, link=u'', updateTime=u'', readNum=0, wordNum=0, listUrl=u''):
+        self.fid = fid
+        self.lastPid = lastPid
+        self.lsPid = lsPid
+        self.link = link
+        self.updateTime = updateTime
+        self.readNum = readNum
+        self.wordNum = wordNum
+        self.listUrl = listUrl
+
+
+'''
+120万的数据，写入文件大概20s
+操作100万的数据，内存时间大概45s
+120万的数据，从文件读取到内存大概19s
+'''
+
+
+class DBManage:
+    def __init__(self):
+        # 表名
+        self.tableName = u'qd_spider_log'
+        # 内存数据库
+        self.dbName = u':memory:'
+        self.db = sqlite3.connect(self.dbName)
+        # 文件数据库
+        self.fileDBName = u'qd_spider_log.db'
+        self.fileDB = sqlite3.connect(self.fileDBName)
+
+    def hasSync(self, fid, pid):
+        cu = self.db.cursor()
+        sql = u"select * from %s where fid = %d limit 1" % (self.tableName, fid)
+        cu.execute(sql)
+        result = cu.fetchone()
+        cu.close()
+        if result:
+            last_pid = int(result[1])
+            if pid > last_pid:
+                return True
+        return False
+
+    def insert(self, log=SpiderLog()):
+        if not log.fid:
+            return False
+        cu = self.db.cursor()
+        sql = u"insert into %s values(%d, %d, %d, '%s', '%s', %d, %d, '%s')" % (
+            self.tableName, log.fid, log.lastPid, log.lsPid, log.link, log.updateTime,
+            log.readNum, log.wordNum, log.listUrl)
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+        return True
+
+    def select(self, fid):
+        cu = self.db.cursor()
+        sql = u"select * from %s where fid = %d limit 1" % (self.tableName, fid)
+        cu.execute(sql)
+        result = cu.fetchone()
+        cu.close()
+        return result
+
+    def truncateDBTable(self):
+        cu = self.db.cursor()
+        sql = u"delete from %s" % self.tableName
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+
+    def truncateFileDBTable(self):
+        cu = self.fileDB.cursor()
+        sql = u"delete from %s" % self.tableName
+        cu.execute(sql)
+        self.fileDB.commit()
+        cu.close()
+
+    def delete(self, fid):
+        if not fid:
+            return False
+        cu = self.db.cursor()
+        sql = u"delete from %s where fid = %d" % (self.tableName, fid)
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+        return True
+
+    def update(self, fid, lastPid=0, readNum=0, updateTime=u'', wordNum=0, lsPid=0):
+        if not fid:
+            return False
+        if not lastPid and not readNum and not updateTime and not wordNum:
+            return False
+        sql = u"update %s set " % self.tableName
+        if lastPid:
+            sql += u"last_pid = %d," % lastPid
+        if readNum:
+            sql += u"read_num = %d," % readNum
+        if updateTime:
+            sql += u"update_time = '%s'," % updateTime
+        if wordNum:
+            sql += u"word_num = '%d'," % wordNum
+        if lastPid:
+            sql += u"ls_pid = %d," % lsPid
+        sql = sql[0:len(sql) - 1] + u" where fid = %d" % fid
+        cu = self.db.cursor()
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+        return True
+
+    def close(self):
+        self.db.close()
+        self.fileDB.close()
+
+    def copyToFile(self):
+        str_buffer = StringIO.StringIO()
+        for line in self.db.iterdump():
+            str_buffer.write('%s\n' % line)
+        self.db.close()
+        cur_file = self.fileDB.cursor()
+        try:
+            cur_file.execute(u"drop table %s" % self.tableName)
+        except sqlite3.OperationalError:
+            pass
+        cur_file.executescript(str_buffer.getvalue())
+        cur_file.close()
+
+    def copyToMemory(self):
+        str_buffer = StringIO.StringIO()
+        for line in self.fileDB.iterdump():
+            str_buffer.write('%s\n' % line)
+        cur_file = self.db.cursor()
+        try:
+            cur_file.execute(u"drop table %s" % self.tableName)
+        except sqlite3.OperationalError:
+            pass
+        try:
+            cur_file.executescript(str_buffer.getvalue())
+            cur_file.execute(u"select * from %s limit 1" % self.tableName)
+        except sqlite3.OperationalError:
+            # 如果这里是测试，则不需要退出，如果不是测试，则需要退出
+            exit()
+            sql = u"""create table %s (
+            fid integer primary key,
+            last_pid integer,
+            ls_pid integer,
+            link varchar(100),
+            update_time varchar(20),
+            read_num integer,
+            word_num integer,
+            list_url varchar(200)
+            )""" % self.tableName
+            cur_file.execute(sql)
+            self.db.commit()
+        cur_file.close()
+
+
+class SpiderContent:
+    def __init__(self, fid=0, wordNum=0, readNum=0, updateTime=u'', uid=0, name=u'', title=u'', intro=u'', cid=0,
+                 url=u'', author=u'', isAdd=0, lsPid=0):
+        self.isAdd = isAdd
+        self.randomNum = random.randint(1, 10000)
+        self.fid = fid
+        self.readNum = readNum
+        self.wordNum = wordNum
+        self.updateTime = updateTime
+        self.lsPid = lsPid
+        self.uid = uid
+        self.name = name
+        self.title = title
+        self.intro = intro
+        self.cid = cid
+        self.url = url
+        self.author = author
+
+
+class ContentDBManage:
+    def __init__(self):
+        # 表名
+        self.tableName = u'qd_spider_content'
+        # 内存数据库
+        self.dbName = u':memory:'
+        self.db = sqlite3.connect(self.dbName)
+
+    def reset(self):
+        cu = self.db.cursor()
+        try:
+            cu.execute(u"drop table %s" % self.tableName)
+        except sqlite3.OperationalError:
+            pass
+        finally:
+            sql = u"""create table %s (
+            is_add integer,
+            fid integer,
+            word_num integer,
+            read_num integer,
+            update_time varchar(20),
+            ls_pid integer,
+            title varchar(1000),
+            intro text,
+            cid integer,
+            url varchar(100),
+            author varchar(100),
+            random_num integer
+            )""" % self.tableName
+            cu.execute(sql)
+            self.db.commit()
+        cu.close()
+
+    def select(self):
+        cu = self.db.cursor()
+        sql = u'select * from %s order by random_num' % self.tableName
+        cu.execute(sql)
+        result = cu.fetchall()
+        cu.close()
+        return result
+
+    def insert(self, content=SpiderContent()):
+        if not content.fid:
+            return False
+        cu = self.db.cursor()
+        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d)" % (
+            self.tableName, content.isAdd, content.fid, content.wordNum, content.readNum, content.updateTime,
+            content.lsPid, content.title, content.intro, content.cid, content.url,
+            content.author, content.randomNum)
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+        return True
+
+    def close(self):
+        self.db.close()
+
+    def truncate(self):
+        try:
+            cu = self.db.cursor()
+            sql = u"delete from %s" % self.tableName
+            cu.execute(sql)
+            self.db.commit()
+            cu.close()
+        except sqlite3.OperationalError:
+            pass
+
+    def execute(self):
+        result = self.select()
+        db = DBManage()
+        hm = HttpMonitor()
+        if result:
+            for content in result:
+                isAdd = content[0]
+                fid = content[1]
+                wordNum = content[2]
+                readNum = content[3]
+                updateTime = content[4]
+                #如果是新增的则调用新增接口，否则调用更新接口
+                if isAdd == 1:
+                    title = content[6]
+                    intro = content[7]
+                    cid = content[8]
+                    url = content[9]
+                    author = content[10]
+                    user = hm.user(cid)
+                    resPid = hm.postContent(user.uid, user.name, title, intro, updateTime, cid, 2, fid, url, wordNum,
+                                            readNum, author)
+                    print u"content add success"
+                    if resPid>0:
+                        db.update(fid, lsPid=resPid)
+                else:
+                    pid = content[5]
+                    hm.updateContent(pid, fid, readNum, wordNum, updateTime)
+                    print u"content update success"
+        self.truncate()
+        self.close()
 
 
 class WebPageContent:
@@ -260,30 +528,6 @@ class HttpMonitor:
             print e
             pass
         return 0
-
-
-class BookAccessLog:
-    def open(self, fileName=dirFileName):
-        if not os.path.isfile(dirFileName):
-            temp = open(dirFileName, 'w')
-            temp.close()
-        global fileContent
-        if not fileContent:
-            file_object = open(fileName)
-            try:
-                fileContent = file_object.read()
-            finally:
-                file_object.close()
-
-    def write(self, fileName=dirFileName):
-        global fileContent
-        if fileContent:
-            file_object = open(fileName, 'w')
-            try:
-                file_object.write(fileContent)
-            finally:
-                file_object.close()
-                fileContent = u""
 
 
 class BookStoreData:
@@ -471,6 +715,9 @@ class UTF8Parser(SGMLParser):
         self.wordNum = 0
         self.isScript = 0
         self.hasScript = False
+        self.isDomain = False
+        self.domain = u''
+        self.listUrl = u''
 
     def start_meta(self, attrs):
         if not self.hasMatch:
@@ -478,6 +725,7 @@ class UTF8Parser(SGMLParser):
             content = [v for k, v in attrs if k == 'content' and v == 'text/html; charset=utf-8']
             if type and content:
                 self.hasMatch = True
+
     def start_script(self, attrs):
         if not self.hasScript:
             hasScript = [v for k, v in attrs if k == 'charset' and v == 'GB2312']
@@ -494,6 +742,36 @@ class UTF8Parser(SGMLParser):
                     wordMatch = wordNumPattern.match(jsContent.getData())
                     if wordMatch:
                         self.wordNum = int(wordMatch.group(1))
+                except IndexError:
+                    pass
+
+    def start_div(self, attrs):
+        if not self.domain:
+            hasDomain = [v for k, v in attrs if k == 'class' and v == 'wrapper_src']
+            if hasDomain:
+                self.isDomain = True
+
+    def end_div(self):
+        if self.isDomain:
+            self.isDomain = False
+
+    def start_a(self, attrs):
+        if not self.domain and self.isDomain:
+            try:
+                domain = [v for k, v in attrs if k == 'href'][0]
+                self.domain = domain
+            except IndexError:
+                pass
+
+        if not self.listUrl:
+            listUrl = [v for k, v in attrs if k == 'id' and v == 'htmlmulu']
+            if listUrl:
+                try:
+                    list = [v for k, v in attrs if k == 'href'][0]
+                    if self.domain:
+                        self.listUrl = self.domain[0:len(self.domain) - 1] + list
+                    else:
+                        self.listUrl = u'http://novel.hongxiu.com%s' % list
                 except IndexError:
                     pass
 
@@ -532,9 +810,11 @@ class BookInfoParser(SGMLParser):
 
 
 class RecursionPage:
-    def __init__(self, url, cid=0, startPage=1, totalPage=10):
+    def __init__(self, url, db, cdb, cid=0, startPage=1, totalPage=10):
         self.cid = cid
         self.url = url
+        self.db = db
+        self.cdb = cdb
         self.start = startPage
         self.end = totalPage
         self.run()
@@ -549,29 +829,18 @@ class RecursionPage:
         bookContent = parser.getBookList()
 
         if bookContent:
-            global fileContent
-            logFile = BookAccessLog()
-            logFile.open()
             for item in bookContent:
                 url = item.linkUrl
                 lMatch = pattern.match(url)
                 if not lMatch:
                     url = u'http://novel.hongxiu.com/' + item.linkUrl
                 m = fidPattern.match(url)
-                fid = 0
                 if m:
                     fid = int(m.group(1))
-                fidAccessPattern = re.compile(".*?\[%d,([0-9]+)\].*?" % fid)
-                fa = fidAccessPattern.match(fileContent)
-                pid = 0
-                if fa:
-                    pid = int(fa.group(1))
-                bi = BookInfo(url, self.cid, fid=fid, item=item)
-                # bi = BookInfo(u'http://novel.hongxiu.com/a/643818/"', self.cid, fid=fid, item=item)
-                res = bi.run(pid)
-                if res > 0:
-                    fileContent += u"[%d,%d]" % (fid, res)
-            logFile.write()
+                else:
+                    continue
+                bi = BookInfo(url, self.db, self.cdb, self.cid, fid=fid, item=item)
+                # bi = BookInfo(u'http://novel.hongxiu.com/a/643818/', self.db, self.cdb, self.cid, fid=fid, item=item)
 
             if self.start < self.end:
                 if parser.nextUrl:
@@ -579,26 +848,33 @@ class RecursionPage:
                     nm = pattern.match(nextUrl)
                     if not nm:
                         nextUrl = u'http://www.hongxiu.com' + nextUrl
-                    RecursionPage(nextUrl, self.cid, self.start + 1, self.end)
+                    RecursionPage(nextUrl, self.db, self.cdb, self.cid, self.start + 1, self.end)
                     # else:
                     #     thread.exit_thread()
 
 
 class BookInfo:
-    def __init__(self, url, cid=0, fid=0, item=None):
+    def __init__(self, url, db, cdb, cid=0, fid=0, item=None):
         self.cid = cid
         self.url = url
+        self.db = db
+        self.cdb = cdb
         self.fid = fid
         self.book = item
+        self.run()
 
     def setUp(self):
+        if os.path.exists(jumpFlagFile):
+            self.cdb.execute()
+            self.db.copyToFile()
+            exit()
         if not self.fid:
             pattern = re.compile(r'http://.*?/[a-zA-Z0-9]/([0-9]+)/')
             m = pattern.match(self.url)
             if m:
                 self.fid = int(m.group(1))
 
-    def run(self, pid=0):
+    def run(self):
         self.setUp()
         content = WebPageContent(self.url)
         utf8Parser = UTF8Parser()
@@ -610,35 +886,19 @@ class BookInfo:
             parser.feed(content.getData().decode('gb2312', 'ignore').encode('utf-8'))
 
         parser.close()
-        hm = HttpMonitor()
-        user = hm.user(self.cid)
-        if user:
-            if pid > 0:
-                hm.updateContent(pid, self.fid, utf8Parser.readNum, utf8Parser.wordNum, self.book.updateTime)
-                print u'pid[%d], fid[%d] is update success; word count is [%s]; read number is [%s]; update time is [%s];' % (
-                pid, self.fid, utf8Parser.wordNum, utf8Parser.readNum, self.book.updateTime)
-                print self.url
-            else:
-                resPid = hm.postContent(user.uid, user.name, self.book.title, parser.intro,
-                                        self.book.updateTime, self.cid, 2, self.fid, self.url, utf8Parser.wordNum,
-                                        utf8Parser.readNum,
-                                        self.book.author)
-                # resPid = 1
-                print u'pid[%d], fid[%d] is add success; word count is [%d]; read number is [%d]; create time is [%s];' % (
-                resPid, self.fid, utf8Parser.wordNum, utf8Parser.readNum, self.book.updateTime)
-                return resPid
+        book = self.db.select(self.fid)
+        if book:
+            wordNum = book[6]
+            if int(wordNum) < utf8Parser.wordNum:
+                self.cdb.insert(SpiderContent(fid=self.fid, wordNum=utf8Parser.wordNum, readNum=utf8Parser.readNum,
+                                              updateTime=self.book.updateTime, lsPid=book[2]))
+                print u"insert into content db for update"
+        else:
+            self.cdb.insert(SpiderContent(fid=self.fid, wordNum=utf8Parser.wordNum, readNum=utf8Parser.readNum,
+                                          updateTime=self.book.updateTime, title=self.book.title, intro=parser.intro,
+                                          cid=self.cid, url=self.url, author=self.book.author, isAdd=1))
+            print u"insert into content db for insert"
         return 0
-
-
-class Timer(threading.Thread):
-    def __init__(self, url, cid):
-        threading.Thread.__init__(self)
-        self.url = url
-        self.cid = cid
-        self.thread_stop = False
-
-    def run(self):
-        RecursionPage(self.url, self.cid)
 
 
 class Spider():
@@ -646,14 +906,15 @@ class Spider():
         self.run()
 
     def run(self):
+        db = DBManage()
+        db.copyToMemory()
+        cdb = ContentDBManage()
+        cdb.reset()
         for key in categoryDict:
             url = u'http://www.hongxiu.com/novel/s/%s_1_order9.html' % key
-            RecursionPage(url, categoryDict[key])
-
-            # 如果不是多线程，按照上面来，如果是多线程，则按照下面来，
-            # 下面开启后，需要在RecursionPage中开启thread.exit_thread()
-            # thread = Timer(url, categoryDict[key])
-            # thread.start()
+            RecursionPage(url, db, cdb, categoryDict[key])
+        cdb.execute()
+        db.copyToFile()
 
 
 if __name__ == "__main__":
