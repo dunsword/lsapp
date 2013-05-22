@@ -135,7 +135,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'base',
     'ls',
-    'album',
+    'api',
     'cron',
 )
 LOGIN_URL='/login'

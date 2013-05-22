@@ -56,7 +56,7 @@ class Topic(BaseModel):
     userid=models.IntegerField(u'用户ID',db_index=True)
     username=models.CharField(u'用户名',max_length=30)
     title=models.CharField(u'标题',max_length=255)
-    content=models.CharField(u'内容',max_length=2048)
+    content=models.TextField(u'内容',max_length=50000)
     categoryid=models.IntegerField(u'标签',default=104,db_index=True)
     like_count=models.IntegerField(u'喜欢数',default=0)
     read_count=models.IntegerField(u'阅读数',default=0)
@@ -201,7 +201,7 @@ class TopicReply(BaseModel):
     username=models.CharField('user name',max_length=30)
     topicid=models.IntegerField('topic id',db_index=True)
     title=models.CharField('topic title',max_length=255,default="",blank=True)
-    content=models.CharField('topic content',max_length=2048)
+    content=models.TextField('topic content',max_length=50000)
     
     def getAvatarUrl(self):
         if self._avatar_url==None:

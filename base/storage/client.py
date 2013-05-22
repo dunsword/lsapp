@@ -10,7 +10,6 @@ from StringIO import StringIO
 class StorageClient():
     DOMAIN_AVATOR="avatar"
     DOMAIN_ATTACH="attach"
-
     SIZE_MIDDLE='middle'
     SIZE_60='60X60'
     SIZE_250='250X250'
@@ -53,7 +52,7 @@ class StorageClient():
             ob = self.storage.Object(data)
             try:
                 self.client.delete(self.domain, fileName)
-            except self.storage.ObjectNotExistsError,e:
+            except: #self.storage.ObjectNotExistsError,e: #sae上错误类b不一样
                 pass
             self.client.put(self.domain, fileName, ob)
         return fileName

@@ -12,9 +12,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.utils import simplejson as json
-from PIL import Image
 from base.storage.client import AvatarClient, CropClient
 from datetime import datetime
+from base.mail.mail import SentMail
 
 def do_login(request):
     if request.method == 'POST':
@@ -64,6 +64,21 @@ def login_action(request):
 def do_logout(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+def email_bind(request):
+    if request.method=="GET":
+        #user=request.user
+        c = RequestContext(request, {})
+        tt = loader.get_template('base_email_bind.html')
+
+        return HttpResponse(tt.render(c))
+    elif request.method=='POST':
+        email=request.POST['email']
+        success=SentMail.sentMail(email,u'小说推荐网邮箱激活',
+        u'''<h4>欢迎注册</h4>
+         <p>请点击以下地址激活您的账号<a href='http://weibols.sinaapp.com/email_active?code='>active</a></p>''')
+        if success:
+            return
 
 
 def register(request):

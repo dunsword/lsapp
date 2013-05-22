@@ -70,10 +70,42 @@ CREATE TABLE `cron_categoryauthor` (
 ) ENGINE=InnoDB AUTO_INCREMENT=512 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 </code></pre>
 
-4、Topic，添加last_reply_at
+4.Topic，添加last_reply_at
 <pre><code>
 ALTER TABLE  `ls_topic` ADD  `last_reply_at` DATETIME NULL AFTER  `reply_count` ,
 ADD INDEX (  `last_reply_at` );
 update ls_topic set last_reply_at=updated_at;
 </code></pre>
 
+5.2013-5-17
+Topic,TopicReply，扩展content长度
+<pre><code>
+alter table ls_topic change content content text null;
+alter table ls_topic_reply change content content text null;
+</code></pre>
+
+5.2013-5-19
+User,添加bind字段
+<pre><code>
+ALTER TABLE  `base_user` ADD  `email_bind` tinyint(1)  default 0 not NULL AFTER  `email`;
+ALTER TABLE  `base_user` ADD  `is_bind` tinyint(1)  default 0 not NULL AFTER  `is_active`;
+</code></pre>
+
+6.2013-5-21
+base.EmailBindRecord
+<pre></code>
+CREATE TABLE `base_emailbindrecord` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    `userid` integer NOT NULL,
+    `email` varchar(75) NOT NULL,
+    `active_code` varchar(128) NOT NULL,
+    `is_used` bool NOT NULL
+)
+;
+CREATE INDEX `base_emailbindrecord_3b1c9c31` ON `base_emailbindrecord` (`created_at`);
+CREATE INDEX `base_emailbindrecord_f84f7de6` ON `base_emailbindrecord` (`updated_at`);
+CREATE INDEX `base_emailbindrecord_7444f637` ON `base_emailbindrecord` (`userid`);
+COMMIT;
+</code></pre>
