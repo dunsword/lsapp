@@ -925,8 +925,6 @@ class RecursionPage:
                     if not nm:
                         nextUrl = u'http://www.hongxiu.com%s' % nextUrl
                     RecursionPage(nextUrl, self.db, self.cdb, self.ldb, self.cid, self.start + 1, self.end)
-                    # else:
-                    #     thread.exit_thread()
 
 
 class BookInfo:
