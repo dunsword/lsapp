@@ -19,11 +19,44 @@ from base.base_view import BaseView, PageInfo
 from base.forms import RegisterUserForm
 from base.mail.mail import SentMail
 from base.email_bind_models import EmailBindRecord
+from datetime import datetime, timedelta
+
+class EmailActiveView(BaseView):
+    def get(self,request,*args,**kwargs):
+        code=request.GET['code']
+        uid=int(request.GET['uid'])
+        query=EmailBindRecord.objects.filter(userid__exact=uid).filter(is_used__exact=False).order_by('-created_at')[0:5]
+        recs=list(query)
+        if len(recs)>0:
+            rec=recs[0]
+            timeLimit=timedelta(hours=24)
+            now=datetime.now()
+            if now-rec.created_at>timeLimit:
+                ctx={"result":False,"message":"验证码已经过期！"}
+            elif rec.active_code==code:
+                user=User.objects.get(pk=uid)
+                user.email=rec.email
+                user.email_bind=True
+                user.save()
+
+                rec.is_used=True
+                rec.updated_at=now
+                rec.save()
+                ctx={"result":True,"message":"邮箱地址验证成功！"}
+            else:
+                ctx={"result":False,"message":"验证码不正确！"}
+        else:
+            ctx={"result":False,"message":"验证码不正确！"}
+
+        c = RequestContext(request, ctx)
+        tt = loader.get_template('base_email_active.html')
+
+        return HttpResponse(tt.render(c))
 
 class EmailBindView(BaseView):
      @method_decorator(login_required)
      def get(self, request, *args, **kwargs):
-          #user=request.user
+        #user=request.user
         c = RequestContext(request, {})
         tt = loader.get_template('base_email_bind.html')
 
@@ -34,12 +67,27 @@ class EmailBindView(BaseView):
         user=request.user
         email=request.POST['email']
 
-        records=EmailBindRecord.objects.filter(userid__exact=user.id).order_by('-created_at')[0:5]
+        records=EmailBindRecord.objects.filter(userid__exact=user.id).filter(is_used__exact=False).order_by('-created_at')[0:5]
+        rs=list(records)
+        now=datetime.now()
+
+        if len(rs)>0:
+
+
+
+            oneMin=timedelta(minutes=1)
+            if now-rs[0].created_at<oneMin:
+                return self._get_json_respones({'result':'failed','message':u'请1分钟后再试！'})
+
+        if len(rs)>=5:
+            first=rs[len(rs)-1]
+            oneHour=timedelta(hours=1)
+            if now-first.created_at<oneHour:
+                return self._get_json_respones({'result':'failed','message':u'发送次数过多，请1小时后再试！'})
 
         bind=EmailBindRecord.objects.createEmailBindRecord(user.id,email)
-
-
-        url= 'http://weibols.sinaapp.com/email_active?code=%s&uid=%s'%(str(bind.active_code),str(bind.userid))
+        host=request.get_host()
+        url= 'http://%s/email_active?code=%s&uid=%s'%(host,str(bind.active_code),str(bind.userid))
         content=u'''<h4>欢迎注册小说推荐网</h4>
          <p>请点击以下地址验证您的邮箱：
          <a href='%s'</a>%s</p>
