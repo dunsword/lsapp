@@ -116,11 +116,13 @@ class User(models.Model):
         return avatarImgUrl
     
     def get_avatar_url(self):
+
         if self.avatar:
-            #return AvatarClient.url(self.avatar)#TODO
-            return AvatarClient.url('a_250X250_'+str(self.id)+'.jpg')
+            return AvatarClient.url(self.avatar)#TODO
+
         else:
-            return AvatarClient.url('a_250X250_'+str(self.id)+'.jpg')
+            self.avatar='a_250X250_'+str(self.id)+'.jpg'
+            return AvatarClient.url(self.avatar)
             
     def set_password(self, raw_password):
         self.password = make_password(raw_password)

@@ -17,6 +17,7 @@ from base.base_view import BaseView, PageInfo
 from base.models import User
 from base.forms import UserForm,SetAvatarForm
 from base.storage.client import AvatarClient, CropClient
+from myhome.settings import DATABASES
 
 
     
