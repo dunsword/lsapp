@@ -1,4 +1,5 @@
 # coding=utf-8
+import logging
 import os
 import sys
 import re
@@ -9,6 +10,7 @@ import sqlite3
 from sgmllib import SGMLParser
 from httplib2 import Http
 from django.utils import simplejson as json
+import time
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -31,7 +33,13 @@ localDomain = u'http://127.0.0.1:8000'
 #全局变量
 # localDomain = u'http://weibols.sinaapp.com'
 
-jumpFlagFile = u'hongxiujump'
+# 日志文件设置
+logger = logging.getLogger()
+logFile = logging.FileHandler("hx_spider.error.log")
+logger.addHandler(logFile)
+formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
+logFile.setFormatter(formatter)
+logger.setLevel(logging.INFO)
 
 #分类的对应，前面是起点的categoryId，后面对应接口的categoryId
 categoryDict = {
@@ -180,62 +188,76 @@ userMap = {101: [{"name": "九城烟岚", "uid": 731}, {"name": "人品棣", "ui
            136: [{"name": "DaveWong", "uid": 40}, {"name": "mayyico", "uid": 409}, {"name": "skyyl2010", "uid": 342},
                  {"name": "亦我非我", "uid": 349}, {"name": "孤雨寂云", "uid": 17}, {"name": "摩根席尔瓦", "uid": 356}]}#下一页的url
 
-
-class User:
-    def __init__(self, uid=0, name=u''):
-        self.uid = uid
-        self.name = name
-
-
-class SpiderLog:
-    def __init__(self, fid=0, lastPid=0, lsPid=0, link=u'', updateTime=u'', readNum=0, wordNum=0, listUrl=u''):
-        self.fid = fid
-        self.lastPid = lastPid
-        self.lsPid = lsPid
-        self.link = link
-        self.updateTime = updateTime
-        self.readNum = readNum
-        self.wordNum = wordNum
-        self.listUrl = listUrl
-
-
 '''
 120万的数据，写入文件大概20s
 操作100万的数据，内存时间大概45s
 120万的数据，从文件读取到内存大概19s
+DB manage
 '''
+
+
+class SpiderLog:
+    def __init__(self, fid=0, lsPid=0, wordNum=0):
+        self.fid = fid
+        self.lsPid = lsPid
+        self.wordNum = wordNum
 
 
 class DBManage:
     def __init__(self):
         # 表名
-        self.tableName = u'hongxiu_spider_log'
+        self.tableName = u'hx_spider_log'
         # 内存数据库
         self.dbName = u':memory:'
         self.db = sqlite3.connect(self.dbName)
         # 文件数据库
-        self.fileDBName = u'hongxiu_spider_log.db'
+        self.fileDBName = u'hx_spider.db'
         self.fileDB = sqlite3.connect(self.fileDBName)
+        # 初始化数据库
+        self.reset()
+        # 把文件内容拷贝到内存中
+        self.copyToMemory()
 
-    def hasSync(self, fid, pid):
+    def reset(self):
+        self.truncate()
         cu = self.db.cursor()
-        sql = u"select * from %s where fid = %d limit 1" % (self.tableName, fid)
+        sql = u"""create table %s (
+        fid integer primary key,
+        ls_pid integer,
+        word_num integer
+        )""" % self.tableName
         cu.execute(sql)
-        result = cu.fetchone()
+        self.db.commit()
+        fcu = self.fileDB.cursor()
+        try:
+            fcu.execute(u"select * from %s limit 1" % self.tableName)
+        except sqlite3.OperationalError:
+            sql = u"""create table %s (
+            fid integer primary key,
+            ls_pid integer,
+            word_num integer
+            )""" % self.tableName
+            fcu.execute(sql)
+            self.fileDB.commit()
         cu.close()
-        if result:
-            last_pid = int(result[1])
-            if pid > last_pid:
-                return True
-        return False
+        fcu.close()
+
+    def truncate(self):
+        cu = self.db.cursor()
+        try:
+            cu.execute(u"drop table %s" % self.tableName)
+            self.db.commit()
+        except sqlite3.OperationalError:
+            pass
+        finally:
+            cu.close()
 
     def insert(self, log=SpiderLog()):
         if not log.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d, '%s', '%s', %d, %d, '%s')" % (
-            self.tableName, log.fid, log.lastPid, log.lsPid, log.link, log.updateTime,
-            log.readNum, log.wordNum, log.listUrl)
+        sql = u"insert into %s values(%d, %d, %d)" % (
+            self.tableName, log.fid, log.lsPid, log.wordNum)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -249,47 +271,10 @@ class DBManage:
         cu.close()
         return result
 
-    def truncateDBTable(self):
-        cu = self.db.cursor()
-        sql = u"delete from %s" % self.tableName
-        cu.execute(sql)
-        self.db.commit()
-        cu.close()
-
-    def truncateFileDBTable(self):
-        cu = self.fileDB.cursor()
-        sql = u"delete from %s" % self.tableName
-        cu.execute(sql)
-        self.fileDB.commit()
-        cu.close()
-
-    def delete(self, fid):
-        if not fid:
+    def update(self, fid, wordNum):
+        if not fid or not wordNum:
             return False
-        cu = self.db.cursor()
-        sql = u"delete from %s where fid = %d" % (self.tableName, fid)
-        cu.execute(sql)
-        self.db.commit()
-        cu.close()
-        return True
-
-    def update(self, fid, lastPid=0, readNum=0, updateTime=u'', wordNum=0, lsPid=0):
-        if not fid:
-            return False
-        if not lastPid and not readNum and not updateTime and not wordNum:
-            return False
-        sql = u"update %s set " % self.tableName
-        if lastPid:
-            sql += u"last_pid = %d," % lastPid
-        if readNum:
-            sql += u"read_num = %d," % readNum
-        if updateTime:
-            sql += u"update_time = '%s'," % updateTime
-        if wordNum:
-            sql += u"word_num = '%d'," % wordNum
-        if lastPid:
-            sql += u"ls_pid = %d," % lsPid
-        sql = sql[0:len(sql) - 1] + u" where fid = %d" % fid
+        sql = u"update %s set word_num = %d where fid = %d" % (self.tableName, wordNum, fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -297,56 +282,38 @@ class DBManage:
         return True
 
     def close(self):
+        self.copyToFile()
         self.db.close()
         self.fileDB.close()
 
     def copyToFile(self):
-        str_buffer = StringIO.StringIO()
-        for line in self.db.iterdump():
-            str_buffer.write('%s\n' % line)
-        self.db.close()
-        cur_file = self.fileDB.cursor()
-        try:
-            cur_file.execute(u"drop table %s" % self.tableName)
-        except sqlite3.OperationalError:
-            pass
-        cur_file.executescript(str_buffer.getvalue())
-        cur_file.close()
+        cu = self.db.cursor()
+        fcu = self.fileDB.cursor()
+        dataSql = u"select * from %s " % self.tableName
+        cu.execute(dataSql)
+        result = cu.fetchall()
+        if result:
+            fcu.executemany(u"insert into %s values (?,?,?)" % self.tableName, result)
+        self.fileDB.commit()
+        cu.close()
+        fcu.close()
 
     def copyToMemory(self):
-        str_buffer = StringIO.StringIO()
-        for line in self.fileDB.iterdump():
-            str_buffer.write('%s\n' % line)
-        cur_file = self.db.cursor()
-        try:
-            cur_file.execute(u"drop table %s" % self.tableName)
-        except sqlite3.OperationalError:
-            pass
-        try:
-            cur_file.executescript(str_buffer.getvalue())
-            cur_file.execute(u"select * from %s limit 1" % self.tableName)
-        except sqlite3.OperationalError:
-            # 如果这里是测试，则不需要退出，如果不是测试，则需要退出
-            # 第一次跑的时候，需要注释，生成db表
-            # exit()
-            sql = u"""create table %s (
-            fid integer primary key,
-            last_pid integer,
-            ls_pid integer,
-            link varchar(100),
-            update_time varchar(20),
-            read_num integer,
-            word_num integer,
-            list_url varchar(200)
-            )""" % self.tableName
-            cur_file.execute(sql)
-            self.db.commit()
-        cur_file.close()
+        cu = self.db.cursor()
+        fcu = self.fileDB.cursor()
+        dataSql = u"select * from %s " % self.tableName
+        fcu.execute(dataSql)
+        dataResult = fcu.fetchall()
+        if dataResult:
+            cu.executemany(u"insert into %s values (?,?,?)" % self.tableName, dataResult)
+        self.db.commit()
+        fcu.close()
+        cu.close()
 
 
 class SpiderContent:
     def __init__(self, fid=0, wordNum=0, readNum=0, updateTime=u'', uid=0, name=u'', title=u'', intro=u'', cid=0,
-                 url=u'', author=u'', isAdd=0, lsPid=0):
+                 url=u'', author=u'', isAdd=0, lsPid=0, listUrl=u''):
         self.isAdd = isAdd
         self.randomNum = random.randint(1, 10000)
         self.fid = fid
@@ -361,39 +328,38 @@ class SpiderContent:
         self.cid = cid
         self.url = url
         self.author = author
+        self.listUrl = listUrl
 
 
 class ContentDBManage:
     def __init__(self):
         # 表名
-        self.tableName = u'hongxiu_spider_content'
+        self.tableName = u'hx_spider_content'
         # 内存数据库
         self.dbName = u':memory:'
         self.db = sqlite3.connect(self.dbName)
+        self.reset()
 
     def reset(self):
+        self.truncate()
         cu = self.db.cursor()
-        try:
-            cu.execute(u"drop table %s" % self.tableName)
-        except sqlite3.OperationalError:
-            pass
-        finally:
-            sql = u"""create table %s (
-            is_add integer,
-            fid integer,
-            word_num integer,
-            read_num integer,
-            update_time varchar(20),
-            ls_pid integer,
-            title varchar(1000),
-            intro text,
-            cid integer,
-            url varchar(100),
-            author varchar(100),
-            random_num integer
-            )""" % self.tableName
-            cu.execute(sql)
-            self.db.commit()
+        sql = u"""create table %s (
+        is_add integer,
+        fid integer,
+        word_num integer,
+        read_num integer,
+        update_time varchar(20),
+        ls_pid integer,
+        title varchar(1000),
+        intro text,
+        cid integer,
+        url varchar(100),
+        author varchar(100),
+        random_num integer,
+        listUrl varchar(100)
+        )""" % self.tableName
+        cu.execute(sql)
+        self.db.commit()
         cu.close()
 
     def select(self):
@@ -408,10 +374,10 @@ class ContentDBManage:
         if not content.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d)" % (
+        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d, '%s')" % (
             self.tableName, content.isAdd, content.fid, content.wordNum, content.readNum, content.updateTime,
             content.lsPid, content.title, content.intro, content.cid, content.url,
-            content.author, content.randomNum)
+            content.author, content.randomNum, content.listUrl)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -421,45 +387,164 @@ class ContentDBManage:
         self.db.close()
 
     def truncate(self):
+        cu = self.db.cursor()
         try:
-            cu = self.db.cursor()
-            sql = u"delete from %s" % self.tableName
+            sql = u"drop table %s" % self.tableName
             cu.execute(sql)
             self.db.commit()
-            cu.close()
         except sqlite3.OperationalError:
             pass
+        finally:
+            cu.close()
 
-    def execute(self):
-        result = self.select()
-        db = DBManage()
-        hm = HttpMonitor()
-        if result:
-            for content in result:
-                isAdd = content[0]
-                fid = content[1]
-                wordNum = content[2]
-                readNum = content[3]
-                updateTime = content[4]
-                #如果是新增的则调用新增接口，否则调用更新接口
-                if isAdd == 1:
-                    title = content[6]
-                    intro = content[7]
-                    cid = content[8]
-                    url = content[9]
-                    author = content[10]
-                    user = hm.user(cid)
-                    resPid = hm.postContent(user.uid, user.name, title, intro, updateTime, cid, 2, fid, url, wordNum,
-                                            readNum, author)
-                    print u"content add success"
-                    if resPid>0:
-                        db.update(fid, lsPid=resPid)
-                else:
-                    pid = content[5]
-                    hm.updateContent(pid, fid, readNum, wordNum, updateTime)
-                    print u"content update success"
+
+class BookList:
+    def __init__(self, fid=0, pid=0, title=u"", linkUrl=u"", isVip=0):
+        self.fid = fid
+        self.pid = pid
+        self.title = title
+        self.linkUrl = linkUrl
+        self.isVip = isVip
+
+
+class BookListManage:
+    def __init__(self):
+        # 表名
+        self.tableName = u'hx_spider_list'
+        self.tableDetailName = u"hx_spider_detail"
+        # 内存数据库
+        self.dbName = u':memory:'
+        self.db = sqlite3.connect(self.dbName)
+        # 文件数据库
+        self.fileDBName = u'hx_spider.db'
+        self.fileDB = sqlite3.connect(self.fileDBName)
+        # 初始化数据库表
+        self.reset()
+
+    def reset(self):
         self.truncate()
-        self.close()
+        # 章节表内存建立
+        cu = self.db.cursor()
+        sql = u"""create table %s (
+            fid integer,
+            pid integer
+            )""" % self.tableName
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+
+        # 如果文件不存在章节表，则建立章节表
+        fcu = self.fileDB.cursor()
+        try:
+            fcu.execute(u"select * from %s limit 1" % self.tableName)
+        except sqlite3.OperationalError:
+            sql = u"""create table %s (
+            fid integer,
+            pid integer
+            )""" % self.tableName
+            fcu.execute(sql)
+            self.fileDB.commit()
+
+        # 如果文件不存在内容表，则建立内容表
+        try:
+            fcu.execute(u"select * from %s limit 1" % self.tableDetailName)
+        except sqlite3.OperationalError:
+            sql = u"""create table %s (
+            fid integer,
+            pid integer,
+            title varchar(200),
+            link varchar(100),
+            content text,
+            update_time varchar(20)
+            )""" % self.tableDetailName
+            fcu.execute(sql)
+            self.fileDB.commit()
+        fcu.close()
+        self.copyToMemory()
+
+    def insert(self, chapter=BookList()):
+        cu = self.db.cursor()
+        try:
+            sql = u"insert into %s values(%d, %d)" % (
+                self.tableName, chapter.fid, chapter.pid)
+            cu.execute(sql)
+            self.db.commit()
+        except sqlite3.OperationalError, e:
+            logger.error(str(e))
+            return False
+        cu.close()
+        return True
+
+    def select(self, fid, pid):
+        cu = self.db.cursor()
+        sql = u"select * from %s where fid=%d and pid=%d limit 1" % (self.tableName, fid, pid)
+        cu.execute(sql)
+        result = cu.fetchone()
+        if result:
+            return True
+        else:
+            return False
+
+
+    def insertDetail(self, fid, pid, title, linkUrl, content, updateTime):
+        cu = self.fileDB.cursor()
+        sql = u"insert into %s values(%d, %d, '%s', '%s', '%s', '%s')" % (
+            self.tableDetailName, fid, pid, title, linkUrl, content, updateTime)
+        cu.execute(sql)
+        self.fileDB.commit()
+        cu.close()
+        return True
+
+    def truncate(self):
+        # 章节表内存清除
+        cu = self.db.cursor()
+        try:
+            sql = u"drop table %s" % self.tableName
+            cu.execute(sql)
+            self.db.commit()
+        except sqlite3.OperationalError:
+            pass
+        finally:
+            cu.close()
+
+    def close(self):
+        self.copyToFile()
+        self.db.close()
+        self.fileDB.close()
+
+    def copyToFile(self):
+        cu = self.db.cursor()
+        fcu = self.fileDB.cursor()
+        dataSql = u"select * from %s " % self.tableName
+        cu.execute(dataSql)
+        dataResult = cu.fetchall()
+        if dataResult:
+            fcu.execute(u"delete from %s" % self.tableName)
+            fcu.executemany(u"insert into %s values (?,?)" % self.tableName, dataResult)
+        self.fileDB.commit()
+        fcu.close()
+        cu.close()
+        self.truncate()
+
+
+    def copyToMemory(self):
+        cu = self.db.cursor()
+        fcu = self.fileDB.cursor()
+        dataSql = u"select * from %s " % self.tableName
+        fcu.execute(dataSql)
+        dataResult = fcu.fetchall()
+        if dataResult:
+            cu.execute(u"delete from %s" % self.tableName)
+            cu.executemany(u"insert into %s values (?,?)" % self.tableName, dataResult)
+        fcu.close()
+        cu.close()
+        self.db.commit()
+
+
+class User:
+    def __init__(self, uid=0, name=u''):
+        self.uid = uid
+        self.name = name
 
 
 class WebPageContent:
@@ -474,20 +559,6 @@ class WebPageContent:
 
 class HttpMonitor:
     def user(self, cid=0):
-        # 这个是当需要借口调用的时候，采用这个方法实现
-        # if not userMap.get(cid):
-        #     url = u"%s/cron/getAuthors?cid=%d" % (localDomain, cid)
-        #     userCategoryList = []
-        #     h = Http()
-        #     resp, content = h.request(url, "GET")
-        #     for item in json.loads(content).get("datas"):
-        #         user = User(int(item.get("uid")), item.get("name"))
-        #         userCategoryList.append(user)
-        #     if userCategoryList:
-        #         print 'this is init time'
-        #         userMap[cid] = userCategoryList
-        #     else:
-        #         return User(2, u'user1')
         userList = userMap.get(cid)
         userDict = random.choice(userList)
         return User(userDict['uid'], userDict['name'])
@@ -811,11 +882,12 @@ class BookInfoParser(SGMLParser):
 
 
 class RecursionPage:
-    def __init__(self, url, db, cdb, cid=0, startPage=1, totalPage=10):
+    def __init__(self, url, db, cdb, ldb, cid=0, startPage=1, totalPage=10):
         self.cid = cid
         self.url = url
         self.db = db
         self.cdb = cdb
+        self.ldb = ldb
         self.start = startPage
         self.end = totalPage
         self.run()
@@ -825,7 +897,7 @@ class RecursionPage:
         pattern = re.compile(r'http://.*?/')
         fidPattern = re.compile(r'http://.*?/[a-zA-Z0-9]/([0-9]+)/')
         parser = BookStoreParser()
-        parser.feed(content.getData().decode('gbk').encode('utf-8'))
+        parser.feed(content.getData().decode('gbk', 'ignore').encode('utf-8'))
         parser.close()
         bookContent = parser.getBookList()
 
@@ -840,35 +912,36 @@ class RecursionPage:
                     fid = int(m.group(1))
                 else:
                     continue
-                BookInfo(url, self.db, self.cdb, self.cid, fid=fid, item=item)
-                #BookInfo(u'http://novel.hongxiu.com/a/643818/', self.db, self.cdb, self.cid, fid=fid, item=item)
+                try:
+                    BookInfo(url, self.db, self.cdb, self.ldb, self.cid, fid=fid, item=item)
+                    #BookInfo(u'http://novel.hongxiu.com/a/643818/', self.db, self.cdb, self.ldb, self.cid, fid=fid, item=item)
+                except Exception, e:
+                    logger.error(str(e))
 
             if self.start < self.end:
                 if parser.nextUrl:
                     nextUrl = parser.nextUrl
                     nm = pattern.match(nextUrl)
                     if not nm:
-                        nextUrl = u'http://www.hongxiu.com' + nextUrl
-                    RecursionPage(nextUrl, self.db, self.cdb, self.cid, self.start + 1, self.end)
+                        nextUrl = u'http://www.hongxiu.com%s' % nextUrl
+                    RecursionPage(nextUrl, self.db, self.cdb, self.ldb, self.cid, self.start + 1, self.end)
                     # else:
                     #     thread.exit_thread()
 
 
 class BookInfo:
-    def __init__(self, url, db, cdb, cid=0, fid=0, item=None):
+    def __init__(self, url, db, cdb, ldb, cid=0, fid=0, item=None):
         self.cid = cid
         self.url = url
         self.db = db
         self.cdb = cdb
+        self.ldb = ldb
         self.fid = fid
         self.book = item
+        self.listUrl = u""
         self.run()
 
     def setUp(self):
-        if os.path.exists(jumpFlagFile):
-            self.cdb.execute()
-            self.db.copyToFile()
-            exit()
         if not self.fid:
             pattern = re.compile(r'http://.*?/[a-zA-Z0-9]/([0-9]+)/')
             m = pattern.match(self.url)
@@ -888,16 +961,57 @@ class BookInfo:
         parser.close()
         book = self.db.select(self.fid)
         if book:
-            wordNum = book[6]
-            if int(wordNum) < utf8Parser.wordNum:
+            wordNum = book[2]
+            if wordNum < self.totalCount:
                 self.cdb.insert(SpiderContent(fid=self.fid, wordNum=utf8Parser.wordNum, readNum=utf8Parser.readNum,
-                                              updateTime=self.book.updateTime, lsPid=book[2]))
-                print u"insert into content db for update"
+                                              updateTime=self.book.updateTime, lsPid=book[1], listUrl=self.listUrl))
+                logger.info(u"insert into content db for update. fid:%d, wordNum:%d." % (self.fid, utf8Parser.wordNum))
         else:
             self.cdb.insert(SpiderContent(fid=self.fid, wordNum=utf8Parser.wordNum, readNum=utf8Parser.readNum,
                                           updateTime=self.book.updateTime, title=self.book.title, intro=parser.intro,
-                                          cid=self.cid, url=self.url, author=self.book.author, isAdd=1))
-            print u"insert into content db for insert"
+                                          cid=self.cid, url=self.url, author=self.book.author, isAdd=1, listUrl=self.listUrl))
+            logger.info(u"insert into content db for insert. fid:%d, wordNum:%d." % (self.fid, utf8Parser.wordNum))
+
+
+class BookListSpider:
+    def __init__(self, db, cdb, ldb):
+        self.db = db
+        self.cdb = cdb
+        self.ldb = ldb
+        self.run()
+
+    def run(self):
+        result = self.cdb.select()
+        hm = HttpMonitor()
+        if result:
+            for content in result:
+                isAdd = content[0]
+                fid = content[1]
+                wordNum = content[2]
+                readNum = content[3]
+                updateTime = content[4]
+                listUrl = content[12]
+                #如果是新增的则调用新增接口，否则调用更新接口
+                if isAdd == 1:
+                    title = content[6]
+                    intro = content[7]
+                    cid = content[8]
+                    url = content[9]
+                    author = content[10]
+                    user = hm.user(cid)
+                    lsPid = hm.postContent(user.uid, user.name, title, intro, updateTime, cid, 2, fid, url, wordNum,
+                                           readNum, author)
+                    if lsPid:
+                        self.db.insert(SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum))
+                    logger.info(u"book info add to web, fid: %d, title: %s, url: %s." % (fid, title, url))
+                else:
+                    pid = content[1]
+                    result = hm.updateContent(pid, fid, readNum, wordNum, updateTime)
+                    if result:
+                        self.db.update(fid=fid, wordNum=wordNum)
+                    logger.info(u"book info update to web, fid: %d, pid: %d, updateTime: %s." % (fid, pid, updateTime))
+                # BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid)
+
 
 
 class Spider():
@@ -906,17 +1020,18 @@ class Spider():
 
     def run(self):
         db = DBManage()
-        db.copyToMemory()
         cdb = ContentDBManage()
-        cdb.reset()
+        ldb = BookListManage()
         for key in categoryDict:
             url = u'http://www.hongxiu.com/novel/s/%s_1_order9.html' % key
-            RecursionPage(url, db, cdb, categoryDict[key])
-        cdb.execute()
-        db.copyToFile()
+            RecursionPage(url, db, cdb, ldb, categoryDict[key])
+        logger.info(u"search page list is finish")
+        BookListSpider(db, cdb, ldb)
+        db.close()
+        cdb.close()
+        ldb.close()
+        logger.info(u"all finish")
 
 
 if __name__ == "__main__":
-    print 'hongxiu spider is runing'
     Spider()
-    print 'hongxiu spider is end'
