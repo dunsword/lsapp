@@ -1,0 +1,12 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+<div class='container'>
+ <h4 style="text-align: center">{{ message }}</h4>
+     {% if result %}
+ <p style="text-align: center"><a href='/'>去首页</a></p>
+
+
+ {% endif %}
+</div>
+{% endblock %}

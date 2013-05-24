@@ -9,6 +9,9 @@
     {% else %}
          <form id="id_email_form" action="/email_bind" method="post" onsubmit="postForm('id_email_form');return false;" class='form-horizontal' style="margin-left:auto; margin-right:auto;width:400px">
         {% csrf_token %}
+         <div id='id_message' style='display: none'>
+         邮件发送成功，请到您的邮箱查收！收到邮箱可能需要几分钟时间，如未收到激活邮件，请在<span id='id_time' style="color=red">60</span>秒后重新发送！
+        </div>
          <div class="control-group">
             <label class="control-label" for="inputEmail" style="width: 80px">邮箱地址：</label>
             <div class="controls" style="margin-left: 100px">
@@ -29,7 +32,7 @@
 
     {% endif %}
 
-
+</div>
 <script>
 	function postForm(formId) {
         $("#id_submit_button").attr('class', 'btn');
@@ -45,6 +48,11 @@
                 }
 				$("#id_submit_button").attr('class', 'btn btn-primary');
                 $("#id_submit_button").removeAttr('disabled');
+
+                if(data['message']){
+                    $('#id_message').html(data['message']);
+                    $('#id_message').show();
+                }
 			} else {
 				//$("#id_submit_button").bindPopover("发送成功！", 'top');
                 $('#id_success_message').show();
@@ -55,13 +63,13 @@
 		});
         return false;
 	}
-    var time=60;
+    var ltime=60;
     function startTime(){
-        time=10;
+        ltime=60;
         var w = setInterval(function () {
-            time=time-1;
-            $('#id_time').html(time);
-            if (time==0){
+            ltime=ltime-1;
+            $('#id_time').html(ltime);
+            if (ltime==0){
                 clearInterval(w);
                 $("#id_submit_button").attr('class', 'btn btn-primary');
                 $("#id_submit_button").removeAttr('disabled');
