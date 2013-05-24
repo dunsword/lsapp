@@ -2,6 +2,7 @@
 import logging
 import sys
 import re
+import os
 import urllib
 import random
 import sqlite3
@@ -28,6 +29,10 @@ localDomain = u'http://127.0.0.1:8000'
 
 #全局变量
 # localDomain = u'http://weibols.sinaapp.com'
+
+#是否是调试模式，如果是调试模式，则只跑一个分类，每个分类只跑5条个book，每个book只跑4个标题及内容
+DEBUG = False
+DEBUGNUMBER = 10
 
 # 日志文件设置
 logger = logging.getLogger()
@@ -180,10 +185,11 @@ DB manage
 
 
 class SpiderLog:
-    def __init__(self, fid=0, lsPid=0, wordNum=0):
+    def __init__(self, fid=0, lsPid=0, wordNum=0, isEnd=0):
         self.fid = fid
         self.lsPid = lsPid
         self.wordNum = wordNum
+        self.isEnd = isEnd
 
 
 class DBManage:
@@ -207,7 +213,8 @@ class DBManage:
         sql = u"""create table %s (
         fid integer primary key,
         ls_pid integer,
-        word_num integer
+        word_num integer,
+        is_end integer
         )""" % self.tableName
         cu.execute(sql)
         self.db.commit()
@@ -218,7 +225,8 @@ class DBManage:
             sql = u"""create table %s (
             fid integer primary key,
             ls_pid integer,
-            word_num integer
+            word_num integer,
+            is_end integer
             )""" % self.tableName
             fcu.execute(sql)
             self.fileDB.commit()
@@ -239,8 +247,8 @@ class DBManage:
         if not log.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d)" % (
-            self.tableName, log.fid, log.lsPid, log.wordNum)
+        sql = u"insert into %s values(%d, %d, %d, %d)" % (
+            self.tableName, log.fid, log.lsPid, log.wordNum, log.isEnd)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -264,6 +272,16 @@ class DBManage:
         cu.close()
         return True
 
+    def updateEndStatus(self, fid, isEnd):
+        if not fid or not isEnd:
+            return False
+        sql = u"update %s set is_end = %d where fid = %d" % (self.tableName, isEnd, fid)
+        cu = self.db.cursor()
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+        return True
+
     def close(self):
         self.copyToFile()
         self.db.close()
@@ -276,7 +294,8 @@ class DBManage:
         cu.execute(dataSql)
         result = cu.fetchall()
         if result:
-            fcu.executemany(u"insert into %s values (?,?,?)" % self.tableName, result)
+            fcu.execute(u"delete from %s" % self.tableName)
+            fcu.executemany(u"insert into %s values (?,?,?,?)" % self.tableName, result)
         self.fileDB.commit()
         cu.close()
         fcu.close()
@@ -288,7 +307,8 @@ class DBManage:
         fcu.execute(dataSql)
         dataResult = fcu.fetchall()
         if dataResult:
-            cu.executemany(u"insert into %s values (?,?,?)" % self.tableName, dataResult)
+            cu.execute(u"delete from %s" % self.tableName)
+            cu.executemany(u"insert into %s values (?,?,?,?)" % self.tableName, dataResult)
         self.db.commit()
         fcu.close()
         cu.close()
@@ -296,7 +316,7 @@ class DBManage:
 
 class SpiderContent:
     def __init__(self, fid=0, wordNum=0, readNum=0, updateTime=u'', uid=0, name=u'', title=u'', intro=u'', cid=0,
-                 url=u'', author=u'', isAdd=0, lsPid=0, listUrl=u''):
+                 url=u'', author=u'', isAdd=0, lsPid=0, listUrl=u'', isEnd=0):
         self.isAdd = isAdd
         self.randomNum = random.randint(1, 10000)
         self.fid = fid
@@ -312,6 +332,7 @@ class SpiderContent:
         self.url = url
         self.author = author
         self.listUrl = listUrl
+        self.isEnd = isEnd
 
 
 class ContentDBManage:
@@ -339,7 +360,8 @@ class ContentDBManage:
         url varchar(100),
         author varchar(100),
         random_num integer,
-        listUrl varchar(100)
+        list_url varchar(100),
+        isEnd integer
         )""" % self.tableName
         cu.execute(sql)
         self.db.commit()
@@ -357,10 +379,10 @@ class ContentDBManage:
         if not content.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d, '%s')" % (
+        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d, '%s', %d)" % (
             self.tableName, content.isAdd, content.fid, content.wordNum, content.readNum, content.updateTime,
             content.lsPid, content.title, content.intro, content.cid, content.url,
-            content.author, content.randomNum, content.listUrl)
+            content.author, content.randomNum, content.listUrl, content.isEnd)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -763,6 +785,7 @@ class BookInfoParser(SGMLParser):
         self.lastNotVipPostTitle = u''
         self.lastNotVipPostContent = u''
         self.replies = []
+        self.endStatus = 0
         # book tag
         self.isBook = False
         #book info tag
@@ -801,6 +824,12 @@ class BookInfoParser(SGMLParser):
         self.isLastNotVipPostContent = False
         self.isLastNotVipPostContentLink = False
 
+        self.isEndBoxInfoDiv = False
+        self.isEndBoxInfoTD = False
+        self.isEndBoxInfoBox = False
+        self.isEndBoxInfoB = False
+        self.isEndStatus = False
+
     def handle_data(self, text):
         if self.isTitleName and self.deep == self.deepTitle:
             self.title = text.strip("\r\n").strip()
@@ -816,6 +845,17 @@ class BookInfoParser(SGMLParser):
             self.lastVipPostContent += text.strip("\r\n").strip(u"　").strip()
         if self.isTotalClickTD and not self.isTotalClickB:
             self.totalClick += text.strip("\r\n").strip(u"　").strip()
+        if self.isEndBoxInfoB:
+            endStatusName = text.strip("\r\n").strip().strip()
+            if not cmp(endStatusName, "写作进程："):
+                self.isEndStatus = True
+        if self.isEndStatus:
+            endStatus = text.strip("\r\n").strip().strip()
+            if not cmp(endStatus, "已经完本") or not cmp(endStatus, "出版中"):
+                self.endStatus = 1
+            else:
+                self.endStatus = 2
+
 
     def start_div(self, attrs):
         contentDiv = [v for k, v in attrs if k == 'id' and v == 'mainContent']
@@ -892,6 +932,12 @@ class BookInfoParser(SGMLParser):
                 self.isLastVipPostContent = True
                 self.deep += 1
 
+        if not self.endStatus:
+            if self.isBook:
+                isEndDiv = [v for k, v in attrs if k == 'class' and v == 'info_box']
+                if isEndDiv:
+                    self.isEndBoxInfoDiv = True
+
     def end_div(self):
         if self.isBook and self.deep == self.deepBook - 1:
             self.isBook = False
@@ -916,6 +962,8 @@ class BookInfoParser(SGMLParser):
             self.deep -= 1
             # if self.isTotalClick:
             #     self.isTotalClick = False
+        if self.isEndBoxInfoDiv:
+            self.isEndBoxInfoDiv = False
 
     def start_h1(self, attrs):
         if self.isTitle and self.deep == self.deepBookInfo:
@@ -967,12 +1015,16 @@ class BookInfoParser(SGMLParser):
                 self.isNotProcess = True
         if self.isTotalClickTD:
             self.isTotalClickB = True
+        if self.isEndBoxInfoTD:
+            self.isEndBoxInfoB = True
 
     def end_b(self):
         if self.isIntro and self.isNotProcess:
             self.isNotProcess = False
         if self.isTotalClickB:
             self.isTotalClickB = False
+        if self.isEndBoxInfoB:
+            self.isEndBoxInfoB = False
 
     def start_span(self, attrs):
         if self.isIntro:
@@ -1011,6 +1063,10 @@ class BookInfoParser(SGMLParser):
     def start_td(self, attrs):
         if self.isTotalClickTR:
             self.isTotalClickTD = True
+        if self.isEndBoxInfoDiv:
+            isEndBoxTD = [v for k, v in attrs if k == 'height' and v == '20']
+            if isEndBoxTD:
+                self.isEndBoxInfoTD = True
 
     def end_td(self):
         if self.isTotalClickTD:
@@ -1020,6 +1076,10 @@ class BookInfoParser(SGMLParser):
             self.isTotalClick = False
             self.isTotalClickContentDiv = False
             self.isTotalClickIntro = False
+        if self.isEndBoxInfoTD:
+            self.isEndBoxInfoTD = False
+        if self.isEndStatus:
+            self.isEndStatus = False
 
 
 class BookListParser(SGMLParser):
@@ -1161,8 +1221,15 @@ class BookListInfo:
         parser.close()
         listContent = parser.getTitleList()
         if listContent:
+            if DEBUG:
+                count = 0
             for item in listContent:
                 if item.linkUrl and item.title:
+                    if DEBUG:
+                        if count > DEBUGNUMBER:
+                            break
+                        else:
+                            count += 1
                     lMatch = pattern.match(item.linkUrl)
                     isVip = True
                     if not lMatch:
@@ -1205,7 +1272,14 @@ class RecursionPage:
         bookContent = parser.getBookList()
 
         if bookContent:
+            if DEBUG:
+                count = 0
             for item in bookContent:
+                if DEBUG:
+                    if count > DEBUGNUMBER:
+                        break
+                    else:
+                        count += 1
                 lMatch = pattern.match(item.linkUrl)
                 if lMatch:
                     url = item.linkUrl
@@ -1218,7 +1292,7 @@ class RecursionPage:
                     continue
                 try:
                     BookInfo(url, self.db, self.cdb, self.ldb, self.cid, fid=fid, totalCount=item.totalCount)
-                    # BookInfo(u"http://www.qidian.com/Book/2767774.aspx", self.db, self.cdb, self.ldb, self.cid, fid=2767774, totalCount=item.totalCount)
+                    # BookInfo(u"http://www.qidian.com/Book/26423.aspx", self.db, self.cdb, self.ldb, self.cid, fid=26423, totalCount=item.totalCount)
                 except Exception, e:
                     logger.error(str(e))
 
@@ -1237,6 +1311,7 @@ class BookInfo:
         self.fid = fid
         self.totalCount = totalCount
         self.listUrl = u''
+        self.isEnd = 0
         self.run()
 
     def setUp(self):
@@ -1254,17 +1329,21 @@ class BookInfo:
         parser.feed(content.getData())
         parser.close()
         book = self.db.select(self.fid)
+        isEnd = 0
+        if parser.endStatus == 1:
+            isEnd = 1
         if book:
             wordNum = book[2]
             if wordNum < self.totalCount:
                 self.cdb.insert(SpiderContent(fid=self.fid, wordNum=self.totalCount, readNum=int(parser.totalClick),
-                                              updateTime=parser.updateTime, lsPid=book[1]), listUrl=self.listUrl)
+                                              updateTime=parser.updateTime, lsPid=book[1], listUrl=self.listUrl,
+                                              isEnd=isEnd))
                 logger.info(u"insert into content db for update. fid:%d, wordNum:%d." % (self.fid, self.totalCount))
         else:
             self.cdb.insert(SpiderContent(fid=self.fid, wordNum=self.totalCount, readNum=int(parser.totalClick),
                                           updateTime=parser.updateTime, title=parser.title, intro=parser.intro,
                                           cid=self.cid, url=self.url, author=parser.author, isAdd=1,
-                                          listUrl=self.listUrl))
+                                          listUrl=self.listUrl, isEnd=isEnd))
             logger.info(u"insert into content db for insert. fid:%d, wordNum:%d." % (self.fid, self.totalCount))
 
 
@@ -1279,13 +1358,26 @@ class BookListSpider:
         result = self.cdb.select()
         hm = HttpMonitor()
         if result:
+            if DEBUG:
+                count = 0
             for content in result:
+                if DEBUG:
+                    if count > DEBUGNUMBER:
+                        break
+                    else:
+                        count += 1
+
+                # 程序跳出点
+                if os.path.exists(u"qd_spider.jump"):
+                    logger.info(u"system has break at fid:%d." % fid)
+                    break
                 isAdd = content[0]
                 fid = content[1]
                 wordNum = content[2]
                 readNum = content[3]
                 updateTime = content[4]
                 listUrl = content[12]
+                isEnd = content[13]
                 #如果是新增的则调用新增接口，否则调用更新接口
                 if isAdd == 1:
                     title = content[6]
@@ -1306,6 +1398,8 @@ class BookListSpider:
                         self.db.update(fid=fid, wordNum=wordNum)
                     logger.info(u"book info update to web, fid: %d, pid: %d, updateTime: %s." % (fid, pid, updateTime))
                 BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid)
+                if isEnd:
+                    self.db.updateEndStatus(fid=fid, isEnd=isEnd)
 
 
 class Spider():
@@ -1319,6 +1413,8 @@ class Spider():
         for key in categoryDict:
             url = u'http://all.qidian.com/Book/BookStore.aspx?ChannelId=%s' % key
             RecursionPage(url, db, cdb, ldb, categoryDict[key])
+            if DEBUG:
+                break
         logger.info(u"search page list is finish")
         BookListSpider(db, cdb, ldb)
         db.close()
