@@ -109,7 +109,7 @@ class TopicReplyView(BaseTopicView):
     def post(self,request,topicid,*args,**kwargs):
         rc=request.POST['replyContent']
         user=request.user
-        replyForm=TopicReplyForm({'userid':user.id,'username':user.username,'topicid':topicid,'content':rc,'title':'','created_at':datetime.now(),'updated_at':datetime.now(),'status':1})
+        replyForm=TopicReplyForm({'userid':user.id,'username':user.username,'topicid':topicid,'content':rc,'title':'','created_at':datetime.now(),'updated_at':datetime.now(),'source_url':'http://www.tuitui2.com','status':1})
         if(replyForm.is_valid()):
             self.tSrv.addReply(replyForm)
             ctx ={'success':'true','replyid':replyForm.instance.id,'time':replyForm.cleaned_data['created_at'].strftime('%H:%M'),'content':replyForm.cleaned_data['content']}
@@ -122,6 +122,16 @@ class TopicReplyView(BaseTopicView):
         c = RequestContext(request,{'reply':topicReply})
         tt = loader.get_template('ls_topic_reply_item.html')
         return HttpResponse(tt.render(c))
-        
-        
+
+
+class TopicReplyEditView(BaseTopicView):
+    def get(self,request,*args,**kwargs):
+        pid=int(request.GET['pid'])
+        rid=int(request.GET['rid'])
+        topic=Topic.objects.get(pk=pid)
+        reply=TopicReply.get(pk=rid)
+        form = TopicReplyForm(instance=reply)
+        c = RequestContext(request,{'reply':reply,'topic':Topic,'form':form})
+        tt = loader.get_template('ls_topic_reply_edit.html')
+        return HttpResponse(tt.render(c))
         
