@@ -1295,7 +1295,7 @@ class BookListSpider:
                         self.db.update(fid=fid, wordNum=wordNum)
                     logger.info(u"book info update to web, fid: %d, pid: %d, updateTime: %s." % (fid, pid, updateTime))
                 BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid, isUtf8, domain)
-                # BookListInfo(self.db, self.cdb, self.ldb, u"http://www.huanxia.com/book579912_novel.html", fid, 0, u"http://www.huanxia.com/")
+                # BookListInfo(self.db, self.cdb, self.ldb,  u"http://www.huanxia.com/book579912_novel.html", fid, 0, u"http://www.huanxia.com/")
                 if isEnd:
                     self.db.updateEndStatus(fid=fid, isEnd=isEnd)
 
