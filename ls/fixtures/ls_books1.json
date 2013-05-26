@@ -60,5 +60,36 @@
 			"topic": 5,
 			"update_status": 1
 		}
+	},
+    {
+		"model": "ls.Topic",
+		"pk": 6,
+		"fields": {
+			"userid": 1,
+			"username": "paul",
+			"categoryid": 104,
+			"catid_parent":2,
+			"title": "《夜夜承欢》(总裁/都市/温馨)【作者：银乐子】完结",
+			"content": "简介：宠溺无下限，哥哥请爱我……“哥，请你爱我……”“理由？”“我会做饭，会洗衣服，长得美美，还能暖床。”“立陌雪……滚回房间去！”“哥，你喜不喜小宝宝？”“还好……”      “立雪给你生宝宝吧！”小手已探入男性重要部分，纯纯的大眼闪啊闪。“立、陌、雪！”立司彦额角犯抽：“你的手在摸哪里？！ ",
+			"read_count": 1165811,
+			"reply_count": 0,
+			"like_count":68,
+			"created_at": "2012-10-13 12:34:34",
+			"updated_at": "2013-03-20 14:42:34",
+			"topic_type":2
+		}
+	},
+    {
+		"model": "ls.Document",
+		"pk": 5,
+		"fields": {
+			"author_name":"银乐子",
+			"source_url":"http://www.19lou.com/forum-464703-thread-10001363760151137-1-1.html",
+			"source_id": 19,
+			"word_count":1987924,
+			"chapter_count":0,
+			"topic": 6,
+			"update_status": 1
+		}
 	}
 ]

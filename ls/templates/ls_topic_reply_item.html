@@ -36,6 +36,15 @@
                         {{reply.content|linebreaksbr }}
                     </div>
                 </div>
+                {% if user.is_staff %}
+                  <div class="row-fluid">
+                    <div class="span12">
+                        <span style="float:right">
+												<a href="/reply/edit?tid={{reply.topicid}}&rid={{ reply.id }}">编辑</a>
+						</span>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

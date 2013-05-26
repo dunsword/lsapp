@@ -126,12 +126,27 @@ class TopicReplyView(BaseTopicView):
 
 class TopicReplyEditView(BaseTopicView):
     def get(self,request,*args,**kwargs):
-        pid=int(request.GET['pid'])
+        tid=int(request.GET['tid'])
         rid=int(request.GET['rid'])
-        topic=Topic.objects.get(pk=pid)
-        reply=TopicReply.get(pk=rid)
+        topic=Topic.objects.get(pk=tid)
+        reply=TopicReply.objects.get(pk=rid)
         form = TopicReplyForm(instance=reply)
         c = RequestContext(request,{'reply':reply,'topic':Topic,'form':form})
         tt = loader.get_template('ls_topic_reply_edit.html')
         return HttpResponse(tt.render(c))
-        
+    def post(self,request,*args,**kwargs):
+        tid=int(request.POST['tid'])
+        rid=int(request.POST['rid'])
+
+        user=request.user
+        if not user.is_staff:
+            return self._get_json_respones({'result':'error'})
+
+        reply=TopicReply.objects.get(pk=rid)
+        replyForm=TopicReplyForm(data=request.POST,instance=reply)
+        if replyForm.is_valid():
+            replyForm.save()
+            return self._get_json_respones({'result':'success'})
+        else:
+            return self._get_json_respones({'result':'failed',
+                                        'errors':replyForm.errors})
