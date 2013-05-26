@@ -9,6 +9,7 @@ import sqlite3
 from sgmllib import SGMLParser
 from httplib2 import Http
 from django.utils import simplejson as json
+import time
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -33,6 +34,10 @@ localDomain = u'http://127.0.0.1:8000'
 #是否是调试模式，如果是调试模式，则只跑一个分类，每个分类只跑5条个book，每个book只跑4个标题及内容
 DEBUG = False
 DEBUGNUMBER = 10
+
+# 历史数据多少时间没跑，进行重新抓取
+# 格式是int(time.time())计算的
+historyTime = 172800 #现在默认是两天
 
 # 日志文件设置
 logger = logging.getLogger()
@@ -214,7 +219,8 @@ class DBManage:
         fid integer primary key,
         ls_pid integer,
         word_num integer,
-        is_end integer
+        is_end integer,
+        update_time integer
         )""" % self.tableName
         cu.execute(sql)
         self.db.commit()
@@ -226,7 +232,8 @@ class DBManage:
             fid integer primary key,
             ls_pid integer,
             word_num integer,
-            is_end integer
+            is_end integer,
+            update_time integer
             )""" % self.tableName
             fcu.execute(sql)
             self.fileDB.commit()
@@ -247,8 +254,8 @@ class DBManage:
         if not log.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d, %d)" % (
-            self.tableName, log.fid, log.lsPid, log.wordNum, log.isEnd)
+        sql = u"insert into %s values(%d, %d, %d, %d, %d)" % (
+            self.tableName, log.fid, log.lsPid, log.wordNum, log.isEnd, int(time.time()))
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -265,7 +272,7 @@ class DBManage:
     def update(self, fid, wordNum):
         if not fid or not wordNum:
             return False
-        sql = u"update %s set word_num = %d where fid = %d" % (self.tableName, wordNum, fid)
+        sql = u"update %s set word_num = %d, update_time = %d where fid = %d" % (self.tableName, wordNum, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -275,7 +282,7 @@ class DBManage:
     def updateEndStatus(self, fid, isEnd):
         if not fid or not isEnd:
             return False
-        sql = u"update %s set is_end = %d where fid = %d" % (self.tableName, isEnd, fid)
+        sql = u"update %s set is_end = %d, update_time = %d where fid = %d" % (self.tableName, isEnd, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -295,7 +302,7 @@ class DBManage:
         result = cu.fetchall()
         if result:
             fcu.execute(u"delete from %s" % self.tableName)
-            fcu.executemany(u"insert into %s values (?,?,?,?)" % self.tableName, result)
+            fcu.executemany(u"insert into %s values (?,?,?,?,?)" % self.tableName, result)
         self.fileDB.commit()
         cu.close()
         fcu.close()
@@ -308,10 +315,21 @@ class DBManage:
         dataResult = fcu.fetchall()
         if dataResult:
             cu.execute(u"delete from %s" % self.tableName)
-            cu.executemany(u"insert into %s values (?,?,?,?)" % self.tableName, dataResult)
+            cu.executemany(u"insert into %s values (?,?,?,?,?)" % self.tableName, dataResult)
         self.db.commit()
         fcu.close()
         cu.close()
+
+    def selectHistory(self, datetime=0):
+        if not datetime:
+            datetime = int(time.time()) - historyTime
+            # datetime = int(time.time()) - 1
+        cu = self.db.cursor()
+        dataSql = u"select * from %s where update_time < %d" % (self.tableName, datetime)
+        cu.execute(dataSql)
+        dataResult = cu.fetchall()
+        cu.close()
+        return dataResult
 
 
 class SpiderContent:
@@ -1249,6 +1267,8 @@ class BookListInfo:
                             logger.error(u"book title list add error. fid:%d, pid:%d." % (self.fid, pid))
                         if not isVip:
                             BookDetail(self.ldb, self.fid, pid, item.title, item.linkUrl)
+                    else:
+                        logger.info(u"book title list isAlready add. fid:%d, pid:%d." % (self.fid, pid))
 
 
 class RecursionPage:
@@ -1423,5 +1443,22 @@ class Spider():
         logger.info(u"all finish")
 
 
+class SpiderHistory:
+    def __init__(self):
+        self.run()
+
+    def run(self):
+        db = DBManage()
+        cdb = ContentDBManage()
+        ldb = BookListManage()
+        result = db.selectHistory()
+        if result:
+            for item in result:
+                fid = item[0]
+                listUrl = u"http://read.qidian.com/BookReader/%d.aspx" % fid
+                BookListInfo(db, cdb, ldb, listUrl, fid)
+
+
 if __name__ == "__main__":
     Spider()
+    # SpiderHistory()

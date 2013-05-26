@@ -37,6 +37,10 @@ localDomain = u'http://127.0.0.1:8000'
 DEBUG = False
 DEBUGNUMBER = 10
 
+# 历史数据多少时间没跑，进行重新抓取
+# 格式是int(time.time())计算的
+historyTime = 172800 #现在默认是两天
+
 # 日志文件设置
 logger = logging.getLogger()
 logFile = logging.FileHandler("hx_spider.error.log")
@@ -201,12 +205,14 @@ DB manage
 
 
 class SpiderLog:
-    def __init__(self, fid=0, lsPid=0, wordNum=0, isEnd=0, listUrl=u""):
+    def __init__(self, fid=0, lsPid=0, wordNum=0, isEnd=0, listUrl=u"", isUtf8=0, domain=u""):
         self.fid = fid
         self.lsPid = lsPid
         self.wordNum = wordNum
         self.isEnd = isEnd
         self.listUrl = listUrl
+        self.isUtf8 = isUtf8
+        self.domain = domain
 
 
 class DBManage:
@@ -232,7 +238,10 @@ class DBManage:
         ls_pid integer,
         word_num integer,
         is_end integer,
-        list_url varchar(100)
+        list_url varchar(100),
+        update_time integer,
+        is_utf8 integer,
+        domain varchar(20)
         )""" % self.tableName
         cu.execute(sql)
         self.db.commit()
@@ -245,7 +254,10 @@ class DBManage:
             ls_pid integer,
             word_num integer,
             is_end integer,
-            list_url varchar(100)
+            list_url varchar(100),
+            update_time integer,
+            is_utf8 integer,
+            domain varchar(20)
             )""" % self.tableName
             fcu.execute(sql)
             self.fileDB.commit()
@@ -266,8 +278,9 @@ class DBManage:
         if not log.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d, %d, '%s')" % (
-            self.tableName, log.fid, log.lsPid, log.wordNum, log.isEnd, log.listUrl)
+        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, %d, '%s')" % (
+            self.tableName, log.fid, log.lsPid, log.wordNum, log.isEnd, log.listUrl, int(time.time()), log.isUtf8,
+            log.domain)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -284,7 +297,8 @@ class DBManage:
     def update(self, fid, wordNum):
         if not fid or not wordNum:
             return False
-        sql = u"update %s set word_num = %d where fid = %d" % (self.tableName, wordNum, fid)
+        sql = u"update %s set word_num = %d, update_time = %d where fid = %d" % (
+        self.tableName, wordNum, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -294,7 +308,8 @@ class DBManage:
     def updateEndStatus(self, fid, isEnd):
         if not fid or not isEnd:
             return False
-        sql = u"update %s set is_end = %d where fid = %d" % (self.tableName, isEnd, fid)
+        sql = u"update %s set is_end = %d, update_time = %d where fid = %d" % (
+        self.tableName, isEnd, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -314,7 +329,7 @@ class DBManage:
         result = cu.fetchall()
         if result:
             fcu.execute(u"delete from %s" % self.tableName)
-            fcu.executemany(u"insert into %s values (?,?,?,?,?)" % self.tableName, result)
+            fcu.executemany(u"insert into %s values (?,?,?,?,?,?,?,?)" % self.tableName, result)
         self.fileDB.commit()
         cu.close()
         fcu.close()
@@ -327,10 +342,21 @@ class DBManage:
         dataResult = fcu.fetchall()
         if dataResult:
             cu.execute(u"delete from %s" % self.tableName)
-            cu.executemany(u"insert into %s values (?,?,?,?,?)" % self.tableName, dataResult)
+            cu.executemany(u"insert into %s values (?,?,?,?,?,?,?,?)" % self.tableName, dataResult)
         self.db.commit()
         fcu.close()
         cu.close()
+
+    def selectHistory(self, datetime=0):
+        if not datetime:
+            datetime = int(time.time()) - historyTime
+            # datetime = int(time.time()) - 1
+        cu = self.db.cursor()
+        dataSql = u"select * from %s where update_time < %d" % (self.tableName, datetime)
+        cu.execute(dataSql)
+        dataResult = cu.fetchall()
+        cu.close()
+        return dataResult
 
 
 class SpiderContent:
@@ -1192,6 +1218,8 @@ class BookListInfo:
                         if not isVip:
                             BookDetail(self.ldb, self.fid, pid, item.title, item.linkUrl, self.isUtf8, item.updateTime)
                             # BookDetail(self.ldb, self.fid, pid, item.title, "http://novel.hongxiu.com/a/593351/6403484.shtml", self.isUtf8, item.updateTime)
+                    else:
+                        logger.info(u"book title list isAlready add. fid:%d, pid:%d." % (self.fid, pid))
 
 
 class BookDetailParser(SGMLParser):
@@ -1285,7 +1313,8 @@ class BookListSpider:
                                            readNum, author)
                     # lsPid = 1
                     if lsPid:
-                        self.db.insert(SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum, listUrl=listUrl))
+                        self.db.insert(SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum, listUrl=listUrl, isUtf8=isUtf8,
+                                                 domain=domain))
                     logger.info(u"book info add to web, fid: %d, title: %s, url: %s." % (fid, title, url))
                 else:
                     pid = content[1]
@@ -1300,7 +1329,7 @@ class BookListSpider:
                     self.db.updateEndStatus(fid=fid, isEnd=isEnd)
 
 
-class Spider():
+class Spider:
     def __init__(self):
         self.run()
 
@@ -1321,5 +1350,24 @@ class Spider():
         logger.info(u"all finish")
 
 
+class SpiderHistory:
+    def __init__(self):
+        self.run()
+
+    def run(self):
+        db = DBManage()
+        cdb = ContentDBManage()
+        ldb = BookListManage()
+        result = db.selectHistory()
+        if result:
+            for item in result:
+                listUrl = item[4]
+                fid = item[0]
+                isUtf8 = item[6]
+                domain = item[7]
+                BookListInfo(db, cdb, ldb, listUrl, fid, isUtf8, domain)
+
+
 if __name__ == "__main__":
     Spider()
+    # SpiderHistory()
