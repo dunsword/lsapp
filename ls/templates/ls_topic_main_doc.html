@@ -9,7 +9,7 @@
         {% endif %}
     </div>
 </div>
-<div class="row-fluid" style="border-top: 1px solid #dddddd; margin-bottom: 10px;padding-top: 10px">
+<div class="row-fluid" style="border-top: 1px solid #dddddd; margin-bottom: 20px;padding-top: 10px">
     <div class="span2 lavatar" >
         <img
         class="img-rounded ls-avatar"
@@ -93,33 +93,28 @@
                 </div>
                 <div class="row-fluid">
                     <div class="span12">
-                        来自：<a href="{{doc.source_url}}" target="_blank">{{doc.getSiteSource.name}}</a>
+                        来源：<a href="{{doc.source_url}}" target="_blank">{{doc.getSiteSource.name}}</a>
                     </div>
                 </div>
                 {% if chapters %}
                     <div class="row-fluid">
-                    <div class="span12">
-                        <table class="table">
-                        <tr>
-                            <th style="text-align: left">最新章节</th>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tbody>
-                        {% for chapter in chapters %}
-                            <tr>
-                            <td>
-                                {% forloop.counter/2 as c %}
-                                {{ forloop.counter }}
-                                <span><a href='{{ chapter.url }}'>{{ chapter.title }}</a></span></td>
-                            <td>
 
-                            </td>
-                            <td></td>
-                            </tr>
+
+
+                    <div class="span12">
+                        <div style="margin-bottom:5px;">
+                            最新章节：
+                        </div>
+                        <div class="ls-chapter">
+                        {% for chapter in chapters %}
+
+                            <div class='ls-chapter-item'>
+                            <a href='{{ chapter.url }}'>{{ chapter.title }}</a>&nbsp;
+                            </div>
+
                         {% endfor %}
-                        </tbody>
-                        </table>
+
+                        </div>
                     </div>
                 </div>
                 {% endif %}

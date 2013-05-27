@@ -124,7 +124,7 @@ class Document(models.Model):
     update_status=models.SmallIntegerField('更新状态',choices=[(1,"连载中"),(2,"已完结")],default=1,db_index=True)
     source_id=models.IntegerField('源网站')
     source_url=models.URLField('源地址')
-    source_tid=models.BigIntegerField('来源文章ID',default=0)
+    source_tid=models.BigIntegerField('来源ID',default=0)
     topic=models.OneToOneField(Topic,related_name='ref+')
     source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
 

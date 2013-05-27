@@ -32,10 +32,18 @@ class TopicView(BaseTopicView):
         topic=Topic.objects.get(pk=topicid)
         docForm=None
         chapters=None
+
+
         if topic.isDocument:
             docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
             chapters=TopicReply.objects.getChapters(topicid)
-        
+            count=len(chapters)
+            chapter_align=0 #用于补齐3个的数量
+            if count%3>0:
+                chapter_align=3-count%3
+            for i in range(chapter_align):
+                chapters.append({})
+
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=TopicForm(instance=topic,prefix="topic")
         topicForm.is_valid()
