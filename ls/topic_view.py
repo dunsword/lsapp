@@ -31,8 +31,10 @@ class TopicView(BaseTopicView):
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
         docForm=None
+        chapters=None
         if topic.isDocument:
             docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
+            chapters=TopicReply.objects.getChapters(topicid)
         
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=TopicForm(instance=topic,prefix="topic")
@@ -46,6 +48,7 @@ class TopicView(BaseTopicView):
         c = self.getContext(request,
                             {'topic':topicForm,
                              'docForm':docForm,
+                             'chapters':chapters,
                              'reply_list':replyList,
                              'category':cat,
                              "replyForm":replyForm,
