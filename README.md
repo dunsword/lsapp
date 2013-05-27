@@ -109,3 +109,11 @@ CREATE INDEX `base_emailbindrecord_f84f7de6` ON `base_emailbindrecord` (`updated
 CREATE INDEX `base_emailbindrecord_7444f637` ON `base_emailbindrecord` (`userid`);
 COMMIT;
 </code></pre>
+
+5.2013-5-24
+TopicReply,添加is_chapter字段
+<pre><code>
+ALTER TABLE  `ls_topicreply` ADD  `is_chapter` tinyint(1)  default 0 not NULL ;
+ALTER TABLE  `ls_topicreply` ADD   `source_url` varchar(200) default  NULL;
+
+</code></pre>

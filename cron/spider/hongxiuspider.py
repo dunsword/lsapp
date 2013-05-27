@@ -33,6 +33,14 @@ localDomain = u'http://127.0.0.1:8000'
 #全局变量
 # localDomain = u'http://weibols.sinaapp.com'
 
+#是否是调试模式，如果是调试模式，则只跑一个分类，每个分类只跑5条个book，每个book只跑4个标题及内容
+DEBUG = False
+DEBUGNUMBER = 10
+
+# 历史数据多少时间没跑，进行重新抓取
+# 格式是int(time.time())计算的
+historyTime = 172800 #现在默认是两天
+
 # 日志文件设置
 logger = logging.getLogger()
 logFile = logging.FileHandler("hx_spider.error.log")
@@ -44,34 +52,34 @@ logger.setLevel(logging.INFO)
 #分类的对应，前面是起点的categoryId，后面对应接口的categoryId
 categoryDict = {
     'zl1_8': 101, # 穿越时空
-    'zl1_3': 133, # 总裁豪门
-    'zl1_6': 125, # 古典架空
-    # 'zl1_1': 0, # 青春校园
-    'zl1_9': 120, # 都市高干
-    'zl1_2': 120, # 白领职场
-    'zl1_4': 119, # 女尊王朝
-    'zl1_7': 107, # 耽美同人
-    'zl1_10': 105, # 玄幻仙侠
-    'zl2_2': 135, # 商场小说
-    'zl2_3': 120, # 官场小说
-    'zl2_4': 134, # 婚姻家庭
-    'zl2_5': 103, # 职场励志
-    # 'zl11_1': 0, # 纪实文学
-    # 'zl11_2': 0, # 乡土文学
-    # 'zl11_3': 0, # 儿童文学
-    # 'zl11_4': 0, # 文史大观
-    # 'zl11_5': 0, # 科普生活
-    '1': 104, # 言情小说
-    '2': 103, # 都市小说
-    '3': 109, # 武侠仙侠
-    '4': 105, # 玄幻奇幻
-    # '5': 0, # 惊悚小说
-    # '6': 0, # 悬疑小说
-    # '7': 0, # 历史小说
-    # '8': 0, # 军事小说
-    # '9': 0, # 科幻小说
-    # '10': 0, # 网游小说
-    # '11': 0, # 社科人文
+    # 'zl1_3': 133, # 总裁豪门
+    # 'zl1_6': 125, # 古典架空
+    # # 'zl1_1': 0, # 青春校园
+    # 'zl1_9': 120, # 都市高干
+    # 'zl1_2': 120, # 白领职场
+    # 'zl1_4': 119, # 女尊王朝
+    # 'zl1_7': 107, # 耽美同人
+    # 'zl1_10': 105, # 玄幻仙侠
+    # 'zl2_2': 135, # 商场小说
+    # 'zl2_3': 120, # 官场小说
+    # 'zl2_4': 134, # 婚姻家庭
+    # 'zl2_5': 103, # 职场励志
+    # # 'zl11_1': 0, # 纪实文学
+    # # 'zl11_2': 0, # 乡土文学
+    # # 'zl11_3': 0, # 儿童文学
+    # # 'zl11_4': 0, # 文史大观
+    # # 'zl11_5': 0, # 科普生活
+    # '1': 104, # 言情小说
+    # '2': 103, # 都市小说
+    # '3': 109, # 武侠仙侠
+    # '4': 105, # 玄幻奇幻
+    # # '5': 0, # 惊悚小说
+    # # '6': 0, # 悬疑小说
+    # # '7': 0, # 历史小说
+    # # '8': 0, # 军事小说
+    # # '9': 0, # 科幻小说
+    # # '10': 0, # 网游小说
+    # # '11': 0, # 社科人文
 }
 
 userMap = {101: [{"name": "九城烟岚", "uid": 731}, {"name": "人品棣", "uid": 485}, {"name": "便便羊", "uid": 354},
@@ -197,10 +205,14 @@ DB manage
 
 
 class SpiderLog:
-    def __init__(self, fid=0, lsPid=0, wordNum=0):
+    def __init__(self, fid=0, lsPid=0, wordNum=0, isEnd=0, listUrl=u"", isUtf8=0, domain=u""):
         self.fid = fid
         self.lsPid = lsPid
         self.wordNum = wordNum
+        self.isEnd = isEnd
+        self.listUrl = listUrl
+        self.isUtf8 = isUtf8
+        self.domain = domain
 
 
 class DBManage:
@@ -224,7 +236,12 @@ class DBManage:
         sql = u"""create table %s (
         fid integer primary key,
         ls_pid integer,
-        word_num integer
+        word_num integer,
+        is_end integer,
+        list_url varchar(100),
+        update_time integer,
+        is_utf8 integer,
+        domain varchar(20)
         )""" % self.tableName
         cu.execute(sql)
         self.db.commit()
@@ -235,7 +252,12 @@ class DBManage:
             sql = u"""create table %s (
             fid integer primary key,
             ls_pid integer,
-            word_num integer
+            word_num integer,
+            is_end integer,
+            list_url varchar(100),
+            update_time integer,
+            is_utf8 integer,
+            domain varchar(20)
             )""" % self.tableName
             fcu.execute(sql)
             self.fileDB.commit()
@@ -256,8 +278,9 @@ class DBManage:
         if not log.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d)" % (
-            self.tableName, log.fid, log.lsPid, log.wordNum)
+        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, %d, '%s')" % (
+            self.tableName, log.fid, log.lsPid, log.wordNum, log.isEnd, log.listUrl, int(time.time()), log.isUtf8,
+            log.domain)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -274,7 +297,19 @@ class DBManage:
     def update(self, fid, wordNum):
         if not fid or not wordNum:
             return False
-        sql = u"update %s set word_num = %d where fid = %d" % (self.tableName, wordNum, fid)
+        sql = u"update %s set word_num = %d, update_time = %d where fid = %d" % (
+        self.tableName, wordNum, int(time.time()), fid)
+        cu = self.db.cursor()
+        cu.execute(sql)
+        self.db.commit()
+        cu.close()
+        return True
+
+    def updateEndStatus(self, fid, isEnd):
+        if not fid or not isEnd:
+            return False
+        sql = u"update %s set is_end = %d, update_time = %d where fid = %d" % (
+        self.tableName, isEnd, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -293,7 +328,8 @@ class DBManage:
         cu.execute(dataSql)
         result = cu.fetchall()
         if result:
-            fcu.executemany(u"insert into %s values (?,?,?)" % self.tableName, result)
+            fcu.execute(u"delete from %s" % self.tableName)
+            fcu.executemany(u"insert into %s values (?,?,?,?,?,?,?,?)" % self.tableName, result)
         self.fileDB.commit()
         cu.close()
         fcu.close()
@@ -305,15 +341,27 @@ class DBManage:
         fcu.execute(dataSql)
         dataResult = fcu.fetchall()
         if dataResult:
-            cu.executemany(u"insert into %s values (?,?,?)" % self.tableName, dataResult)
+            cu.execute(u"delete from %s" % self.tableName)
+            cu.executemany(u"insert into %s values (?,?,?,?,?,?,?,?)" % self.tableName, dataResult)
         self.db.commit()
         fcu.close()
         cu.close()
 
+    def selectHistory(self, datetime=0):
+        if not datetime:
+            datetime = int(time.time()) - historyTime
+            # datetime = int(time.time()) - 1
+        cu = self.db.cursor()
+        dataSql = u"select * from %s where update_time < %d" % (self.tableName, datetime)
+        cu.execute(dataSql)
+        dataResult = cu.fetchall()
+        cu.close()
+        return dataResult
+
 
 class SpiderContent:
     def __init__(self, fid=0, wordNum=0, readNum=0, updateTime=u'', uid=0, name=u'', title=u'', intro=u'', cid=0,
-                 url=u'', author=u'', isAdd=0, lsPid=0, listUrl=u''):
+                 url=u'', author=u'', isAdd=0, lsPid=0, listUrl=u'', isEnd=0, isUtf8=1, domain=u''):
         self.isAdd = isAdd
         self.randomNum = random.randint(1, 10000)
         self.fid = fid
@@ -329,6 +377,9 @@ class SpiderContent:
         self.url = url
         self.author = author
         self.listUrl = listUrl
+        self.isEnd = isEnd
+        self.isUtf8 = isUtf8
+        self.domain = domain
 
 
 class ContentDBManage:
@@ -356,7 +407,10 @@ class ContentDBManage:
         url varchar(100),
         author varchar(100),
         random_num integer,
-        listUrl varchar(100)
+        list_url varchar(100),
+        is_end integer,
+        is_utf8 integer,
+        domain varchar(100)
         )""" % self.tableName
         cu.execute(sql)
         self.db.commit()
@@ -374,10 +428,10 @@ class ContentDBManage:
         if not content.fid:
             return False
         cu = self.db.cursor()
-        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d, '%s')" % (
+        sql = u"insert into %s values(%d, %d, %d, %d, '%s', %d, '%s', '%s', %d, '%s', '%s', %d, '%s', %d, %d, '%s')" % (
             self.tableName, content.isAdd, content.fid, content.wordNum, content.readNum, content.updateTime,
             content.lsPid, content.title, content.intro, content.cid, content.url,
-            content.author, content.randomNum, content.listUrl)
+            content.author, content.randomNum, content.listUrl, content.isEnd, content.isUtf8, content.domain)
         cu.execute(sql)
         self.db.commit()
         cu.close()
@@ -612,6 +666,7 @@ class BookStoreData:
         self.readNum = 0
         self.lastPostTitle = u''
         self.lastPostUrl = u''
+        self.endStatus = 0
 
 
 class BookStoreParser(SGMLParser):
@@ -635,6 +690,8 @@ class BookStoreParser(SGMLParser):
         self.isPageInfo = False
         self.hasCurrentPage = False
         self.isNextPage = False
+        self.isEndDT = False
+        self.isEndStatus = False
 
     def getBookList(self):
         return self.bookList
@@ -653,6 +710,10 @@ class BookStoreParser(SGMLParser):
             self.bookStoreData.updateTime = text.strip("\r\n").strip()
         if self.isLastPostTitle:
             self.bookStoreData.lastPostTitle = text.strip("\r\n").strip()
+        if self.isEndStatus:
+            endName = text.strip("\r\n").strip()
+            if not cmp(endName, "全本"):
+                self.bookStoreData.endStatus = 1
 
     def start_div(self, attrs):
         if self.isBookList:
@@ -750,10 +811,21 @@ class BookStoreParser(SGMLParser):
     def start_dt(self, attrs):
         if self.isBookList:
             self.isLastPost = True
+            self.isEndDT = True
 
     def end_dt(self):
         if self.isLastPost:
             self.isLastPost = False
+        if self.isEndDT:
+            self.isEndDT = False
+
+    def start_i(self, attrs):
+        if self.isEndDT:
+            self.isEndStatus = True
+
+    def end_i(self):
+        if self.isEndStatus:
+            self.isEndStatus = False
 
     def start_em(self, attrs):
         if self.isLastPost:
@@ -831,8 +903,12 @@ class UTF8Parser(SGMLParser):
         if not self.domain and self.isDomain:
             try:
                 domain = [v for k, v in attrs if k == 'href'][0]
-                self.domain = domain
-            except IndexError:
+                if not cmp('http://www.hongxiu.com/', domain):
+                    self.domain = u'http://novel.hongxiu.com/'
+                else:
+                    self.domain = domain
+            except Exception, e:
+                logger.error(str(e))
                 pass
 
         if not self.listUrl:
@@ -882,7 +958,7 @@ class BookInfoParser(SGMLParser):
 
 
 class RecursionPage:
-    def __init__(self, url, db, cdb, ldb, cid=0, startPage=1, totalPage=10):
+    def __init__(self, url, db, cdb, ldb, cid=0, startPage=1, totalPage=1):
         self.cid = cid
         self.url = url
         self.db = db
@@ -902,7 +978,14 @@ class RecursionPage:
         bookContent = parser.getBookList()
 
         if bookContent:
+            if DEBUG:
+                count = 0
             for item in bookContent:
+                if DEBUG:
+                    if count > DEBUGNUMBER:
+                        break
+                    else:
+                        count += 1
                 url = item.linkUrl
                 lMatch = pattern.match(url)
                 if not lMatch:
@@ -951,6 +1034,7 @@ class BookInfo:
         content = WebPageContent(self.url)
         utf8Parser = UTF8Parser()
         utf8Parser.feed(content.getData())
+        utf8Parser.close()
         parser = BookInfoParser()
         if utf8Parser.hasMatch:
             parser.feed(content.getData())
@@ -960,15 +1044,233 @@ class BookInfo:
         book = self.db.select(self.fid)
         if book:
             wordNum = book[2]
-            if wordNum < self.totalCount:
+            if wordNum < utf8Parser.readNum:
                 self.cdb.insert(SpiderContent(fid=self.fid, wordNum=utf8Parser.wordNum, readNum=utf8Parser.readNum,
-                                              updateTime=self.book.updateTime, lsPid=book[1], listUrl=self.listUrl))
+                                              updateTime=self.book.updateTime, lsPid=book[1],
+                                              listUrl=utf8Parser.listUrl, isEnd=self.book.endStatus,
+                                              isUtf8=int(utf8Parser.hasMatch), domain=utf8Parser.domain))
                 logger.info(u"insert into content db for update. fid:%d, wordNum:%d." % (self.fid, utf8Parser.wordNum))
         else:
             self.cdb.insert(SpiderContent(fid=self.fid, wordNum=utf8Parser.wordNum, readNum=utf8Parser.readNum,
                                           updateTime=self.book.updateTime, title=self.book.title, intro=parser.intro,
-                                          cid=self.cid, url=self.url, author=self.book.author, isAdd=1, listUrl=self.listUrl))
+                                          cid=self.cid, url=self.url, author=self.book.author, isAdd=1,
+                                          listUrl=utf8Parser.listUrl, isEnd=self.book.endStatus,
+                                          isUtf8=int(utf8Parser.hasMatch), domain=utf8Parser.domain))
             logger.info(u"insert into content db for insert. fid:%d, wordNum:%d." % (self.fid, utf8Parser.wordNum))
+
+
+class BookListData:
+    def __init__(self):
+        self.title = u""
+        self.linkUrl = u""
+        self.isVip = False
+        self.updateTime = u""
+
+
+class BookListParser(SGMLParser):
+    def __init__(self, domain, fid, isUtf8):
+        SGMLParser.__init__(self)
+        self.domain = domain[0:len(domain) - 1]
+        self.fid = fid
+        self.isUtf8 = isUtf8
+
+    def reset(self):
+        SGMLParser.reset(self)
+        self.bookTitleList = None
+        self.bookList = []
+        self.isContent = False
+        self.isLi = False
+        self.isLink = False
+        self.isDate = False
+        self.isFont = False
+        self.pattern = re.compile(r"[\s\S]*openloginvip\(([0-9]+),[\s\S]*\)")
+        self.httpPattern = re.compile(r"http://[\s\S]*")
+
+    def getTitleList(self):
+        return self.bookList
+
+    def handle_data(self, text):
+        if self.isLink:
+            self.bookTitleList.title = text.strip("\r\n").strip("' target='_blank'>").strip()
+        if self.isFont:
+            self.bookTitleList.isVip = True
+        if self.isDate:
+            self.bookTitleList.updateTime = text.strip("\r\n").strip()
+
+
+    def start_div(self, attrs):
+        isContent = [v for k, v in attrs if k == 'id' and v == 'htmlList']
+        if isContent:
+            self.isContent = True
+
+    def end_div(self):
+        if self.isContent:
+            self.isContent = False
+
+    def start_li(self, attrs):
+        if self.isContent:
+            self.isLi = True
+            self.bookTitleList = BookListData()
+            self.bookList.append(self.bookTitleList)
+
+    def end_li(self):
+        if self.isLi:
+            self.isLi = False
+
+    def start_a(self, attrs):
+        if self.isLi:
+            self.isLink = True
+            bookListUrl = u""
+            try:
+                linkUrl = [v for k, v in attrs if k == 'href'][0]
+                bookListUrl = linkUrl
+            except IndexError:
+                pass
+            try:
+                if not cmp(bookListUrl, "javascript:;"):
+                    listParser = [v for k, v in attrs if k == 'onclick'][0]
+                    m = self.pattern.match(listParser)
+                    if m:
+                        bookListUrl = u"%s/book%d_%d.html" % (self.domain, self.fid, int(m.group(1)))
+            except Exception, e:
+                logger.error(str(e))
+                pass
+            if bookListUrl:
+                sm = self.httpPattern.match(bookListUrl)
+                if not sm:
+                    bookListUrl = u"%s%s" % (self.domain, bookListUrl)
+                self.bookTitleList.linkUrl = bookListUrl
+
+    def end_a(self):
+        if self.isLink:
+            self.isLink = False
+
+    def start_span(self, attrs):
+        if self.isLi:
+            self.isDate = True
+
+    def end_span(self):
+        if self.isDate:
+            self.isDate = False
+
+    def start_font(self, attrs):
+        if self.isLi:
+            isFont = [v for k, v in attrs if k == 'class' and v == 'isvip']
+            if isFont:
+                self.isFont = True
+
+    def end_font(self):
+        if self.isFont:
+            self.isFont = False
+
+
+class BookListInfo:
+    def __init__(self, db, cdb, ldb, url, fid, isUtf8, domain):
+        self.db = db
+        self.cdb = cdb
+        self.ldb = ldb
+        self.url = url
+        self.fid = fid
+        self.isUtf8 = isUtf8
+        self.domain = domain
+        self.run()
+
+    def run(self):
+        content = WebPageContent(self.url)
+        pidPattern = re.compile(r'http://.*?/([a-zA-Z0-9,]+)_([0-9]+)\.html')
+        utf8PidPattern = re.compile(r'http://.*?/([a-zA-Z0-9/]+)/([0-9]+).([aspx|shtml])')
+        parser = BookListParser(self.domain, self.fid, self.isUtf8)
+        try:
+            if self.isUtf8:
+                parser.feed(content.getData())
+            else:
+                parser.feed(content.getData().decode('gb2312', 'ignore').encode('utf-8'))
+        except Exception, e:
+            logger.error(str(e))
+        parser.close()
+        listContent = parser.getTitleList()
+        if listContent:
+            if DEBUG:
+                count = 1
+            for item in listContent:
+                if item.linkUrl and item.title:
+                    if DEBUG:
+                        if count > DEBUGNUMBER:
+                            break
+                        else:
+                            count += 1
+                    isVip = item.isVip
+                    if self.isUtf8:
+                        m = utf8PidPattern.match(item.linkUrl)
+                    else:
+                        m = pidPattern.match(item.linkUrl)
+                    pid = 0
+                    if m:
+                        pid = int(m.group(2))
+                    if not self.ldb.select(self.fid, pid):
+                        #TODO 这里需要发送到接口，需要在insert之前发送
+                        result = self.ldb.insert(
+                            BookList(fid=self.fid, pid=pid, title=item.title, linkUrl=item.linkUrl, isVip=int(isVip)))
+                        if result:
+                            logger.info(u"book title list add success. fid:%d, pid:%d." % (self.fid, pid))
+                        else:
+                            logger.error(u"book title list add error. fid:%d, pid:%d." % (self.fid, pid))
+                        if not isVip:
+                            BookDetail(self.ldb, self.fid, pid, item.title, item.linkUrl, self.isUtf8, item.updateTime)
+                            # BookDetail(self.ldb, self.fid, pid, item.title, "http://novel.hongxiu.com/a/593351/6403484.shtml", self.isUtf8, item.updateTime)
+                    else:
+                        logger.info(u"book title list isAlready add. fid:%d, pid:%d." % (self.fid, pid))
+
+
+class BookDetailParser(SGMLParser):
+    def reset(self):
+        SGMLParser.reset(self)
+        self.content = u''
+        self.isP = False
+        self.isContent = False
+
+    def handle_data(self, text):
+        if self.isP:
+            self.content += text.strip("\r\n").strip(u"　").strip("本书由幻侠小说网(www.huanxia.com)首发").strip()
+
+    def start_div(self, attrs):
+        contentDiv = [v for k, v in attrs if k == 'id' and v == 'htmlContent']
+        if contentDiv:
+            self.isContent = True
+
+    def end_div(self):
+        if self.content and self.isContent:
+            self.isContent = False
+
+    def start_p(self, attrs):
+        if self.isContent:
+            self.isP = True
+
+    def end_p(self):
+        if self.isP:
+            self.isP = False
+
+
+class BookDetail:
+    def __init__(self, ldb, fid, pid, title, url, isUtf8, updateTime):
+        self.ldb = ldb
+        self.url = url
+        self.fid = fid
+        self.pid = pid
+        self.title = title
+        self.isUtf8 = isUtf8
+        self.updateTime = updateTime
+        self.run()
+
+    def run(self):
+        content = WebPageContent(self.url)
+        parser = BookDetailParser()
+        if self.isUtf8:
+            parser.feed(content.getData())
+        else:
+            parser.feed(content.getData().decode('gb2312', 'ignore').encode('utf-8'))
+        parser.close()
+        self.ldb.insertDetail(self.fid, self.pid, self.title, self.url, parser.content, self.updateTime)
 
 
 class BookListSpider:
@@ -982,13 +1284,23 @@ class BookListSpider:
         result = self.cdb.select()
         hm = HttpMonitor()
         if result:
+            if DEBUG:
+                count = 0
             for content in result:
+                if DEBUG:
+                    if count > DEBUGNUMBER:
+                        break
+                    else:
+                        count += 1
                 isAdd = content[0]
                 fid = content[1]
                 wordNum = content[2]
                 readNum = content[3]
                 updateTime = content[4]
                 listUrl = content[12]
+                isEnd = content[13]
+                isUtf8 = content[14]
+                domain = content[15]
                 #如果是新增的则调用新增接口，否则调用更新接口
                 if isAdd == 1:
                     title = content[6]
@@ -999,20 +1311,25 @@ class BookListSpider:
                     user = hm.user(cid)
                     lsPid = hm.postContent(user.uid, user.name, title, intro, updateTime, cid, 2, fid, url, wordNum,
                                            readNum, author)
+                    # lsPid = 1
                     if lsPid:
-                        self.db.insert(SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum))
+                        self.db.insert(SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum, listUrl=listUrl, isUtf8=isUtf8,
+                                                 domain=domain))
                     logger.info(u"book info add to web, fid: %d, title: %s, url: %s." % (fid, title, url))
                 else:
                     pid = content[1]
                     result = hm.updateContent(pid, fid, readNum, wordNum, updateTime)
+                    # result = True
                     if result:
                         self.db.update(fid=fid, wordNum=wordNum)
                     logger.info(u"book info update to web, fid: %d, pid: %d, updateTime: %s." % (fid, pid, updateTime))
-                # BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid)
+                BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid, isUtf8, domain)
+                # BookListInfo(self.db, self.cdb, self.ldb,  u"http://www.huanxia.com/book579912_novel.html", fid, 0, u"http://www.huanxia.com/")
+                if isEnd:
+                    self.db.updateEndStatus(fid=fid, isEnd=isEnd)
 
 
-
-class Spider():
+class Spider:
     def __init__(self):
         self.run()
 
@@ -1023,6 +1340,8 @@ class Spider():
         for key in categoryDict:
             url = u'http://www.hongxiu.com/novel/s/%s_1_order9.html' % key
             RecursionPage(url, db, cdb, ldb, categoryDict[key])
+            if DEBUG:
+                break
         logger.info(u"search page list is finish")
         BookListSpider(db, cdb, ldb)
         db.close()
@@ -1031,5 +1350,24 @@ class Spider():
         logger.info(u"all finish")
 
 
+class SpiderHistory:
+    def __init__(self):
+        self.run()
+
+    def run(self):
+        db = DBManage()
+        cdb = ContentDBManage()
+        ldb = BookListManage()
+        result = db.selectHistory()
+        if result:
+            for item in result:
+                listUrl = item[4]
+                fid = item[0]
+                isUtf8 = item[6]
+                domain = item[7]
+                BookListInfo(db, cdb, ldb, listUrl, fid, isUtf8, domain)
+
+
 if __name__ == "__main__":
     Spider()
+    # SpiderHistory()

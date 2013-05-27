@@ -197,11 +197,13 @@ class TopicReply(BaseModel):
         super(TopicReply,self).__init__(*args, **kwargs)
         self._avatar_url=None
     
-    userid=models.IntegerField('user id')
-    username=models.CharField('user name',max_length=30)
-    topicid=models.IntegerField('topic id',db_index=True)
-    title=models.CharField('topic title',max_length=255,default="",blank=True)
-    content=models.TextField('topic content',max_length=50000)
+    userid=models.IntegerField('UID')
+    username=models.CharField('用户名',max_length=30)
+    topicid=models.IntegerField('主题ID',db_index=True)
+    title=models.CharField('标题',max_length=255,default="",blank=True)
+    content=models.TextField('内容',max_length=50000)
+    is_chapter=models.BooleanField('章节',default=False)
+    source_url=models.URLField('来源地址')
     
     def getAvatarUrl(self):
         if self._avatar_url==None:
