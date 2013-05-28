@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/ls.css" afterPath="$PROJECT_DIR$/static/css/ls.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ls/templates/ls_topic_main_doc.html" afterPath="$PROJECT_DIR$/ls/templates/ls_topic_main_doc.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ls/templates/ls_topic_reply_item.html" afterPath="$PROJECT_DIR$/ls/templates/ls_topic_reply_item.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ls/models.py" afterPath="$PROJECT_DIR$/ls/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ls/topic_forms.py" afterPath="$PROJECT_DIR$/ls/topic_forms.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/images/ajax-loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/images/icons-18-black.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/images/icons-18-white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/images/icons-36-black.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/images/icons-36-white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/jquery.mobile-1.3.1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/js/jquery.mobile-1.3.1.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/jquery.mobile.structure-1.3.1.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/jquery.mobile.structure-1.3.1.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/base/templates/mframe.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/mls.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/css/mls.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ls/templates/mls_topic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/avatar/a_250X250_1.jpg" afterPath="$PROJECT_DIR$/static/avatar/a_250X250_1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/avatar/a_o_1.jpg" afterPath="$PROJECT_DIR$/static/avatar/a_o_1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/base/storage/client.py" afterPath="$PROJECT_DIR$/base/storage/client.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/base/templates/frame.html" afterPath="$PROJECT_DIR$/base/templates/frame.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ls/topic_view.py" afterPath="$PROJECT_DIR$/ls/topic_view.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myhome/urls.py" afterPath="$PROJECT_DIR$/myhome/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ls.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369621949623" ignored="false" />
+    <file path="/Dummy.txt" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369704795899" ignored="false" />
     <file path="/cleardb" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1368961202324" ignored="false" />
     <file path="/models.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369637242853" ignored="false" />
     <file path="/README.md" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369637388873" ignored="false" />
@@ -19,13 +33,16 @@
     <file path="/user_edit_view.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369274776017" ignored="false" />
     <file path="/base_email_bind.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369302166558" ignored="false" />
     <file path="/base_email_active.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369301984442" ignored="false" />
-    <file path="/urls.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369575537537" ignored="false" />
-    <file path="/topic_view.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369642460056" ignored="false" />
+    <file path="/urls.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369732674918" ignored="false" />
+    <file path="/topic_view.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369732873647" ignored="false" />
     <file path="/ls_topic_reply_item.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369643215280" ignored="false" />
     <file path="/ls_topic_reply_edit.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369576656714" ignored="false" />
     <file path="/topic_forms.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369642895733" ignored="false" />
     <file path="/ls_topic_main_doc.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369642730143" ignored="false" />
     <file path="/ls.css" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369641925072" ignored="false" />
+    <file path="/client.py" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369709187664" ignored="false" />
+    <file path="/mframe.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369733056572" ignored="false" />
+    <file path="/mls_topic.html" changelist="e9fe6aa6-26ff-4a73-94b9-fdf7aa2bab80" time="1369733017649" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,82 +65,54 @@
       <file leaf-file-name="topic_view.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ls/topic_view.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="34" selection-start="1666" selection-end="1666" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#15#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ls_topic_edit.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="86" selection-start="709" selection-end="711" vertical-scroll-proportion="-0.6785714">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ls_topic_reply_edit.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_reply_edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="103" selection-end="103" vertical-scroll-proportion="-3.392857">
+            <state line="29" column="0" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ls_topic_main_doc.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_main_doc.html">
+      <file leaf-file-name="mframe.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/base/templates/mframe.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="26" selection-start="4114" selection-end="4114" vertical-scroll-proportion="-9.607142">
+            <state line="12" column="7" selection-start="442" selection-end="442" vertical-scroll-proportion="0.33628318">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mls_topic.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ls/templates/mls_topic.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="5" selection-start="52" selection-end="52" vertical-scroll-proportion="-2.7142856">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/myhome/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="26" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#8;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#11;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#12;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#12;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#0#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="topic_forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ls/topic_forms.py">
+      <file leaf-file-name="frameBase.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/base/templates/frameBase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="117" selection-start="3364" selection-end="3364" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#21#45#0" expanded="true" />
-              </folding>
+            <state line="22" column="53" selection-start="1093" selection-end="1142" vertical-scroll-proportion="-5.892857">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ls_topic_reply_item.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_reply_item.html">
+      <file leaf-file-name="frame.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/base/templates/frame.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="79" selection-start="1899" selection-end="1899" vertical-scroll-proportion="-6.0">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/base.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="5" column="129" selection-start="289" selection-end="289" vertical-scroll-proportion="-3.392857">
               <folding />
             </state>
           </provider>
@@ -132,27 +121,16 @@
       <file leaf-file-name="ls.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/ls.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="0" selection-start="772" selection-end="772" vertical-scroll-proportion="-8.36">
+            <state line="36" column="0" selection-start="772" selection-end="772" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ls/models.py">
+      <file leaf-file-name="mls.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/css/mls.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="41" selection-start="4803" selection-end="4803" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#15#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="7" selection-start="3228" selection-end="3383" vertical-scroll-proportion="0.63349134">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -176,22 +154,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/config.yaml" />
-        <option value="$PROJECT_DIR$/base/templates/register.html" />
-        <option value="$PROJECT_DIR$/base/register_view.py" />
-        <option value="$PROJECT_DIR$/base/templates/base_email_active.html" />
         <option value="$PROJECT_DIR$/base/templates/base_email_bind.html" />
         <option value="$PROJECT_DIR$/cleardb.bat" />
         <option value="$PROJECT_DIR$/ls/fixtures/ls_books1.json" />
-        <option value="$PROJECT_DIR$/myhome/urls.py" />
         <option value="$PROJECT_DIR$/ls/templates/ls_topic_reply_edit.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/static/css/ls.css" />
-        <option value="$PROJECT_DIR$/ls/topic_view.py" />
         <option value="$PROJECT_DIR$/ls/templates/ls_topic_main_doc.html" />
         <option value="$PROJECT_DIR$/ls/topic_forms.py" />
         <option value="$PROJECT_DIR$/ls/models.py" />
         <option value="$PROJECT_DIR$/ls/templates/ls_topic_reply_item.html" />
+        <option value="$PROJECT_DIR$/base/storage/client.py" />
+        <option value="$PROJECT_DIR$/base/templates/frame.html" />
+        <option value="$PROJECT_DIR$/myhome/urls.py" />
+        <option value="$PROJECT_DIR$/ls/topic_view.py" />
+        <option value="$PROJECT_DIR$/ls/templates/mls_topic.html" />
+        <option value="$PROJECT_DIR$/base/templates/mframe.html" />
       </list>
     </option>
   </component>
@@ -257,6 +235,10 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -269,10 +251,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="is" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -304,21 +282,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myhome" />
+              <option name="myItemId" value="sample" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -364,7 +328,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ls" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,12 +372,14 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -393,8 +391,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ls/templates" />
+      <recent name="$PROJECT_DIR$/static/css/images" />
+      <recent name="$PROJECT_DIR$/static/css" />
       <recent name="C:\workspace\ls\ls\templates" />
       <recent name="$PROJECT_DIR$/base/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/js" />
+      <recent name="$PROJECT_DIR$/static/css" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.ls">
@@ -439,29 +444,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ls" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -483,6 +465,29 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ls" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -507,7 +512,7 @@
     </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
       <JSDebuggerConfigurationSettings>
-        <option name="engineId" />
+        <option name="engineId" value="embedded" />
         <option name="fileUrl" />
       </JSDebuggerConfigurationSettings>
       <method />
@@ -577,14 +582,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1869" height="1040" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20296215" sideWeight="0.7169197" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28308025" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20515634" sideWeight="0.79609543" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20390455" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -657,104 +662,21 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/base/storage/client.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cleardb.bat">
+    <entry file="file://$PROJECT_DIR$/ls/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="6" selection-start="112" selection-end="145" vertical-scroll-proportion="0.0">
+        <state line="138" column="11" selection-start="5180" selection-end="5180" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/base/base_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.5295082">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/base/register_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.6196722">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Python/2.7/site-packages/django/utils/importlib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/templates/ls_category_topic_item.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_reply_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="103" selection-end="103" vertical-scroll-proportion="-3.392857">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="86" selection-start="709" selection-end="711" vertical-scroll-proportion="-0.6785714">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/topic_view.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="34" selection-start="1666" selection-end="1666" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#15#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_main_doc.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="26" selection-start="4114" selection-end="4114" vertical-scroll-proportion="-9.607142">
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#8;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#11;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#12;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#12;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ls/topic_forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="117" selection-start="3364" selection-end="3364" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#21#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -765,40 +687,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/ls.css">
+    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_reply_item.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="0" selection-start="772" selection-end="772" vertical-scroll-proportion="-8.36">
+        <state line="42" column="79" selection-start="1899" selection-end="1899" vertical-scroll-proportion="-28.5">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ls/models.py">
+    <entry file="file://$PROJECT_DIR$/ls/topic_forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="41" selection-start="4803" selection-end="4803" vertical-scroll-proportion="0.0">
+        <state line="83" column="117" selection-start="3364" selection-end="3364" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_main_doc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="117" column="26" selection-start="4864" selection-end="4864" vertical-scroll-proportion="-79.39286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="40" selection-start="338" selection-end="338" vertical-scroll-proportion="-6.785714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/ls.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="772" selection-end="772" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/jquery.mobile.structure-1.3.1.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/django/views/generic/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="8" selection-start="947" selection-end="947" vertical-scroll-proportion="0.009915014">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/mls.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/base/templates/frame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="129" selection-start="289" selection-end="289" vertical-scroll-proportion="-3.392857">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myhome/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="26" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#15#43#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ls/templates/ls_topic_reply_item.html">
+    <entry file="file://$PROJECT_DIR$/base/templates/frameBase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="79" selection-start="1899" selection-end="1899" vertical-scroll-proportion="-6.0">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#1;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="22" column="53" selection-start="1093" selection-end="1142" vertical-scroll-proportion="-5.892857">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/ls/templates/mls_topic.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="7" selection-start="3228" selection-end="3383" vertical-scroll-proportion="0.63349134">
+        <state line="4" column="5" selection-start="52" selection-end="52" vertical-scroll-proportion="-2.7142856">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ls/topic_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="1156" selection-end="1156" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/base/templates/mframe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="7" selection-start="442" selection-end="442" vertical-scroll-proportion="0.33628318">
           <folding />
         </state>
       </provider>

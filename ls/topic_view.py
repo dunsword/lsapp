@@ -26,7 +26,7 @@ class BaseTopicView(LsView):
 class TopicView(BaseTopicView):
     
     #@method_decorator(login_required)
-    def get(self,request, topicid,page=1,*args, **kwargs):
+    def get(self,request, topicid,version='',page=1,*args, **kwargs):
         topicid=int(topicid)
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
@@ -62,7 +62,8 @@ class TopicView(BaseTopicView):
                              "replyForm":replyForm,
                              "pageInfo":pageInfo
                              })
-        tt = loader.get_template('ls_topic.html')
+
+        tt = loader.get_template(version+'ls_topic.html')
         return HttpResponse(tt.render(c))
     
     def post(self,request, topicid,*args, **kwargs):
