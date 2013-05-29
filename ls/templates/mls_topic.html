@@ -1,7 +1,37 @@
 {% extends "mframe.html" %}
 
 {% block page %}
+<section data-role='page'>
+    <header data-role='header'>
+        <h1>精品小说推荐</h1>
+    </header>
+    <div data-role='content'>
+        <p>{{ topic.instance.title }}</p>
+        <p>作者：{{ topic.instance.getDocument.author_name}}</p>
+        <p>更新：
 
-hello
+            {{ topic.instance.getDocument.source_updated_at|date:"Y-m-d" }}
+        </p>
+        <ul data-role='listview'>
+            <li data-role='list-divider'>内容简介：</li>
+        </ul>
+
+        <p>
+                {{ topic.instance.content|linebreaksbr }}
+        </p>
+        <ul data-role='listview'>
+            <li data-role='list-divider'>章节：</li>
+            {% for chapter in chapters %}
+                {% if chapter.title %}
+                    <li>
+                        <a href='{{ chapter.url }}'>{{ chapter.title }}</a>
+                    </li>
+                {% endif  %}
+
+            {% endfor %}
+        </ul>
+    </div>
+    <footer data-role='footer'><h5>关于</h5></footer>
+</section>
 
 {% endblock %}

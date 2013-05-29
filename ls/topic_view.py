@@ -115,7 +115,14 @@ class TopicEditView(BaseTopicView):
             else:
                 return self._get_json_respones({'result':'failed',
                                         'errors':topicForm.errors})
-    
+
+class TopicReplyPageView(BaseTopicView):
+     def get(self,request,version,topicid,replyid,*args,**kwargs):
+        topicReply=TopicReply.objects.get(pk=replyid)
+        c = RequestContext(request,{'reply':topicReply})
+        tt = loader.get_template('ls_topic_reply_item.html')
+        return HttpResponse(tt.render(c))
+
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)
     def post(self,request,topicid,*args,**kwargs):
