@@ -14,6 +14,14 @@ class Huatan:
     httpHeaders = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
 
     def getThreadInfo(self,bid,page=1,perPage=50):
+        """
+        花坛获得列表页接口
+        :param bid:       花坛id
+        :param page:      获得列表第几页
+        :param perPage:   每页显示的条数
+        :return:          字典
+        """
+
         huatanUrl = self.lou19Url + "&bid=%s"%(str(bid))+"&page="+str(page)+"&perPage="+str(perPage)
         hClient = Http()
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
