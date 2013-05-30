@@ -15,7 +15,7 @@ class Huatan:
     imageBaseUrl = u"http://att3.citysbs.com/"
     imageSize = u"200x240"
 
-    def getThreadInfo(self,bid,page=1,perPage=50):
+    def getThreadList(self,bid,page=1,perPage=50):
         """
         花坛获得列表页接口
         :param bid:       花坛id
