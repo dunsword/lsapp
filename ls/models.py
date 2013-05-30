@@ -47,6 +47,7 @@ class Topic(BaseModel):
         self._avatar_url=None
         self.category=None
         self.chapters=None
+
         
     objects=TopicManager()
     TOPIC_TYPE_NORMAL=1
@@ -70,10 +71,19 @@ class Topic(BaseModel):
     catid2=models.IntegerField(u'标签',default=0)
 
     def getChapters(self):
-        return TopicReply.objects.getChapters(self.id)
+        if self.chapters == None:
+            self.chapters = TopicReply.objects.getChapters(self.id)
+
+        return self.chapters
+
+    def getChapter(self,replyid):
+        chapters=self.getChapters()
+        for c in chapters:
+            if c.id==replyid:
+                return c
+        return None
 
 
-    
     def getAvatarUrl(self):
         if self._avatar_url==None:
             self._avatar_url=AvatarClient.url('a_250X250_'+str(self.userid)+'.jpg')
@@ -204,8 +214,13 @@ class TopicReplyManager(models.Manager):
     def getChapters(self,topicid):
         chapters=self.raw('select id,title from ls_topicreply where topicid=%s and is_chapter=true limit 1000',[topicid])
         l=list(chapters)
-        for c in l:
+        for i in range(0,len(l)):
+            c=l[i]
             c.url=self.getReplyUrl(topicid,c.id)
+            if i>0:
+                c.previous=l[i-1]
+            if i<len(l)-1:
+                c.next=l[i+1]
         return l
 
     def getReplyUrl(self,topicid,replyid):
@@ -220,6 +235,7 @@ class TopicReply(BaseModel):
     def __init__(self, *args, **kwargs):
         super(TopicReply,self).__init__(*args, **kwargs)
         self._avatar_url=None
+        self.topic=None
 
 
     objects=TopicReplyManager()
@@ -231,11 +247,28 @@ class TopicReply(BaseModel):
     content=models.TextField('内容',max_length=50000)
     is_chapter=models.BooleanField('章节',default=False)
     source_url=models.URLField('来源地址')
+
+    def save(self, *args, **kwargs):
+        self.updated_at=datetime.now()
+        super(BaseModel,self).save(*args, **kwargs)
+        #清空缓存
+        if self.is_chapter==True:
+            self.getTopic().chapters=None
     
     def getAvatarUrl(self):
         if self._avatar_url==None:
             self._avatar_url=AvatarClient.url('a_250X250_'+str(self.userid)+'.jpg')
         return self._avatar_url
+
+    def getTopic(self):
+        if self.topic==None:
+            self.topic=Topic.objects.get(pk=self.topicid)
+
+        return self.topic
+
+
+    def getChapter(self):
+        return self.getTopic().getChapter(self.id)
 
 
 

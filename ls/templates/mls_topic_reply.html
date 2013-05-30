@@ -8,6 +8,64 @@
 </head>
 
 <body>
- {% block page %}page{% endblock %}
+<section data-role='page'>
+    <header data-role='header'>
+        <a data-rel='back'>返回</a>
+        <h1>精品小说推荐</h1>
+    </header>
+    <div data-role='content'>
+        <ul data-role='listview'>
+            <li data-role='list-divider'>{{ reply.getTopic.title }} > {{ reply.title }}</li>
+        </ul>
+
+        <p>
+                {{ reply.content|linebreaksbr }}
+        </p>
+
+    </div>
+    <div data-role='navbar'>
+        <ul>
+            <li>
+                {% with prev=reply.getChapter.previous %}
+                {% if prev %}
+                <a href='/m/topic/{{ reply.getTopic.id }}/reply/{{prev.id}}' data-icon='arrow-l' class='ui-btn-left'>上一章</a>
+                {% endif %}
+                {% endwith %}
+
+            </li>
+            <li>
+                <a href='/m/topic/{{ reply.getTopic.id }}/1' data-icon='home'>返回目录</a>
+            </li>
+            <li>
+                {% with next=reply.getChapter.next %}
+        {% if next %}
+         <a href='/m/topic/{{ reply.getTopic.id }}/reply/{{next.id}}' data-icon='arrow-r' class='ui-btn-right'>下一章</a>
+        {% endif %}
+        {% endwith %}
+            </li>
+        </ul>
+    </div>
+    <footer data-role='footer' data-position='inline'>
+        <h5>关于</h5>
+    </footer>
+</section>
+<section data-role='page'>
+    <header data-role='header'>
+        <a data-rel='back'>返回目录</a>
+        <h1>精品小说推荐</h1>
+    </header>
+    <div data-role='content'>
+        <ul data-role='listview'>
+            <li data-role='list-divider'>{{ reply.title }}</li>
+        </ul>
+
+        <p>
+                {{ reply.content|linebreaksbr }}
+        </p>
+    </div>
+    <footer data-role='footer'>
+        <h5>返回目录</h5>
+    </footer>
+</section>
 </body>
 </html>
