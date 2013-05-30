@@ -36,7 +36,7 @@ class TopicView(BaseTopicView):
 
         if topic.isDocument:
             docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
-            chapters=TopicReply.objects.getChapters(topicid)
+            chapters=topic.getChapters()
             count=len(chapters)
             chapter_align=0 #用于补齐3个的数量
             if count%3>0:
@@ -116,11 +116,17 @@ class TopicEditView(BaseTopicView):
                 return self._get_json_respones({'result':'failed',
                                         'errors':topicForm.errors})
 
+
 class TopicReplyPageView(BaseTopicView):
+     '''
+     用于单独的回复页面
+     '''
      def get(self,request,version,topicid,replyid,*args,**kwargs):
+
+
         topicReply=TopicReply.objects.get(pk=replyid)
         c = RequestContext(request,{'reply':topicReply})
-        tt = loader.get_template('ls_topic_reply_item.html')
+        tt = loader.get_template(version+'ls_topic_reply.html')
         return HttpResponse(tt.render(c))
 
 class TopicReplyView(BaseTopicView):
