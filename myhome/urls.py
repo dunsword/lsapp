@@ -30,7 +30,11 @@ urlpatterns = patterns('',
     (url(r'^$',IndexView.as_view())),
     (url(r'^cat/(?P<categoryid>\d+)/(?P<page>\d+)$',CategoryView.as_view())),
     (url(r'^cat/new_topic$',CategoryNewTopicView.as_view())),
+
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
+    (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
+    (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$)',TopicReplyView.as_view())),
+
     (url(r'^topic/(?P<topicid>\d+)/add_reply$',TopicReplyView.as_view())),
     (url(r'^topic/reply/(?P<replyid>\d+)$',TopicReplyView.as_view())),
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),

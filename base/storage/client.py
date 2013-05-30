@@ -116,13 +116,22 @@ class CAvatarCropClient(StorageClient):
             datain.seek(0)
             im=Image.open(datain)
             
-        im.thumbnail((displayW,displayH), Image.ANTIALIAS)
+        #im.thumbnail((displayW,displayH), Image.ANTIALIAS)
+        im=im.resize((displayW,displayH))
         area=im.crop((left,top,left+cropW,top+cropH))
         
         fileName=self.getSaveFileName(uid)
 
-       
-        area.thumbnail((250,250),Image.ANTIALIAS)
+        if cropW>250:
+            aw=250
+        else:
+            aw=cropW
+
+        if cropH>250:
+            ah=250
+        else:
+            ah=cropH
+        area.thumbnail((cropW,cropH),Image.ANTIALIAS)
         
         if self.client==None:
             fullPathName=settings.STATIC_ROOT+self.domain+"/"+fileName

@@ -26,16 +26,24 @@ class BaseTopicView(LsView):
 class TopicView(BaseTopicView):
     
     #@method_decorator(login_required)
-    def get(self,request, topicid,page=1,*args, **kwargs):
+    def get(self,request, topicid,version='',page=1,*args, **kwargs):
         topicid=int(topicid)
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
         docForm=None
         chapters=None
+
+
         if topic.isDocument:
             docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
             chapters=TopicReply.objects.getChapters(topicid)
-        
+            count=len(chapters)
+            chapter_align=0 #用于补齐3个的数量
+            if count%3>0:
+                chapter_align=3-count%3
+            for i in range(chapter_align):
+                chapters.append({})
+
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=TopicForm(instance=topic,prefix="topic")
         topicForm.is_valid()
@@ -54,7 +62,8 @@ class TopicView(BaseTopicView):
                              "replyForm":replyForm,
                              "pageInfo":pageInfo
                              })
-        tt = loader.get_template('ls_topic.html')
+
+        tt = loader.get_template(version+'ls_topic.html')
         return HttpResponse(tt.render(c))
     
     def post(self,request, topicid,*args, **kwargs):
@@ -106,7 +115,14 @@ class TopicEditView(BaseTopicView):
             else:
                 return self._get_json_respones({'result':'failed',
                                         'errors':topicForm.errors})
-    
+
+class TopicReplyPageView(BaseTopicView):
+     def get(self,request,version,topicid,replyid,*args,**kwargs):
+        topicReply=TopicReply.objects.get(pk=replyid)
+        c = RequestContext(request,{'reply':topicReply})
+        tt = loader.get_template('ls_topic_reply_item.html')
+        return HttpResponse(tt.render(c))
+
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)
     def post(self,request,topicid,*args,**kwargs):

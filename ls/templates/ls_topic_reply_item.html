@@ -1,5 +1,5 @@
  {# need reply object #}
-<div class="row-fluid" style="border-top: 1px solid #dddddd;padding:10px 0px 10px 0px">
+<div class="row-fluid" style="border-top: 1px solid #dddddd;padding:20px 0px 20px 0px">
     <div class="span2 lavatar" style="margin-top: 2px;">
         <img
         class="img-rounded ls-avatar"
@@ -36,6 +36,15 @@
                         {{reply.content|linebreaksbr }}
                     </div>
                 </div>
+                {% if reply.is_chapter %}
+                  <div class="row-fluid">
+                    <div class="span12">
+                        <span style="float:left">
+								<a href="{{ reply.source_url }}" target='_blank'>阅读原文</a>
+						</span>
+                    </div>
+                </div>
+                {% endif %}
                 {% if user.is_staff %}
                   <div class="row-fluid">
                     <div class="span12">

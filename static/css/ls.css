@@ -29,6 +29,29 @@
 	float:right;
 	margin-right:20px;
 }
+
+.ls-chapter{
+    width:580px;
+    margin:auto;
+    border-top:dashed #dddddd 1px;
+
+
+}
+.ls-chapter .ls-chapter-item{
+    display:inline-block;
+    width:170px;
+    padding:5px 10px 5px 10px;
+    border-bottom: dashed #dddddd 1px;
+    overflow: hidden
+}
+.ls-chapter .ls-chapter-item-first{
+    display:inline-block;
+    width:170px;
+    padding:5px 10px 5px 10px;
+    border-bottom: dashed #dddddd 1px;
+    overflow: hidden
+}
+
 .recommend {
 	margin: 30px 0 30px 0;
 }
