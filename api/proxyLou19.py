@@ -218,9 +218,7 @@ class HTMLStripperExcludeBr(HTMLParser):
 
 
 if __name__ == "__main__":
-    # lou19 = Lou19Thread()
-    # result = lou19.getAllCharpters(12011369225965883,31004258)
-    # print ()
+
     proxy = ThreadProxy()
     result = proxy.getDocumentCharpters(19,12011369225965883,31004258,1,10)
     print
@@ -230,7 +228,6 @@ if __name__ == "__main__":
         print "======"
         print item.content
 
-    # data = """
     # <div align="left"><font face="" color="" style="font-size: 18px">&nbsp;&nbsp;&nbsp; 见他还是一副事不关已，只来占便宜的样子，颜千夏便眯眼一笑，小声说道：<BR><br>&nbsp;&nbsp;&nbsp;&nbsp;“现在这药正让我难受，皇上，不如，借你的唇一用？让我泄泄火？”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“悉听尊便。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;慕容烈低下头，柔软的唇瓣轻贴在了她的小嘴儿上，颜千夏的眼角荡开几丝得逞的笑意，他还没来得及撤开，颜千夏就已经在他的唇角上狠狠下了口，不客气地留了两枚清晰的牙齿印儿。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;事实告诉他，千万别去欺负一个可怜的小寡妇！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;看着颜千夏在水里快速刨开，慕容烈伸手一抓，便拉住了她的脚踝，她尖叫一声，连连蹬着腿，这药在她血管里正加速运动，让她的尖叫听上去倒像是在求欢的意思。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“小夏儿，我倒忘了，你一向喜欢咬人的。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;他俯过身来，把她的腿一下就缠在了自己的腰上，他的某处硬朗就抵在她的腿间。颜千夏猛地瞪大了眼睛，他是来真的，在太皇太后独占的碧莲池里！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“看来我们得好好谈谈。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;他高大，水只到他腰上而已，颜千夏的上半身却完全被他托出了水面，胸前的两朵粉莲花颤微微地，让他的声音愈加低哑，他低头就在粉莲上咬了咬，摁着她的腰，就往她的身体里刺去了……<br><br>&nbsp;&nbsp;&nbsp;&nbsp;是，谁也没有想到！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;颜千夏完整得就像一卷刚织好的绵，身体光滑紧窒！他明显地感觉到自己冲破了屏障，他的动作一僵，颜千夏却痛得一声尖叫，手指紧紧地掐进了他的肩膀里。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;该死的，那个夫君居然没和她洞房吗？好歹你也在雕花的婚床上抱着她滚了一晚啊，值更的太监宫女都是这样说的呀，听到洞房里缠绵之声久久不息，帝妃恩爱之情尽在摇曳的龙凤烛之下、大红的龙床之上。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;可是，怎么会这样？<br><br>&nbsp;&nbsp;&nbsp;&nbsp;颜千夏惊骇低头，看着水面上浮起艳红，又被碧水迅速吞噬。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“慕容烈，你这个……”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;颜千夏欲哭无泪，若早知这样，她一定死守着这身体，以后找个官大业大，或者江湖大侠天下富豪之类的再嫁了，过一段神仙日子才对。现在倒好，糊里糊涂的，倒被他占了便宜去了。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“真是让朕意外。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;慕容烈的脸色在短的讶然之后，恢复了平静，摁着她扭动想挣脱的腰，沉声说道：<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“看来，朕得对夏儿温柔一些才对。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“滚你的，放开我。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;颜千夏痛得发抖，挣不脱他的手是小事，关键是这男人一沾了她的身体，那合欢药的威力就跟原子弹似的，在体内炸开了，她再不逃，绝对会反扑过去的！扑谁也不能扑这人啊！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;药性猛得超过颜千夏的估量，合欢散最无情的地方就在于，当事人绝对是清醒的，她清醒地感觉到自己身体的每一寸肌肤都在想往慕容烈身上贴去，体内被点了无数把火，五脏六腑烧得灼烫难忍。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;“算了，你快点，我好难受，太热了。”<br><br>&nbsp;&nbsp;&nbsp;&nbsp;她放弃了挣扎，干脆双手紧搂住了他的脖子，她可不想熬两个时辰，四个小时啊！颜千夏的身子娇贵，据说自小儿就用各色花瓣儿泡过，每日间用数十名奶妈的奶水精心擦拭每一寸肌肤，又服食许多名贵香粉，除了一身异香，还弄得她十分敏感，怕痛怕热怕冷，简直就是个瓷瓶儿，得用双手天天捧着抱着才行。</font></div>
     # """
     # a = HTMLStripperExclude()
