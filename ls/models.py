@@ -263,7 +263,6 @@ class TopicReply(BaseModel):
     def getTopic(self):
         if self.topic==None:
             self.topic=Topic.objects.get(pk=self.topicid)
-
         return self.topic
 
 
