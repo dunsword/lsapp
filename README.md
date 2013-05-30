@@ -117,3 +117,9 @@ ALTER TABLE  `ls_topicreply` ADD  `is_chapter` tinyint(1)  default 0 not NULL ;
 ALTER TABLE  `ls_topicreply` ADD   `source_url` varchar(200) default  NULL;
 
 </code></pre>
+
+6.2013-5-27
+Document，添加source_tid
+<pre><code>
+ALTER TABLE  `ls_document` ADD  `source_tid` bigint NOT NULL default 0;
+</code></pre>

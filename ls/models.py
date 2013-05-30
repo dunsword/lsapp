@@ -46,6 +46,7 @@ class Topic(BaseModel):
         self.document=None
         self._avatar_url=None
         self.category=None
+        self.chapters=None
         
     objects=TopicManager()
     TOPIC_TYPE_NORMAL=1
@@ -67,6 +68,11 @@ class Topic(BaseModel):
     catid_parent=models.IntegerField(u'分类',default=2,db_index=True)
     catid1=models.IntegerField(u'标签',default=0)
     catid2=models.IntegerField(u'标签',default=0)
+
+    def getChapters(self):
+        return TopicReply.objects.getChapters(self.id)
+
+
     
     def getAvatarUrl(self):
         if self._avatar_url==None:
@@ -118,8 +124,10 @@ class Document(models.Model):
     update_status=models.SmallIntegerField('更新状态',choices=[(1,"连载中"),(2,"已完结")],default=1,db_index=True)
     source_id=models.IntegerField('源网站')
     source_url=models.URLField('源地址')
+    source_tid=models.BigIntegerField('来源文章ID',default=0)
     topic=models.OneToOneField(Topic,related_name='ref+')
     source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
+
     def getSiteSource(self):
         return SiteSource.objects.get(pk=self.source_id)
 
@@ -191,12 +199,31 @@ class Category(BaseModel):
             q=Topic.objects.filter(categoryid__exact=self.id).filter(topic_type__exact=2).order_by('-read_count')[0:size]
             #q=q.filter(topic_type__exact=2)[:size]
         return q    
-        
+
+class TopicReplyManager(models.Manager):
+    def getChapters(self,topicid):
+        chapters=self.raw('select id,title from ls_topicreply where topicid=%s and is_chapter=true limit 1000',[topicid])
+        l=list(chapters)
+        for c in l:
+            c.url=self.getReplyUrl(topicid,c.id)
+        return l
+
+    def getReplyUrl(self,topicid,replyid):
+        q=TopicReply.objects.raw('select id,count(id) as count from ls_topicreply where topicid=%s and id<%s',[topicid,replyid])
+        beforeCount=list(q)[0].count
+        page=beforeCount/TopicReply.PAGE_SIZE+1
+        return u'/topic/%s/%s#%s'%(topicid,page,replyid)
+
 class TopicReply(BaseModel):
+    PAGE_SIZE=10
+
     def __init__(self, *args, **kwargs):
         super(TopicReply,self).__init__(*args, **kwargs)
         self._avatar_url=None
-    
+
+
+    objects=TopicReplyManager()
+
     userid=models.IntegerField('UID')
     username=models.CharField('用户名',max_length=30)
     topicid=models.IntegerField('主题ID',db_index=True)
@@ -209,5 +236,6 @@ class TopicReply(BaseModel):
         if self._avatar_url==None:
             self._avatar_url=AvatarClient.url('a_250X250_'+str(self.userid)+'.jpg')
         return self._avatar_url
-    
- 
+
+
+

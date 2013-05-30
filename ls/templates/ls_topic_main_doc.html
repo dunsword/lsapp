@@ -96,6 +96,33 @@
                         来自：<a href="{{doc.source_url}}" target="_blank">{{doc.getSiteSource.name}}</a>
                     </div>
                 </div>
+                {% if chapters %}
+                    <div class="row-fluid">
+                    <div class="span12">
+                        <table class="table">
+                        <tr>
+                            <th style="text-align: left">最新章节</th>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tbody>
+                        {% for chapter in chapters %}
+                            <tr>
+                            <td>
+                                {% forloop.counter/2 as c %}
+                                {{ forloop.counter }}
+                                <span><a href='{{ chapter.url }}'>{{ chapter.title }}</a></span></td>
+                            <td>
+
+                            </td>
+                            <td></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
                 {% if user.is_staff %}
                 <div class="row-fluid" style="margin-bottom: -15px">
                     <div class="span12">
