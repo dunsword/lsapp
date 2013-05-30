@@ -12,6 +12,8 @@ class Huatan:
     client_secret = u"accessTest7118jqq54113accessTest"
     lou19Url = "https://www.19lou.com/api/board/getBoardThreadList?client_id=%d&client_secret=%s&filterWater=true"%(client_id,client_secret)
     httpHeaders = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
+    imageBaseUrl = u"http://att3.citysbs.com/"
+    imageSize = u"200x240"
 
     def getThreadInfo(self,bid,page=1,perPage=50):
         """
@@ -40,9 +42,16 @@ class Huatan:
         for item in htThreadlist:
             subject = item["subject"]
             content = item["content"]
-            images = item["images"]
+            cityName = item["city_name"]
+            images = []
+            tmp  = item["images"]
+            imgs = tmp[1:len(tmp)-1].split(",")
+            for img in imgs:
+                images.append(self.imageBaseUrl + self.imageSize + "/" +cityName + img[1:len(img)-1])
+
             created_at = item["created_at"]
             url = item["outsite_url"]
+
             threadList.append({"subject":subject,"content":content,"images":images,"created_at":created_at,"url":url})
 
 
