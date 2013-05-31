@@ -3,6 +3,9 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime
 from base.storage.client import AvatarClient
+from django.core.cache import get_cache
+from django.core.cache import cache
+#cache = get_cache('local')
 
 class BaseModel(models.Model):
     STATUS=[(1,u"正常"),(2,u"删除"),(3,u"隐藏")]
@@ -17,6 +20,7 @@ class BaseModel(models.Model):
     def save(self, *args, **kwargs):
         self.updated_at=datetime.now()
         super(BaseModel,self).save(*args, **kwargs)
+        cache.set(self)
     
     class Meta:
         abstract=True
@@ -111,13 +115,26 @@ class Topic(BaseModel):
     
 
 class DocumentManager(models.Manager):
-    def create_document(self,userid,username,title,content,source_id,source_url,categoryid,author_name='',source_updated_at=datetime.now()):
+    def create_document(self,
+                        userid,
+                        username,
+                        title,
+                        content,
+                        source_id,
+                        source_url,
+                        categoryid,
+                        read_count=0,
+                        reply_count=0,
+                        author_name='',
+                        source_updated_at=datetime.now()):
         topic=Topic(
                                    userid=userid,
                                    username=username,
                                    title=title,
                                    content=content,
                                    categoryid=categoryid,
+                                   read_count=read_count,
+                                   reply_count=reply_count,
                                    catid1=0,
                                    catid2=0,
                                    topic_type=Topic.TOPIC_TYPE_DOCUMENT)
@@ -216,21 +233,20 @@ class TopicReplyManager(models.Manager):
         l=list(chapters)
         for i in range(0,len(l)):
             c=l[i]
-            c.url=self.getReplyUrl(topicid,c.id)
+            c.url='/r/topic/'+str(topicid)+'/reply/'+str(c.id)  #self.getReplyUrl(topicid,c.id)
             if i>0:
                 c.previous=l[i-1]
             if i<len(l)-1:
                 c.next=l[i+1]
         return l
 
-    def getReplyUrl(self,topicid,replyid):
-        q=TopicReply.objects.raw('select id,count(id) as count from ls_topicreply where topicid=%s and id<%s',[topicid,replyid])
-        beforeCount=list(q)[0].count
-        page=beforeCount/TopicReply.PAGE_SIZE+1
-        return u'/topic/%s/%s#%s'%(topicid,page,replyid)
+
 
 class TopicReply(BaseModel):
     PAGE_SIZE=10
+    class Meta:
+        index_together = [["topicid", "is_chapter"],]
+
 
     def __init__(self, *args, **kwargs):
         super(TopicReply,self).__init__(*args, **kwargs)
@@ -268,6 +284,12 @@ class TopicReply(BaseModel):
 
     def getChapter(self):
         return self.getTopic().getChapter(self.id)
+
+    def getReplyUrl(self):
+        q=TopicReply.objects.raw('select id,count(id) as count from ls_topicreply where topicid=%s and id<%s',[self.topicid,self.id])
+        beforeCount=list(q)[0].count
+        page=beforeCount/TopicReply.PAGE_SIZE+1
+        return u'/topic/%s/%s#%s'%(self.topicid,page,self.id)
 
 
 

@@ -121,8 +121,10 @@ class TopicReplyPageView(BaseTopicView):
      '''
      用于单独的回复页面
      '''
-     def get(self,request,version,topicid,replyid,*args,**kwargs):
-
+     def get(self,request,topicid,replyid,version=None,*args,**kwargs):
+        if version=='r':
+            url=TopicReply.objects.get(pk=replyid).getReplyUrl()
+            return HttpResponseRedirect(url)
 
         topicReply=TopicReply.objects.get(pk=replyid)
         c = RequestContext(request,{'reply':topicReply})

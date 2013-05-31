@@ -39,14 +39,14 @@
 }
 .ls-chapter .ls-chapter-item{
     display:inline-block;
-    width:170px;
+    width:260px;
     padding:5px 10px 5px 10px;
     border-bottom: dashed #dddddd 1px;
     overflow: hidden
 }
 .ls-chapter .ls-chapter-item-first{
     display:inline-block;
-    width:170px;
+    width:260px;
     padding:5px 10px 5px 10px;
     border-bottom: dashed #dddddd 1px;
     overflow: hidden

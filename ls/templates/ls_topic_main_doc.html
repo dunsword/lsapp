@@ -109,7 +109,7 @@
                         {% for chapter in chapters %}
 
                             <div class='ls-chapter-item'>
-                            <a href='{{ chapter.url }}'>{{ chapter.title }}</a>&nbsp;
+                            <a href='{{ chapter.url }}'>{{ chapter.title|truncatechars:16 }}</a>&nbsp;
                             </div>
 
                         {% endfor %}

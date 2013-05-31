@@ -17,10 +17,22 @@ class DocumentConvert:
         currentPage=threadPage['currentPage']
         authorid=threadPage['posts'][0]['uid']
         content=threadPage['posts'][0]['msg']
+        url=threadPage['url']
         try:
             doc=Document.objects.get(source_tid__exact=tid)
         except Document.DoesNotExist:
-            doc=Document.objects.create_document(777,UNAME,subject,content,19,'',104,'未知')
+            doc=Document.objects.create_document(
+                userid=777,
+                username=UNAME,
+                title=subject,
+                content=content,
+                read_count=viewCount,
+                reply_count=0,
+                source_id=19,
+                source_url=url,
+                categoryid=104,
+                author_name=u'未知',
+                )
 
         return doc
 

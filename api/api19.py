@@ -31,7 +31,7 @@ class HTMLStripperExcludeBr(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         if tag =="br":
-            self.fed.append("\\r\\n")
+            self.fed.append("\r\n")
 
     def get_data(self):
         return ''.join(self.fed)
@@ -81,7 +81,7 @@ class ThreadApi(Lou19Config):
 
         forminfo = jsonContent["forum_info"]
         fid = int(forminfo["fid"])
-
+        url= 'http://www.19lou.com/forum-%s-thread-%s-1-1.html'%(fid,tid)
         postList = jsonContent["post_list"]
         result=[]
         for post in postList:
@@ -108,6 +108,7 @@ class ThreadApi(Lou19Config):
         return {"subject":subject,
                 "fid":fid,
                 "tid":tid,
+                'url':url,
                 "viewCount":viewCount,
                 "replyCount":replyCount,
                 'currentPage':currentPage,

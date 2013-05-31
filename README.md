@@ -123,3 +123,9 @@ Document，添加source_tid
 <pre><code>
 ALTER TABLE  `ls_document` ADD  `source_tid` bigint NOT NULL default 0;
 </code></pre>
+
+7.2013-5-31
+TopicReply ，添加索引
+<pre><code>
+CREATE INDEX `ls_topicreply_27d438ea` ON `ls_topicreply` (`topicid`, `is_chapter`);
+</code></pre>

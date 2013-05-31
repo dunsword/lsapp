@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$',TopicReplyPageView.as_view())),
 
+
     (url(r'^topic/(?P<topicid>\d+)/add_reply$',TopicReplyView.as_view())),
     (url(r'^topic/reply/(?P<replyid>\d+)$',TopicReplyView.as_view())),
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
