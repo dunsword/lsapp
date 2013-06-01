@@ -7,7 +7,30 @@ from django.core.cache import get_cache
 from django.core.cache import cache
 #cache = get_cache('local')
 
+class BaseManager(models.Manager):
+    def get_cache_key(self,id):
+        model=self.model
+        return model.__name__+str(id)
+
+    def get(self,*args,**kwargs):
+        if kwargs.has_key('pk'):
+            pk=int(kwargs['pk'])
+            cahce_key=self.get_cache_key(pk)
+            modelObj=cache.get(cahce_key)
+            if modelObj != None:
+                return modelObj
+
+            modelObj=super(BaseManager,self).get(*args,**kwargs)
+            if modelObj!=None:
+                cache.set(cahce_key,modelObj)
+            return modelObj
+
+        else:
+            return super(BaseManager,self).get(*args,**kwargs)
+
 class BaseModel(models.Model):
+    objects=BaseManager()
+
     STATUS=[(1,u"正常"),(2,u"删除"),(3,u"隐藏")]
     status=models.IntegerField(u'状态',choices=STATUS,default=1,db_index=True)
     created_at=models.DateTimeField(u'创建时间', default=datetime.now(),db_index=True)
@@ -20,8 +43,11 @@ class BaseModel(models.Model):
     def save(self, *args, **kwargs):
         self.updated_at=datetime.now()
         super(BaseModel,self).save(*args, **kwargs)
-        cache.set(self)
-    
+        cache.set(self.__class__.objects.get_cache_key(self.id),self)
+
+
+
+
     class Meta:
         abstract=True
 
@@ -30,7 +56,7 @@ class SiteSource(BaseModel):
     homepage=models.URLField('site home page')
     desc=models.CharField('description',max_length=2048)
 
-class TopicManager(models.Manager):
+class TopicManager(BaseManager):
     def create_topic(self,user,title,content,categoryid):
         topic=Topic(userid=user.id,
                     username=user.username,
@@ -114,7 +140,7 @@ class Topic(BaseModel):
 #        super(Topic, self).save(*args, **kwargs) 
     
 
-class DocumentManager(models.Manager):
+class DocumentManager(BaseManager):
     def create_document(self,
                         userid,
                         username,
@@ -174,7 +200,7 @@ class Feed(BaseModel):
     docid=models.IntegerField('doc id')
     feed_type=models.SmallIntegerField('feed type',default=1)
 
-class CategoryManager(models.Manager):
+class CategoryManager(BaseManager):
     def getCategory(self,parent_id=0):
         '''
                         根据内容推荐标签，TODO性能优化
@@ -227,7 +253,7 @@ class Category(BaseModel):
             #q=q.filter(topic_type__exact=2)[:size]
         return q    
 
-class TopicReplyManager(models.Manager):
+class TopicReplyManager(BaseManager):
     def getChapters(self,topicid):
         chapters=self.raw('select id,title from ls_topicreply where topicid=%s and is_chapter=true limit 1000',[topicid])
         l=list(chapters)

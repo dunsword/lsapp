@@ -31,7 +31,7 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'would-replaced-by-memcache',
         'KEY_PREFIX':'ls',
-        'TIMEOUT': 60,
+        'TIMEOUT': 300,
         'OPTIONS': {
             'MAX_ENTRIES': 10000
         }
