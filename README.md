@@ -129,3 +129,11 @@ TopicReply ，添加索引
 <pre><code>
 CREATE INDEX `ls_topicreply_27d438ea` ON `ls_topicreply` (`topicid`, `is_chapter`);
 </code></pre>
+
+7.2013-6-2
+TopicReply ，添加字段
+<pre><code>
+alter table `ls_document` ADD  `source_uid` bigint NOT NULL default 0;
+ALTER TABLE  `ls_topicreply` ADD  `source_pid` bigint NOT NULL default 0;
+alter table `ls_topicreply` change  `source_url` `source_url` varchar(200);
+</code></pre>

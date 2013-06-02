@@ -20,7 +20,7 @@ from base.messages import GLOBAL_MESSAGES
 def index(request):
     c=RequestContext(request,{ })
     c.update(csrf(request))
-    tt = loader.get_template('admin.html')
+    tt = loader.get_template('sync.html')
     return HttpResponse(tt.render(c))
 
 
@@ -57,7 +57,7 @@ def user_edit(request,user_id):
         ctx=__user_2form(request,user,msg)
         tt = loader.get_template('p_admin_user_edit_form.html')
         return HttpResponse(tt.render(ctx))
-        #return HttpResponseRedirect('/admin/user/edit/'+str(user.id)+'?msg=SAVE_SUCCESS');
+        #return HttpResponseRedirect('/sync/user/edit/'+str(user.id)+'?msg=SAVE_SUCCESS');
     pass
 
 def __user_2form(request,user,msg):

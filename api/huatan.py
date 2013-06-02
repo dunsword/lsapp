@@ -40,6 +40,7 @@ class Huatan:
         htThreadlist = jsonContent["board_thread_list"]
         threadList = []
         for item in htThreadlist:
+            tid=item['tid']
             subject = item["subject"]
             content = item["content"]
             cityName = item["city_name"]
@@ -52,7 +53,7 @@ class Huatan:
             created_at = item["created_at"]
             url = item["outsite_url"]
 
-            threadList.append({"subject":subject,"content":content,"images":images,"created_at":created_at,"url":url})
+            threadList.append({"tid":tid,"subject":subject,"content":content,"images":images,"created_at":created_at,"url":url})
 
 
         return {"boardName":boardName,"boardDesc":boardDesc,"categoryName":categoryName,"cover":cover,"threadList":threadList}
@@ -60,11 +61,12 @@ class Huatan:
 if __name__ == "__main__":
     huatan = Huatan()
 
-    result = huatan.getThreadInfo(682585627)
+    result = huatan.getThreadList(2124418905)
+
 
     print  result["boardName"]
     print  result["boardDesc"]
     print  result["categoryName"]
     print  result["cover"]
     for item in result["threadList"]:
-        print item["subject"] +"====="+item["content"]+"======="+item["created_at"]+"======="+item["url"]
+        print item['tid']+"\r\n"+item["subject"] +"====="+item["content"]+"======="+item["created_at"]+"======="+item["url"]

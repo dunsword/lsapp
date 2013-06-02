@@ -338,7 +338,7 @@
 		"pk": 1,
 		"model": "auth.group",
 		"fields": {
-			"name": "admin",
+			"name": "sync",
 			"permissions": [22, 23]
 		}
 	}, {

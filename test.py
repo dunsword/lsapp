@@ -4,7 +4,7 @@ Created on 2012-7-3
 
 @author: lihao
 '''
-import top.api 
+from api import top
 
 '''
 这边可以设置一个默认的appkey和secret，当然也可以不设置
@@ -24,7 +24,7 @@ a = top.api.UserGetRequest("gw.api.tbsandbox.com")
 a = top.api.UserGetRequest()
 
 '''
-req = top.api.ItemGetRequest()
+req = api.top.api.rest.ItemGetRequest()
 req.fields=('num_iid,title,price,has_discount,item_img,desc')
 req.num_iid=16073374040
 '''

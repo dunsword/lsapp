@@ -136,7 +136,16 @@ class TopicReplyView(BaseTopicView):
     def post(self,request,topicid,*args,**kwargs):
         rc=request.POST['replyContent']
         user=request.user
-        replyForm=TopicReplyForm({'userid':user.id,'username':user.username,'topicid':topicid,'content':rc,'title':'','created_at':datetime.now(),'updated_at':datetime.now(),'source_url':'http://www.tuitui2.com','status':1})
+        replyForm=TopicReplyForm({'userid':user.id,
+                                  'username':user.username,
+                                  'topicid':topicid,
+                                  'content':rc,
+                                  'title':'',
+                                  'created_at':datetime.now(),
+                                  'updated_at':datetime.now(),
+                                  'source_url':'http://www.tuitui2.com',
+                                  'source_pid':0,
+                                  'status':1})
         if(replyForm.is_valid()):
             self.tSrv.addReply(replyForm)
             ctx ={'success':'true','replyid':replyForm.instance.id,'time':replyForm.cleaned_data['created_at'].strftime('%H:%M'),'content':replyForm.cleaned_data['content']}

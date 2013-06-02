@@ -4,10 +4,10 @@ Created on 2012-11-29
 
 @author: DELL
 '''
-import sbs
-sbs.setDefaultAppInfo(100, 'accessTest7118jqq54113accessTest', 'qptest', 'forum', '0FAYr6o6')
+from api import sbs
+from api.sbs.api import UpImageRequest
 
-from sbs.api.UpImageRequest import UpImageRequest
+sbs.setDefaultAppInfo(100, 'accessTest7118jqq54113accessTest', 'qptest', 'forum', '0FAYr6o6')
 
 upReq=UpImageRequest()
 f=open('d:/123.jpg','rb')

@@ -4,14 +4,14 @@ Created on 2012-11-29
 
 @author: DELL
 '''
-import sbs.api
+import api.sbs.api
 
-oauth=sbs.api.OAuthRequest()
+oauth= api.sbs.api.OAuthRequest()
 result=oauth.auth(u'100',u'accessTest7118jqq54113accessTest',u'猪猪侠',u'pass123')
 print result.decode('gbk'),
 
 
-blist=sbs.api.BoardThreadListRequest()
+blist= api.sbs.api.BoardThreadListRequest()
 r2=blist.getBoardThreadList(u'100', u'accessTest7118jqq54113accessTest', boardId='682585627')
 
 boardThreadList=r2['board_thread_list']

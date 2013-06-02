@@ -36,7 +36,7 @@
     "model": "auth.Group",
      "pk":1,
      "fields":{
-        "name":"admin",
+        "name":"sync",
         "permissions":[31]
      }   
    }   

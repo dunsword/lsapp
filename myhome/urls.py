@@ -10,21 +10,22 @@ from ls.search_view import SearchView
 from base.register_view import RegisterView,EmailBindView,EmailActiveView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
+from sync.htsync_view import HtSyncView
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+# Uncomment the next two lines to enable the sync:
+# from django.contrib import sync
+# sync.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'myhome.views.home', name='home'),
     # url(r'^myhome/', include('myhome.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    # Uncomment the sync/doc line below to enable sync documentation:
+    # url(r'^sync/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    # Uncomment the next line to enable the sync:
+    # url(r'^sync/', include(sync.site.urls)),
     #(url(r'^$',FeedView.as_view(page_size=30))),
     (url(r'^share$',FeedShareView.as_view())),
     (url(r'^$',IndexView.as_view())),
@@ -57,8 +58,8 @@ urlpatterns = patterns('',
     (url(r'^register',RegisterView.as_view())),
     (url(r'^email_bind',EmailBindView.as_view())),
     (url(r'^email_active',EmailActiveView.as_view())),
-    (url(r'^admin/user/edit/(?P<userid>\d+)',UserEditView.as_view())),
-    (url(r'^admin/user/edit/avatar/(?P<userid>\d+)',UserEditAvatarView.as_view())),
+    (url(r'^sync/user/edit/(?P<userid>\d+)',UserEditView.as_view())),
+    (url(r'^sync/user/edit/avatar/(?P<userid>\d+)',UserEditAvatarView.as_view())),
     (r'^regsuccess','base.views.reg_success'),
     (r'^do_register','base.views.do_register'),
     (r'^404','base.views.page_404'),
@@ -70,7 +71,9 @@ urlpatterns = patterns('',
     #admin
     (r'^admin$','base.admin_views.index'),
     (r'^admin/user/list$','base.admin_views.user_list'),
-    (r'^admin/user/edit/(?P<user_id>\d+)$','base.admin_views.user_edit'),
+    (r'^sync/user/edit/(?P<user_id>\d+)$','base.admin_views.user_edit'),
+    (url(r'^sync/htsync/(?P<bid>\d+)$',HtSyncView.as_view())),
+    (url(r'^sync$',HtSyncView.as_view())),
 
     (r'^cron/add$', 'cron.views.newDocument'),
     (r'^cron/update$', 'cron.views.updateDocument'),

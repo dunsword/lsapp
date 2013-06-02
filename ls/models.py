@@ -178,6 +178,7 @@ class Document(models.Model):
     source_id=models.IntegerField('源网站')
     source_url=models.URLField('源地址')
     source_tid=models.BigIntegerField('来源ID',default=0)
+    source_uid=models.BigIntegerField('来源作者',default=0)
     topic=models.OneToOneField(Topic,related_name='ref+')
     source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
 
@@ -288,7 +289,8 @@ class TopicReply(BaseModel):
     title=models.CharField('标题',max_length=255,default="",blank=True)
     content=models.TextField('内容',max_length=50000)
     is_chapter=models.BooleanField('章节',default=False)
-    source_url=models.URLField('来源地址')
+    source_url=models.URLField('来源地址',default=None,null=True)
+    source_pid=models.BigIntegerField('来源ID',default=0)
 
     def save(self, *args, **kwargs):
         self.updated_at=datetime.now()

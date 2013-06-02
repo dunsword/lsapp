@@ -478,7 +478,7 @@ class _FeedParserMixin:
         'http://www.w3.org/2005/Atom': '',
         'http://purl.org/rss/1.0/modules/rss091#': '',
 
-        'http://webns.net/mvcb/':                                'admin',
+        'http://webns.net/mvcb/':                                'sync',
         'http://purl.org/rss/1.0/modules/aggregation/':          'ag',
         'http://purl.org/rss/1.0/modules/annotate/':             'annotate',
         'http://media.tangent.org/rss/1.0/':                     'audio',

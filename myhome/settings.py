@@ -149,13 +149,14 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
+    # Uncomment the next line to enable the sync:
+    # 'django.contrib.sync',
+    # Uncomment the next line to enable sync documentation:
     # 'django.contrib.admindocs',
     'base',
     'ls',
     'api',
+    'sync',
     'cron',
 )
 LOGIN_URL='/login'
