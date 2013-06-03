@@ -10,7 +10,7 @@ from ls.search_view import SearchView
 from base.register_view import RegisterView,EmailBindView,EmailActiveView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
-from sync.htsync_view import HtSyncView
+from sync.htsync_view import HtSyncView,ThreadSyncView
 
 # Uncomment the next two lines to enable the sync:
 # from django.contrib import sync
@@ -73,6 +73,8 @@ urlpatterns = patterns('',
     (r'^admin/user/list$','base.admin_views.user_list'),
     (r'^sync/user/edit/(?P<user_id>\d+)$','base.admin_views.user_edit'),
     (url(r'^sync/htsync/(?P<bid>\d+)$',HtSyncView.as_view())),
+    (url(r'^sync/htsync/t/(?P<tid>\d+)$',ThreadSyncView.as_view())),
+    (url(r'^sync/htsync/t/(?P<tid>\d+)/(?P<page>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync$',HtSyncView.as_view())),
 
     (r'^cron/add$', 'cron.views.newDocument'),

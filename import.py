@@ -1,3 +1,3 @@
 
-from api.converter import test
+from sync.converter import test
 test(18881369897388356)

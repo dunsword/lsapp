@@ -40,7 +40,7 @@ class Huatan:
         htThreadlist = jsonContent["board_thread_list"]
         threadList = []
         for item in htThreadlist:
-            tid=item['tid']
+            tid=item['thread']['tid']
             subject = item["subject"]
             content = item["content"]
             cityName = item["city_name"]

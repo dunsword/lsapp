@@ -33,6 +33,10 @@ class HTMLStripperExcludeBr(HTMLParser):
         if tag =="br":
             self.fed.append("\r\n")
 
+    def handle_endtag(self, tag):
+        if tag=='div':
+            self.fed.append('\r\n')
+
     def get_data(self):
         return ''.join(self.fed)
 
@@ -46,7 +50,7 @@ class Lou19Config:
 class ThreadApi(Lou19Config):
 
 
-    prePage = 50
+    prePage = 30
     def stripTags(self,html):
         s = HTMLStripper()
         s.feed(html)
@@ -59,7 +63,7 @@ class ThreadApi(Lou19Config):
 
     def getThreadPage(self,tid,page=1):
         getAll = False
-        pageNum = 1
+        pageNum = int(page)
         postTmp = []
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
         hClient = Http()
@@ -77,6 +81,7 @@ class ThreadApi(Lou19Config):
         subject  = thread["subject"]
         viewCount = int(thread["views"])
         replyCount = int(thread["replies"])
+        uid=long(thread['author']['uid'])
 
 
         forminfo = jsonContent["forum_info"]
@@ -91,23 +96,35 @@ class ThreadApi(Lou19Config):
             if len(title)==0:
                     ###获得回复得标题：取100字中，第一个标点符号前面的内容，如果没有直接截取最前的10个字
                     try:
-                        tmp = re.split(u'\,|\.|，|。', titleString)[0]
-                        if tmp and len(tmp)>0:
-                            title = tmp
+
+                        lines = re.split(u'\r\n', message)
+                        for line in lines:
+                            if len(line)>1:
+                                title=line
+                                if len(title)>20:
+                                    title=title[:20]
+                                break
+
                         else:
-                            title = titleString[0:10]
+                            title = ""
                     except Exception,e:
                         logging.error(e.message)
 
             user=post['author']
+            if post['is_first']=='true':
+                is_first=True
+            else:
+                is_first=False
             result.append({"msg":message,
                            "pid":int(post["pid"]),
+                           'is_first':is_first,
                            "title":title,
-                           'uid':int(user['uid'])
+                           'uid':long(user['uid'])
             })
         return {"subject":subject,
                 "fid":fid,
                 "tid":tid,
+                'uid':uid,
                 'url':url,
                 "viewCount":viewCount,
                 "replyCount":replyCount,
