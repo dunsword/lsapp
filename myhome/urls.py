@@ -79,4 +79,5 @@ urlpatterns = patterns('',
 
     (r'^cron/add$', 'cron.views.newDocument'),
     (r'^cron/update$', 'cron.views.updateDocument'),
+    (r'^cron/addCharpter$', 'cron.views.newCharpters'),
 )
