@@ -2,7 +2,7 @@
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from ls.models import Document,Topic
+from ls.models import Document,Topic,TopicReply
 from cron.models import DocumentMapping,CategoryAuthor
 from datetime import datetime
 import random
@@ -149,4 +149,66 @@ def updateDocument(request):
             error.append({'errormsg':e.message,'refId':refId})
 
     return HttpResponse(json.dumps({'message':'data updated', 'errormsg':error, 'result': 'Ok'}), content_type='application/json')
+
+@csrf_exempt
+def newCharpters(request):
+    """
+    新增章节信息。
+    数据结构:
+    {
+        'docId':124,
+        'charpters':
+        [
+            {
+             'uid':122,
+             'userName':"",
+             'title':u"aaa",
+             'content':"",
+             'date':"",
+             'sourceUrl':sourceurl,
+             'charpterId':123344
+            }
+
+        ]
+    }
+    """
+    error = []
+
+    items = json.loads(request.body)
+    docId = items["docId"]
+    charpters = items["charpters"]
+
+    # 判断docid 是否存在，如果存在获得相应的topicId，不存在就新创建一个document，
+    docs = Document.objects.filter(id=docId)
+    topicId = 0
+    if docs and len(docs)>0:
+        topicId = docs[0].topic.id
+    # TODO:如果topic 不存在，要做处理
+
+
+    for item in charpters:
+        try:
+            uid = item.get("uid", 0)
+            userName = item.get("userName", "")
+            title = item.get("title", "")
+            content = item.get("content", "")
+            date = item.get("date", datetime.now())
+            sourceUrl = item.get("sourceUrl", "")
+            charpterId = item.get("charpterId", 0)
+
+            topicReply = TopicReply(userid=uid,
+                                    username=userName,
+                                    topicid=topicId,
+                                    title=title,
+                                    content=content,
+                                    is_chapter=True,
+                                    source_url=sourceUrl,
+                                    source_pid=charpterId)
+            topicReply.save()
+
+        except Exception, e:
+            print e
+            error.append({'errormsg':e.message,'sourceUrl':sourceUrl})
+
+    return HttpResponse(json.dumps({'message':'charpters added', 'errormsg':error, 'result': 'Ok'}), content_type='application/json')
 
