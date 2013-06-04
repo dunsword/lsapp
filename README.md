@@ -80,8 +80,8 @@ update ls_topic set last_reply_at=updated_at;
 5.2013-5-17
 Topic,TopicReply，扩展content长度
 <pre><code>
-alter table ls_topic change content content text null;
-alter table ls_topic_reply change content content text null;
+alter table ls_topic change content content mediumtext null;
+alter table ls_topicreply change content content mediumtext null;
 </code></pre>
 
 5.2013-5-19

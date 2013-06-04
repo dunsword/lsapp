@@ -148,6 +148,8 @@ class DocumentManager(BaseManager):
                         content,
                         source_id,
                         source_url,
+                        source_uid,
+                        source_tid,
                         categoryid,
                         read_count=0,
                         reply_count=0,
@@ -165,7 +167,13 @@ class DocumentManager(BaseManager):
                                    catid2=0,
                                    topic_type=Topic.TOPIC_TYPE_DOCUMENT)
         topic.save()
-        doc=Document(source_id=source_id,source_url=source_url,topic=topic,author_name=author_name,source_updated_at=source_updated_at)
+        doc=Document(source_id=source_id,
+                     source_url=source_url,
+                     source_uid=source_uid,
+                     source_tid=source_tid,
+                     topic=topic,
+                     author_name=author_name,
+                     source_updated_at=source_updated_at)
         doc.save()
         return doc
     

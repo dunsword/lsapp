@@ -6,6 +6,7 @@ from django.template import RequestContext
 from base.base_view import  BaseView
 from api.huatan import Huatan
 from api.api19 import  ThreadApi
+from converter import DocumentConvert
 
 
 class HtThread:
@@ -41,6 +42,26 @@ class HtSyncView(BaseView):
           return HttpResponse(tt.render(c))
 class ThreadSyncView(BaseView):
       def get(self,request,tid,page=1,*args, **kwargs):
-           tp=ThreadApi.getThreadPage(tid,page)
+           tid=int(tid)
+           tpa=ThreadApi()
+           tp=tpa.getThreadPage(tid,page)
+
+           c = RequestContext(request,{
+                                'page':page,
+                                'tid':tid,
+                                'thread':tp,
+                                'posts':tp['posts']
+
+                             })
+           convert=DocumentConvert()
+           convert.convert(tp)
+           convert.converPosts(tp)
+
+
+           tt = loader.get_template('sync_tsync.html')
+           return HttpResponse(tt.render(c))
+
+
+
 
 
