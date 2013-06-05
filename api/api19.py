@@ -112,11 +112,9 @@ class ThreadApi():
                         logging.error(e.message)
 
             user=post['author']
-            if post['is_first']=='true':
-                is_first=True
-            else:
-                is_first=False
-            reply=RelyItem(rid=long(post['pid']),uid=long(user['uid']),subject=title,content=message,is_first=is_first)
+            reply_uid=long(user['uid'])
+
+            reply=RelyItem(rid=long(post['pid']),uid=reply_uid,subject=title,content=message,is_chapter=(uid==reply_uid),is_first=post['first'])
 
             results.append(reply)
         doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid)

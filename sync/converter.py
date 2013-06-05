@@ -21,7 +21,8 @@ class DocumentConvert:
         try:
             tr=TopicReply.objects.getBySourceRid(doc.topic.id,reply.rid) #filter(topicid__exact=doc.topic.id).filter(source_pid__exact=reply.rid)
         except TopicReply.DoesNotExist:
-            tr=TopicReply.objects.createReply(topicid=doc.topic.id,
+            if not reply.is_first:
+                tr=TopicReply.objects.createReply(topicid=doc.topic.id,
                                        userid=UID,
                                        username=UNAME,
                                        title=reply.subject,

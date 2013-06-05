@@ -7,10 +7,11 @@ class RelyItem:
     '''
         回复信息对象
     '''
-    def __init__(self,rid,uid,subject,content,is_first=False):
+    def __init__(self,rid,uid,subject,content,is_chapter,is_first=False):
         self.rid=rid  #回复对象id，如pid
         self.uid=uid  #作者uid
         self.is_first=is_first
+        self.is_chapter=is_chapter
         self.subject=subject
         self.content=content
 

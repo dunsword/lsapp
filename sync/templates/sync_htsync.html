@@ -29,22 +29,23 @@
                         <td>{{ t.created_at }}</td>
                         <td>
 
-                        <a href="#"
+                        <a href="#" id='id_{{ t.tid }}_syncbtn'
                            {% if doc %}
                             class='btn'
                             {% else %}
                             class='btn btn-primary'
                            {% endif %}
-                            onclick="syncItem({{ t.tid }},1)" >
+                            onclick="syncItem('{{ t.tid }}',1)" >
                             同步
                         </a>
+                        <li class='icon-fast-forward' id='id_{{ t.tid }}_loading' style="display: none"></li>
 
 
 
                         </td>
                         <td>
                             <a href="/sync/htsync/t/{{ t.tid }}" target="_blank"  >查看</a>
-                            {{ t.reply_count }}/{{ doc.topic.reply_count }}
+                           {{ t.reply_count }}/ <span id='id_{{ t.tid }}_replycount'>{{ doc.topic.reply_count }}</span>
                         </td>
                     </tr>
                     {% endfor %}
@@ -55,9 +56,45 @@
     </div>
     <script>
         function syncItem(tid,page){
-            $.get('/sync/htsync/t/'+tid+'/'+page+'?json=true',function(data){
-                alert(data['result']);
-            });
+
+            var totalPage;
+            var btn=$('#id_'+tid+'_syncbtn');
+            var loading=$('#id_'+tid+'_loading');
+            var replyCount=$('#id_'+tid+'_replycount');
+            $.ajax(
+                    {url:'/sync/htsync/t/'+tid+'/'+page+'?json=true',
+                     type:'GET',
+                     beforeSend:function(){
+
+                        btn.hide();
+                        loading.show();
+                     },
+                     error:function(){
+                        replyCount.html(replyCount.html()+'error');
+                        btn.hide();
+                        loading.show();
+                     }
+
+                    }).done(function(data){
+
+                        if(data['result']=='success'){
+
+                            btn.attr('class','btn');
+                            replyCount.html(data['reply_count']);
+                            totalPage=parseInt(data['totalPage']);
+                            if(page<=totalPage){
+                                syncItem(tid,++page);
+                            }else{
+                                btn.show();
+                                loading.hide();
+                            }
+                        }else{
+                            btn.show();
+                            loading.hide();
+                        }
+
+
+                    });
         }
     </script>
 {% endblock %}

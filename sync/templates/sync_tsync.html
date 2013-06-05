@@ -16,7 +16,9 @@
 
                     <tr>
                         <td>{{ doc.source_tid  }}</td>
-                        <td>{{ doc.topic.title }}</td>
+                        <td>
+                             <a href='/topic/{{ doc.topic.id }}/1'> {{doc.topic.title }}</a>
+                        </td>
                         <td>{{ doc.topic.reply_count }}/{{ dp.docItem.reply_count }}</td>
                     </tr>
                     <tr>

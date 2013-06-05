@@ -65,7 +65,7 @@ class ThreadSyncView(BaseView):
                                               "page":page,
                                               'reply_count':doc.topic.reply_count,
                                               'source_reply_count':dp.docItem.reply_count,
-                                              "pages":range(1,totalPage)})
+                                              "totalPage":totalPage})
            else:
               replys=[]
               for reply in dp.reply_list:

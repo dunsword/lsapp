@@ -5,5 +5,7 @@ version: 2
 libraries:
 - name: "django"
   version: "1.5"
-  
+
+- name: "httplib2"
+  version: "0.8"
 ...
