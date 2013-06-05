@@ -4,6 +4,7 @@ import sys,os
 from httplib2 import Http
 import json
 import time,re
+from docfetcher import DocItemDetailPage,DocItem,RelyItem
 
 from HTMLParser import HTMLParser
 class HTMLStripper(HTMLParser):
@@ -47,7 +48,7 @@ class Lou19Config:
 
     httpHeaders = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
 
-class ThreadApi(Lou19Config):
+class ThreadApi():
 
 
     prePage = 30
@@ -71,7 +72,7 @@ class ThreadApi(Lou19Config):
         viewCount = 0
         replyCount = 0
         fid = 0
-        threadUrl = self.lou19Url + "&tid=%s"%(str(tid))+"&page="+str(pageNum)+"&perPage="+str(self.prePage)
+        threadUrl = Lou19Config.lou19Url + "&tid=%s"%(str(tid))+"&page="+str(pageNum)+"&perPage="+str(self.prePage)
         resp, content = hClient.request(threadUrl,"GET",headers=headers)
         content = content.decode('gb18030').encode('utf8')
         jsonContent = json.loads(content)
@@ -88,7 +89,7 @@ class ThreadApi(Lou19Config):
         fid = int(forminfo["fid"])
         url= 'http://www.19lou.com/forum-%s-thread-%s-1-1.html'%(fid,tid)
         postList = jsonContent["post_list"]
-        result=[]
+        results=[]
         for post in postList:
             message = self.stripTagsExcludeBr(post["message"])
             title = post["subject"]
@@ -115,21 +116,11 @@ class ThreadApi(Lou19Config):
                 is_first=True
             else:
                 is_first=False
-            result.append({"msg":message,
-                           "pid":int(post["pid"]),
-                           'is_first':is_first,
-                           "title":title,
-                           'uid':long(user['uid'])
-            })
-        return {"subject":subject,
-                "fid":fid,
-                "tid":tid,
-                'uid':uid,
-                'url':url,
-                "viewCount":viewCount,
-                "replyCount":replyCount,
-                'currentPage':currentPage,
-                "posts":result}
+            reply=RelyItem(rid=long(post['pid']),uid=long(user['uid']),subject=title,content=message,is_first=is_first)
+
+            results.append(reply)
+        doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid)
+        return DocItemDetailPage(docItem=doc,page_number=pageNum,replylist=results)
 
 if __name__=='__main__':
     api=ThreadApi()

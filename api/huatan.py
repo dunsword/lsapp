@@ -3,6 +3,7 @@ import logging
 import sys,os
 from httplib2 import Http
 import json
+from docfetcher import DocItem,DocumentList,SourceInfo
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -53,10 +54,13 @@ class Huatan:
             created_at = item["created_at"]
             url = item["outsite_url"]
 
-            threadList.append({"tid":tid,"subject":subject,"content":content,"images":images,"created_at":created_at,"url":url})
+            docItem=DocItem(tid=tid,uid=0,content=content,subject=subject,url=url,reply_count=0,view_count=0,created_at=created_at)
+            threadList.append(docItem)
 
+        si=SourceInfo(source_id=bid,source_name=boardName,source_desc=boardDesc,site_id=19)
+        return DocumentList(source_info=si,doc_list=threadList)
 
-        return {"boardName":boardName,"boardDesc":boardDesc,"categoryName":categoryName,"cover":cover,"threadList":threadList}
+        #return {"boardName":boardName,"boardDesc":boardDesc,"categoryName":categoryName,"cover":cover,"threadList":threadList}
 
 if __name__ == "__main__":
     huatan = Huatan()
