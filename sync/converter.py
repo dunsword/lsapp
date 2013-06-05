@@ -1,13 +1,59 @@
 # coding=utf-8
 __author__ = 'paul'
 
-from api.api19 import ThreadApi
+from api.docfetcher import LouDocFetcher
 from ls.models import Document,Topic,TopicReply
+from api.docfetcher import DocItemDetailPage,RelyItem,DocItem,SourceInfo
 
+#TODO user get user random api
 UID=777
 UNAME=u'一缕红尘'
 
 class DocumentConvert:
+    def saveReply(self,doc,reply):
+        if reply.is_first:
+            return None
+
+        if reply.uid==doc.source_uid:
+            is_chapter=True
+        else:
+            is_chapter=False
+        try:
+            tr=TopicReply.objects.getBySourceRid(doc.topic.id,reply.rid) #filter(topicid__exact=doc.topic.id).filter(source_pid__exact=reply.rid)
+        except TopicReply.DoesNotExist:
+            tr=TopicReply.objects.createReply(topicid=doc.topic.id,
+                                       userid=UID,
+                                       username=UNAME,
+                                       title=reply.subject,
+                                       content=reply.content,
+                                       is_chapter=is_chapter,
+                                       source_pid=reply.rid,
+                                       source_url=doc.source_url)
+        return tr
+
+    def save(self,docPage):
+
+        try:
+            doc=Document.objects.get(source_tid__exact=docPage.docItem.tid)
+        except Document.DoesNotExist:
+            di=docPage.docItem
+
+
+            doc=Document.objects.create_document(userid=UID,
+                                                 username=UNAME,
+                                                 title=di.subject,
+                                                 content=di.content,
+                                                 source_id=di.siteid,
+                                                 source_tid=di.tid,
+                                                 source_url=di.url,
+                                                 source_uid=di.uid,
+                                                 reply_count=0,
+                                                 author_name=u'未知',
+                                                 source_updated_at=di.updated_at,
+                                                 categoryid=104
+                                                 )
+        return doc
+
     def convert(self,threadPage):
         tid=threadPage['tid']
         fid=threadPage['fid']
@@ -47,6 +93,7 @@ class DocumentConvert:
                 continue
             pid=long(post['pid'])
             q=TopicReply.objects.filter(topicid__exact=doc.topic.id).filter(source_pid__exact=pid)
+
             if len(list(q))==0: #同步
                 if threadPage['uid']==post['uid']:
                     isChapter=True
@@ -64,14 +111,14 @@ class DocumentConvert:
 
 
 def test(tid=4891369839152366):
-    ta=ThreadApi()
-    dc=DocumentConvert()
-
-    tp=ta.getThreadPage(tid)
-    doc=dc.convert(tp)
-
-    print doc
-
+    # ta=ThreadApi()
+    # dc=DocumentConvert()
+    #
+    # tp=ta.getThreadPage(tid)
+    # doc=dc.convert(tp)
+    #
+    # print doc
+    pass
 
 
 

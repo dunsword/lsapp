@@ -4,62 +4,79 @@ from django.template import Context, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from base.base_view import  BaseView
-from api.huatan import Huatan
-from api.api19 import  ThreadApi
 from converter import DocumentConvert
+from ls.models import Document,TopicReply
 
+from api.docfetcher import LouDocFetcher,DocumentList,DocItem
+fecther=LouDocFetcher
 
 class HtThread:
     pass
 class HtSyncView(BaseView):
       def get(self,request,bid=2124418905,*args, **kwargs):
-          ht=Huatan()
-          bid=int(bid)
-          tl = ht.getThreadList(bid)
-          boardName =  tl["boardName"]
-          boardDesc =  tl["boardDesc"]
-          categoryName =  tl["categoryName"]
-          cover = tl["cover"]
-          threadList = tl['threadList']
-          threads=[]
-          for item in threadList:
-              t=HtThread()
-              t.tid=item['tid']
-              t.subject=item['subject']
-              t.content=item['content']
-              t.created_at=item['created_at']
-              t.url=item['url']
-              threads.append(t)
 
+          bid=int(bid)
+          docList=fecther.getLatestDocumentList(bid,30)
+          docs=[]
+          for d in docList.doc_list:
+             try:
+                doc = Document.objects.get_by_source(19,d.tid)
+             except Document.DoesNotExist:
+                doc = None
+             docs.append((d,doc))
           c = RequestContext(request,
-                            {'boardName':boardName,
-                             'boardDesc':boardDesc,
-                             'categoryName':categoryName,
-                             'threads':threads
+                            {
+                                'docList':docList,
+                                'docs':docs,
                              })
 
           tt = loader.get_template('sync_htsync.html')
           return HttpResponse(tt.render(c))
 class ThreadSyncView(BaseView):
+
+
       def get(self,request,tid,page=1,*args, **kwargs):
            tid=int(tid)
-           tpa=ThreadApi()
-           tp=tpa.getThreadPage(tid,page)
-
-           c = RequestContext(request,{
-                                'page':page,
-                                'tid':tid,
-                                'thread':tp,
-                                'posts':tp['posts']
-
-                             })
+           dp=fecther.getDocumentPage(tid,page)
            convert=DocumentConvert()
-           convert.convert(tp)
-           convert.converPosts(tp)
+           totalPage=dp.docItem.reply_count/18+1
+
+           doc=convert.save(dp)
+                #
+                # c = RequestContext(request,{
+                #                 'page':page,
+                #                 'tid':tid,
+                #                 'dp':dp,
+                # })
+           #convert=DocumentConvert()
+           #convert.convert(tp)
+           #convert.converPosts(tp)
 
 
-           tt = loader.get_template('sync_tsync.html')
-           return HttpResponse(tt.render(c))
+
+
+           if request.GET.has_key('json'):
+              for reply in dp.reply_list:
+                 tr=convert.saveReply(doc,reply)
+              doc=Document.objects.get(pk=doc.id) #get a new doc obj
+
+              return self._get_json_respones({'result':'success',
+                                              'tid':tid,
+                                              "page":page,
+                                              'reply_count':doc.topic.reply_count,
+                                              'source_reply_count':dp.docItem.reply_count,
+                                              "pages":range(1,totalPage)})
+           else:
+              replys=[]
+              for reply in dp.reply_list:
+                  try:
+                     tr=TopicReply.objects.getBySourceRid(doc.topic.id,reply.rid)
+                  except TopicReply.DoesNotExist:
+                     tr=None
+                  replys.append((reply,tr))
+              c=RequestContext(request,{'doc':doc,'dp':dp,'replys':replys,"page":page,'pages':range(1,totalPage)})
+              tt = loader.get_template('sync_tsync.html')
+              return HttpResponse(tt.render(c))
 
 
 

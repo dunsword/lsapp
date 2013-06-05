@@ -141,6 +141,13 @@ class Topic(BaseModel):
     
 
 class DocumentManager(BaseManager):
+    def get_by_source(self,site_id,source_tid):
+        q=self.filter(source_id__exact=site_id).filter(source_tid__exact=source_tid)
+        if len(list(q))==0:
+            raise Document.DoesNotExist()
+        else:
+            return q[0]
+
     def create_document(self,
                         userid,
                         username,
@@ -275,6 +282,31 @@ class TopicReplyManager(BaseManager):
                 c.next=l[i+1]
         return l
 
+    def getBySourceRid(self,topicid,rid):
+        q=TopicReply.objects.filter(topicid__exact=topicid).filter(source_pid__exact=rid)
+        if len(list(q))==0:
+            raise TopicReply.DoesNotExist()
+        else:
+            return q[0]
+
+    def createReply(self,topicid,userid,username,title,content,is_chapter=False,source_url="",source_pid=0):
+
+        reply=TopicReply()
+        reply.topicid=topicid
+        reply.userid=userid
+        reply.username=username
+        reply.title=title
+        reply.content=content
+        reply.is_chapter=is_chapter
+        reply.source_url=source_url
+        reply.source_pid=source_pid
+        reply.save()
+
+        topic=Topic.objects.get(pk=topicid)
+        topic.reply_count +=1
+        topic.last_reply_at=datetime.now()
+        topic.save()
+        return reply
 
 
 class TopicReply(BaseModel):

@@ -120,7 +120,7 @@ class ThreadApi():
 
             results.append(reply)
         doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid)
-        return DocItemDetailPage(docItem=doc,page_number=pageNum,replylist=results)
+        return DocItemDetailPage(docItem=doc,page_number=pageNum,reply_list=results)
 
 if __name__=='__main__':
     api=ThreadApi()

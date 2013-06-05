@@ -1,8 +1,7 @@
 # coding=utf-8
 __author__ = 'paul'
 from datetime import datetime
-from api19 import ThreadApi
-from huatan import Huatan
+
 
 class RelyItem:
     '''
@@ -30,15 +29,16 @@ class DocItem:
         self.view_count=view_count
         self.created_at=created_at
         self.updated_at=updated_at
+        self.siteid=0
 
 class DocItemDetailPage():
     '''
         包含文档详细信息的对象，包含指定页面的回复信息列表
     '''
-    def __init__(self,docItem,page_number,replylist):
+    def __init__(self,docItem,page_number,reply_list):
         self.docItem=docItem
         self.page_number=page_number
-        self.replylist=replylist
+        self.reply_list=reply_list
 
 class SourceInfo():
     def __init__(self,source_id,source_name,source_desc,site_id):
@@ -48,7 +48,7 @@ class SourceInfo():
         self.site_id=site_id
 
 class DocumentList():
-    def __init__(self,sid,source_info,doc_list):
+    def __init__(self,source_info,doc_list):
         self.source_info=source_info
         self.doc_list=doc_list
 
@@ -70,7 +70,15 @@ class DocumentFetcher():
 
 class LouDocFetcherImpl(DocumentFetcher):
     def getDocumentPage(self,tid,page=1):
-        return ThreadApi().getThreadPage(tid,page)
+        from api19 import ThreadApi
+        docPage= ThreadApi().getThreadPage(tid,page)
+        docPage.docItem.siteid=19
+        return docPage
 
     def getLatestDocumentList(self,sid,size):
+
+        from huatan import Huatan
         return Huatan().getThreadList(sid,1,size)
+
+
+LouDocFetcher=LouDocFetcherImpl()

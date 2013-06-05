@@ -8,7 +8,7 @@ from docfetcher import DocItem,DocumentList,SourceInfo
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-class Huatan:
+class Huatan():
     client_id = 100
     client_secret = u"accessTest7118jqq54113accessTest"
     lou19Url = "https://www.19lou.com/api/board/getBoardThreadList?client_id=%d&client_secret=%s&filterWater=true"%(client_id,client_secret)
@@ -42,6 +42,7 @@ class Huatan:
         threadList = []
         for item in htThreadlist:
             tid=item['thread']['tid']
+            reply_count=int(item['thread']['replies'])
             subject = item["subject"]
             content = item["content"]
             cityName = item["city_name"]
@@ -54,7 +55,7 @@ class Huatan:
             created_at = item["created_at"]
             url = item["outsite_url"]
 
-            docItem=DocItem(tid=tid,uid=0,content=content,subject=subject,url=url,reply_count=0,view_count=0,created_at=created_at)
+            docItem=DocItem(tid=tid,uid=0,content=content,subject=subject,url=url,reply_count=reply_count,view_count=0,created_at=created_at)
             threadList.append(docItem)
 
         si=SourceInfo(source_id=bid,source_name=boardName,source_desc=boardDesc,site_id=19)

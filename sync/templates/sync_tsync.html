@@ -10,52 +10,62 @@
                     <tr>
                         <th>TID</th>
                         <th>标题</th>
+                        <th>回复数</th>
                     </tr>
                     <tbody>
 
-                    {% for key,value in thread.items %}
-                    {% if key != 'posts' %}
                     <tr>
-                        <td>{{ key  }}</td>
-                        <td>{{ value }}</td>
+                        <td>{{ doc.source_tid  }}</td>
+                        <td>{{ doc.topic.title }}</td>
+                        <td>{{ doc.topic.reply_count }}/{{ dp.docItem.reply_count }}</td>
                     </tr>
-                    {% endif %}
-                    {% endfor %}
+                    <tr>
+                        <td colspan="3">
+                            {{ doc.topic.content }}
+                        </td>
+                    </tr>
+
                     </tbody>
                 </table>
 
             </div>
         </div>
+         <div class="row-fluid">
+             <div class="span12">
+                 {% for page in pages %}
+                     <a href="http://127.0.0.1:8000/sync/htsync/t/{{ doc.source_tid  }}/{{ page }}">{{ page }}</a>
+                 {% endfor %}
+             </div>
+         </div>
         <div class="row-fluid">
             <div class='span12'>
 
                 <table class='table'>
                    <tr>
-                        <th>PID</th>
-                        <th>UID</th>
+                        <th>序号</th>
+                        <th>源ID</th>
+                        <th>章节</th>
                         <th>标题</th>
                         <th>内容</th>
-                        <th>
-                            <button class="btn btn-primary">同步全部</button>
-                        </th>
+                        <th>同步</th>
                     </tr>
 
                     <tbody>
 
-                    {% for post in posts %}
+                    {% for reply,tr in replys %}
 
 
                     <tr>
-                        {% for key,value in post.items %}
-                            {% if key != 'msg' %}
-                            <td>{{ value }}</td>
-                            {% else %}
-                            <td>{{ value|truncatechars:18 }}</td>
-                            {% endif %}
-                        {% endfor %}
-                        <td>
-                            同步
-                        </td>
+                       <td>{{ forloop.counter }}</td>
+                       <td>{{ reply.rid }}</td>
+                       <td>{{ reply.is_chapter }}</td>
+                       <td>{{ reply.subject }}</td>
+                       <td>{{ reply.content|truncatechars:11 }}</td>
+                        {% if tr %}
+                       <td><a href='/r/topic/{{ tr.topicid }}/reply/{{ tr.id }}' target="_blank">{{ tr.id }}</a></td>
+                        {% else %}
+                       <td>未同步</td>
+                        {% endif  %}
                     </tr>
 
                     {% endfor %}
@@ -67,7 +77,7 @@
     <div class="row-fluid">
             <div class='span12'>
 
-               <a href='/sync/htsync/t/{{ tid }}/{{ page|add:"1" }}' class='btn btn-primary'>下一页</a>
+               <a href='/sync/htsync/t/{{  doc.source_tid  }}/{{ page|add:"1" }}' class='btn btn-primary'>下一页</a>
 
             </div>
         </div>
