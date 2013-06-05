@@ -298,7 +298,7 @@ class DBManage:
         if not fid or not wordNum:
             return False
         sql = u"update %s set word_num = %d, update_time = %d where fid = %d" % (
-        self.tableName, wordNum, int(time.time()), fid)
+            self.tableName, wordNum, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -309,7 +309,7 @@ class DBManage:
         if not fid or not isEnd:
             return False
         sql = u"update %s set is_end = %d, update_time = %d where fid = %d" % (
-        self.tableName, isEnd, int(time.time()), fid)
+            self.tableName, isEnd, int(time.time()), fid)
         cu = self.db.cursor()
         cu.execute(sql)
         self.db.commit()
@@ -1292,41 +1292,50 @@ class BookListSpider:
                         break
                     else:
                         count += 1
-                isAdd = content[0]
-                fid = content[1]
-                wordNum = content[2]
-                readNum = content[3]
-                updateTime = content[4]
-                listUrl = content[12]
-                isEnd = content[13]
-                isUtf8 = content[14]
-                domain = content[15]
-                #如果是新增的则调用新增接口，否则调用更新接口
-                if isAdd == 1:
-                    title = content[6]
-                    intro = content[7]
-                    cid = content[8]
-                    url = content[9]
-                    author = content[10]
-                    user = hm.user(cid)
-                    lsPid = hm.postContent(user.uid, user.name, title, intro, updateTime, cid, 2, fid, url, wordNum,
-                                           readNum, author)
-                    # lsPid = 1
-                    if lsPid:
-                        self.db.insert(SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum, listUrl=listUrl, isUtf8=isUtf8,
-                                                 domain=domain))
-                    logger.info(u"book info add to web, fid: %d, title: %s, url: %s." % (fid, title, url))
-                else:
-                    pid = content[1]
-                    result = hm.updateContent(pid, fid, readNum, wordNum, updateTime)
-                    # result = True
-                    if result:
-                        self.db.update(fid=fid, wordNum=wordNum)
-                    logger.info(u"book info update to web, fid: %d, pid: %d, updateTime: %s." % (fid, pid, updateTime))
-                BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid, isUtf8, domain)
-                # BookListInfo(self.db, self.cdb, self.ldb,  u"http://www.huanxia.com/book579912_novel.html", fid, 0, u"http://www.huanxia.com/")
-                if isEnd:
-                    self.db.updateEndStatus(fid=fid, isEnd=isEnd)
+                try:
+                    isAdd = content[0]
+                    fid = content[1]
+                    wordNum = content[2]
+                    readNum = content[3]
+                    updateTime = content[4]
+                    listUrl = content[12]
+                    isEnd = content[13]
+                    isUtf8 = content[14]
+                    domain = content[15]
+                    #如果是新增的则调用新增接口，否则调用更新接口
+                    if isAdd == 1:
+                        title = content[6]
+                        intro = content[7]
+                        cid = content[8]
+                        url = content[9]
+                        author = content[10]
+                        user = hm.user(cid)
+                        lsPid = hm.postContent(user.uid, user.name, title, intro, updateTime, cid, 2, fid, url, wordNum,
+                                               readNum, author)
+                        # lsPid = 1
+                        if lsPid:
+                            self.db.insert(
+                                SpiderLog(fid=fid, lsPid=lsPid, wordNum=wordNum, listUrl=listUrl, isUtf8=isUtf8,
+                                          domain=domain))
+                        logger.info(u"book info add to web, fid: %d, title: %s, url: %s." % (fid, title, url))
+                    else:
+                        pid = content[1]
+                        result = hm.updateContent(pid, fid, readNum, wordNum, updateTime)
+                        # result = True
+                        if result:
+                            self.db.update(fid=fid, wordNum=wordNum)
+                        logger.info(
+                            u"book info update to web, fid: %d, pid: %d, updateTime: %s." % (fid, pid, updateTime))
+                    BookListInfo(self.db, self.cdb, self.ldb, listUrl, fid, isUtf8, domain)
+                    # BookListInfo(self.db, self.cdb, self.ldb,  u"http://www.huanxia.com/book579912_novel.html", fid, 0, u"http://www.huanxia.com/")
+                    if isEnd:
+                        self.db.updateEndStatus(fid=fid, isEnd=isEnd)
+                        # 程序跳出点
+                    if os.path.exists(u"qd_spider.jump"):
+                        logger.info(u"system has break at fid:%d." % fid)
+                        break
+                except Exception, e:
+                    logger.error(str(e))
 
 
 class Spider:
