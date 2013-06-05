@@ -1274,7 +1274,7 @@ class BookListInfo:
 
 
 class RecursionPage:
-    def __init__(self, url, db, cdb, ldb, cid=0, startPage=1, totalPage=1):
+    def __init__(self, url, db, cdb, ldb, cid=0, startPage=1, totalPage=3):
         self.cid = cid
         self.url = url
         self.db = db
