@@ -82,7 +82,7 @@ class DataStore:
     爬虫数据处理,保存数据
     """
     def __init__(self,config):
-        pass
+        self.config = config
 
     def work(self,url,dataList,method="POST"):
         """
