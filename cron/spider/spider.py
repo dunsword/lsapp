@@ -84,3 +84,12 @@ class DataStore:
     def __init__(self,config):
         pass
 
+    def work(self,url,dataList,method="POST"):
+        """
+        发送数据请求到远端服务器
+        :param url:
+        :param data:
+        :return:
+        """
+        pass
+
