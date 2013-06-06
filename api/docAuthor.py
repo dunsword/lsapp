@@ -1,4 +1,6 @@
 # coding=utf-8
+import random
+
 DOCUMENT_AUTHORS_CATEGORY_MAP = {101: [{"name": "九城烟岚", "uid": 731}, {"name": "人品棣", "uid": 485}, {"name": "便便羊", "uid": 354},
                  {"name": "向阳光处飞", "uid": 37}, {"name": "夜隐默", "uid": 301}, {"name": "失魂崖", "uid": 769},
                  {"name": "斗鱼1992", "uid": 42}],
@@ -123,7 +125,17 @@ class Author:
         """
         return DOCUMENT_AUTHORS_CATEGORY_MAP[categoryId]
 
+    def getAuthorByCid(self,categoryId):
+        """
+        根据category id 随机获得一个作者信息
+        """
+        authors = self.getAuthorsByCid(categoryId)
+
+        index = random.randint(0, len(authors)-1)
+
+        return authors[index]
+
 
 if __name__ == "__main__":
     authors = Author()
-    print authors.getAuthorsByCid(126)
+    print authors.getAuthorByCid(126)
