@@ -69,6 +69,11 @@ class DocumentFetcher():
         '''
         pass
 
+    def getLatestDocuentList(self,sid,cid,size):
+        """
+        获得指定分类下的最新文章列表
+        """
+        pass
 
 class LouDocFetcherImpl(DocumentFetcher):
     def getDocumentPage(self,tid,page=1):
