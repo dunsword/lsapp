@@ -32,50 +32,35 @@ class WebPageContent:
         return self.htmlSource
 
 
-class BookStore:
+class Category:
     """
-    小说列表，包含小说的分类，及分类下的更新小说
+    通过category的mapping 提供根据原站的id或者名称，获得推荐分类id，需要实现下面的两个接口.
+    缺省返回104.
     """
-    bookStoreItem = []
-    def __init__(self,category):
-        self.category = category
+    def getCategoryId(self,sourceCategoryName):
+        return 104
 
-    def appendBookItem(self,bookStoreItem):
-        self.bookStoreItem.append(bookStoreItem)
+    def getCategoryId(self,sourceCategoryId):
+        return 104
 
-
-class BookStoreItem:
+class SpiderUrlConvert:
     """
-    小说列表包含内容：
-    title  标题
-    bookUrl 小说地址
-    updateTime 最近更新时间
-    latestCharpterUrl  最新章节地址
+    每个站点自己实现，根据一个tid（对应具体的一本书）或者pid（对应y个具体的章节），转换成站点特定的url。
     """
-    def __init__(self,title,bookUrl,latestCharpterUrl,updateTime):
-        self.title=title
-        self.bookUrl = bookUrl
-        self.latestCharpterUrl = latestCharpterUrl
-        self.updaeTime = updateTime
-
-
-
-class Spider:
-    spiderResult = []
-
-    def __init__(self,spider,content):
-        self.spiderImpl=spider
-        self.analyzeContent = content
-
-    def work(self):
+    def convertBookUrl(self,tid):
         """
-        爬虫处理数据
-        :return:
+        根据书的id，获得对应书籍的特定url，用于获得书籍的章节列表
         """
         pass
 
+
+class Spider:
+    def work(self,spider,content):
+        pass
+
     def getData(self):
-        return self.spiderResult
+        pass
+
 
 class DataStore:
     """
