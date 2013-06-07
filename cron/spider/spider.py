@@ -52,7 +52,7 @@ class SpiderUrlConvert:
         根据书的id，获得对应书籍的特定url，用于获得书籍的章节列表
         """
         pass
-    def convertBookListUrl(self,side):
+    def convertBookListUrl(self,page):
         """
         根据站点id，获取书籍列表的url
         """
