@@ -69,9 +69,10 @@ class DocumentFetcher():
         '''
         pass
 
-    def getLatestDocuentList(self,sid,cid,size):
+    def getLatestDocuentList(self,size):
         """
-        获得指定分类下的最新文章列表
+        获得站点排行榜的文章列表
+        返回DocumentList对象
         """
         pass
 
