@@ -33,13 +33,13 @@ class DocumentConvert:
         return tr
 
     def save(self,docPage):
-
+        di=docPage.docItem
         try:
             doc=Document.objects.get(source_tid__exact=docPage.docItem.tid)
+            doc.topic.content=di.content
+            doc.source_updated_at=di.last_reply_at
+            doc.topic.save()
         except Document.DoesNotExist:
-            di=docPage.docItem
-
-
             doc=Document.objects.create_document(userid=UID,
                                                  username=UNAME,
                                                  title=di.subject,
@@ -48,11 +48,13 @@ class DocumentConvert:
                                                  source_tid=di.tid,
                                                  source_url=di.url,
                                                  source_uid=di.uid,
+                                                 read_count=di.view_count,
                                                  reply_count=0,
                                                  author_name=u'未知',
                                                  source_updated_at=di.updated_at,
                                                  categoryid=104
                                                  )
+            doc.source_updated_at=di.last_reply_at
         return doc
 
     def convert(self,threadPage):

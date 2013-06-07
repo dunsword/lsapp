@@ -5,8 +5,12 @@ from httplib2 import Http
 import json
 import time,re
 from docfetcher import DocItemDetailPage,DocItem,RelyItem
+import re
+from datetime import datetime
 
-from HTMLParser import HTMLParser
+
+PATTEN_FOR_ALT=re.compile('"alt=""')
+from HTMLParser import HTMLParser,HTMLParseError
 class HTMLStripper(HTMLParser):
     """
     去除所有得html标签
@@ -78,7 +82,11 @@ class ThreadApi():
         jsonContent = json.loads(content)
         currentPage = int(jsonContent["page"])
 
+
         thread = jsonContent["thread_info"]
+
+        created_at=datetime.strptime(thread['created_at'],'%Y-%m-%d %H:%M:%S')
+        last_reply_at=datetime.strptime(thread['last_post']['created_at'],'%Y-%m-%d %H:%M:%S')
         subject  = thread["subject"]
         viewCount = int(thread["views"])
         replyCount = int(thread["replies"])
@@ -91,7 +99,12 @@ class ThreadApi():
         postList = jsonContent["post_list"]
         results=[]
         for post in postList:
-            message = self.stripTagsExcludeBr(post["message"])
+            try:
+                rawMessage=PATTEN_FOR_ALT.sub('"',post["message"]) #it's ugly
+                message = self.stripTagsExcludeBr(rawMessage)
+            except  HTMLParseError:
+                message="错误！"
+                logging.error(post['message'])
             title = post["subject"]
             titleString = self.stripTags(message[0:100])
             if len(title)==0:
@@ -117,7 +130,8 @@ class ThreadApi():
             reply=RelyItem(rid=long(post['pid']),uid=reply_uid,subject=title,content=message,is_chapter=(uid==reply_uid),is_first=post['first'])
 
             results.append(reply)
-        doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid)
+        doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid,
+                    created_at=created_at,last_reply_at=last_reply_at)
         return DocItemDetailPage(docItem=doc,page_number=pageNum,reply_list=results)
 
 if __name__=='__main__':

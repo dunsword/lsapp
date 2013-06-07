@@ -15,13 +15,21 @@
                         <th>TID</th>
                         <th>标题</th>
                         <th>更新时间</th>
-                        <th>同步</th>
-                        <th>状态(总回复，以同步回复)</th>
+                        <th>
+                            <a href='#' class='btn btn-primary' onclick="syncItem(tids[0],1,syncNext)">全部</a></th>
+                        <th>状态(总回复/已经同步回复)</th>
                     </tr>
                     <tbody>
+                    <script>
+                        var tids=[];
+                    </script>
                     {% for t,doc in docs %}
                     <tr>
-                        <td>{{ t.tid  }}</td>
+                        <td>{{ t.tid  }}
+                            <script>
+                                tids.push('{{ t.tid }}');
+                            </script>
+                        </td>
                         <td>
                             <a href='{{ t.url }}' target="_blank">{{ t.subject }}</a>
 
@@ -35,7 +43,7 @@
                             {% else %}
                             class='btn btn-primary'
                            {% endif %}
-                            onclick="syncItem('{{ t.tid }}',1)" >
+                            onclick="syncItem('{{ t.tid }}',1,nothing)" >
                             同步
                         </a>
                         <li class='icon-fast-forward' id='id_{{ t.tid }}_loading' style="display: none"></li>
@@ -46,6 +54,9 @@
                         <td>
                             <a href="/sync/htsync/t/{{ t.tid }}" target="_blank"  >查看</a>
                            {{ t.reply_count }}/ <span id='id_{{ t.tid }}_replycount'>{{ doc.topic.reply_count }}</span>
+                            {% if doc %}
+                            <a href='/topic/{{ doc.topic.id }}/1' target='_blank'><li class='icon-arrow-right'></li></a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
@@ -55,7 +66,17 @@
         </div>
     </div>
     <script>
-        function syncItem(tid,page){
+        var syncNext=function(tid){
+            for (var i=0;i<tids.length-1;i++){
+                t=tids[i];
+                if(t==tid){
+                    nextTid=tids[i+1];
+                    syncItem(nextTid,1,syncNext);
+                }
+            }
+        }
+        var nothing=function(){}
+        function syncItem(tid,page ,callback ){
 
             var totalPage;
             var btn=$('#id_'+tid+'_syncbtn');
@@ -71,8 +92,9 @@
                      },
                      error:function(){
                         replyCount.html(replyCount.html()+'error');
-                        btn.hide();
-                        loading.show();
+                        btn.show();
+                        loading.hide();
+                        callback(tid);
                      }
 
                     }).done(function(data){
@@ -83,14 +105,16 @@
                             replyCount.html(data['reply_count']);
                             totalPage=parseInt(data['totalPage']);
                             if(page<=totalPage){
-                                syncItem(tid,++page);
+                                syncItem(tid,++page,callback);
                             }else{
                                 btn.show();
                                 loading.hide();
+                                callback(tid);
                             }
                         }else{
                             btn.show();
                             loading.hide();
+                            callback(tid);
                         }
 
 
