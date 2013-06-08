@@ -45,6 +45,75 @@ class HTMLStripperExcludeBr(HTMLParser):
     def get_data(self):
         return ''.join(self.fed)
 
+from cron.spider.spider import Category
+class lou19Category(Category):
+    categoryDict = {
+        u'都市/言情':104,
+        u'言情小说':104,
+        u'玄幻/奇幻':105,
+        u'玄幻小说':105,
+        u'穿越/重生':102,
+        u'耽美/同人':107,
+        u'武侠/仙侠':109,
+        u'武侠小说':109,
+        u'仙侠小说':110,
+        u'网游小说':101,
+        u'传奇小说':106,
+        u'科幻小说':105,
+        u'童话小说':106,
+        u'恐怖小说':132,
+        u'侦探小说':105,
+        u'穿越':101,
+        u'重生':102,
+        u'都市':103,
+        u'言情':104,
+        u'玄幻':105,
+        u'奇幻':106,
+        u'耽美':107,
+        u'同人':108,
+        u'武侠':109,
+        u'仙侠':110,
+        u'末世':111,
+        u'甜宠':112,
+        u'女主':113,
+        u'修仙':114,
+        u'腹黑':115,
+        u'空间':116,
+        u'婚后':117,
+        u'女强':118,
+        u'女尊':119,
+        u'现代':120,
+        u'师徒':121,
+        u'清穿':122,
+        u'教授':123,
+        u'帝王':124,
+        u'架空':125,
+        u'姐弟':126,
+        u'小白':127,
+        u'民国':128,
+        u'修真':129,
+        u'复仇':130,
+        u'宫斗':131,
+        u'黑道':132,
+        u'总裁':133,
+        u'婚恋':134,
+        u'豪门':135,
+        u'宠文':136,
+    }
+
+
+    def getCategoryId(self,sourceCategoryName):
+        cid = self.categoryDict[sourceCategoryName]
+        if cid:
+            return cid
+        return 104
+
+
+    def getCategoryId(self,sourceCategoryId):
+        return 104
+
+
+
 class Lou19Config:
     client_id = 100
     client_secret = u"accessTest7118jqq54113accessTest"
