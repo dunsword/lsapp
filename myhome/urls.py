@@ -11,6 +11,7 @@ from base.register_view import RegisterView,EmailBindView,EmailActiveView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
 from sync.htsync_view import HtSyncView,ThreadSyncView
+from sync.weixin_views import WeixinView
 
 # Uncomment the next two lines to enable the sync:
 # from django.contrib import sync
@@ -76,6 +77,7 @@ urlpatterns = patterns('',
     (url(r'^sync/htsync/t/(?P<tid>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync/htsync/t/(?P<tid>\d+)/(?P<page>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync$',HtSyncView.as_view())),
+    (url(r'^weixin$',WeixinView.as_view())),
 
     (r'^cron/add$', 'cron.views.newDocument'),
     (r'^cron/update$', 'cron.views.updateDocument'),

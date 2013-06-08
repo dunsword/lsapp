@@ -7,7 +7,7 @@ from xml.etree import ElementTree as ET
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
-class WeixinTokenInvalidView(View):
+class WeixinView(View):
 
      def get(self,request,*args, **kwargs):
             try: # 微信接口认证 使用GET方式
@@ -19,9 +19,9 @@ class WeixinTokenInvalidView(View):
                     tmpStr = ''.join(tmpArr)
                     code = hashlib.sha1(tmpStr).hexdigest()
                     if code  == request.GET['signature']:
-                        return render_to_response('air/weixin.html',{'echostr':request.GET['echostr']})
+                        return request.GET['echostr']
                     else:
-                        return render_to_response('air/weixin.html',{'echostr':''})
+                        return 'fail'
                 # 微信接口通讯 返回用户需要数据
 		        # elif request.method == 'POST':
                  #    pass
@@ -33,9 +33,9 @@ class WeixinTokenInvalidView(View):
 			        # return render_to_response('air/weixin.xml',{'_to':_to, '_from': _from, '_time' : int(time.time()), '_type': _type, '_content' : _content}, mimetype='application/xml')
 	            # else:
                  #    pass
-            except:
-                pass
-            return render_to_response('air/weixin.html',{'echostr':''})
+            except Exception,e:
+                return render_to_response('sync_weixin.html',{'echostr':''})
+            return render_to_response('sync_weixin.html',{'echostr':''})
 
      def get1(self,request,*args, **kwargs):
             token = "dwmbnzjdqejltmndt"
