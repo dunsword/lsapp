@@ -36,9 +36,7 @@ class DocumentConvert:
         di=docPage.docItem
         try:
             doc=Document.objects.get(source_tid__exact=docPage.docItem.tid)
-            doc.topic.content=di.content
-            doc.source_updated_at=di.last_reply_at
-            doc.topic.save()
+
         except Document.DoesNotExist:
             doc=Document.objects.create_document(userid=UID,
                                                  username=UNAME,
@@ -54,7 +52,13 @@ class DocumentConvert:
                                                  source_updated_at=di.updated_at,
                                                  categoryid=104
                                                  )
-            doc.source_updated_at=di.last_reply_at
+        doc.source_updated_at=di.last_reply_at
+        doc.save()
+        doc.topic.created_at=di.created_at
+        doc.topic.last_reply_at=di.last_reply_at
+        doc.topic.content=di.content
+        doc.topic.save()
+
         return doc
 
     def convert(self,threadPage):

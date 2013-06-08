@@ -81,7 +81,7 @@ class DocumentForm(forms.ModelForm):
        '''
        
        class Meta:
-           fields = ('author_name','word_count', 'chapter_count','update_status','source_id','source_url','source_tid')
+           fields = ('author_name','word_count', 'chapter_count','update_status','source_id','source_url','source_tid','source_updated_at')
            model=Document
            widgets = {
              'update_status': forms.Select(choices=((1,"连载中"),(2,"已完结")))     
@@ -131,7 +131,7 @@ class TopicService():
             page=1
         start=(page-1)*TopicService.PAGE_SIZE
         end=page*TopicService.PAGE_SIZE-1
-        replyList= TopicReply.objects.filter(topicid__exact=topicId).filter(status__exact=1)[start:end]
+        replyList= TopicReply.objects.filter(topicid__exact=topicId).filter(status__exact=1).order_by('id')[start:end]
         for reply in replyList:
             start+=1 #start 从0开始，所以先加1
             reply.num=start

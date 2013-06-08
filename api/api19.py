@@ -126,8 +126,8 @@ class ThreadApi():
 
             user=post['author']
             reply_uid=long(user['uid'])
-
-            reply=RelyItem(rid=long(post['pid']),uid=reply_uid,subject=title,content=message,is_chapter=(uid==reply_uid),is_first=post['first'])
+            reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
+            reply=RelyItem(rid=long(post['pid']),uid=reply_uid,subject=title,content=message,is_chapter=(uid==reply_uid),created_at=reply_created_at,is_first=post['first'])
 
             results.append(reply)
         doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid,
