@@ -70,6 +70,12 @@ class DocumentFetcher():
         '''
         pass
 
+    def getLatestDocuentList(self,size):
+        """
+        获得站点排行榜的文章列表
+        返回DocumentList对象
+        """
+        pass
 
 class LouDocFetcherImpl(DocumentFetcher):
     def getDocumentPage(self,tid,page=1):
