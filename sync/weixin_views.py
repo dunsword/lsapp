@@ -19,9 +19,9 @@ class WeixinView(View):
                     tmpStr = ''.join(tmpArr)
                     code = hashlib.sha1(tmpStr).hexdigest()
                     if code  == request.GET['signature']:
-                        return request.GET['echostr']
+                        return HttpResponse(request.GET['echostr'])
                     else:
-                        return 'fail'
+                        return HttpResponse('fail')
                 # 微信接口通讯 返回用户需要数据
 		        # elif request.method == 'POST':
                  #    pass
