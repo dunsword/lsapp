@@ -58,6 +58,12 @@ class SpiderUrlConvert:
         """
         pass
 
+    def convertBookListUrl(self,cid,page):
+        """
+         根据一个分类获得书籍列表
+        """
+        pass
+
 
 class Spider:
     def work(self,spider,content):
