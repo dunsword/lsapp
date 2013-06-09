@@ -192,10 +192,12 @@ LOGGING = {
             'class':'logging.StreamHandler',
         },
        'file':{
-            'level':'INFO',
-            'class':'logging.FileHandler',
-            'formatter': 'verbose',
-            'filename': os.path.dirname(__file__)+'/../../logs/ls.log'
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            # 'level':'INFO',
+            # 'class':'logging.FileHandler',
+            # 'formatter': 'verbose',
+            # 'filename': os.path.dirname(__file__)+'/../../logs/ls.log'
         },
     },
     'loggers': {

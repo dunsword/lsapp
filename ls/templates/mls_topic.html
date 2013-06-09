@@ -1,11 +1,14 @@
 {% extends "mframe.html" %}
 
 {% block page %}
-<section data-role='page'>
+
+<section data-role='page' id='id_doc_main'>
     <header data-role='header'>
         <h1>精品小说推荐</h1>
     </header>
     <div data-role='content'>
+
+
         <p>{{ topic.instance.title }}</p>
         <p>作者：{{ topic.instance.getDocument.author_name}}</p>
         <p>更新：
@@ -19,8 +22,8 @@
         <p>
                 {{ topic.instance.content|linebreaksbr }}
         </p>
-        <ul data-role='listview'>
-            <li data-role='list-divider'>章节：</li>
+        <ul data-role='listview' id='id_catalogs'>
+           <li data-role='list-divider'>章节：</li>
             {% for chapter in chapters %}
                 {% if chapter.title %}
                     <li>
@@ -33,5 +36,50 @@
     </div>
     <footer data-role='footer'><h5>关于</h5></footer>
 </section>
+<div data-role='page' id='id_shortcut'>
+        <div data-role='header'><h4>快捷菜单</h4></div>
+        <div data-role='content'>
+                <a data-role='button'>到顶部</a>
+                <a data-role='button'>加书签</a>
+                <a data-role='button'>到页尾</a>
+                <a data-role='button'>到目录</a>
+        </div>
+</div>
+<script type='text/javascript'>
+    $('#id_doc_main').on('pageshow',function(){
+        catalogs_top = $('#id_catalogs').offset()['top'];
+        $.mobile.silentScroll(catalogs_top);
 
+    });
+    var cbtn;
+    var cpage;
+    var prepPage=function(event,ui){
+
+        np=$(ui.nextPage[0]);
+        np.on('pagehide',prepPage);
+        cpage=np;
+
+        reply_id=np.attr('reply_id');
+        btn=$('#id_fast_btn_'+reply_id);
+        btn.css('bottom','-8px');
+        btn.css('right','0px');
+        btn.show();
+        cbtn=btn;
+
+    };
+    $(window).on('scrollstop',function(){
+        if(cbtn){
+            if((cpage.height()-$(document).scrollTop())<($(window).height()*2)){
+                cbtn.hide();
+            }else{
+                cbtn.show();
+            };
+
+
+        }
+
+    })
+
+    $('#id_doc_main').on('pagehide',prepPage);
+</script>
 {% endblock %}
