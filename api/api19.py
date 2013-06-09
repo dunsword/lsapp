@@ -103,10 +103,11 @@ class Lou19Category(Category):
 
 
     def getCategoryId(self,sourceCategoryName):
-        cid = self.categoryDict[sourceCategoryName]
-        if cid:
+        if self.categoryDict.has_key(sourceCategoryName):
+            cid = self.categoryDict[sourceCategoryName]
             return cid
-        return 104
+        else:
+            return 104
 
 
     # def getCategoryId(self,sourceCategoryId):
@@ -198,14 +199,28 @@ class ThreadApi():
             user=post['author']
             reply_uid=long(user['uid'])
             reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
-            reply=RelyItem(rid=long(post['pid']),uid=reply_uid,subject=title,content=message,is_chapter=(uid==reply_uid),created_at=reply_created_at,is_first=post['first'])
+            reply=RelyItem(rid=long(post['pid']),
+                           uid=reply_uid,
+                           subject=title,
+                           content=message,
+                           is_chapter=(uid==reply_uid),
+                           created_at=reply_created_at,
+                           is_first=post['first'])
 
             results.append(reply)
-        doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,
+
+        doc=DocItem(tid=tid,
+                    uid=uid,
+                    url=url,
+                    subject=subject,
+                    reply_count=replyCount,
+                    view_count=viewCount,
                     content=results[0].content,
                     tags=tags,
                     fid=fid,
-                    created_at=created_at,last_reply_at=last_reply_at)
+                    created_at=created_at,
+                    last_reply_at=last_reply_at)
+
         return DocItemDetailPage(docItem=doc,page_number=pageNum,reply_list=results)
 
 if __name__=='__main__':
