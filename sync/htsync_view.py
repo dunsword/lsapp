@@ -43,7 +43,7 @@ class ThreadSyncView(BaseView):
            totalPage=dp.docItem.reply_count/18+1
 
            doc=convert.save(dp)
-           
+
                 #
                 # c = RequestContext(request,{
                 #                 'page':page,
