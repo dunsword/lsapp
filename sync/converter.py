@@ -1,9 +1,11 @@
 # coding=utf-8
 __author__ = 'paul'
 
-from api.docfetcher import LouDocFetcher
+
+from api.LouDocFetcherImpl import LouDocFetcher,LouCategory
 from ls.models import Document,Topic,TopicReply
 from api.docfetcher import DocItemDetailPage,RelyItem,DocItem,SourceInfo
+
 
 #TODO user get user random api
 UID=777
@@ -57,6 +59,7 @@ class DocumentConvert:
         doc.topic.created_at=di.created_at
         doc.topic.last_reply_at=di.last_reply_at
         doc.topic.content=di.content
+        doc.topic.categoryid=LouCategory.getCategoryId(di.tags[0])
         doc.topic.save()
 
         return doc

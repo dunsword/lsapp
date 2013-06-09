@@ -55,7 +55,13 @@ class Huatan():
             created_at = item["created_at"]
             url = item["outsite_url"]
 
-            docItem=DocItem(tid=tid,uid=0,content=content,subject=subject,url=url,reply_count=reply_count,view_count=0,created_at=created_at)
+            docItem=DocItem(tid=tid,uid=0,
+                            content=content,
+                            subject=subject,
+                            url=url,
+                            tags='',
+                            reply_count=reply_count,
+                            view_count=0,created_at=created_at)
             threadList.append(docItem)
 
         si=SourceInfo(source_id=bid,source_name=boardName,source_desc=boardDesc,site_id=19)

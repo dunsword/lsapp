@@ -20,7 +20,7 @@ class DocItem:
     '''
     列表中使用的文档摘要信息
     '''
-    def __init__(self,tid,uid,subject,url,reply_count,view_count,content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now()):
+    def __init__(self,tid,uid,subject,url,reply_count,view_count,tags,content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now()):
         self.tid=tid
         self.fid=fid  #板块id，如没有就不用
         self.content=content
@@ -32,6 +32,7 @@ class DocItem:
         self.created_at=created_at
         self.updated_at=updated_at
         self.last_reply_at=last_reply_at
+        self.tags=tags
         self.siteid=0
 
 class DocItemDetailPage():
@@ -77,17 +78,3 @@ class DocumentFetcher():
         """
         pass
 
-class LouDocFetcherImpl(DocumentFetcher):
-    def getDocumentPage(self,tid,page=1):
-        from api19 import ThreadApi
-        docPage= ThreadApi().getThreadPage(tid,page)
-        docPage.docItem.siteid=19
-        return docPage
-
-    def getLatestDocumentList(self,sid,size):
-
-        from huatan import Huatan
-        return Huatan().getThreadList(sid,1,size)
-
-
-LouDocFetcher=LouDocFetcherImpl()

@@ -46,7 +46,7 @@ class HTMLStripperExcludeBr(HTMLParser):
         return ''.join(self.fed)
 
 from cron.spider.spider import Category
-class lou19Category(Category):
+class Lou19Category(Category):
     categoryDict = {
         u'都市/言情':104,
         u'言情小说':104,
@@ -109,8 +109,8 @@ class lou19Category(Category):
         return 104
 
 
-    def getCategoryId(self,sourceCategoryId):
-        return 104
+    # def getCategoryId(self,sourceCategoryId):
+    #     return 104
 
 
 
@@ -160,7 +160,9 @@ class ThreadApi():
         viewCount = int(thread["views"])
         replyCount = int(thread["replies"])
         uid=long(thread['author']['uid'])
-
+        tags=[]
+        for tag in thread['tags']:
+            tags.append(tag['name'])
 
         forminfo = jsonContent["forum_info"]
         fid = int(forminfo["fid"])
@@ -199,7 +201,10 @@ class ThreadApi():
             reply=RelyItem(rid=long(post['pid']),uid=reply_uid,subject=title,content=message,is_chapter=(uid==reply_uid),created_at=reply_created_at,is_first=post['first'])
 
             results.append(reply)
-        doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,content=results[0].content,fid=fid,
+        doc=DocItem(tid=tid,uid=uid,url=url,subject=subject,reply_count=replyCount,view_count=viewCount,
+                    content=results[0].content,
+                    tags=tags,
+                    fid=fid,
                     created_at=created_at,last_reply_at=last_reply_at)
         return DocItemDetailPage(docItem=doc,page_number=pageNum,reply_list=results)
 

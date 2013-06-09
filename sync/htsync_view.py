@@ -7,7 +7,8 @@ from base.base_view import  BaseView
 from converter import DocumentConvert
 from ls.models import Document,TopicReply
 
-from api.docfetcher import LouDocFetcher,DocumentList,DocItem
+from api.docfetcher import DocumentList,DocItem
+from api.LouDocFetcherImpl import LouDocFetcher
 fecther=LouDocFetcher
 
 class HtThread:
