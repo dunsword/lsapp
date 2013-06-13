@@ -22,11 +22,11 @@ def wexin(request):
         _type = 'text'
         _content = 'welcome!'+_rev
         return render_to_response('sync_weixin.xml',
-                                  {'_to':_to,
-                                   '_from': _from,
-                                   '_time' : int(time.time()),
-                                   '_type': _type,
-                                   '_content' : _content},
+                                  {'to':_to,
+                                   'from': _from,
+                                   'time' : int(time.time()),
+                                   'type': _type,
+                                   'content' : _content},
                                   mimetype='application/xml')
     elif request.method=='GET':
         try: # 微信接口认证 使用GET方式
