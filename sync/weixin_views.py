@@ -39,4 +39,4 @@ class WeixinView(View):
                 return render_to_response('sync_weixin.html',{'echostr':''})
             return render_to_response('sync_weixin.html',{'echostr':''})
      def post(self,request,*args, **kwargs):
-            log.log(request.raw_post_data)
+            log.log(logging.INFO,request.raw_post_data)
