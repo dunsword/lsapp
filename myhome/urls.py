@@ -77,7 +77,7 @@ urlpatterns = patterns('',
     (url(r'^sync/htsync/t/(?P<tid>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync/htsync/t/(?P<tid>\d+)/(?P<page>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync$',HtSyncView.as_view())),
-    (url(r'^weixin$',WeixinView.as_view())),
+    (r'^weixin$','sync.weixin_views.wexin'),
 
     (r'^cron/add$', 'cron.views.newDocument'),
     (r'^cron/update$', 'cron.views.updateDocument'),
