@@ -10,8 +10,11 @@ class LouDocFetcherImpl(DocumentFetcher):
         docPage.docItem.siteid=19
         return docPage
 
-    def getLatestDocumentList(self,sid,size):
-        return Huatan().getThreadList(sid,1,size)
+    def getLatestDocumentList(self,sid,size,page=1,type='board'):
+        if type=='board':
+            return Huatan().getThreadList(sid,1,size)
+        elif type=='forum':
+            return Huatan().getForumThreadList(sid,page)
 
 
 LouDocFetcher=LouDocFetcherImpl()

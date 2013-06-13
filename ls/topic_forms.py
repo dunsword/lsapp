@@ -81,7 +81,7 @@ class DocumentForm(forms.ModelForm):
        '''
        
        class Meta:
-           fields = ('author_name','word_count', 'chapter_count','update_status','source_id','source_url','source_tid','source_updated_at')
+           fields = ('author_name','word_count', 'chapter_count','update_status','source_id','source_url','source_tid','source_uid','source_updated_at')
            model=Document
            widgets = {
              'update_status': forms.Select(choices=((1,"连载中"),(2,"已完结")))     

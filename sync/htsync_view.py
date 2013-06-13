@@ -15,9 +15,17 @@ class HtThread:
     pass
 class HtSyncView(BaseView):
       def get(self,request,bid=2124418905,*args, **kwargs):
+          if request.GET.has_key('type'):
+              type=request.GET['type']
+          else:
+              type='board'
 
-          bid=int(bid)
-          docList=fecther.getLatestDocumentList(bid,30)
+          if type=='forum':
+              fid=int(bid)
+              docList=fecther.getLatestDocumentList(sid=fid,size=50,page=1,type='forum')
+          else:
+              bid=int(bid)
+              docList=fecther.getLatestDocumentList(bid,30)
           docs=[]
           for d in docList.doc_list:
              try:
@@ -33,6 +41,8 @@ class HtSyncView(BaseView):
 
           tt = loader.get_template('sync_htsync.html')
           return HttpResponse(tt.render(c))
+
+
 class ThreadSyncView(BaseView):
 
 

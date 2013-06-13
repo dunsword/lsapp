@@ -15,6 +15,45 @@ class Huatan():
     httpHeaders = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
     imageBaseUrl = u"http://att3.citysbs.com/"
     imageSize = u"200x240"
+    forum19Url= 'https://www.19lou.com/api/thread/getThreadPage?fid=%d&client_id=%d&client_secret=%s&page=%d'
+
+    def getForumThreadList(self,fid=26,page=1):
+        url=Huatan.forum19Url%(fid,Huatan.client_id,Huatan.client_secret,page)
+        hClient = Http()
+        headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
+        resp, content = hClient.request(url,"GET",headers=headers)
+        content = content.decode('gb18030').encode('utf8')
+        jsonContent = json.loads(content)
+        forumInfo=jsonContent['forum_info']
+        forumName=forumInfo['name']
+        threadList=jsonContent['thread_list']
+        docs=[]
+        for thread in threadList:
+            tid=long(thread['tid'])
+            uid=long(thread['author']['uid'])
+            reply_count=int(thread['replies'])
+            subject = thread["subject"]
+            message = thread['first_post']["message"]
+            created_at = thread["created_at"]
+            url = thread["url"]
+            tags=[]
+            if thread.has_key('tags_list'):
+                taglist=thread['tags_list']
+                for tag in taglist:
+                    tags.append(tag['name'])
+
+            docItem=DocItem(tid=tid,
+                            uid=uid,
+                            content=message,
+                            subject=subject,
+                            url=url,
+                            tags=tags,
+                            reply_count=reply_count,
+                            view_count=0,created_at=created_at)
+            docs.append(docItem)
+        si=SourceInfo(source_id=fid,source_name=forumName,source_desc='',site_id=19)
+        return DocumentList(source_info=si,doc_list=docs)
+
 
     def getThreadList(self,bid,page=1,perPage=50):
         """
