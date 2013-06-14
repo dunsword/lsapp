@@ -21,6 +21,8 @@ def get_response(msg):
         return resp_from_author(msg)
     elif  TAGS.has_key(msg):
         return resp_from_keyword(msg)
+    else:
+        return REPLY_SUBSCRIBE
 
 def resp_from_keyword(msg):
     tagid=TAGS[msg]
