@@ -20,7 +20,7 @@ class DocItem:
     '''
     列表中使用的文档摘要信息
     '''
-    def __init__(self,tid,uid,subject,url,reply_count,view_count,tags,content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now()):
+    def __init__(self,tid,uid,subject,url,reply_count=0,view_count=0,tags='',content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now()):
         self.tid=tid
         self.fid=fid  #板块id，如没有就不用
         self.content=content
