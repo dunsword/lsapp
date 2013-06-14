@@ -103,11 +103,14 @@ class Lou19Category(Category):
     }
 
     def getCategoryByTags(self,tags):
+        tagids=[]
         for tagName in tags:
             if self.categoryDict.has_key(tagName):
                 cid = self.categoryDict[tagName]
-                return cid
-        return 2 #小说
+                tagids.append(cid)
+        if len(tagids)==0:
+            tagids.append(2)
+        return tagids #小说
 
     def getCategoryId(self,sourceCategoryName):
         if self.categoryDict.has_key(sourceCategoryName):

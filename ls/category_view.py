@@ -20,6 +20,7 @@ from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
 from ls.views import LsView
 from base.storage.client import AvatarClient
+from django.db.models import Q
 
 class CategoryNewTopicView(BaseView):
     @method_decorator(login_required)
@@ -65,7 +66,7 @@ class CategoryView(LsView):
             topic_count=Topic.objects.filter(categoryid__exact=categoryid).count()
             pageInfo=PageInfo(page,topic_count,30)
             cats=Category.objects.getCategory(category.parent_id) 
-            topics=Topic.objects.filter(categoryid__exact=categoryid).filter(status__exact=status).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
+            topics=Topic.objects.filter(Q(categoryid__exact=categoryid)|Q(catid1__exact=categoryid)|Q(catid2__exact=categoryid)).filter(status__exact=status).order_by('-created_at')[pageInfo.startNum:pageInfo.endNum]
        
       
         c = self.getContext(request,{'category':category,'topics':topics,'pageInfo':pageInfo})
