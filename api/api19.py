@@ -10,6 +10,7 @@ from datetime import datetime
 
 
 PATTEN_FOR_ALT=re.compile('"alt=""')
+PATTEN_FOR_ALT2=re.compile('alt=;P')
 from HTMLParser import HTMLParser,HTMLParseError
 class HTMLStripper(HTMLParser):
     """
@@ -101,6 +102,12 @@ class Lou19Category(Category):
         u'宠文':136,
     }
 
+    def getCategoryByTags(self,tags):
+        for tagName in tags:
+            if self.categoryDict.has_key(tagName):
+                cid = self.categoryDict[tagName]
+                return cid
+        return 2 #小说
 
     def getCategoryId(self,sourceCategoryName):
         if self.categoryDict.has_key(sourceCategoryName):
@@ -173,6 +180,7 @@ class ThreadApi():
         for post in postList:
             try:
                 rawMessage=PATTEN_FOR_ALT.sub('"',post["message"]) #it's ugly
+                rawMessage=PATTEN_FOR_ALT2.sub('/',rawMessage)
                 message = self.stripTagsExcludeBr(rawMessage)
             except  HTMLParseError:
                 message="错误！"

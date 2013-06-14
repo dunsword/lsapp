@@ -1,0 +1,24 @@
+<!-- need Topic instance -->
+<div id='topic_item_{{topic.id}}' class="row-fluid topic-item" style='height: 51px' >
+    <div class='span7' style="height: 100%;padding: 20px 5px;">
+         <a href="/topic/{{topic.id}}/1">{{topic.title}}</a>
+    </div>
+    <div class='span1' style="height: 100%;padding: 20px 5px;">
+         {% if topic.isDocument %}
+				            <span class="label label-tag" >
+				                <a href='/cat/{{topic.categoryid}}/1' style="color:white">{{topic.getCategory.name}}</a>
+				            </span>
+	    {% endif%}
+    </div>
+
+    <div class='span2' style="height: 100%;padding: 20px 0px;">
+        <!--
+        <a href="/user/{{topic.userid}}">{{topic.username}} </a><br>
+        -->
+       {{topic.created_at|date:"Y-m-d f"}}
+    </div>
+    <div class='span2' style="height: 100%;padding: 20px 0px;">
+       {{topic.last_reply_at|date:"Y-m-d f"}}
+    </div>
+
+</div>

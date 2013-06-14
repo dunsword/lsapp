@@ -14,7 +14,8 @@
                     <tr>
                         <th>TID</th>
                         <th>标题</th>
-                        <th>更新时间</th>
+                        <th>标签</th>
+                        <th>发帖时间</th>
                         <th>
                             <a href='#' class='btn btn-primary' onclick="syncItem(tids[0],1,syncNext)">全部</a></th>
                         <th>状态(总回复/已经同步回复)</th>
@@ -34,6 +35,11 @@
                             <a href='{{ t.url }}' target="_blank">{{ t.subject }}</a>
 
                         </td>
+                        <td>
+                             {% for tag in t.tags %}
+                                <a>{{ tag }}</a>
+                            {% endfor %}
+                        </td>
                         <td>{{ t.created_at }}</td>
                         <td>
 
@@ -48,8 +54,6 @@
                         </a>
                         <li class='icon-fast-forward' id='id_{{ t.tid }}_loading' style="display: none"></li>
 
-
-
                         </td>
                         <td>
                             <a href="/sync/htsync/t/{{ t.tid }}" target="_blank"  >查看</a>
@@ -60,7 +64,7 @@
                         </td>
                     </tr>
                     {% endfor %}
-                    </tbody>
+                    </tbody>t
                 </table>
             </div>
         </div>

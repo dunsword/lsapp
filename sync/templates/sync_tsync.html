@@ -77,11 +77,70 @@
             </div>
         </div>
     <div class="row-fluid">
-            <div class='span12'>
+            <div class='span6'>
 
                <a href='/sync/htsync/t/{{  doc.source_tid  }}/{{ page|add:"1" }}' class='btn btn-primary'>下一页</a>
 
             </div>
+         <div class='span6'>
+                <li class='icon-fast-forward' id='id_{{ dp.docItem.tid }}_loading' style="display: none"></li>
+               <a href='#' class='btn btn-primary'
+                  id='id_{{ dp.docItem.tid }}_syncbtn'
+                       onclick="syncItem('{{ dp.docItem.tid }}',1,nothing)">同步</a>
+
+              {{ dp.docItem.reply_count }}/ <span id='id_{{ t.tid }}_replycount'>{{ doc.topic.reply_count }}</span>
+                            {% if doc %}
+                            <a href='/topic/{{ doc.topic.id }}/1' target='_blank'><li class='icon-arrow-right'></li></a>
+                            {% endif %}
+
+            </div>
         </div>
     </div>
+    <script>
+     function nothing(){}
+     function syncItem(tid,page ,callback ){
+
+            var totalPage;
+            var btn=$('#id_'+tid+'_syncbtn');
+            var loading=$('#id_'+tid+'_loading');
+            var replyCount=$('#id_'+tid+'_replycount');
+            $.ajax(
+                    {url:'/sync/htsync/t/'+tid+'/'+page+'?json=true',
+                     type:'GET',
+                     beforeSend:function(){
+
+                        btn.hide();
+                        loading.show();
+                     },
+                     error:function(){
+                        replyCount.html(replyCount.html()+'error');
+                        btn.show();
+                        loading.hide();
+                        callback(tid);
+                     }
+
+                    }).done(function(data){
+
+                        if(data['result']=='success'){
+
+                            btn.attr('class','btn');
+                            replyCount.html(data['reply_count']);
+                            totalPage=parseInt(data['totalPage']);
+                            if(page<=totalPage){
+                                syncItem(tid,++page,callback);
+                            }else{
+                                btn.show();
+                                loading.hide();
+                                callback(tid);
+                            }
+                        }else{
+                            btn.show();
+                            loading.hide();
+                            callback(tid);
+                        }
+
+
+                    });
+        }
+    </script>
 {% endblock %}

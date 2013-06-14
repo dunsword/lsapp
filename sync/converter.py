@@ -22,6 +22,9 @@ class DocumentConvert:
             is_chapter=False
         try:
             tr=TopicReply.objects.getBySourceRid(doc.topic.id,reply.rid) #filter(topicid__exact=doc.topic.id).filter(source_pid__exact=reply.rid)
+            tr.content=reply.content
+            tr.title=reply.subject
+            tr.save()
         except TopicReply.DoesNotExist:
             if not reply.is_first:
                 tr=TopicReply.objects.createReply(topicid=doc.topic.id,
@@ -62,7 +65,7 @@ class DocumentConvert:
             doc.topic.created_at=di.created_at
             doc.topic.last_reply_at=di.last_reply_at
             doc.topic.content=di.content
-            doc.topic.categoryid=LouCategory.getCategoryId(di.tags[0])
+            doc.topic.categoryid=LouCategory.getCategoryByTags(di.tags)
             doc.topic.save()
 
         return doc

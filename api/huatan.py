@@ -37,10 +37,9 @@ class Huatan():
             created_at = thread["created_at"]
             url = thread["url"]
             tags=[]
-            if thread.has_key('tags_list'):
-                taglist=thread['tags_list']
-                for tag in taglist:
-                    tags.append(tag['name'])
+            if thread.has_key('topic_tag'):
+                tag=thread['topic_tag']
+                tags.append(tag['name'])
 
             docItem=DocItem(tid=tid,
                             uid=uid,

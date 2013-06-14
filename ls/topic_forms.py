@@ -130,7 +130,7 @@ class TopicService():
         if page<1:
             page=1
         start=(page-1)*TopicService.PAGE_SIZE
-        end=page*TopicService.PAGE_SIZE-1
+        end=page*TopicService.PAGE_SIZE
         replyList= TopicReply.objects.filter(topicid__exact=topicId).filter(status__exact=1).order_by('id')[start:end]
         for reply in replyList:
             start+=1 #start 从0开始，所以先加1
