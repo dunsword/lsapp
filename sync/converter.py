@@ -56,7 +56,7 @@ class DocumentConvert:
                                                  reply_count=0,
                                                  author_name=u'未知',
                                                  source_updated_at=di.updated_at,
-                                                 categoryid=LouCategory.getCategoryByTags(di.tags)
+                                                 categoryid=LouCategory.getCategoryByTags(di.tags)[0]
                                                  )
 
 
@@ -70,7 +70,12 @@ class DocumentConvert:
             doc.topic.read_count=di.view_count
             doc.topic.last_reply_at=di.last_reply_at
             doc.topic.content=di.content
-            doc.topic.categoryid=LouCategory.getCategoryByTags(di.tags)
+            tags=LouCategory.getCategoryByTags(di.tags)
+            doc.topic.categoryid=tags[0]
+            if len(tags)>1:
+                doc.topic.catid1=tags[1]
+            if len(tags)>2:
+                doc.topic.catid2=tags[2]
             doc.topic.save()
 
         return doc

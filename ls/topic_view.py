@@ -22,7 +22,22 @@ class BaseTopicView(LsView):
         self.tSrv=TopicService()
         self.trSrv=TopicReplyService()
         self.docSrv=DocumentService()
-        
+
+class ProxyView(BaseTopicView):
+    def get(self,request,tid,page=1,*args, **kwargs):
+        try:
+            doc = Document.objects.get_by_source(19,tid)
+        except Document.DoesNotExist:
+            doc = None #TODO sync doc
+
+
+
+
+
+
+
+
+
 class TopicView(BaseTopicView):
     
     #@method_decorator(login_required)
