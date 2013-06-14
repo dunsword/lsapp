@@ -15,6 +15,7 @@ from ls.document_forms import DocumentService
 from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
 from ls.views import LsView
+from sync.sync_page import syncThread
 
 class BaseTopicView(LsView):
     def __init__(self, **kwargs):
@@ -28,9 +29,9 @@ class ProxyView(BaseTopicView):
         try:
             doc = Document.objects.get_by_source(19,tid)
         except Document.DoesNotExist:
-            doc = None #TODO sync doc
+            doc = syncThread(tid)
 
-
+        return HttpResponseRedirect('/m/topic/'+str(doc.topic.id)+'/1')
 
 
 

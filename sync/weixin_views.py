@@ -10,7 +10,7 @@ from django.shortcuts import render_to_response
 log=logging.getLogger('info')
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
+from weixinapi import get_response
 @csrf_exempt
 def wexin(request):
     if request.method=='POST':
@@ -20,7 +20,7 @@ def wexin(request):
         _to = xml.find('FromUserName').text
         _from = xml.find('ToUserName').text
         _type = 'text'
-        _content = 'welcome!'+_rev
+        _content = get_response(_rev)
         return render_to_response('sync_weixin.xml',
                                   {'to':_to,
                                    'from': _from,
