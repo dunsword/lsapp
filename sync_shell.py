@@ -18,9 +18,6 @@ convert=DocumentConvert()
 
 
 for p in range(1,100):
-    print (u'sync thread list page '+unicode(p)+'...')
     sycnThreadList(p)
-    print (u'thread list page '+unicode(p)+' sync finished...')
-    print (u'---------------------------')
 
 
