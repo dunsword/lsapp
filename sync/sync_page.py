@@ -8,9 +8,10 @@ fecther=LouDocFetcher
 convert=DocumentConvert()
 
 def sycnThreadList(page):
-    docList=fecther.getLatestDocumentList(sid=26,size=50,page=page,type='forum')
-    docs=[]
-    for d in docList.doc_list:
+    try:
+        docList=fecther.getLatestDocumentList(sid=26,size=50,page=page,type='forum')
+        docs=[]
+        for d in docList.doc_list:
              try:
                 doc = Document.objects.get_by_source(19,d.tid)
              except Document.DoesNotExist:
@@ -29,3 +30,6 @@ def sycnThreadList(page):
                  for reply in dp.reply_list:
                     tr=convert.saveReply(doc,reply)
                  print u'帖子'+unicode(tid)+u'第'+unicode(n)+u'页回复已经保存'
+    except Exception, e:
+        print e
+
