@@ -24,6 +24,7 @@ class DocumentConvert:
             tr=TopicReply.objects.getBySourceRid(doc.topic.id,reply.rid) #filter(topicid__exact=doc.topic.id).filter(source_pid__exact=reply.rid)
             tr.content=reply.content
             tr.title=reply.subject
+            tr.is_chapter=is_chapter
             tr.save()
         except TopicReply.DoesNotExist:
             if not reply.is_first:
@@ -55,14 +56,18 @@ class DocumentConvert:
                                                  reply_count=0,
                                                  author_name=u'未知',
                                                  source_updated_at=di.updated_at,
-                                                 categoryid=104
+                                                 categoryid=LouCategory.getCategoryByTags(di.tags)
                                                  )
 
 
         if docPage.page_number==1:
             doc.source_updated_at=di.last_reply_at
+            doc.source_uid=di.uid
+            doc.source_url=di.url
+            doc.source_id=di.siteid
             doc.save()
             doc.topic.created_at=di.created_at
+            doc.topic.read_count=di.view_count
             doc.topic.last_reply_at=di.last_reply_at
             doc.topic.content=di.content
             doc.topic.categoryid=LouCategory.getCategoryByTags(di.tags)
