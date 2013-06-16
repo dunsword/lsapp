@@ -27,12 +27,12 @@ class HtSyncView(BaseView):
               bid=int(bid)
               docList=fecther.getLatestDocumentList(bid,30)
           docs=[]
-          for d in docList.doc_list:
+          for di in docList.doc_list:
              try:
-                doc = Document.objects.get_by_source(19,d.tid)
+                doc = Document.objects.get_by_source(19,di.tid)
              except Document.DoesNotExist:
                 doc = None
-             docs.append((d,doc))
+             docs.append((di,doc))
           c = RequestContext(request,
                             {
                                 'docList':docList,

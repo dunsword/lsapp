@@ -54,6 +54,7 @@ class Huatan():
         return DocumentList(source_info=si,doc_list=docs)
 
 
+
     def getThreadList(self,bid,page=1,perPage=50):
         """
         花坛获得列表页接口
@@ -102,7 +103,7 @@ class Huatan():
                             view_count=0,created_at=created_at)
             threadList.append(docItem)
 
-        si=SourceInfo(source_id=bid,source_name=boardName,source_desc=boardDesc,site_id=19)
+        si=SourceInfo(source_id=bid,source_name=boardName,source_desc=boardDesc,site_id=19,tags=[boardName])
         return DocumentList(source_info=si,doc_list=threadList)
 
         #return {"boardName":boardName,"boardDesc":boardDesc,"categoryName":categoryName,"cover":cover,"threadList":threadList}

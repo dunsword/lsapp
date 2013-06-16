@@ -100,6 +100,8 @@ class Lou19Category(Category):
         u'婚恋':134,
         u'豪门':135,
         u'宠文':136,
+        u'高干':137,
+        u'肉文':138
     }
 
     def getCategoryByTags(self,tags):
@@ -107,9 +109,10 @@ class Lou19Category(Category):
         for tagName in tags:
             if self.categoryDict.has_key(tagName):
                 cid = self.categoryDict[tagName]
-                tagids.append(cid)
-        if len(tagids)==0:
-            tagids.append(2)
+                if not tagids.__contains__(cid):
+                    tagids.append(cid)
+        # if len(tagids)==0:
+        #     tagids.append(2)
         return tagids #小说
 
     def getCategoryId(self,sourceCategoryName):
@@ -146,7 +149,7 @@ class ThreadApi():
         s.feed(html)
         return s.get_data()
 
-    def getThreadPage(self,tid,page=1):
+    def getThreadPage(self,tid,page=1,default_tags=[]):
         getAll = False
         pageNum = int(page)
         postTmp = []
@@ -171,9 +174,13 @@ class ThreadApi():
         viewCount = int(thread["views"])
         replyCount = int(thread["replies"])
         uid=long(thread['author']['uid'])
-        tags=[]
+        tags=default_tags
         for tag in thread['tags']:
             tags.append(tag['name'])
+
+        for key_tagname in Lou19Category.categoryDict.keys():
+            if unicode(subject).__contains__(key_tagname):
+                tags.append(key_tagname)
 
         forminfo = jsonContent["forum_info"]
         fid = int(forminfo["fid"])

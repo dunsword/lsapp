@@ -5,8 +5,8 @@ from huatan import Huatan
 from api19 import Lou19Category
 #
 class LouDocFetcherImpl(DocumentFetcher):
-    def getDocumentPage(self,tid,page=1):
-        docPage= ThreadApi().getThreadPage(tid,page)
+    def getDocumentPage(self,tid,page=1,tags=[]):
+        docPage= ThreadApi().getThreadPage(tid,page,tags)
         docPage.docItem.siteid=19
         return docPage
 

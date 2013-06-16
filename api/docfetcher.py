@@ -45,11 +45,12 @@ class DocItemDetailPage():
         self.reply_list=reply_list
 
 class SourceInfo():
-    def __init__(self,source_id,source_name,source_desc,site_id):
+    def __init__(self,source_id,source_name,source_desc,site_id,tags=[]):
         self.source_id=source_id
         self.source_name=source_name
         self.source_desc=source_desc
         self.site_id=site_id
+        self.tags=tags
 
 class DocumentList():
     def __init__(self,source_info,doc_list):
