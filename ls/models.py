@@ -5,6 +5,7 @@ from datetime import datetime
 from base.storage.client import AvatarClient
 from django.core.cache import get_cache
 from django.core.cache import cache
+import re
 #cache = get_cache('local')
 
 class BaseManager(models.Manager):
@@ -204,6 +205,17 @@ class DocumentManager(BaseManager):
         return doc
     
 class Document(models.Model):
+
+    def __init__(self, *args, **kwargs):
+        super(Document,self).__init__(*args, **kwargs)
+        #修复数据错误
+        if len(self.source_url)>0 and self.source_id==19 and self.source_tid==0:
+            m=re.search('(?<=thread-)\d+',self.source_url)
+            if m:
+                stid=long(m.source_tid)
+                self.source_tid=stid
+
+
     objects=DocumentManager()
     author_name=models.CharField(u'作者',max_length=256,null=True,default=None)
     word_count=models.IntegerField('字数',default=0);
