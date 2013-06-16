@@ -212,7 +212,7 @@ class Document(models.Model):
         if len(self.source_url)>0 and self.source_id==19 and self.source_tid==0:
             m=re.search('(?<=thread-)\d+',self.source_url)
             if m:
-                stid=long(m.source_tid)
+                stid=long(m.group(0))
                 self.source_tid=stid
 
 
