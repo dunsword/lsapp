@@ -174,7 +174,7 @@ class ThreadApi():
         viewCount = int(thread["views"])
         replyCount = int(thread["replies"])
         uid=long(thread['author']['uid'])
-        tags=default_tags
+        tags=[]
         for tag in thread['tags']:
             tags.append(tag['name'])
 
