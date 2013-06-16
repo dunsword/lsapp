@@ -14,7 +14,7 @@ from weixinapi import get_response
 @csrf_exempt
 def wexin(request):
     if request.method=='POST':
-        log.log(logging.INFO,request.raw_post_data)
+        log.log(logging.INFO,request.POST)
         xml = et.fromstring(request.raw_post_data)
         _rev= xml.find('Content').text
         _to = xml.find('FromUserName').text
