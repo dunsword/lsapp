@@ -64,6 +64,12 @@ class SpiderUrlConvert:
         """
         pass
 
+    def convertChapterDetailUrl(self,tid,pid):
+        """
+        根据小说的tid，和章节id获得一个具体对应的url
+        """
+        pass
+
 
 class Spider:
     def work(self,spider,content):
