@@ -51,8 +51,8 @@
         $.mobile.silentScroll(catalogs_top);
 
     });
-    var cbtn;
-    var cpage;
+    var cbtn; //快捷按钮
+    var cpage; //当前page
     var prepPage=function(event,ui){
 
         np=$(ui.nextPage[0]);
@@ -64,7 +64,7 @@
         btn.css('bottom','-8px');
         btn.css('right','0px');
         btn.show();
-        cbtn=btn;
+        //cbtn=btn;
 
     };
     $(window).on('scrollstop',function(){

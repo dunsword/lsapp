@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "mframe.html" %}
 
-  <title>精品小说推荐</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width">
-  </head>
-
-<body>
+{% block page %}
 <section data-role='page' id='id_page_reply_{{ reply.id }}' reply_id='{{ reply.id }}'>
     <header data-role='header'>
         <a data-rel='back'>返回</a>
@@ -59,5 +52,4 @@
 
     </script>
 </section>
-</body>
-</html>
+{% endblock %}

@@ -1,13 +1,23 @@
 <!-- need Topic instance -->
 <div id='topic_item_{{topic.id}}' class="row-fluid topic-item" style='height: 51px' >
-    <div class='span7' style="height: 100%;padding: 20px 5px;">
+    <div class='span6' style="height: 100%;padding: 20px 5px;">
          <a href="/topic/{{topic.id}}/1">{{topic.title}}</a>
     </div>
-    <div class='span1' style="height: 100%;padding: 20px 5px;">
+    <div class='span2' style="height: 100%;padding: 20px 5px;">
          {% if topic.isDocument %}
-				            <span class="label label-tag" >
-				                <a href='/cat/{{topic.categoryid}}/1' style="color:white">{{topic.getCategory.name}}</a>
-				            </span>
+				   <span class="label label-tag" >
+				        <a href='/cat/{{topic.categoryid}}/1' style="color:white">{{topic.getCategory.name}}</a>
+				   </span>
+                   {% if topic.catid1 > 0 %}
+                   <span class="label label-tag" >
+				        <a href='/cat/{{topic.catid1}}/1' style="color:white">{{topic.getCategory1.name}}</a>
+				   </span>
+                   {% endif %}
+                   {% if topic.catid2 > 0 %}
+                   <span class="label label-tag" >
+				        <a href='/cat/{{topic.catid2}}/1' style="color:white">{{topic.getCategory2.name}}</a>
+				   </span>
+                   {% endif %}
 	    {% endif%}
     </div>
 

@@ -75,7 +75,7 @@ class Topic(BaseModel):
         super(Topic,self).__init__(*args, **kwargs)
         self.document=None
         self._avatar_url=None
-        self.category=None
+        self.cats=None
         self.chapters=None
 
         
@@ -119,12 +119,31 @@ class Topic(BaseModel):
             self._avatar_url=AvatarClient.url('a_250X250_'+str(self.userid)+'.jpg')
         return self._avatar_url
     
-    def getCategory(self):
-        if self.category != None:
-            return self.category
-        self.category=Category.objects.get(pk=self.categoryid);
-        return self.category
-    
+    def getCategory(self,num=0):
+        if self.cats != None:
+            return self.cats[num]
+
+        self.cats=[None,None,None]
+
+        category=Category.objects.get(pk=self.categoryid)
+        self.cats[0]=category
+
+        if self.catid1>0:
+            cat1=Category.objects.get(pk=self.catid1)
+            self.cats[1]=cat1
+
+        if self.catid2>0:
+            cat2=Category.objects.get(pk=self.catid2)
+            self.cats[2]=cat2
+
+        return self.cats[num]
+
+    def getCategory1(self):
+        return self.getCategory(1)
+
+    def getCategory2(self):
+        return self.getCategory(2)
+
     def isDocument(self):
         return self.topic_type==Topic.TOPIC_TYPE_DOCUMENT
     
