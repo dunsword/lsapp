@@ -1,0 +1,18 @@
+<xml>
+ <ToUserName><![CDATA[{{ to }}]]></ToUserName>
+ <FromUserName><![CDATA[{{ from }}]]></FromUserName>
+ <CreateTime>{{ time }}</CreateTime>
+ <MsgType><![CDATA[news]]></MsgType>
+ <ArticleCount>{{ count }}</ArticleCount>
+ <Articles>
+ {% for doc in docs %}
+ <item>
+ <Title><![CDATA[{{ doc.title }}]]></Title>
+ <Description><![CDATA[{{ doc.content|truncatechars:30 }}]]></Description>
+ <PicUrl><![CDATA[http://att2.citysbs.com/hangzhou/2013/04/26/21/middle_214944_18561366984184220_514e1bdb0aa91812bbb74bfd4e8a68aa.jpg]]></PicUrl>
+ <Url><![CDATA[http://mobile-proxy.weibols.com/m/topic/{{ doc.topic.id }}/1]]></Url>
+ </item>
+ {% endfor %}
+ </Articles>
+ <FuncFlag>1</FuncFlag>
+ </xml>

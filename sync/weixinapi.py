@@ -22,13 +22,15 @@ TAGS={
      u'甜宠':112,
 }
 
-def get_response(msg):
+RESP_TYPE={'TEXT':1,'NEWS':2}
+
+def get_response(msg,to):
     if AUTHORS.has_key(msg):
         return resp_from_author(msg)
     elif  TAGS.has_key(msg):
         return resp_from_keyword(msg)
     else:
-        return REPLY_SUBSCRIBE
+        return {'type':'TEXT','text':REPLY_SUBSCRIBE}
 
 def resp_from_keyword(msg):
     tagid=TAGS[msg]
@@ -41,10 +43,12 @@ def resp_from_keyword(msg):
 
     result=u""
     num=1
-    for doc in docs:
-        result=result+str(num)+u'、'+doc.topic.title+u': http://121.199.9.13/proxy/'+str(doc.source_tid)+u'\r\n'
-        num=num+1
-    return result
+
+    return {'type':'NEWS','docs':docs}
+    # for doc in docs:
+    #     result=result+str(num)+u'、'+doc.topic.title+u': http://121.199.9.13/proxy/'+str(doc.source_tid)+u'\r\n'
+    #     num=num+1
+    # return result
 
 
 
