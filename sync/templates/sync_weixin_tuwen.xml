@@ -4,8 +4,8 @@
  <CreateTime>{{ time }}</CreateTime>
  <MsgType><![CDATA[news]]></MsgType>
  <ArticleCount>{{ count }}</ArticleCount>
- {% for doc in docs %}
  <Articles>
+ {% for doc in docs %}
  <item>
  <Title><![CDATA[{{ doc.title }}]]></Title>
  <Description><![CDATA[{{ doc.content|truncatechars:30 }}]]></Description>
