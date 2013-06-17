@@ -9,7 +9,7 @@
  <item>
  <Title><![CDATA[{{ doc.title }}]]></Title>
  <Description><![CDATA[]]></Description>
- <PicUrl><![CDATA[]]></PicUrl>
+ <PicUrl><![CDATA[]]>{{ url }}</PicUrl>
  <Url><![CDATA[http://121.199.9.13/m/topic/{{ doc.topic.id }}/1]]></Url>
  </item>
  {% endfor %}

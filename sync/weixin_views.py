@@ -21,14 +21,15 @@ def wexin(request):
         _from = xml.find('ToUserName').text
         _type = 'text'
         _resp = get_response(_rev,_to)
-
+        _docs= _resp['docs']
         if _resp['type']=='NEWS':
             return render_to_response('sync_weixin_tuwen.xml',{
                                         'to':_to,
                                         'from':_from,
                                         'time':int(time.time()),
                                         'type':'news',
-                                        'docs':_resp['docs'],
+                                        'count':len(_docs),
+                                        'docs':_docs,
                                     },
                                    mimetype='application/xml')
 
