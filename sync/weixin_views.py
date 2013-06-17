@@ -19,10 +19,10 @@ def wexin(request):
         _rev= xml.find('Content').text
         _to = xml.find('FromUserName').text
         _from = xml.find('ToUserName').text
-        _type = 'text'
         _resp = get_response(_rev,_to)
-        _docs= _resp['docs']
+
         if _resp['type']=='NEWS':
+            _docs= _resp['docs']
             return render_to_response('sync_weixin_tuwen.xml',{
                                         'to':_to,
                                         'from':_from,
@@ -34,14 +34,14 @@ def wexin(request):
                                    mimetype='application/xml')
 
 
-
-        # return render_to_response('sync_weixin.xml',
-        #                           {'to':_to,
-        #                            'from': _from,
-        #                            'time' : int(time.time()),
-        #                            'type': _type,
-        #                            'content' : _content},
-        #                           mimetype='application/xml')
+        elif _resp['type']=='TEXT':
+            return render_to_response('sync_weixin.xml',
+                                  {'to':_to,
+                                   'from': _from,
+                                   'time' : int(time.time()),
+                                   'type': 'text',
+                                   'content' : _resp['text']},
+                                  mimetype='application/xml')
     elif request.method=='GET':
         try: # 微信接口认证 使用GET方式
                 if request.method == 'GET':

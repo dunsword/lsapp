@@ -10,7 +10,7 @@
  <Title><![CDATA[{{ doc.title }}]]></Title>
  <Description><![CDATA[]]></Description>
  <PicUrl><![CDATA[]]>{{ url }}</PicUrl>
- <Url><![CDATA[http://121.199.9.13/m/topic/{{ doc.topic.id }}/1]]></Url>
+ <Url><![CDATA[http://mobile-proxy.weibols.com/m/topic/{{ doc.topic.id }}/1]]></Url>
  </item>
  {% endfor %}
  </Articles>
