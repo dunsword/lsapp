@@ -30,7 +30,7 @@ def get_response(msg,to):
     elif  TAGS.has_key(msg):
         return resp_from_keyword(msg)
     else:
-        return REPLY_SUBSCRIBE
+        return {'type':'TEXT','text':REPLY_SUBSCRIBE}
 
 def resp_from_keyword(msg):
     tagid=TAGS[msg]
