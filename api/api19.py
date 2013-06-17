@@ -214,6 +214,11 @@ class ThreadApi():
                     except Exception,e:
                         logging.error(e.message)
 
+            attachments=[]
+            if post.has_key('attachment'):
+                for attachment in post['attachment']:
+                    attachments.append(attachment['middle_url'])
+
             user=post['author']
             reply_uid=long(user['uid'])
             reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
@@ -223,7 +228,8 @@ class ThreadApi():
                            content=message,
                            is_chapter=(uid==reply_uid),
                            created_at=reply_created_at,
-                           is_first=post['first'])
+                           is_first=post['first'],
+                           attachments=attachments)
 
             results.append(reply)
 
@@ -238,6 +244,9 @@ class ThreadApi():
                     fid=fid,
                     created_at=created_at,
                     last_reply_at=last_reply_at)
+        if len(results[0].attachments)>0:
+            doc.cover_img=results[0].attachments[0]
+
 
         return DocItemDetailPage(docItem=doc,page_number=pageNum,reply_list=results)
 

@@ -227,6 +227,7 @@ class Document(models.Model):
     source_uid=models.BigIntegerField('来源作者',default=0)
     topic=models.OneToOneField(Topic,related_name='ref+')
     source_updated_at=models.DateTimeField(u'原文章最后更新时间', default=datetime.now(),db_index=True)
+    source_cover_img=models.URLField('封面图片',null=True)
 
     def getSiteSource(self):
         return SiteSource.objects.get(pk=self.source_id)

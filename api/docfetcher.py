@@ -7,7 +7,7 @@ class RelyItem:
     '''
         回复信息对象
     '''
-    def __init__(self,rid,uid,subject,content,is_chapter,created_at=datetime.now(),is_first=False):
+    def __init__(self,rid,uid,subject,content,is_chapter,created_at=datetime.now(),is_first=False,attachments=[]):
         self.rid=rid  #回复对象id，如pid
         self.uid=uid  #作者uid
         self.is_first=is_first
@@ -15,12 +15,13 @@ class RelyItem:
         self.created_at=created_at
         self.subject=subject
         self.content=content
+        self.attachments=attachments
 
 class DocItem:
     '''
     列表中使用的文档摘要信息
     '''
-    def __init__(self,tid,uid,subject,url,reply_count=0,view_count=0,tags='',content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now()):
+    def __init__(self,tid,uid,subject,url,reply_count=0,view_count=0,tags='',content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now(),cover_img=None):
         self.tid=tid
         self.fid=fid  #板块id，如没有就不用
         self.content=content
@@ -33,6 +34,7 @@ class DocItem:
         self.updated_at=updated_at
         self.last_reply_at=last_reply_at
         self.tags=tags
+        self.cover_img=cover_img
         self.siteid=0
 
 class DocItemDetailPage():

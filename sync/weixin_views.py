@@ -23,6 +23,9 @@ def wexin(request):
 
         if _resp['type']=='NEWS':
             _docs= _resp['docs']
+            for doc in _docs:
+                if doc.source_cover_img==None:
+                    doc.source_cover_img='http://att2.citysbs.com/hangzhou/2013/04/26/21/middle_214944_18561366984184220_514e1bdb0aa91812bbb74bfd4e8a68aa.jpg'
             return render_to_response('sync_weixin_tuwen.xml',{
                                         'to':_to,
                                         'from':_from,

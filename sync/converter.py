@@ -65,6 +65,7 @@ class DocumentConvert:
             doc.source_uid=di.uid
             doc.source_url=di.url
             doc.source_id=di.siteid
+            doc.source_cover_img=di.cover_img
             doc.save()
             doc.topic.created_at=di.created_at
             doc.topic.read_count=di.view_count
