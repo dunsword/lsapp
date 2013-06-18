@@ -201,9 +201,9 @@ class ThreadApi():
                     ###获得回复得标题：取100字中，第一个标点符号前面的内容，如果没有直接截取最前的10个字
                     try:
 
-                        lines = re.split(u'\r\n', message)
+                        lines = re.split(u'\n', message)
                         for line in lines:
-                            if len(line)>1:
+                            if len(line)>1 and len(line.strip(' \r\n'))>1:
                                 title=line
                                 if len(title)>20:
                                     title=title[:20]
@@ -226,7 +226,7 @@ class ThreadApi():
                            uid=reply_uid,
                            subject=title,
                            content=message,
-                           is_chapter=(uid==reply_uid),
+                           is_chapter=(uid==reply_uid & len(message)>10),
                            created_at=reply_created_at,
                            is_first=post['first'],
                            attachments=attachments)

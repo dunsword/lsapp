@@ -25,7 +25,7 @@ def syncThread(tid):
         log.log(logging.INFO,u'共' + unicode(totalPage) + u'页')
         log.log(logging.INFO,u'帖子标题:' + d.subject)
 
-        for n in range(1, totalPage):
+        for n in range(1, totalPage+1):
             try:
                 dp = fecther.getDocumentPage(tid, n)
                 if n == 1:

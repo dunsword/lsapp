@@ -65,6 +65,7 @@ urlpatterns = patterns('',
     (r'^regsuccess','base.views.reg_success'),
     (r'^do_register','base.views.do_register'),
     (r'^404','base.views.page_404'),
+    (r'^500','base.views.page_404'),
 
     #api
     (url(r'^api/weixin/token$',WeixinTokenInvalidView.as_view())),

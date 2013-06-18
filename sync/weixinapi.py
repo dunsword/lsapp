@@ -3,15 +3,28 @@ from ls.models import Document,Topic,Category
 from django.db.models import Q
 import re
 from datetime import  date,timedelta
-REPLY_SUBSCRIBE='''欢迎关注精品阅读，每天为您同步推荐最热门的小说。
-回复“今天”查看今天的推荐内容，要查看以前的推荐，可回复日期.如要查看5月19日推荐，回复“519“就可以了。
-你也可回复查看言情、玄幻、腹黑、重生、耽美、高干等推荐。你也可以输入【s+空格+小说标题】或【搜+空格+小说标题】查找您想看的小说！'''
+REPLY_SUBSCRIBE='''欢迎关注精品阅读，每天为您推荐最热门的小说。
+回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
+你还可回复查看言情、玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+空格+小说标题】或【搜+空格+小说标题】查找您想看的小说！
+另外，还可以回复’红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。'''
 
 AUTHORS={u'红太狼':14693355,
          u'19楼红太狼':14693355,
          u'CJ的小白':22545551,
-         u'小白':22545551
-}
+         u'小白':22545551,
+         u'超级懒人一个':20152738,
+         u'nephila':25480616,
+         u'刘美晨子':27972747,
+         u'一眼是你':20608805,
+         u'celinejulie':22710707,
+         u'XP光影':25092645,
+         u'水宽鱼沉':28139202,
+         u'喵了个咪的猫_狸':24183800,
+         u'HHH121':22775113,
+         u'jobowi':28103945,
+         u'忧忧2010':22699953,
+         u'我是果果mami':27722818,
+        }
 
 TAGS={
      u'重生':102,
@@ -67,8 +80,10 @@ def get_date(msg):
 
     if msg==u'今天':
         day=date.today()-oneday #时间为昨天，避免没有内容
+        day2=day+oneday+oneday
     elif msg==u'昨天':
         day=date.today()-oneday-oneday
+        day2=day+oneday
     else:
         g=_DATE_RE.match(msg)
         if g==None:
@@ -81,10 +96,7 @@ def get_date(msg):
             day=date(2013,month,daynum)
         except:
             return {'type':'TEXT','text':u'请输入正确的日期如：601。如需帮助请回复’h‘或’帮助‘。'}
-
-
-
-    day2=day+oneday
+        day2=day+oneday
 
     topics=Topic.objects.filter(status__exact=1).filter(topic_type__exact=2).filter(created_at__gte=day).filter(created_at__lte=day2).order_by('-created_at')[0:5]
     docs=[]
