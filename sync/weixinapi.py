@@ -26,7 +26,7 @@ TAGS={
 
 RESP_TYPE={'TEXT':1,'NEWS':2}
 
-_RE_SEARCH=re.compile(u'[s|搜][ ]+')
+_RE_SEARCH=re.compile(u'[s|S|搜][ ]+')
 def get_response(msg,to):
 
     if AUTHORS.has_key(msg):
@@ -106,7 +106,7 @@ def resp_from_author(msg):
     return {'type':'NEWS','docs':docs}
 
 def search(keyword):
-    topics=Topic.objects.filter(title__contains=keyword)[0:8]
+    topics=Topic.objects.filter(title__contains=keyword).filter(topic_type__exact=2)[0:8]
     docs=[]
     for topic in topics:
         docs.append(topic.getDocument())
