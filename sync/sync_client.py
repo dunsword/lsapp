@@ -8,7 +8,7 @@ def get_page(bid,page):
     try:
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
         hClient = Http()
-        pageUrl = 'http://127.0.0.1:8000/sync/htsync/%d?page=%d&json=true'%(bid,page)
+        pageUrl = 'http://121.199.9.13/sync/htsync/%d?page=%d&json=true'%(bid,page)
         resp, content = hClient.request(pageUrl,"GET",headers=headers)
         jc = json.loads(content)
         if jc['result']=='success':
@@ -37,7 +37,7 @@ def get_doc_page(tid,page):
 
 if __name__=='__main__':
     sync_doc_count=0
-    for page in range(1,3):
+    for page in range(1,300):
         jc=get_page(2124418905,page)
         if jc!=None:
             count=len(jc['docs'])
