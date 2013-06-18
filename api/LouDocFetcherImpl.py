@@ -12,7 +12,7 @@ class LouDocFetcherImpl(DocumentFetcher):
 
     def getLatestDocumentList(self,sid,size,page=1,type='board'):
         if type=='board':
-            return Huatan().getThreadList(sid,1,size)
+            return Huatan().getThreadList(sid,page,size)
         elif type=='forum':
             return Huatan().getForumThreadList(sid,page)
 
