@@ -1,121 +1,136 @@
 {% extends "frameWithTitle.html" %}
 
 {% block content %}
-    <div class="container" style="width: 980px">
+    <div class="container" style="width: 1110px">
         <div class='row-fluid'>
-            <div class='span12'>
-                <h5>{{docList.source_info.source_name}}</h5>
-                <p>{{ docList.source_info.source_desc }}</p>
+            <div class='span2'>
+                {% include 'sync_htlist.html' %}
             </div>
-        </div>
-        <div class="row-fluid">
-            <div class='span12'>
-                <table class='table'>
-                    <tr>
-                        <th>TID</th>
-                        <th>标题</th>
-                        <th>标签</th>
-                        <th>发帖时间</th>
-                        <th>
-                            <a href='#' class='btn btn-primary' onclick="syncItem(tids[0],1,syncNext)">全部</a></th>
-                        <th>状态(总回复/已经同步回复)</th>
-                    </tr>
-                    <tbody>
-                    <script>
-                        var tids=[];
-                    </script>
-                    {% for t,doc in docs %}
-                    <tr>
-                        <td>{{ t.tid  }}
+            <div class='span10'>
+                <div class='row-fluid'>
+                    <div class='span12'>
+                        <h5>{{ docList.source_info.source_name }}</h5>
+
+                        <p>{{ docList.source_info.source_desc }}</p>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class='span12'><table class='table'>
+                            <tr>
+                                <th>TID</th>
+                                <th>标题</th>
+                                <th>标签</th>
+                                <th>发帖时间</th>
+                                <th>
+                                    <a href='#' class='btn btn-primary' onclick="syncItem(tids[0],1,syncNext)">全部</a>
+                                </th>
+                                <th>状态(总回复/已经同步回复)</th>
+                            </tr>
+                            <tbody>
                             <script>
-                                tids.push('{{ t.tid }}');
+                                var tids = [];
                             </script>
-                        </td>
-                        <td>
-                            <a href='{{ t.url }}' target="_blank">{{ t.subject }}</a>
+                            {% for t,doc in docs %}
+                                <tr>
+                                    <td>{{ t.tid }}
+                                        <script>
+                                            tids.push('{{ t.tid }}');
+                                        </script>
+                                    </td>
+                                    <td>
+                                        <a href='{{ t.url }}' target="_blank">{{ t.subject }}</a>
 
-                        </td>
-                        <td>
-                             {% for tag in t.tags %}
-                                <a>{{ tag }}</a>
+                                    </td>
+                                    <td>
+                                        {% for tag in t.tags %}
+                                            <a>{{ tag }}</a>
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ t.created_at }}</td>
+                                    <td>
+
+                                        <a href="#" id='id_{{ t.tid }}_syncbtn'
+                                                {% if doc %}
+                                           class='btn'
+                                                {% else %}
+                                           class='btn btn-primary'
+                                                {% endif %}
+                                           onclick="syncItem('{{ t.tid }}',1,nothing)">
+                                            同步
+                                        </a>
+                                        <li class='icon-fast-forward' id='id_{{ t.tid }}_loading'
+                                            style="display: none"></li>
+
+                                    </td>
+                                    <td>
+                                        <a href="/sync/htsync/t/{{ t.tid }}" target="_blank">查看</a>
+                                        {{ t.reply_count }}/ <span
+                                            id='id_{{ t.tid }}_replycount'>{{ doc.topic.reply_count }}</span>
+                                        {% if doc %}
+                                            <a href='/topic/{{ doc.topic.id }}/1' target='_blank'>
+                                                <li class='icon-arrow-right'></li>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </td>
-                        <td>{{ t.created_at }}</td>
-                        <td>
-
-                        <a href="#" id='id_{{ t.tid }}_syncbtn'
-                           {% if doc %}
-                            class='btn'
-                            {% else %}
-                            class='btn btn-primary'
-                           {% endif %}
-                            onclick="syncItem('{{ t.tid }}',1,nothing)" >
-                            同步
-                        </a>
-                        <li class='icon-fast-forward' id='id_{{ t.tid }}_loading' style="display: none"></li>
-
-                        </td>
-                        <td>
-                            <a href="/sync/htsync/t/{{ t.tid }}" target="_blank"  >查看</a>
-                           {{ t.reply_count }}/ <span id='id_{{ t.tid }}_replycount'>{{ doc.topic.reply_count }}</span>
-                            {% if doc %}
-                            <a href='/topic/{{ doc.topic.id }}/1' target='_blank'><li class='icon-arrow-right'></li></a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>t
-                </table>
+                            </tbody>
+                            t
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <script>
-        var syncNext=function(tid){
-            for (var i=0;i<tids.length-1;i++){
-                t=tids[i];
-                if(t==tid){
-                    nextTid=tids[i+1];
-                    syncItem(nextTid,1,syncNext);
+        var syncNext = function (tid) {
+            for (var i = 0; i < tids.length - 1; i++) {
+                t = tids[i];
+                if (t == tid) {
+                    nextTid = tids[i + 1];
+                    syncItem(nextTid, 1, syncNext);
                 }
             }
         }
-        var nothing=function(){}
-        function syncItem(tid,page ,callback ){
+        var nothing = function () {
+        }
+        function syncItem(tid, page, callback) {
 
             var totalPage;
-            var btn=$('#id_'+tid+'_syncbtn');
-            var loading=$('#id_'+tid+'_loading');
-            var replyCount=$('#id_'+tid+'_replycount');
+            var btn = $('#id_' + tid + '_syncbtn');
+            var loading = $('#id_' + tid + '_loading');
+            var replyCount = $('#id_' + tid + '_replycount');
             $.ajax(
-                    {url:'/sync/htsync/t/'+tid+'/'+page+'?json=true',
-                     type:'GET',
-                     beforeSend:function(){
+                    {url: '/sync/htsync/t/' + tid + '/' + page + '?json=true',
+                        type: 'GET',
+                        beforeSend: function () {
 
-                        btn.hide();
-                        loading.show();
-                     },
-                     error:function(){
-                        replyCount.html(replyCount.html()+'error');
-                        btn.show();
-                        loading.hide();
-                        callback(tid);
-                     }
+                            btn.hide();
+                            loading.show();
+                        },
+                        error: function () {
+                            replyCount.html(replyCount.html() + 'error');
+                            btn.show();
+                            loading.hide();
+                            callback(tid);
+                        }
 
-                    }).done(function(data){
+                    }).done(function (data) {
 
-                        if(data['result']=='success'){
+                        if (data['result'] == 'success') {
 
-                            btn.attr('class','btn');
+                            btn.attr('class', 'btn');
                             replyCount.html(data['reply_count']);
-                            totalPage=parseInt(data['totalPage']);
-                            if(page<=totalPage){
-                                syncItem(tid,++page,callback);
-                            }else{
+                            totalPage = parseInt(data['totalPage']);
+                            if (page <= totalPage) {
+                                syncItem(tid, ++page, callback);
+                            } else {
                                 btn.show();
                                 loading.hide();
                                 callback(tid);
                             }
-                        }else{
+                        } else {
                             btn.show();
                             loading.hide();
                             callback(tid);

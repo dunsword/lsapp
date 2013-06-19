@@ -6,10 +6,19 @@
         <div class="row-fluid" >
             <div class="span9  ls-main">
                 <div class="row-fluid ls-title">
-                    <div class="span9" style="" >
-                        <h4 >好看的{{category.getDisplayName}}推荐</h4>
+                    <div class="span6" style="" >
+                       <!-- <h4 >好看的{{category.getDisplayName}}推荐</h4> -->
+                              <h4>标题</h4>
                     </div>
-                    
+                    <div class="span2"   >
+                            <h4>标签</h4>
+                    </div>
+                    <div class="span2"   >
+                            <h4>发表时间</h4>
+                    </div>
+                    <div class="span2"   >
+                               <h4>最新回复</h4>
+                    </div>
                 </div> <!-- Modal -->
                 
                 {% for topic in topics %}

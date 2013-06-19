@@ -100,6 +100,8 @@ class Lou19Category(Category):
         u'婚恋':134,
         u'豪门':135,
         u'宠文':136,
+        u'高干':137,
+        u'肉文':138
     }
 
     def getCategoryByTags(self,tags):
@@ -107,9 +109,10 @@ class Lou19Category(Category):
         for tagName in tags:
             if self.categoryDict.has_key(tagName):
                 cid = self.categoryDict[tagName]
-                tagids.append(cid)
-        if len(tagids)==0:
-            tagids.append(2)
+                if not tagids.__contains__(cid):
+                    tagids.append(cid)
+        # if len(tagids)==0:
+        #     tagids.append(2)
         return tagids #小说
 
     def getCategoryId(self,sourceCategoryName):
@@ -146,7 +149,7 @@ class ThreadApi():
         s.feed(html)
         return s.get_data()
 
-    def getThreadPage(self,tid,page=1):
+    def getThreadPage(self,tid,page=1,default_tags=[]):
         getAll = False
         pageNum = int(page)
         postTmp = []
@@ -175,6 +178,10 @@ class ThreadApi():
         for tag in thread['tags']:
             tags.append(tag['name'])
 
+        for key_tagname in Lou19Category.categoryDict.keys():
+            if unicode(subject).__contains__(key_tagname):
+                tags.append(key_tagname)
+
         forminfo = jsonContent["forum_info"]
         fid = int(forminfo["fid"])
         url= 'http://www.19lou.com/forum-%s-thread-%s-1-1.html'%(fid,tid)
@@ -194,9 +201,9 @@ class ThreadApi():
                     ###获得回复得标题：取100字中，第一个标点符号前面的内容，如果没有直接截取最前的10个字
                     try:
 
-                        lines = re.split(u'\r\n', message)
+                        lines = re.split(u'\n', message)
                         for line in lines:
-                            if len(line)>1:
+                            if len(line)>1 and len(line.strip(' \r\n'))>1:
                                 title=line
                                 if len(title)>20:
                                     title=title[:20]
@@ -207,6 +214,11 @@ class ThreadApi():
                     except Exception,e:
                         logging.error(e.message)
 
+            attachments=[]
+            if post.has_key('attachment'):
+                for attachment in post['attachment']:
+                    attachments.append(attachment['middle_url'])
+
             user=post['author']
             reply_uid=long(user['uid'])
             reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
@@ -214,9 +226,10 @@ class ThreadApi():
                            uid=reply_uid,
                            subject=title,
                            content=message,
-                           is_chapter=(uid==reply_uid),
+                           is_chapter=(uid==reply_uid & len(message)>10),
                            created_at=reply_created_at,
-                           is_first=post['first'])
+                           is_first=post['first'],
+                           attachments=attachments)
 
             results.append(reply)
 
@@ -231,6 +244,9 @@ class ThreadApi():
                     fid=fid,
                     created_at=created_at,
                     last_reply_at=last_reply_at)
+        if len(results[0].attachments)>0:
+            doc.cover_img=results[0].attachments[0]
+
 
         return DocItemDetailPage(docItem=doc,page_number=pageNum,reply_list=results)
 

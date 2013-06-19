@@ -344,6 +344,23 @@
 			"level": 2
 		}
 	}, {
+		"model": "ls.Category",
+		"pk": 137,
+		"fields": {
+			"name": "高干",
+			"parent_id": 2,
+			"level": 2
+		}
+	}, {
+		"model": "ls.Category",
+		"pk": 138,
+		"fields": {
+			"name": "肉文",
+			"parent_id": 2,
+			"level": 2
+		}
+	}
+    , {
 		"model": "ls.SiteSource",
 		"pk": 1,
 		"fields": {

@@ -20,27 +20,43 @@ class HtSyncView(BaseView):
           else:
               type='board'
 
+
+          if request.GET.has_key('page'):
+              page=int(request.GET['page'])
+          else:
+              page=1
+
           if type=='forum':
               fid=int(bid)
-              docList=fecther.getLatestDocumentList(sid=fid,size=50,page=1,type='forum')
+              docList=fecther.getLatestDocumentList(sid=fid,size=50,page=page,type='forum')
           else:
               bid=int(bid)
-              docList=fecther.getLatestDocumentList(bid,30)
+              docList=fecther.getLatestDocumentList(bid,30,page=page)
           docs=[]
-          for d in docList.doc_list:
+          for di in docList.doc_list:
              try:
-                doc = Document.objects.get_by_source(19,d.tid)
+                doc = Document.objects.get_by_source(19,di.tid)
              except Document.DoesNotExist:
                 doc = None
-             docs.append((d,doc))
-          c = RequestContext(request,
+             docs.append((di,doc))
+
+          if request.GET.has_key('json'):
+             json={}
+             docs=[]
+             for di in docList.doc_list:
+                docs.append({'tid':di.tid,'title':di.subject,'reply_count':di.reply_count})
+             json={'result':'success','page':page,'docs':docs}
+
+             return self._get_json_respones(json)
+          else:
+            c = RequestContext(request,
                             {
                                 'docList':docList,
                                 'docs':docs,
                              })
 
-          tt = loader.get_template('sync_htsync.html')
-          return HttpResponse(tt.render(c))
+            tt = loader.get_template('sync_htsync.html')
+            return HttpResponse(tt.render(c))
 
 
 class ThreadSyncView(BaseView):

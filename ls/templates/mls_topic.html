@@ -51,8 +51,8 @@
         $.mobile.silentScroll(catalogs_top);
 
     });
-    var cbtn;
-    var cpage;
+    var cbtn; //快捷按钮
+    var cpage; //当前page
     var prepPage=function(event,ui){
 
         np=$(ui.nextPage[0]);
@@ -63,8 +63,8 @@
         btn=$('#id_fast_btn_'+reply_id);
         btn.css('bottom','-8px');
         btn.css('right','0px');
-        btn.show();
-        cbtn=btn;
+        //btn.show();
+        //cbtn=btn;
 
     };
     $(window).on('scrollstop',function(){
@@ -82,4 +82,9 @@
 
     $('#id_doc_main').on('pagehide',prepPage);
 </script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F61ed06e0d1504327fa7ef3da349056b5' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
 {% endblock %}

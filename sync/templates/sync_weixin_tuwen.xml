@@ -1,0 +1,18 @@
+<xml>
+ <ToUserName><![CDATA[{{ to }}]]></ToUserName>
+ <FromUserName><![CDATA[{{ from }}]]></FromUserName>
+ <CreateTime>{{ time }}</CreateTime>
+ <MsgType><![CDATA[news]]></MsgType>
+ <ArticleCount>{{ count }}</ArticleCount>
+ <Articles>
+ {% for doc in docs %}
+ <item>
+ <Title><![CDATA[{{ doc.topic.title }}]]></Title>
+ <Description><![CDATA[{{ doc.topic.content|truncatechars:30 }}]]></Description>
+ <PicUrl><![CDATA[{{ doc.source_cover_img }}]]></PicUrl>
+ <Url><![CDATA[http://mobile-proxy.weibols.com/m/topic/{{ doc.topic.id }}/1]]></Url>
+ </item>
+ {% endfor %}
+ </Articles>
+ <FuncFlag>1</FuncFlag>
+ </xml>

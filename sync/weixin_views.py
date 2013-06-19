@@ -14,19 +14,36 @@ from weixinapi import get_response
 @csrf_exempt
 def wexin(request):
     if request.method=='POST':
-        log.log(logging.INFO,request.raw_post_data)
+        log.log(logging.INFO,request.POST)
         xml = et.fromstring(request.raw_post_data)
         _rev= xml.find('Content').text
         _to = xml.find('FromUserName').text
         _from = xml.find('ToUserName').text
-        _type = 'text'
-        _content = get_response(_rev)
-        return render_to_response('sync_weixin.xml',
+        _resp = get_response(_rev,_to)
+
+        if _resp['type']=='NEWS':
+            _docs= _resp['docs']
+            for doc in _docs:
+                if doc.source_cover_img==None:
+                    doc.source_cover_img='http://att2.citysbs.com/hangzhou/2013/04/26/21/middle_214944_18561366984184220_514e1bdb0aa91812bbb74bfd4e8a68aa.jpg'
+            return render_to_response('sync_weixin_tuwen.xml',{
+                                        'to':_to,
+                                        'from':_from,
+                                        'time':int(time.time()),
+                                        'type':'news',
+                                        'count':len(_docs),
+                                        'docs':_docs,
+                                    },
+                                   mimetype='application/xml')
+
+
+        elif _resp['type']=='TEXT':
+            return render_to_response('sync_weixin.xml',
                                   {'to':_to,
                                    'from': _from,
                                    'time' : int(time.time()),
-                                   'type': _type,
-                                   'content' : _content},
+                                   'type': 'text',
+                                   'content' : _resp['text']},
                                   mimetype='application/xml')
     elif request.method=='GET':
         try: # 微信接口认证 使用GET方式
