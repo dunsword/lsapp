@@ -277,6 +277,57 @@ class BookChapterListParser(SGMLParser):
             self.isContent = False
 
 
+class BookDetailParser(SGMLParser):
+    """
+    获得小说具体的章节内容。
+    """
+    def reset(self):
+        SGMLParser.reset(self)
+        self.updateTime = u''
+        self.content = u''
+        self.isUpdateTime = False
+        self.isContent = False
+
+    def handle_data(self, text):
+        if self.isUpdateTime:
+            self.updateTime = text.strip("\r\n").strip()
+
+    def start_div(self, attrs):
+        contentDiv = [v for k, v in attrs if k == 'id' and v == 'content']
+        if contentDiv:
+            self.isContent = True
+
+    def end_div(self):
+        if self.isContent:
+            self.isContent = False
+
+    def start_span(self, attrs):
+        isUpdate = [v for k, v in attrs if k == 'id' and v == 'lblLastUpdateTime']
+        if isUpdate:
+            self.isUpdateTime = True
+
+    def end_span(self):
+        if self.isUpdateTime:
+            self.isUpdateTime = False
+
+    def start_script(self, attrs):
+        if self.isContent:
+            contentScript = [v for k, v in attrs if k == 'charset' and v == 'GB2312']
+            if contentScript:
+                try:
+                    contentUrl = [v for k, v in attrs if k == 'src'][0]
+                    if contentUrl:
+                        c = WebPageContent(contentUrl)
+                        self.content = c.getData().decode('GB2312', 'ignore').encode('utf-8').strip(
+                            u"document.write('"). \
+                            strip(u"<a href=http://www.qidian.com>起点中文网 www.qidian.com 欢迎广大书友光临阅读，"
+                                  u"最新、最快、最火的连载作品尽在起点原创！</a>');").strip().replace(u'　', u'');
+                except IndexError:
+                    pass
+
+
+
+
 class QDCategory(Category):
 
     def getCategoryName(self,sourceCategoryName):
@@ -294,6 +345,9 @@ class QDURLConvert(SpiderUrlConvert):
     def convertBookUrl(self,tid):
         return u"http://read.qidian.com/BookReader/%d.aspx" % tid
 
+    def convertChapterDetailUrl(self,tid,pid):
+         return u"http://read.qidian.com/BookReader/%d,%d.aspx" %(tid,pid)
+
     def convertBookListUrl(self,page):
         """
         获得起点的会员点击排行榜的月榜
@@ -303,6 +357,42 @@ class QDURLConvert(SpiderUrlConvert):
     def convertBookListUrl(self,cid,page):
         return u'http://all.qidian.com/Book/BookStore.aspx?ChannelId=%s' % cid
 
+# BOOK_CHAPTER_LIST 全局变量存储所有解析过的图书的章节信息，如果不存在，需要重新解析获得
+BOOK_CHAPTER_LIST = {}
+
+class ChapterTemplate:
+
+    def getChapterList(self,tid):
+        bookurl = QDURLConvert().convertBookUrl(tid)
+        content = WebPageContent(bookurl)
+        feed = BookChapterListParser()
+        feed.feed(content.getData())
+        result = []
+        for item in feed.bookList:
+            if len(item.linkUrl)>0:
+                result.append(item)
+
+        return result
+
+
+    def getChapterUrl(self,tid,chapterNum):
+        chapterList =self.getChapterList(tid)
+        if len(chapterList)>0 and len(chapterList)+1 >= chapterNum:
+            return chapterList[chapterNum-1].linkUrl
+        return None
+
+    def getChapterDetailByUrl(self,url):
+        content = WebPageContent(url)
+        parser = BookDetailParser()
+        parser.feed(content.getData())
+
+        return parser.content
+
+    def getChapterDetail(self,tid,pid):
+        url = QDURLConvert().convertChapterDetailUrl(tid,pid)
+        return self.getChapterDetailByUrl(url)
+
+
 
 class QDDocumentFetcher(DocumentFetcher):
     def getDocumentPage(self,tid,page=1):
@@ -310,7 +400,27 @@ class QDDocumentFetcher(DocumentFetcher):
             获取一个文章页的接口，根据每个站点实现
             返回DocItemDetailPage对象
         '''
-        pass
+        chapter = ChapterTemplate()
+        chapterList = chapter.getChapterList(tid)
+        # TODO: 获得pid
+        # pid =
+        content =chapter.getChapterUrl(tid,page)
+
+
+
+        # replyItem =  RelyItem(rid,uid,subject,content=content,is_chapter=True)
+        # doc=DocItem(tid=tid,
+        #             uid=uid,
+        #             url=url,
+        #             subject=subject,
+        #             reply_count=replyCount,
+        #             view_count=viewCount,
+        #             content=results[0].content,
+        #             tags=tags,
+        #             fid=fid,
+        #             created_at=created_at,
+        #             last_reply_at=last_reply_at)
+        # return DocItemDetailPage(docItem=doc,page_number=len(chapterList),reply_list[])
 
     def getLatestDocumentList(self,sid,size):
 
@@ -361,10 +471,11 @@ if __name__ == "__main__":
 
     # a =QDDocumentFetcher().getLatestDocumentList(1,1)
 
-    bookurl = QDURLConvert().convertBookUrl(2718848)
-    content = WebPageContent(bookurl)
+    # tmp = ChapterTemplate()
+    # a=tmp.getChapterList(2718848)
 
-    feed = BookChapterListParser()
-    feed.feed(content.getData())
-    a =feed.bookList
+    content = WebPageContent(u"http://read.qidian.com/BookReader/2718848,45274945.aspx")
+    parser = BookDetailParser()
+    parser.feed(content.getData())
+
     print
