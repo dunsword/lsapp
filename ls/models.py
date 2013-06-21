@@ -321,7 +321,7 @@ class TopicReplyManager(BaseManager):
         else:
             return q[0]
 
-    def createReply(self,topicid,userid,username,title,content,is_chapter=False,source_url="",source_pid=0):
+    def createReply(self,topicid,userid,username,title,content,is_chapter=False,source_url="",source_pid=0,created_at=datetime.now()):
 
         reply=TopicReply()
         reply.topicid=topicid
@@ -332,6 +332,7 @@ class TopicReplyManager(BaseManager):
         reply.is_chapter=is_chapter
         reply.source_url=source_url
         reply.source_pid=source_pid
+        reply.created_at=created_at
         reply.save()
 
         topic=Topic.objects.get(pk=topicid)

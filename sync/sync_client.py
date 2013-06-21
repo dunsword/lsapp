@@ -16,12 +16,13 @@ handler.setFormatter(FORMAT)
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
+host='127.0.0.1:8000'
 
-def get_page(bid,page):
+def get_page(bid,page,type='board'):
     try:
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
         hClient = Http()
-        pageUrl = 'http://121.199.9.13/sync/htsync/%d?page=%d&json=true'%(bid,page)
+        pageUrl = 'http://%s/sync/htsync/%d?page=%d&json=true&type=%s'%(host,bid,page,type)
         resp, content = hClient.request(pageUrl,"GET",headers=headers)
         jc = json.loads(content)
         if jc['result']=='success':
@@ -35,7 +36,7 @@ def get_doc_page(tid,page):
     try:
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
         hClient = Http()
-        pageUrl = 'http://121.199.9.13/sync/htsync/t/%d/%d?json=true'%(tid,page)
+        pageUrl = 'http://%s/sync/htsync/t/%d/%d?json=true'%(host,tid,page)
         resp, content = hClient.request(pageUrl,"GET",headers=headers)
         jc = json.loads(content)
         if jc['result']=='success':
@@ -47,7 +48,7 @@ def get_doc_page(tid,page):
 
 sync_doc_count=0
 sync_status=1
-def getHuatan(bid,pageCount):
+def getHuatan(bid,pageCount,type='board'):
     global sync_doc_count
     global sync_status
     #logger.info('start sync board:'+str(bid))
@@ -57,7 +58,7 @@ def getHuatan(bid,pageCount):
             break
 
         logger.info( 'start get '+str(bid)+' page '+str(pp))
-        jc=get_page(bid,pp)
+        jc=get_page(bid,pp,type)
         if jc!=None:
             count=len(jc['docs'])
             logger.info( u'花坛('+str(bid)+u')获取文档列表第'+str(pp)+u"页成功！共"+str(count)+u'个文档')
@@ -66,12 +67,19 @@ def getHuatan(bid,pageCount):
                    break
                tid=int(d['tid'])
                dp1 = get_doc_page(tid,1)
+               logger.info(unicode(dp1))
                if dp1==None:
                    logger.error(u'同步文档'+str(tid)+u'失败:'+d['title'])
                    continue
                else:
                    logger.info(u'当前花坛('+str(bid)+u')第'+str(pp)+u'页。')
                    logger.info(u'开始同步文档'+str(tid)+u'，第1页同步成功。共'+ str(dp1['totalPage'])+u'页')
+
+               if not dp1['need_update_reply']:
+                   logger.info(u'文档已经为最新，不需要同步回复。')
+                   continue
+
+
                totalPage=int(dp1['totalPage'])
                p=2
                for p in range(2,totalPage+1):
@@ -102,11 +110,15 @@ if __name__=='__main__':
     else:
         bid=697031974
 
-    if len(sys.argv)>2:
-        getPageCount=sys.argv[2]
-    else:
-        getPageCount=200
-    t=threading.Thread(target=getHuatan,args=(bid,getPageCount))
+    type=raw_input("type:")
+    sid=long(raw_input('id:'))
+    page=long(raw_input('page:'))
+
+    # if len(sys.argv)>2:
+    #     getPageCount=sys.argv[2]
+    # else:
+    #     getPageCount=200
+    t=threading.Thread(target=getHuatan,args=(sid,page,type))
     t.start()
 
     while True:

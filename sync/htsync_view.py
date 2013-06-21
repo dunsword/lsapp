@@ -6,6 +6,7 @@ from django.template import RequestContext
 from base.base_view import  BaseView
 from converter import DocumentConvert
 from ls.models import Document,TopicReply
+from datetime import datetime
 
 from api.docfetcher import DocumentList,DocItem
 from api.LouDocFetcherImpl import LouDocFetcher
@@ -29,6 +30,9 @@ class HtSyncView(BaseView):
           if type=='forum':
               fid=int(bid)
               docList=fecther.getLatestDocumentList(sid=fid,size=50,page=page,type='forum')
+          elif type=='user':
+              uid=int(bid)
+              docList=fecther.getLatestDocumentList(sid=uid,size=50,page=page,type='user')
           else:
               bid=int(bid)
               docList=fecther.getLatestDocumentList(bid,30,page=page)
@@ -43,8 +47,12 @@ class HtSyncView(BaseView):
           if request.GET.has_key('json'):
              json={}
              docs=[]
+
              for di in docList.doc_list:
-                docs.append({'tid':di.tid,'title':di.subject,'reply_count':di.reply_count})
+                docs.append({'tid':di.tid,
+                             'title':di.subject,
+                             'reply_count':di.reply_count,
+                             'last_reply_at':di.last_reply_at.strftime('%Y-%m-%d %H:%M:%S')})
              json={'result':'success','page':page,'docs':docs}
 
              return self._get_json_respones(json)
@@ -84,16 +92,22 @@ class ThreadSyncView(BaseView):
 
 
            if request.GET.has_key('json'):
-              for reply in dp.reply_list:
-                 tr=convert.saveReply(doc,reply)
-              doc=Document.objects.get(pk=doc.id) #get a new doc obj
+               #判断是否需要回复同步
+               need_update_reply=doc.source_updated_at<dp.docItem.last_reply_at
+               if need_update_reply:
+                   for reply in dp.reply_list:
+                      tr=convert.saveReply(doc,reply)
+                   doc=Document.objects.get(pk=doc.id) #get a new doc obj
 
-              return self._get_json_respones({'result':'success',
+
+
+               return self._get_json_respones({'result':'success',
                                               'tid':tid,
                                               "page":page,
                                               'reply_count':doc.topic.reply_count,
                                               'source_reply_count':dp.docItem.reply_count,
-                                              "totalPage":totalPage})
+                                              "totalPage":totalPage,
+                                              'need_update_reply':need_update_reply})
            else:
               replys=[]
               for reply in dp.reply_list:

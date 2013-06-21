@@ -17,6 +17,43 @@ class Huatan():
     imageSize = u"200x240"
     forum19Url= 'https://www.19lou.com/api/thread/getThreadPage?fid=%d&client_id=%d&client_secret=%s&page=%d'
 
+    user19Url='https://www.19lou.com/api/myinfo/getUserThread?client_id=%d&client_secret=%s&uid=%d&page=%d'
+
+    def getUserUserThreadList(self,uid,page=1):
+        url=Huatan.user19Url%(Huatan.client_id,Huatan.client_secret,uid,page)
+        hClient = Http()
+        headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
+        resp, content = hClient.request(url,"GET",headers=headers)
+        content = content.decode('gb18030').encode('utf8')
+        jsonContent = json.loads(content)
+        threadList=jsonContent['my_thread_list']
+        userName=''
+        docs=[]
+        for thread in threadList:
+            tid=long(thread['tid'])
+            fid=long(thread['fid'])
+            if fid!=26:
+                continue
+            reply_count=int(thread['replies'])
+            subject = thread["subject"]
+            message = u''
+            created_at = thread["created_at"]
+            url = thread["url"]
+            tags=[]
+            userName=thread['author']['user_name']
+            docItem=DocItem(tid=tid,
+                            uid=uid,
+                            content=message,
+                            subject=subject,
+                            url=url,
+                            tags=tags,
+                            reply_count=reply_count,
+                            view_count=0,created_at=created_at)
+            docs.append(docItem)
+        si=SourceInfo(source_id=uid,source_name=userName,source_desc=userName+u'的帖子',site_id=19)
+        return DocumentList(source_info=si,doc_list=docs)
+
+
     def getForumThreadList(self,fid=26,page=1):
         url=Huatan.forum19Url%(fid,Huatan.client_id,Huatan.client_secret,page)
         hClient = Http()

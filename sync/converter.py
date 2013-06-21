@@ -35,10 +35,22 @@ class DocumentConvert:
                                        content=reply.content,
                                        is_chapter=is_chapter,
                                        source_pid=reply.rid,
-                                       source_url=doc.source_url)
+                                       source_url=doc.source_url,
+                                       created_at=reply.created_at)
+            if doc.source_updated_at<tr.created_at:
+                doc.source_updated_at=tr.created_at
+                doc.save()
         return tr
 
     def save(self,docPage):
+        u'''
+        根据接口获取到的内容，保存主帖信息。如果doc对象当前不存在，创建并保存。
+        如果已经存在，更新uid、siteid、封面的信息（主要考虑到以前同步的数据未包含这些信息，以后可以不更新）
+        另外还还更新对应topic的read_count,content
+
+        注：不更新source_updated_at,用于检查是否需要同步回复，回复同步时更新
+        '''
+
         di=docPage.docItem
         try:
             doc=Document.objects.get_by_source(19,docPage.docItem.tid)
@@ -55,13 +67,12 @@ class DocumentConvert:
                                                  read_count=di.view_count,
                                                  reply_count=0,
                                                  author_name=u'未知',
-                                                 source_updated_at=di.updated_at,
+                                                 source_updated_at=di.created_at,
                                                  categoryid=2
                                                  )
 
 
         if docPage.page_number==1:
-            doc.source_updated_at=di.last_reply_at
             doc.source_uid=di.uid
             doc.source_url=di.url
             doc.source_id=di.siteid
@@ -69,7 +80,6 @@ class DocumentConvert:
             doc.save()
             doc.topic.created_at=di.created_at
             doc.topic.read_count=di.view_count
-            doc.topic.last_reply_at=di.last_reply_at
             doc.topic.content=di.content
             tags=LouCategory.getCategoryByTags(di.tags)
 

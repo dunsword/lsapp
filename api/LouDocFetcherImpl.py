@@ -15,6 +15,8 @@ class LouDocFetcherImpl(DocumentFetcher):
             return Huatan().getThreadList(sid,page,size)
         elif type=='forum':
             return Huatan().getForumThreadList(sid,page)
+        elif type=='user':
+            return Huatan().getUserUserThreadList(sid,page)
 
 
 LouDocFetcher=LouDocFetcherImpl()
