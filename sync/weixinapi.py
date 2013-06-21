@@ -26,6 +26,12 @@ AUTHORS={u'红太狼':14693355,
          u'我是果果mami':27722818,
         }
 
+
+SHUPING={
+    u'苹果米饭':6401363935177114,
+    u'下一世的笑颜':10001363830631804,
+}
+
 TAGS={
      u'穿越':101,
      u'重生':102,
@@ -75,6 +81,8 @@ def get_response(msg,to):
 
     if AUTHORS.has_key(msg):
         return resp_from_author(msg)
+    elif SHUPING.has_key(msg):
+        return resp_from_shuping(msg)
     elif  TAGS.has_key(msg):
         return resp_from_keyword(msg)
     elif _RE_SEARCH.match(msg)!=None:
@@ -85,6 +93,17 @@ def get_response(msg,to):
         if result!=None:
             return result
     return {'type':'TEXT','text':REPLY_SUBSCRIBE}
+
+def resp_from_shuping(msg):
+    from api.api19 import ThreadApi
+    tapi=ThreadApi()
+    tp=tapi.getThreadPage(tid=SHUPING[msg],page=1000) #最后一页
+    replys=[]
+    di=tp.docItem
+    for reply in tp.reply_list:
+        if reply.uid==di.uid:
+            replys.append(reply)
+
 
 def resp_from_keyword(msg):
     tagid=TAGS[msg]

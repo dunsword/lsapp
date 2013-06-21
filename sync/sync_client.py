@@ -16,7 +16,7 @@ handler.setFormatter(FORMAT)
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
-host='127.0.0.1:8000'
+host='121.199.9.13'
 
 def get_page(bid,page,type='board'):
     try:
@@ -48,11 +48,11 @@ def get_doc_page(tid,page):
 
 sync_doc_count=0
 sync_status=1
-def getHuatan(bid,pageCount,type='board'):
+def getHuatan(bid,startPage,pageCount,type='board'):
     global sync_doc_count
     global sync_status
     #logger.info('start sync board:'+str(bid))
-    rg=range(1,pageCount+1)
+    rg=range(startPage,pageCount+1)
     for pp in rg:
         if sync_status==2: #stop
             break
@@ -67,12 +67,14 @@ def getHuatan(bid,pageCount,type='board'):
                    break
                tid=int(d['tid'])
                dp1 = get_doc_page(tid,1)
-               logger.info(unicode(dp1))
                if dp1==None:
                    logger.error(u'同步文档'+str(tid)+u'失败:'+d['title'])
                    continue
                else:
-                   logger.info(u'当前花坛('+str(bid)+u')第'+str(pp)+u'页。')
+                   if type=='user':
+                       logger.info(u'当前用户('+str(bid)+u')第'+str(pp)+u'页。')
+                   else:
+                       logger.info(u'当前花坛('+str(bid)+u')第'+str(pp)+u'页。')
                    logger.info(u'开始同步文档'+str(tid)+u'，第1页同步成功。共'+ str(dp1['totalPage'])+u'页')
 
                if not dp1['need_update_reply']:
@@ -112,13 +114,14 @@ if __name__=='__main__':
 
     type=raw_input("type:")
     sid=long(raw_input('id:'))
-    page=long(raw_input('page:'))
+    start=long(raw_input('start_page:'))
+    page=long(raw_input('page_count:'))
 
     # if len(sys.argv)>2:
     #     getPageCount=sys.argv[2]
     # else:
     #     getPageCount=200
-    t=threading.Thread(target=getHuatan,args=(sid,page,type))
+    t=threading.Thread(target=getHuatan,args=(sid,start,page,type))
     t.start()
 
     while True:
