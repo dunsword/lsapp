@@ -32,16 +32,22 @@ class HTMLStripperExcludeBr(HTMLParser):
     def __init__(self):
         self.reset()
         self.fed = []
+        self.urls=[]
     def handle_data(self, d):
         self.fed.append(d)
 
     def handle_starttag(self, tag, attrs):
         if tag =="br":
             self.fed.append("\r\n")
-
+        elif tag=='a':
+            for key,value in attrs:
+                if key=='href':
+                    self.urls.append(value)
     def handle_endtag(self, tag):
         if tag=='div':
             self.fed.append('\r\n')
+        elif tag=='a':
+            pass
 
     def get_data(self):
         return ''.join(self.fed)
@@ -147,7 +153,11 @@ class ThreadApi():
     def stripTagsExcludeBr(self,html):
         s = HTMLStripperExcludeBr()
         s.feed(html)
-        return s.get_data()
+        result = s.get_data()
+        for link_url in s.urls:
+            result = result+u'\n\r'+link_url
+
+        return result
 
     def getThreadPage(self,tid,page=1,default_tags=[]):
         getAll = False

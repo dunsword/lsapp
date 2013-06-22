@@ -11,15 +11,31 @@ log=logging.getLogger('info')
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from weixinapi import get_response
+import weixinapi
+
 @csrf_exempt
 def wexin(request):
     if request.method=='POST':
         log.log(logging.INFO,request.POST)
-        xml = et.fromstring(request.raw_post_data)
-        _rev= xml.find('Content').text
+        try:
+            xml = et.fromstring(request.raw_post_data)
+        except:
+            xml= et.fromstring(request.POST.keys()[0])
+
+        _msg_type=xml.find('MsgType').text
         _to = xml.find('FromUserName').text
         _from = xml.find('ToUserName').text
-        _resp = get_response(_rev,_to)
+        
+        if 'event'==_msg_type:
+            event=xml.find('Event').text
+            if event=='subscribe':
+                _resp=weixinapi.REPLY_SUBSCRIBE
+        else:
+            _rev= xml.find('Content').text
+            _resp = get_response(_rev,_to)
+
+
+
 
         if _resp['type']=='NEWS':
             _docs= _resp['docs']

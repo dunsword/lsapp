@@ -10,6 +10,12 @@ REPLY_SUBSCRIBE='''欢迎关注精品阅读，每天为您推荐最热门的小�
 你还可回复查看言情、玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
 另外，还可以回复’红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。'''
 
+REPLY_DEFAULT='''
+回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
+您还可以回复玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
+您还可以回复红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。
+另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。'''
+
 AUTHORS={u'红太狼':14693355,
          u'19楼红太狼':14693355,
          u'CJ的小白':22545551,
@@ -31,7 +37,40 @@ AUTHORS={u'红太狼':14693355,
 
 SHUPING={
     u'苹果米饭':6401363935177114,
+    u'初夏蔷薇涩1':3601363770235717,
     u'下一世的笑颜':10001363830631804,
+    u'樱亡语天使':12801363965661378,
+    u'卞卡123':24801363691794516,
+    u'小西瓜兔兔':9501363765496022,
+    u'luckyheart':10101363833819575,
+    u'堆儿堆儿的':22201363832175949,
+    u'xuweina0512':25001364810304166,
+    u'布丁恋果果':8801363774115229,
+}
+SHUPING_NUM={
+    u'苹果米饭':6401363935177114,
+    u'米饭':6401363935177114,
+    u'苹果':6401363935177114,
+    u't1':6401363935177114,
+    u'初夏蔷薇涩1':3601363770235717,
+    u'初夏蔷薇涩':3601363770235717,
+    u't2':3601363770235717,
+    u'下一世的笑颜':10001363830631804,
+    u't3':10001363830631804,
+    u'樱亡语天使':12801363965661378,
+    u't4':12801363965661378,
+    u'卞卡123':24801363691794516,
+    u't5':24801363691794516,
+    u'小西瓜兔兔':9501363765496022,
+    u't6':9501363765496022,
+    u'luckyheart':10101363833819575,
+    u't7':10101363833819575,
+    u'堆儿堆儿的':22201363832175949,
+    u't8':22201363832175949,
+    u'xuweina0512':25001364810304166,
+    u't9':25001364810304166,
+    u'布丁恋果果':8801363774115229,
+    u't10':8801363774115229,
 }
 
 TAGS={
@@ -80,10 +119,16 @@ RESP_TYPE={'TEXT':1,'NEWS':2}
 
 _RE_SEARCH=re.compile(u'[s|S|搜][+]*[ ]*')
 def get_response(msg,to):
-
-    if AUTHORS.has_key(msg):
+    if u'推荐'==msg:
+        txt=u'请回复书评员昵称或编号，看他们的最新推荐：'
+        tui_num=1
+        for sname in SHUPING.keys():
+            txt=txt+u'\r\nt'+str(tui_num)+u" : "+sname
+            tui_num=tui_num+1
+        return {'type':'TEXT','text':txt}
+    elif AUTHORS.has_key(msg):
         return resp_from_author(msg)
-    elif SHUPING.has_key(msg):
+    elif SHUPING_NUM.has_key(msg):
         return resp_from_shuping(msg)
     elif  TAGS.has_key(msg):
         return resp_from_keyword(msg)
@@ -94,18 +139,40 @@ def get_response(msg,to):
         result=get_date(msg)
         if result!=None:
             return result
-    return {'type':'TEXT','text':REPLY_SUBSCRIBE}
+    return {'type':'TEXT','text':REPLY_DEFAULT}
 
+PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
 def resp_from_shuping(msg):
     from api.api19 import ThreadApi
     tapi=ThreadApi()
-    tp=tapi.getThreadPage(tid=SHUPING[msg],page=1000) #最后一页
+    tp=tapi.getThreadPage(tid=SHUPING_NUM[msg],page=1000) #最后一页
+    prevPage=tp.docItem.reply_count/18
+    if prevPage<1:
+        prevPage=1
+    tp0=tapi.getThreadPage(tid=SHUPING_NUM[msg],page=prevPage)
     replys=[]
     di=tp.docItem
+    for reply in tp0.reply_list:
+        if reply.uid==di.uid and len(reply.content)>100:
+            replys.append(reply)
     for reply in tp.reply_list:
-        if reply.uid==di.uid:
+        if reply.uid==di.uid and len(reply.content)>100:
             replys.append(reply)
 
+    if len(replys)==0:
+        return {'type':'TEXT','text':u'抱歉没有找到合适的推荐，请换个书评员看看吧！'}
+
+    r_num=random.randint(0,len(replys)-1)
+    content=replys[r_num].content
+    while True:
+        m=PATTEN_REPLACE_19URL.search(content)
+        if m==None:
+            break
+        tid_19=m.group()
+        content=re.sub('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(tid_19),'http://mobile-proxy.weibols.com/proxy/%s'%(tid_19),content)
+
+    content=content+u"\n\r\n\r提示：回复‘s+书名’可以搜索书评中提到的小说。\n\r再次回复编号可以查看该书评员的其它推荐！"
+    return {'type':'TEXT','text':content}
 
 def resp_from_keyword(msg):
     tagid=TAGS[msg]
