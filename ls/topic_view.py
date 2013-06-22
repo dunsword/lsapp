@@ -29,9 +29,11 @@ class ProxyView(BaseTopicView):
         try:
             doc = Document.objects.get_by_source(19,tid)
         except Document.DoesNotExist:
-            doc = syncThread(tid)
-
-        return HttpResponseRedirect('/m/topic/'+str(doc.topic.id)+'/1')
+            doc = syncThread(tid) #TODO           异步同步回复
+        if doc==None:
+             return HttpResponseRedirect('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(str(tid)))
+        else:
+             return HttpResponseRedirect('/m/topic/'+str(doc.topic.id)+'/1')
 
 
 
