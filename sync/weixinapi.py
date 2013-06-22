@@ -3,6 +3,8 @@ from ls.models import Document,Topic,Category
 from django.db.models import Q
 import re
 from datetime import  date,timedelta
+import random
+
 REPLY_SUBSCRIBE='''欢迎关注精品阅读，每天为您推荐最热门的小说。
 回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
 你还可回复查看言情、玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
@@ -161,7 +163,9 @@ def get_date(msg):
 
 def resp_from_author(msg):
     author_uid=AUTHORS[msg]
-    docs=Document.objects.filter(source_uid__exact=author_uid).order_by('-id')[0:8]
+    count=Document.objects.filter(source_uid__exact=author_uid).count()
+    start=random.randint(0,count-10)
+    docs=Document.objects.filter(source_uid__exact=author_uid).order_by('-id')[start:start+8]
 
     if len(docs)==0:
         return {'type':'TEXT','text':u'抱歉！没有找到合适的内容。如需帮助请回复’h‘或’帮助‘。'}
