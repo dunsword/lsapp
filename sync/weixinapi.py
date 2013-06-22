@@ -7,8 +7,9 @@ import random
 
 REPLY_SUBSCRIBE=u'''欢迎关注精品阅读，每天为您推荐最热门的小说。
 回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
-你还可回复查看言情、玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
-另外，还可以回复’红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。'''
+您还可以回复玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
+您还可以回复红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。
+另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。'''
 
 REPLY_DEFAULT=u'''
 回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
@@ -119,6 +120,7 @@ RESP_TYPE={'TEXT':1,'NEWS':2}
 
 _RE_SEARCH=re.compile(u'[s|S|搜][+]*[ ]*')
 def get_response(msg,to):
+    msg=msg.lower()
     if u'推荐'==msg:
         txt=u'请回复书评员昵称或编号，看他们的最新推荐：'
         tui_num=1
@@ -163,14 +165,15 @@ def resp_from_shuping(msg):
         return {'type':'TEXT','text':u'抱歉没有找到合适的推荐，请换个书评员看看吧！'}
 
     r_num=random.randint(0,len(replys)-1)
-    content=replys[r_num].content
+    sel_reply=replys[r_num]
+    content=sel_reply.content
     while True:
         m=PATTEN_REPLACE_19URL.search(content)
         if m==None:
             break
         tid_19=m.group()
         content=re.sub('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(tid_19),'http://mobile-proxy.weibols.com/proxy/%s'%(tid_19),content)
-
+    content=sel_reply.user_name+u'的推荐:\n\r'+content
     content=content+u"\n\r\n\r提示：回复‘s+书名’可以搜索书评中提到的小说。\n\r再次回复编号可以查看该书评员的其它推荐！"
     return {'type':'TEXT','text':content}
 

@@ -231,6 +231,7 @@ class ThreadApi():
 
             user=post['author']
             reply_uid=long(user['uid'])
+            reply_user_name=user['user_name']
             reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
             reply=RelyItem(rid=long(post['pid']),
                            uid=reply_uid,
@@ -239,6 +240,7 @@ class ThreadApi():
                            is_chapter=(uid==reply_uid & len(message)>10),
                            created_at=reply_created_at,
                            is_first=post['first'],
+                           user_name=reply_user_name,
                            attachments=attachments)
 
             results.append(reply)
