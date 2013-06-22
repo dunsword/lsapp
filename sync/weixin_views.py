@@ -25,11 +25,11 @@ def wexin(request):
         _msg_type=xml.find('MsgType').text
         _to = xml.find('FromUserName').text
         _from = xml.find('ToUserName').text
-        
+
         if 'event'==_msg_type:
             event=xml.find('Event').text
             if event=='subscribe':
-                _resp=weixinapi.REPLY_SUBSCRIBE
+                _resp={'type':'TEXT','text':weixinapi.REPLY_SUBSCRIBE}
         else:
             _rev= xml.find('Content').text
             _resp = get_response(_rev,_to)

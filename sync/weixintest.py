@@ -24,6 +24,6 @@ subscribe='''<xml><ToUserName><![CDATA[gh_54d09214e517]]></ToUserName>
 
 response,content = h.request('http://127.0.0.1:8000/weixin',
                              'POST',
-                             t1,
+                             subscribe,
                              headers={'Content-Type': 'application/x-www-form-urlencoded'})
 print content
