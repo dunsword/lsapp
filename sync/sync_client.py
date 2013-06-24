@@ -139,33 +139,3 @@ if __name__=='__main__':
             sync_status=2
             t.join()
             break
-
-
-
-
-
-    # sync_doc_count=0
-    # for page in range(1,3):
-    #     jc=get_page(697031974,page)
-    #     if jc!=None:
-    #         count=len(jc['docs'])
-    #         logger.info( u'获取文档列表第'+str(page)+u"成功！共"+str(count)+u'个文档')
-    #         for d in jc['docs']:
-    #            tid=int(d['tid'])
-    #            dp1 = get_doc_page(tid,1)
-    #            if dp1==None:
-    #                logger.error(u'同步文档'+str(tid)+u'失败:'+d['title'])
-    #                continue
-    #            else:
-    #                logger.info(u'同步文档'+str(tid)+u'成功。共'+ str(dp1['totalPage'])+u'页')
-    #            totalPage=int(dp1['totalPage'])
-    #            p=2
-    #            for p in range(2,totalPage+1):
-    #                dp=get_doc_page(tid,p)
-    #                if dp==None:
-    #                   logger.error( u'同步文档'+str(tid)+u'第'+str(p)+u'页失败。')
-    #                else:
-    #                   logger.info( u'同步文档'+str(tid)+u'第'+str(p)+u'页成功。')
-    #            sync_doc_count=sync_doc_count+1
-    #            logger.info( u'成功同步了'+str(sync_doc_count)+u'个文档。')
-    #            logger.info( u'_______________________________________')

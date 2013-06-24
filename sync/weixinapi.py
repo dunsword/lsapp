@@ -7,8 +7,9 @@ import random
 
 REPLY_SUBSCRIBE=u'''欢迎关注精品阅读，每天为您推荐最热门的小说。
 回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
-您还可以回复玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
-您还可以回复红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。
+您还可以回复玄幻、腹黑、重生、耽美、高干等分类推荐。
+你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
+您还可以回复红太狼‘、’CJ的小白‘等获取这些达人推荐的小说(多次回复可以获取不同的推荐）。
 另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。'''
 
 REPLY_DEFAULT=u'''
@@ -36,18 +37,18 @@ AUTHORS={u'红太狼':14693355,
         }
 
 
-SHUPING={
-    u'苹果米饭':6401363935177114,
-    u'初夏蔷薇涩1':3601363770235717,
-    u'下一世的笑颜':10001363830631804,
-    u'樱亡语天使':12801363965661378,
-    u'卞卡123':24801363691794516,
-    u'小西瓜兔兔':9501363765496022,
-    u'luckyheart':10101363833819575,
-    u'堆儿堆儿的':22201363832175949,
-    u'xuweina0512':25001364810304166,
-    u'布丁恋果果':8801363774115229,
-}
+SHUPING=[
+    u't1:苹果米饭',
+    u't2:初夏蔷薇涩1',
+    u't3:下一世的笑颜',
+    u't4:樱亡语天使',
+    u't5:卞卡123',
+    u't6:小西瓜兔兔',
+    u't7:luckyheart',
+    u't8:堆儿堆儿的',
+    u't9:xuweina0512',
+    u't10:布丁恋果果',
+]
 SHUPING_NUM={
     u'苹果米饭':6401363935177114,
     u'米饭':6401363935177114,
@@ -123,10 +124,10 @@ def get_response(msg,to):
     msg=msg.lower()
     if u'推荐'==msg:
         txt=u'请回复书评员昵称或编号，看他们的最新推荐：'
-        tui_num=1
-        for sname in SHUPING.keys():
-            txt=txt+u'\r\nt'+str(tui_num)+u" : "+sname
-            tui_num=tui_num+1
+
+        for sname in SHUPING:
+            txt=txt+u'\r\n'+sname
+
         return {'type':'TEXT','text':txt}
     elif AUTHORS.has_key(msg):
         return resp_from_author(msg)
@@ -180,15 +181,22 @@ def resp_from_shuping(msg):
 def resp_from_keyword(msg):
     tagid=TAGS[msg]
     cat = Category.objects.get(pk=tagid)
-    topics=Topic.objects.filter(Q(categoryid__exact=tagid)|Q(catid1__exact=tagid)|Q(catid2__exact=tagid)).filter(status__exact=1).filter(topic_type__exact=2).order_by('-created_at')[0:5]
+    topics=Topic.objects.filter(Q(categoryid__exact=tagid)|Q(catid1__exact=tagid)|Q(catid2__exact=tagid)).filter(status__exact=1).filter(topic_type__exact=2).order_by('-created_at')[0:30]
+
+
     docs=[]
     for topic in topics:
         if topic.isDocument():
-           docs.append(topic.getDocument())
-
-    result=u""
-    num=1
-
+           if len(docs)<=5:
+                docs.append(topic.getDocument())
+           else:
+                s_doc=topic.getDocument()
+                docs.append(s_doc)
+                for doc in docs:
+                    if doc.topic.read_count<s_doc.topic.read_count:
+                        s_doc=doc
+                docs.remove(s_doc)
+           
     return {'type':'NEWS','docs':docs}
     # for doc in docs:
     #     result=result+str(num)+u'、'+doc.topic.title+u': http://121.199.9.13/proxy/'+str(doc.source_tid)+u'\r\n'
@@ -220,7 +228,7 @@ def get_date(msg):
             return {'type':'TEXT','text':u'请输入正确的日期如：601。如需帮助请回复’h‘或’帮助‘。'}
         day2=day+oneday
 
-    topics=Topic.objects.filter(status__exact=1).filter(topic_type__exact=2).filter(created_at__gte=day).filter(created_at__lte=day2).order_by('-created_at')[0:5]
+    topics=Topic.objects.filter(status__exact=1).filter(topic_type__exact=2).filter(created_at__gte=day).filter(created_at__lte=day2).order_by('-read_count')[0:5]
     docs=[]
 
     for topic in topics:
