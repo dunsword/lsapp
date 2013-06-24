@@ -3,7 +3,7 @@
 import re
 from sgmllib import SGMLParser
 from api.docAuthor import Author
-from api.docfetcher import DocumentFetcher, DocItem, SourceInfo, DocumentList
+from api.docfetcher import DocumentFetcher, DocItem, SourceInfo, DocumentList, RelyItem, DocItemDetailPage
 from cron.spider.spider import SpiderUrlConvert, WebPageContent, Category
 
 #分类的对应，前面是起点的categoryId，后面对应接口的categoryId
@@ -554,6 +554,16 @@ class HXDocumentFetcher(DocumentFetcher):
         parser.feed(content.getData())
         if page <= 0:
             page = 1
+
+        replyList = []
+        user = Author().getAuthorByCid(102)
+        docItem = DocItem(
+            tid=tid,
+            uid=user['uid'],
+            subject=u'',
+            url=listUrl,
+        )
+        chapterContent = u''
         if parser.getTitleList() and len(parser.getTitleList()) >= page:
             item = parser.getTitleList()[page - 1]
             if not item.isVip:
@@ -561,10 +571,17 @@ class HXDocumentFetcher(DocumentFetcher):
                 parser = BookDetailParser()
                 parser.feed(content.getData())
                 parser.close()
-                print parser.content
-            else:
-                print "this is vip"
-        pass
+                chapterContent = parser.content
+
+            replyItem = RelyItem(
+                rid=tid,
+                uid=user['uid'],
+                subject=item['title'],
+                content=chapterContent,
+                is_chapter=1,
+            )
+            replyList.append(replyItem)
+        return DocItemDetailPage(docItem=docItem, page_number=page, reply_list=replyList)
 
     def getLatestDocumentList(self, sid, size):
         listUrl = HXURLConvert().convertBookListUrl(sid, size)
@@ -605,7 +622,7 @@ class HXDocumentFetcher(DocumentFetcher):
                               updated_at=item.updateTime)
             threadList.append(docItem)
 
-        si = SourceInfo(source_id=sid, source_name="", source_desc="", site_id=1)
+        si = SourceInfo(source_id=sid, source_name="", source_desc="", site_id=2)
         return DocumentList(source_info=si, doc_list=threadList)
 
 
