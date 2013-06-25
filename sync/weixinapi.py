@@ -6,17 +6,36 @@ from datetime import  date,timedelta
 import random
 
 REPLY_SUBSCRIBE=u'''欢迎关注精品阅读，每天为您推荐最热门的小说。
-回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
-您还可以回复玄幻、腹黑、重生、耽美、高干等分类推荐。
-你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
-您还可以回复红太狼‘、’CJ的小白‘等获取这些达人推荐的小说(多次回复可以获取不同的推荐）。
-另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。'''
+另外你还可以按如下六种方式查看推荐内容：
+一、按日期查看
+    回复“今天”查看今天的推荐内容,要查看往期的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
+二、按门类查看
+    您可以回复玄幻、腹黑、重生、耽美、高干等，查看分类的推荐。
+三、按小说名查看
+    你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！如要查看《摘星》，回复“S摘星”就能查看了。
+四、按达人查看
+    您可以回复红太狼‘’CJ的小白‘等获取这些达人推荐的小说。
+五、按书评员推荐
+    另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。
+六、按排行榜推荐
+    你可以回复“排行榜”，查看最近7日小说访问量排行榜。
+'''
 
 REPLY_DEFAULT=u'''
-回复“今天”查看今天的推荐内容.要查看以前的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
-您还可以回复玄幻、腹黑、重生、耽美、高干等分类推荐。你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！
-您还可以回复红太狼‘、’CJ的小白‘等获取这些达人推荐的小说。
-另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。'''
+你可按如下六种方式查看推荐内容啦！
+一、按日期查看
+    回复“今天”查看今天的推荐内容,要查看往期的推荐可回复日期.如要查看5月19日推荐，回复“519“就可以了。
+二、按门类查看
+    您可以回复玄幻、腹黑、重生、耽美、高干等，查看分类的推荐。
+三、按小说名查看
+    你也可以输入【s+小说标题】或【搜+小说标题】查找您想看的小说！如要查看《摘星》，回复“S摘星”就能查看了。
+四、按达人查看
+    您可以回复红太狼‘’CJ的小白‘等获取这些达人推荐的小说。
+五、按书评员推荐
+    另外您还可以回复‘推荐’，看看苹果米饭等书评员有哪些推荐。
+六、按排行榜推荐
+    你可以回复“排行榜”，查看最近7日小说访问量排行榜。
+'''
 
 AUTHORS={u'红太狼':14693355,
          u'19楼红太狼':14693355,
@@ -129,6 +148,8 @@ def get_response(msg,to):
             txt=txt+u'\r\n'+sname
 
         return {'type':'TEXT','text':txt}
+    elif msg==u'排行':
+        return resp_top(msg)
     elif AUTHORS.has_key(msg):
         return resp_from_author(msg)
     elif SHUPING_NUM.has_key(msg):
@@ -178,11 +199,22 @@ def resp_from_shuping(msg):
     content=content+u"\n\r\n\r提示：回复‘s+书名’可以搜索书评中提到的小说。\n\r再次回复编号可以查看该书评员的其它推荐！"
     return {'type':'TEXT','text':content}
 
+def resp_top(msg):
+    week=timedelta(days=7)
+    today=date.today()
+    day_week=today-week
+    topics=Topic.objects.filter(status__exact=1).filter(topic_type__exact=2).filter(created_at__gte=day_week).order_by('-read_count')[0:5]
+    docs=[]
+    for topic in topics:
+        if topic.isDocument():
+            docs.append(topic.getDocument())
+    return {'type':'NEWS','docs':docs}
+
+
 def resp_from_keyword(msg):
     tagid=TAGS[msg]
     cat = Category.objects.get(pk=tagid)
     topics=Topic.objects.filter(Q(categoryid__exact=tagid)|Q(catid1__exact=tagid)|Q(catid2__exact=tagid)).filter(status__exact=1).filter(topic_type__exact=2).order_by('-created_at')[0:30]
-
 
     docs=[]
     for topic in topics:

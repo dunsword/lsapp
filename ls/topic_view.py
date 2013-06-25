@@ -72,7 +72,8 @@ class TopicView(BaseTopicView):
         pageInfo=PageInfo(page,topic.reply_count,self.tSrv.PAGE_SIZE)
         replyForm=TopicReplyForm()
         c = self.getContext(request,
-                            {'topic':topicForm,
+                            {'page_title':topic.title,
+                             'topic':topicForm,
                              'docForm':docForm,
                              'chapters':chapters,
                              'reply_list':replyList,
@@ -143,9 +144,9 @@ class TopicReplyPageView(BaseTopicView):
         if version=='r':
             url=TopicReply.objects.get(pk=replyid).getReplyUrl()
             return HttpResponseRedirect(url)
-
+        topic=Topic.objects.get(pk=topicid)
         topicReply=TopicReply.objects.get(pk=replyid)
-        c = RequestContext(request,{'reply':topicReply})
+        c = RequestContext(request,{'page_title':topic.title,'reply':topicReply})
         tt = loader.get_template(version+'ls_topic_reply.html')
         return HttpResponse(tt.render(c))
 
