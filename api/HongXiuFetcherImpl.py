@@ -668,7 +668,8 @@ class HxDocumentParser():
                           reply_count=len(self.getBookChapterList(tid)),
                           content=parser.intro,
                           created_at=updateTime,
-                          updated_at=updateTime)
+                          updated_at=updateTime,
+                          siteid=2)
         return docItem
 
     def getBookChapterList(self, tid):
@@ -687,6 +688,8 @@ class HXDocumentFetcherImpl(DocumentFetcher):
         """
         获取一个文章页的接口，根据每个站点实现
         返回DocItemDetailPage对象
+        :param tid:
+        :param page:
         """
         titleList = HxDocumentParser().getBookChapterList(tid)
         page = int(page)
@@ -700,15 +703,23 @@ class HXDocumentFetcherImpl(DocumentFetcher):
         if titleList:
             if len(titleList) >= page:
                 item = titleList[page - 1]
+
                 if not item.isVip:
                     content = WebPageContent(item.linkUrl)
                     parser = BookDetailParser()
                     parser.feed(content.getData())
                     parser.close()
                     chapterContent = parser.content
+                    pid = re.findall(r'http://.*/([0-9]+)/([0-9]+)\.shtml', item.linkUrl)
+                    if pid:
+                        pid = pid[0][1]
+                else:
+                    pid = re.findall(r"http://.*/([0-9a-z]+)/([0-9]+)\.aspx", item.linkUrl)
+                    if pid:
+                        pid = pid[0][1]
 
                 replyItem = RelyItem(
-                    rid=tid,
+                    rid=pid,
                     uid=user['uid'],
                     subject=item.title,
                     content=chapterContent,
@@ -743,9 +754,4 @@ class HXDocumentFetcherImpl(DocumentFetcher):
 HXDocumentFetcher = HXDocumentFetcherImpl()
 
 if __name__ == "__main__":
-    # aa = HXDocumentFetcher().getLatestDocumentList("zl1_8", 1)
-    # print ', '.join(['%s:%s' % item for item in aa.__dict__.items()])
-    # group = re.findall(r'.*/([0-9]+)/', 'http://novel.hongxiu.com/a/568484/')
-    # print group[0]
-
     bb = HXDocumentFetcher.getDocumentPage(616441, 100)

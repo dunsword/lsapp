@@ -9,14 +9,14 @@ from api.HongXiuFetcherImpl import HXDocumentFetcher
 from sync.converter import DocumentConvert
 
 fetcher = HXDocumentFetcher
+siteId = 2
 
 
 class HxSyncView(BaseView):
     def get(self, request, tid=0, *args, **kwargs):
+        cid = 'zl1_8'
         if request.GET.has_key('type'):
-            type = request.GET['type']
-        else:
-            type = 'zl1_8'
+            cid = request.GET['type']
 
         if request.GET.has_key('page'):
             page = int(request.GET['page'])
@@ -28,18 +28,17 @@ class HxSyncView(BaseView):
         if tid > 0:
             docList = fetcher.getDocumentDetailByTid(tid=tid)
         else:
-            docList = fetcher.getLatestDocumentList(sid=type, size=page)
+            docList = fetcher.getLatestDocumentList(sid=cid, size=page)
 
         docs = []
         for di in docList.doc_list:
             try:
-                doc = Document.objects.get_by_source(2, di.tid)
+                doc = Document.objects.get_by_source(siteId, di.tid)
             except Document.DoesNotExist:
                 doc = None
             docs.append((di, doc))
 
         if request.GET.has_key('json'):
-            json = {}
             docs = []
 
             for di in docList.doc_list:
@@ -64,10 +63,6 @@ class HxSyncView(BaseView):
 
 class HxThreadSyncView(BaseView):
     def get(self, request, tid, page=1, *args, **kwargs):
-        if request.GET.has_key('type'):
-            type = request.GET['type']
-        else:
-            type = 'zl1_8'
         tid = int(tid)
         dp = fetcher.getDocumentPage(tid, page)
         convert = DocumentConvert()
