@@ -22,21 +22,21 @@ class DocItem:
     '''
     列表中使用的文档摘要信息
     '''
-    def __init__(self,tid,uid,subject,url,reply_count=0,view_count=0,tags='',content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now(),cover_img=None):
-        self.tid=tid
-        self.fid=fid  #板块id，如没有就不用
-        self.content=content
-        self.subject=subject
-        self.url=url
-        self.uid=uid
-        self.reply_count=reply_count
-        self.view_count=view_count
-        self.created_at=created_at
-        self.updated_at=updated_at
-        self.last_reply_at=last_reply_at
-        self.tags=tags
-        self.cover_img=cover_img
-        self.siteid=0
+    def __init__(self,tid,uid,subject,url,reply_count=0,view_count=0,tags='',content=None,fid=None,created_at=datetime.now(),updated_at=datetime.now(),last_reply_at=datetime.now(),cover_img=None,siteid=0):
+        self.tid = tid
+        self.fid = fid  #板块id，如没有就不用
+        self.content = content
+        self.subject = subject
+        self.url = url
+        self.uid = uid
+        self.reply_count = reply_count
+        self.view_count = view_count
+        self.created_at = created_at
+        self.updated_at = updated_at
+        self.last_reply_at = last_reply_at
+        self.tags = tags
+        self.cover_img = cover_img
+        self.siteid = siteid
 
 class DocItemDetailPage():
     '''
