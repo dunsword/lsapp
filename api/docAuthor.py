@@ -133,7 +133,8 @@ class Author:
 
         index = random.randint(0, len(authors)-1)
 
-        return authors[index]
+        #return authors[index]
+        return {"name": u'一缕红尘', "uid": 777}
 
 
 if __name__ == "__main__":
