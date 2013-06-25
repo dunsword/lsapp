@@ -373,8 +373,8 @@ class BookInfoParser(SGMLParser):
         self.isUpdateTimeSec = False
         self.category = u''
         self.isCategorySpan = False
-        self.isCategoryBefore = False
-        self.isCategory = False
+        # self.isCategoryBefore = False
+        # self.isCategory = False
         self.pattern = re.compile(r'http://www.hongxiu.com/novel/s/([a-z0-9_]+)_1.html')
 
     def handle_data(self, text):
@@ -407,26 +407,34 @@ class BookInfoParser(SGMLParser):
         if titleFlag:
             self.isTitle = True
 
-        if self.isCategoryBefore:
-            try:
-                linkUrl = [v for k, v in attrs if k == 'href'][0]
-                self.isCategory = True
-                match = self.pattern.match(linkUrl)
-                if match:
-                    self.category = match.group(1)
-            except IndexError:
-                pass
+        if self.isCategorySpan:
+            # if self.isCategoryBefore:
+            #     try:
+            #         linkUrl = [v for k, v in attrs if k == 'href'][0]
+            #         self.isCategory = True
+            #         match = self.pattern.match(linkUrl)
+            #         if match:
+            #             self.category = match.group(1)
+            #     except IndexError:
+            #         pass
 
-        isCategoryBefore = [v for k, v in attrs if k == 'href' and v == 'http://www.hongxiu.com/index.html']
-        if isCategoryBefore:
-            self.isCategoryBefore = True
+            isCategoryBefore = [v for k, v in attrs if k == 'href' and v.endswith(u'_1.html')]
+            if isCategoryBefore:
+                try:
+                    linkUrl = [v for k, v in attrs if k == 'href'][0]
+                    self.isCategory = True
+                    match = self.pattern.match(linkUrl)
+                    if match:
+                        self.category = match.group(1)
+                except IndexError:
+                    pass
 
     def end_a(self):
         if self.isTitle:
             self.isTitle = False
-        if self.isCategory:
-            self.isCategoryBefore = False
-            self.isCategory = False
+        # if self.isCategory:
+        #     self.isCategoryBefore = False
+        #     self.isCategory = False
 
     def start_h3(self, attrs):
         intro = [v for k, v in attrs if k == 'id' and v == 'htmljiashao']
@@ -479,8 +487,8 @@ class BookChapterListParser(SGMLParser):
         self.pattern = re.compile(r"http://[\s\S]*")
         self.category = u''
         self.isCategorySpan = False
-        self.isCategoryBefore = False
-        self.isCategory = False
+        # self.isCategoryBefore = False
+        # self.isCategory = False
         self.cPattern = re.compile(r'http://www.hongxiu.com/novel/s/([a-z0-9_]+)_1.html')
 
     def getTitleList(self):
@@ -528,26 +536,34 @@ class BookChapterListParser(SGMLParser):
                     bookListUrl = u"http://novel.hongxiu.com%s" % bookListUrl
                 self.bookTitleList.linkUrl = bookListUrl
 
-        if self.isCategoryBefore:
-            try:
-                linkUrl = [v for k, v in attrs if k == 'href'][0]
-                self.isCategory = True
-                match = self.cPattern.match(linkUrl)
-                if match:
-                    self.category = match.group(1)
-            except IndexError:
-                pass
-
-        isCategoryBefore = [v for k, v in attrs if k == 'href' and v == 'http://www.hongxiu.com/index.html']
-        if isCategoryBefore:
-            self.isCategoryBefore = True
+        if self.isCategorySpan:
+            # if self.isCategoryBefore:
+            #     try:
+            #         linkUrl = [v for k, v in attrs if k == 'href'][0]
+            #         self.isCategory = True
+            #         match = self.cPattern.match(linkUrl)
+            #         if match:
+            #             self.category = match.group(1)
+            #     except IndexError:
+            #         pass
+            if not self.category:
+                isCategoryBefore = [v for k, v in attrs if k == 'href' and v.endswith(u'_1.html')]
+                if isCategoryBefore:
+                    try:
+                        linkUrl = [v for k, v in attrs if k == 'href'][0]
+                        self.isCategory = True
+                        match = self.cPattern.match(linkUrl)
+                        if match:
+                            self.category = match.group(1)
+                    except IndexError:
+                        pass
 
     def end_a(self):
         if self.isLink:
             self.isLink = False
-        if self.isCategory:
-            self.isCategoryBefore = False
-            self.isCategory = False
+        # if self.isCategory:
+        #     self.isCategoryBefore = False
+        #     self.isCategory = False
 
     def start_span(self, attrs):
         if self.isLi:
@@ -657,6 +673,8 @@ class HxDocumentParser():
         parser.close()
         subject = parser.title
         sid = parser.category
+        if not sid:
+            sid = self.getCategoryBookChapterList(tid)
         cid = HXCategory().getCategoryId(sid)
         user = Author().getAuthorByCid(cid)
         updateTime = datetime.strptime(parser.updateTime, "%Y-%m-%d")
@@ -681,6 +699,13 @@ class HxDocumentParser():
         if parser.getTitleList():
             titleList = parser.getTitleList()
         return titleList
+
+    def getCategoryBookChapterList(self, tid):
+        listUrl = HXURLConvert().convertBookUrl(tid)
+        content = WebPageContent(listUrl)
+        parser = BookChapterListParser()
+        parser.feed(content.getData())
+        return parser.category
 
 
 class HXDocumentFetcherImpl(DocumentFetcher):
@@ -754,4 +779,4 @@ class HXDocumentFetcherImpl(DocumentFetcher):
 HXDocumentFetcher = HXDocumentFetcherImpl()
 
 if __name__ == "__main__":
-    bb = HXDocumentFetcher.getDocumentPage(616441, 100)
+    bb = HxDocumentParser().getBookInfo(659123)

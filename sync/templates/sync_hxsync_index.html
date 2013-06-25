@@ -1,0 +1,39 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+    <div class="container" style="width: 1110px">
+        <div class='row-fluid'>
+            <div class='span2'>
+                {% include 'sync_htlist.html' %}
+            </div>
+            <div class='span10'>
+                <div class='row-fluid'>
+                    <div class='span12'>
+                        <h5>{{ docList.source_info.source_name }}</h5>
+
+                        <p>{{ docList.source_info.source_desc }}</p>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div>
+                        <span><a href="/sync/hxsync?type=zl1_8">穿越时空</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_3">总裁豪门</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_6">古典架空</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_9">都市高干</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_2">白领职场</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_4">女尊王朝</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_7">耽美同人</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl1_10">玄幻仙侠</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl2_2">商场小说</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl2_4">婚姻家庭</a></span><br>
+                        <span><a href="/sync/hxsync?type=zl2_5">职场励志</a></span><br>
+                        <span><a href="/sync/hxsync?type=1">言情小说</a></span><br>
+                        <span><a href="/sync/hxsync?type=2">都市小说</a></span><br>
+                        <span><a href="/sync/hxsync?type=3">武侠仙侠</a></span><br>
+                        <span><a href="/sync/hxsync?type=4">玄幻奇幻</a></span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

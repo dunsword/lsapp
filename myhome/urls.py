@@ -11,7 +11,7 @@ from base.register_view import RegisterView,EmailBindView,EmailActiveView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
 from sync.htsync_view import HtSyncView,ThreadSyncView
-from sync.hxsync_view import HxSyncView, HxThreadSyncView
+from sync.hxsync_view import HxSyncView, HxThreadSyncView, HxIndexSyncView
 from sync.weixin_views import WeixinView
 
 # Uncomment the next two lines to enable the sync:
@@ -81,6 +81,7 @@ urlpatterns = patterns('',
     (url(r'^sync/htsync/t/(?P<tid>\d+)/(?P<page>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync$',HtSyncView.as_view())),
     (url(r'^sync/hxsync$', HxSyncView.as_view())),
+    (url(r'^sync/hxsync/index$', HxIndexSyncView.as_view())),
     (url(r'^sync/hxsync/t/(?P<tid>\d+)$', HxSyncView.as_view())),
     (url(r'^sync/hxsync/t/(?P<tid>\d+)/(?P<page>\d+)$', HxThreadSyncView.as_view())),
     (r'^weixin$','sync.weixin_views.wexin'),

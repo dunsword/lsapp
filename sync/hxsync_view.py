@@ -3,7 +3,7 @@
 from django.template import loader
 from django.http import HttpResponse
 from django.template import RequestContext
-from base.base_view import BaseView
+from base.base_view import BaseView, PageInfo
 from ls.models import Document, TopicReply
 from api.HongXiuFetcherImpl import HXDocumentFetcher
 from sync.converter import DocumentConvert
@@ -55,6 +55,7 @@ class HxSyncView(BaseView):
                                {
                                    'docList': docList,
                                    'docs': docs,
+                                   'pageInfo': PageInfo(page, 30 * 100, 30, u"/sync/hxsync?type=%s&page=" % cid),
                                })
 
             tt = loader.get_template('sync_hxsync.html')
@@ -99,4 +100,9 @@ class HxThreadSyncView(BaseView):
             return HttpResponse(tt.render(c))
 
 
+class HxIndexSyncView(BaseView):
+    def get(self, request):
+        c = RequestContext(request,{})
+        tt = loader.get_template('sync_hxsync_index.html')
+        return HttpResponse(tt.render(c))
 
