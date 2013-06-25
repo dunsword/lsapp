@@ -2,6 +2,7 @@
 
 import re
 from sgmllib import SGMLParser
+from datetime import datetime
 from api.docAuthor import Author
 from api.docfetcher import DocumentFetcher, DocItem, SourceInfo, DocumentList, RelyItem, DocItemDetailPage
 from cron.spider.spider import SpiderUrlConvert, WebPageContent, Category
@@ -362,23 +363,78 @@ class BookInfoParser(SGMLParser):
         SGMLParser.reset(self)
         self.wordNum = 0
         self.intro = u''
+        self.title = u''
+        self.updateTime = u''
         self.isIntro = False
         self.isWordNum = False
+        self.isTitle = False
+        self.isUpdateTime = False
+        self.isUpdateTimeFont = False
+        self.isUpdateTimeSec = False
+        self.category = u''
+        self.isCategorySpan = False
+        # self.isCategoryBefore = False
+        # self.isCategory = False
+        self.pattern = re.compile(r'http://www.hongxiu.com/novel/s/([a-z0-9_]+)_1.html')
 
     def handle_data(self, text):
         if self.isIntro:
             self.intro += text.strip("\r\n").strip()
         if self.isWordNum:
             self.wordNum = int(text.strip("\r\n").strip())
+        if self.isTitle:
+            self.title = text.strip("\r\n").strip()
+        if self.isUpdateTimeFont:
+            self.updateTime = text.strip("\r\n").strip()
 
     def start_span(self, attrs):
         wordNum = [v for k, v in attrs if k == 'id' and v == 'ajZiShu']
         if wordNum:
             self.isWordNum = True
 
+        isCategory = [v for k, v in attrs if k == 'id' and v == 'htmlpos']
+        if isCategory:
+            self.isCategorySpan = True
+
     def end_span(self):
         if self.isWordNum:
             self.isWordNum = False
+        if self.isCategorySpan:
+            self.isCategorySpan = False
+
+    def start_a(self, attrs):
+        titleFlag = [v for k, v in attrs if k == 'id' and v == 'htmltimu']
+        if titleFlag:
+            self.isTitle = True
+
+        if self.isCategorySpan:
+            # if self.isCategoryBefore:
+            #     try:
+            #         linkUrl = [v for k, v in attrs if k == 'href'][0]
+            #         self.isCategory = True
+            #         match = self.pattern.match(linkUrl)
+            #         if match:
+            #             self.category = match.group(1)
+            #     except IndexError:
+            #         pass
+
+            isCategoryBefore = [v for k, v in attrs if k == 'href' and v.endswith(u'_1.html')]
+            if isCategoryBefore:
+                try:
+                    linkUrl = [v for k, v in attrs if k == 'href'][0]
+                    self.isCategory = True
+                    match = self.pattern.match(linkUrl)
+                    if match:
+                        self.category = match.group(1)
+                except IndexError:
+                    pass
+
+    def end_a(self):
+        if self.isTitle:
+            self.isTitle = False
+        # if self.isCategory:
+        #     self.isCategoryBefore = False
+        #     self.isCategory = False
 
     def start_h3(self, attrs):
         intro = [v for k, v in attrs if k == 'id' and v == 'htmljiashao']
@@ -388,6 +444,26 @@ class BookInfoParser(SGMLParser):
     def end_h3(self):
         if self.isIntro:
             self.isIntro = False
+
+    def start_div(self, attrs):
+        updateTime = [v for k, v in attrs if k == 'id' and v == 'htmlList']
+        if updateTime:
+            self.isUpdateTime = True
+            self.isUpdateTimeSec = True
+
+    def end_div(self):
+        if not self.isUpdateTimeSec and self.isUpdateTime:
+            self.isUpdateTime = False
+        if self.isUpdateTimeSec:
+            self.isUpdateTimeSec = False
+
+    def start_font(self, attrs):
+        if self.isUpdateTime:
+            self.isUpdateTimeFont = True
+
+    def end_font(self):
+        if self.isUpdateTimeFont:
+            self.isUpdateTimeFont = False
 
 
 class BookListData:
@@ -409,6 +485,11 @@ class BookChapterListParser(SGMLParser):
         self.isDate = False
         self.isFont = False
         self.pattern = re.compile(r"http://[\s\S]*")
+        self.category = u''
+        self.isCategorySpan = False
+        # self.isCategoryBefore = False
+        # self.isCategory = False
+        self.cPattern = re.compile(r'http://www.hongxiu.com/novel/s/([a-z0-9_]+)_1.html')
 
     def getTitleList(self):
         return self.bookList
@@ -455,17 +536,48 @@ class BookChapterListParser(SGMLParser):
                     bookListUrl = u"http://novel.hongxiu.com%s" % bookListUrl
                 self.bookTitleList.linkUrl = bookListUrl
 
+        if self.isCategorySpan:
+            # if self.isCategoryBefore:
+            #     try:
+            #         linkUrl = [v for k, v in attrs if k == 'href'][0]
+            #         self.isCategory = True
+            #         match = self.cPattern.match(linkUrl)
+            #         if match:
+            #             self.category = match.group(1)
+            #     except IndexError:
+            #         pass
+            if not self.category:
+                isCategoryBefore = [v for k, v in attrs if k == 'href' and v.endswith(u'_1.html')]
+                if isCategoryBefore:
+                    try:
+                        linkUrl = [v for k, v in attrs if k == 'href'][0]
+                        self.isCategory = True
+                        match = self.cPattern.match(linkUrl)
+                        if match:
+                            self.category = match.group(1)
+                    except IndexError:
+                        pass
+
     def end_a(self):
         if self.isLink:
             self.isLink = False
+        # if self.isCategory:
+        #     self.isCategoryBefore = False
+        #     self.isCategory = False
 
     def start_span(self, attrs):
         if self.isLi:
             self.isDate = True
 
+        isCategory = [v for k, v in attrs if k == 'id' and v == 'htmlpos']
+        if isCategory:
+            self.isCategorySpan = True
+
     def end_span(self):
         if self.isDate:
             self.isDate = False
+        if self.isCategorySpan:
+            self.isCategorySpan = False
 
     def start_font(self, attrs):
         if self.isLi:
@@ -529,7 +641,7 @@ class HXCategory(Category):
 
 class HXURLConvert(SpiderUrlConvert):
     def convertBookUrl(self, tid):
-        return u"http://novel.hongxiu.com/a/%d/list.shtml" % tid
+        return u"http://novel.hongxiu.com/a/%s/list.shtml" % tid
 
     def convertBookListUrl(self, page):
         """
@@ -538,49 +650,107 @@ class HXURLConvert(SpiderUrlConvert):
         """
         return u'http://www.hongxiu.com/novel/s/%s_1_order9.html' % page
 
+    def convertBookInfoUrl(self, tid):
+        return u'http://novel.hongxiu.com/a/%s/' % tid
+
     def convertBookListUrl(self, cid, page=1):
         return u'http://www.hongxiu.com/novel/s/%s_%d_order9.html' % (cid, page)
 
 
-class HXDocumentFetcher(DocumentFetcher):
-    def getDocumentPage(self, tid, page=1):
-        """
-        获取一个文章页的接口，根据每个站点实现
-        返回DocItemDetailPage对象
-        """
+class HxDocumentParser():
+    def getBookInfo(self, tid):
+        linkUrl = HXURLConvert().convertBookInfoUrl(tid)
+
+        parser = BookInfoParser()
+        content = WebPageContent(linkUrl)
+        encodeParser = BookInfoEncodeParser()
+        encodeParser.feed(content.getData())
+        encodeParser.close()
+        if encodeParser.hasMatch:
+            parser.feed(content.getData())
+        else:
+            parser.feed(content.getData().decode('gb2312', 'ignore').encode('utf-8'))
+        parser.close()
+        subject = parser.title
+        sid = parser.category
+        if not sid:
+            sid = self.getCategoryBookChapterList(tid)
+        cid = HXCategory().getCategoryId(sid)
+        user = Author().getAuthorByCid(cid)
+        updateTime = datetime.strptime(parser.updateTime, "%Y-%m-%d")
+        docItem = DocItem(tid=tid,
+                          uid=user['uid'],
+                          subject=subject,
+                          url=linkUrl,
+                          view_count=encodeParser.readNum,
+                          reply_count=len(self.getBookChapterList(tid)),
+                          content=parser.intro,
+                          created_at=updateTime,
+                          updated_at=updateTime,
+                          siteid=2)
+        return docItem
+
+    def getBookChapterList(self, tid):
         listUrl = HXURLConvert().convertBookUrl(tid)
         content = WebPageContent(listUrl)
         parser = BookChapterListParser()
         parser.feed(content.getData())
+        titleList = []
+        if parser.getTitleList():
+            titleList = parser.getTitleList()
+        return titleList
+
+    def getCategoryBookChapterList(self, tid):
+        listUrl = HXURLConvert().convertBookUrl(tid)
+        content = WebPageContent(listUrl)
+        parser = BookChapterListParser()
+        parser.feed(content.getData())
+        return parser.category
+
+
+class HXDocumentFetcherImpl(DocumentFetcher):
+    def getDocumentPage(self, tid, page=1):
+        """
+        获取一个文章页的接口，根据每个站点实现
+        返回DocItemDetailPage对象
+        :param tid:
+        :param page:
+        """
+        titleList = HxDocumentParser().getBookChapterList(tid)
+        page = int(page)
         if page <= 0:
             page = 1
 
         replyList = []
         user = Author().getAuthorByCid(102)
-        docItem = DocItem(
-            tid=tid,
-            uid=user['uid'],
-            subject=u'',
-            url=listUrl,
-        )
+        docItem = HxDocumentParser().getBookInfo(tid)
         chapterContent = u''
-        if parser.getTitleList() and len(parser.getTitleList()) >= page:
-            item = parser.getTitleList()[page - 1]
-            if not item.isVip:
-                content = WebPageContent(item.linkUrl)
-                parser = BookDetailParser()
-                parser.feed(content.getData())
-                parser.close()
-                chapterContent = parser.content
+        if titleList:
+            if len(titleList) >= page:
+                item = titleList[page - 1]
 
-            replyItem = RelyItem(
-                rid=tid,
-                uid=user['uid'],
-                subject=item['title'],
-                content=chapterContent,
-                is_chapter=1,
-            )
-            replyList.append(replyItem)
+                if not item.isVip:
+                    content = WebPageContent(item.linkUrl)
+                    parser = BookDetailParser()
+                    parser.feed(content.getData())
+                    parser.close()
+                    chapterContent = parser.content
+                    pid = re.findall(r'http://.*/([0-9]+)/([0-9]+)\.shtml', item.linkUrl)
+                    if pid:
+                        pid = pid[0][1]
+                else:
+                    pid = re.findall(r"http://.*/([0-9a-z]+)/([0-9]+)\.aspx", item.linkUrl)
+                    if pid:
+                        pid = pid[0][1]
+
+                replyItem = RelyItem(
+                    rid=pid,
+                    uid=user['uid'],
+                    subject=item.title,
+                    content=chapterContent,
+                    is_chapter=1,
+                )
+                replyList.append(replyItem)
         return DocItemDetailPage(docItem=docItem, page_number=page, reply_list=replyList)
 
     def getLatestDocumentList(self, sid, size):
@@ -591,45 +761,22 @@ class HXDocumentFetcher(DocumentFetcher):
         parser.close()
         bookList = parser.getBookList()
         threadList = []
-        cid = HXCategory().getCategoryId(sid)
         for item in bookList:
             tid = re.findall(r'.*/([0-9]+)/', item.linkUrl)
             if tid:
                 tid = tid[0]
-            subject = item.title
-            url = item.linkUrl
-            user = Author().getAuthorByCid(cid)
-            """
-            获取图书简介
-            """
-            parser = BookInfoParser()
-            content = WebPageContent(item.linkUrl)
-            encodeParser = BookInfoEncodeParser()
-            encodeParser.feed(content.getData())
-            encodeParser.close()
-            if encodeParser.hasMatch:
-                parser.feed(content.getData())
-            else:
-                parser.feed(content.getData().decode('gb2312', 'ignore').encode('utf-8'))
-            parser.close()
-            docItem = DocItem(tid=tid,
-                              uid=user['uid'],
-                              subject=subject,
-                              url=url,
-                              view_count=encodeParser.readNum,
-                              content=parser.intro,
-                              created_at=item.updateTime,
-                              updated_at=item.updateTime)
-            threadList.append(docItem)
+                threadList.append(HxDocumentParser().getBookInfo(tid))
 
         si = SourceInfo(source_id=sid, source_name="", source_desc="", site_id=2)
         return DocumentList(source_info=si, doc_list=threadList)
 
+    def getDocumentDetailByTid(self, tid):
+        docItem = HxDocumentParser().getBookInfo(tid)
+        si = SourceInfo(source_id=tid, source_name="", source_desc="", site_id=2)
+        return DocumentList(source_info=si, doc_list=[docItem])
+
+
+HXDocumentFetcher = HXDocumentFetcherImpl()
 
 if __name__ == "__main__":
-    # aa = HXDocumentFetcher().getLatestDocumentList("zl1_8", 1)
-    # print ', '.join(['%s:%s' % item for item in aa.__dict__.items()])
-    # group = re.findall(r'.*/([0-9]+)/', 'http://novel.hongxiu.com/a/568484/')
-    # print group[0]
-
-    bb = HXDocumentFetcher().getDocumentPage(616441, 100)
+    bb = HxDocumentParser().getBookInfo(659123)

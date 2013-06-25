@@ -42,7 +42,7 @@ class DocumentConvert:
                 doc.save()
         return tr
 
-    def save(self,docPage):
+    def save(self,docPage,siteId=19):
         u'''
         根据接口获取到的内容，保存主帖信息。如果doc对象当前不存在，创建并保存。
         如果已经存在，更新uid、siteid、封面的信息（主要考虑到以前同步的数据未包含这些信息，以后可以不更新）
@@ -53,7 +53,7 @@ class DocumentConvert:
 
         di=docPage.docItem
         try:
-            doc=Document.objects.get_by_source(19,docPage.docItem.tid)
+            doc=Document.objects.get_by_source(siteId,docPage.docItem.tid)
 
         except Document.DoesNotExist:
             doc=Document.objects.create_document(userid=UID,
@@ -93,7 +93,7 @@ class DocumentConvert:
 
         return doc
 
-    def convert(self,threadPage):
+    def convert(self,threadPage,siteId=19):
         tid=threadPage['tid']
         fid=threadPage['fid']
         subject=threadPage['subject']
@@ -113,7 +113,7 @@ class DocumentConvert:
                 content=content,
                 read_count=viewCount,
                 reply_count=0,
-                source_id=19,
+                source_id=siteId,
                 source_url=url,
                 source_tid=tid,
                 categoryid=104,
