@@ -148,7 +148,7 @@ def get_response(msg,to):
             txt=txt+u'\r\n'+sname
 
         return {'type':'TEXT','text':txt}
-    elif msg==u'排行':
+    elif msg==u'排行' or msg==u'排行榜':
         return resp_top(msg)
     elif AUTHORS.has_key(msg):
         return resp_from_author(msg)
