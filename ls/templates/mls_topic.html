@@ -6,7 +6,10 @@
     <header data-role='header'>
         <h1>{{ topic.instance.title }}</h1>
     </header>
-    <div data-role='content'>
+    <div data-role='content' style="padding: 0px 15px 15px 15px;">
+        <p>阅读数：
+            {{ topic.instance.read_count }}
+        </p>
         <p>最后更新：
             {{ topic.instance.getDocument.source_updated_at|date:"Y-m-d" }}
         </p>
