@@ -677,7 +677,12 @@ class HxDocumentParser():
             sid = self.getCategoryBookChapterList(tid)
         cid = HXCategory().getCategoryId(sid)
         user = Author().getAuthorByCid(cid)
-        updateTime = datetime.strptime(parser.updateTime, "%Y-%m-%d")
+        # noinspection PyBroadException
+        try:
+            updateTime = datetime.strptime(parser.updateTime, "%Y-%m-%d")
+        except Exception:
+            updateTime = datetime.now()
+            pass
         docItem = DocItem(tid=tid,
                           uid=user['uid'],
                           subject=subject,
