@@ -80,6 +80,9 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                if not dp1['need_update_reply']:
                    logger.info(u'文档已经为最新，不需要同步回复。')
                    continue
+               if not dp1['is_doc']:
+                   logger.info(u'改Topic不是文档，不需要同步。')
+                   continue
 
 
                totalPage=int(dp1['totalPage'])
