@@ -754,6 +754,7 @@ class HXDocumentFetcherImpl(DocumentFetcher):
                     subject=item.title,
                     content=chapterContent,
                     is_chapter=1,
+                    replyUrl=item.linkUrl,
                 )
                 replyList.append(replyItem)
         return DocItemDetailPage(docItem=docItem, page_number=page, reply_list=replyList)
