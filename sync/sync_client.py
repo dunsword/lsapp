@@ -83,7 +83,7 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                if not dp1['is_doc']:
                    logger.info(u'改Topic不是文档，不需要同步。')
                    continue
-
+               sync_repy_count=dp1['sync_reply_count']
 
                totalPage=int(dp1['totalPage'])
                p=2
