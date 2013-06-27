@@ -101,6 +101,7 @@ class ThreadSyncView(BaseView):
 
 
                is_doc=doc.topic.isDocument()
+               sync_reply_count=doc.topic.reply_count
                return self._get_json_respones({'result':'success',
                                               'tid':tid,
                                               "page":page,
@@ -108,7 +109,8 @@ class ThreadSyncView(BaseView):
                                               'source_reply_count':dp.docItem.reply_count,
                                               "totalPage":totalPage,
                                               'need_update_reply':need_update_reply,
-                                              'is_doc':is_doc})
+                                              'is_doc':is_doc,
+                                              'sync_reply_count':sync_reply_count})
            else:
               replys=[]
               for reply in dp.reply_list:
