@@ -168,8 +168,10 @@ TAGS={
      u'宠文':136,
      u'高干':137,
      u'肉文':138,
-
 }
+ALL_TAGS_KEYS=[u'宅斗',u'古言',u'军宠']
+for tag_key in TAGS.keys():
+    ALL_TAGS_KEYS.append(tag_key)
 
 RESP_TYPE={'TEXT':1,'NEWS':2}
 
@@ -202,9 +204,11 @@ def get_response(msg,to):
         result=get_date(msg)
         return result
     else:
-        for tagkey in TAGS.keys():
+        for tagkey in ALL_TAGS_KEYS:
             if unicode(msg).__contains__(tagkey):
                 return search(tagkey)
+        if len(msg)<10:
+            return search(msg)
     return {'type':'TEXT','text':REPLY_DEFAULT}
 
 PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
