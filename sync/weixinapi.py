@@ -232,7 +232,7 @@ def resp_from_shuping(msg):
             break
         tid_19=m.group()
         content=re.sub('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(tid_19),
-                       '<a href="http://mobile-proxy.weibols.com/proxy/%s">源文链接☞</a>'%(tid_19),
+                       'http://mobile-proxy.weibols.com/proxy/%s'%(tid_19),
                        content)
     content=sel_reply.user_name+u'的推荐:\n\r'+content
     content=content+u"\n\r\n\r提示：回复‘s+书名’可以搜索书评中提到的小说。\n\r再次回复编号可以查看该书评员的其它推荐！"
