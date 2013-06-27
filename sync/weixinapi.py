@@ -358,7 +358,8 @@ def search(keyword):
     topics=Topic.objects.filter(title__contains=keyword).filter(topic_type__exact=2)[0:8]
     docs=[]
     for topic in topics:
-        docs.append(topic.getDocument())
+        if topic.reply_count>2:
+            docs.append(topic.getDocument())
     if len(docs)==0:
         return {'type':'TEXT','text':u'抱歉！没有找到合适的内容。可以试试用2-3个字搜索，也可以回复‘h’或‘书评’看看有哪些推荐。回复‘帮助’可以查看查询方法！'}
     return {'type':'NEWS','docs':docs}
