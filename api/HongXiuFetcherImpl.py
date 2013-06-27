@@ -599,7 +599,7 @@ class BookDetailParser(SGMLParser):
 
     def handle_data(self, text):
         if self.isP:
-            self.content += "%s\r\n\r\n" % text.strip("\r\n").strip(u"　").strip()
+            self.content += "　　%s\r\n\r\n" % text.strip("\r\n")
 
     def start_div(self, attrs):
         contentDiv = [v for k, v in attrs if k == 'id' and v == 'htmlContent']
