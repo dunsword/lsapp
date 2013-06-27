@@ -55,7 +55,11 @@
                                                 {% else %}
                                            class='btn btn-primary'
                                                 {% endif %}
+                                        {% if doc.topic.reply_count %}
                                            onclick="syncItem('{{ t.tid }}',{{ doc.topic.reply_count }},nothing)">
+                                        {% else %}
+                                           onclick="syncItem('{{ t.tid }}',1,nothing)">
+                                        {% endif %}
                                             同步
                                         </a>
                                         <li class='icon-fast-forward' id='id_{{ t.tid }}_loading'
