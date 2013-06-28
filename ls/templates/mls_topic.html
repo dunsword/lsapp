@@ -18,7 +18,9 @@
         </ul>
 
         <p>
-                {{ topic.instance.content|linebreaksbr }}
+            {% autoescape off %}
+                {{ topic_content|linebreaksbr }}
+            {% endautoescape %}
         </p>
         <ul data-role='listview' id='id_catalogs'>
            <li data-role='list-divider'>章节：</li>

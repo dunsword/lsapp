@@ -16,6 +16,7 @@ from django.utils.decorators import method_decorator
 from base.base_view import BaseView, PageInfo
 from ls.views import LsView
 from sync.sync_page import syncThread
+import re
 
 class BaseTopicView(LsView):
     def __init__(self, **kwargs):
@@ -39,7 +40,7 @@ class ProxyView(BaseTopicView):
 
 
 
-
+PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
 
 class TopicView(BaseTopicView):
     
@@ -51,7 +52,7 @@ class TopicView(BaseTopicView):
         docForm=None
         chapters=None
 
-
+        #获取章节
         if topic.isDocument:
             docForm=DocumentForm(instance=topic.getDocument(),prefix="doc")
             chapters=topic.getChapters()
@@ -61,11 +62,23 @@ class TopicView(BaseTopicView):
                 chapter_align=3-count%3
             for i in range(chapter_align):
                 chapters.append({})
+        content=topic.content
+
+        #替换链接
+        while True:
+            m=PATTEN_REPLACE_19URL.search(content)
+            if m==None:
+                break
+            tid_19=m.group()
+            content=re.sub('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(tid_19),
+                       '&nbsp;<a href="http://mobile-proxy.weibols.com/proxy/%s">☞点击访问</a>&nbsp;'%(tid_19),content)
+
 
         replyList=self.tSrv.getTopicReplyList(topic.id, page)
         topicForm=TopicForm(instance=topic,prefix="topic")
         topicForm.is_valid()
         cat=topic.getCategory()
+
       
         #标签推荐
         
@@ -79,7 +92,8 @@ class TopicView(BaseTopicView):
                              'reply_list':replyList,
                              'category':cat,
                              "replyForm":replyForm,
-                             "pageInfo":pageInfo
+                             "pageInfo":pageInfo,
+                             'topic_content':content
                              })
 
         tt = loader.get_template(version+'ls_topic.html')
