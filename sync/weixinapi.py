@@ -58,6 +58,7 @@ d14:我是果果mami
 '''
 
 AUTHORS={u'红太狼':14693355,
+         u'红太郎':14693355,
          u'19楼红太狼':14693355,
          u'd1':14693355,
          u'cj的小白':22545551,
@@ -168,8 +169,10 @@ TAGS={
      u'宠文':136,
      u'高干':137,
      u'肉文':138,
-
 }
+ALL_TAGS_KEYS=[u'宅斗',u'古言',u'军宠']
+for tag_key in TAGS.keys():
+    ALL_TAGS_KEYS.append(tag_key)
 
 RESP_TYPE={'TEXT':1,'NEWS':2}
 
@@ -183,8 +186,10 @@ def get_response(msg,to):
             txt=txt+u'\r\n'+sname
 
         return {'type':'TEXT','text':txt}
-    if u'达人'==msg or u'h'==msg:
+    elif u'达人'==msg or u'h'==msg:
         return {'type':'TEXT','text':AUTHORS_LIST}
+    elif u'帮助'==msg:
+        return {'type':'TEXT','text':REPLY_DEFAULT}
     elif msg==u'排行' or msg==u'排行榜':
         return resp_top(msg)
     elif AUTHORS.has_key(msg):
@@ -196,10 +201,15 @@ def get_response(msg,to):
     elif _RE_SEARCH.match(msg)!=None:
        g= _RE_SEARCH.match(msg)
        return search(msg[len(g.group(0)):])
-    else:
+    elif parse_date(msg)!=None:
         result=get_date(msg)
-        if result!=None:
-            return result
+        return result
+    else:
+        for tagkey in ALL_TAGS_KEYS:
+            if unicode(msg).__contains__(tagkey):
+                return search(tagkey)
+        if len(msg)<10:
+            return search(msg)
     return {'type':'TEXT','text':REPLY_DEFAULT}
 
 PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
@@ -276,6 +286,30 @@ def resp_from_keyword(msg):
 
 
 _DATE_RE=re.compile('[\d]{3,4}$')
+def parse_date(msg):
+    oneday=timedelta(days=1)
+
+    if msg==u'今天':
+        day=date.today()-oneday #时间为昨天，避免没有内容
+        day2=day+oneday+oneday
+    elif msg==u'昨天':
+        day=date.today()-oneday-oneday
+        day2=day+oneday
+    else:
+        g=_DATE_RE.match(msg)
+        if g==None:
+            return None
+        num=int(msg)
+        daynum=num%100
+        month=num/100
+        try:
+            day=date(2013,month,daynum)
+        except:
+            return None #{'type':'TEXT','text':u'请输入正确的日期如：601。如需帮助请回复’h‘或’帮助‘。'}
+
+        day2=day+oneday
+    return (day,day2)
+
 def get_date(msg):
     oneday=timedelta(days=1)
 
@@ -324,9 +358,10 @@ def search(keyword):
     topics=Topic.objects.filter(title__contains=keyword).filter(topic_type__exact=2)[0:8]
     docs=[]
     for topic in topics:
-        docs.append(topic.getDocument())
+        if topic.reply_count>2:
+            docs.append(topic.getDocument())
     if len(docs)==0:
-        return {'type':'TEXT','text':u'抱歉！没有找到合适的内容。如需帮助请回复’h‘或’帮助‘。'}
+        return {'type':'TEXT','text':u'抱歉！没有找到合适的内容。可以试试用2-3个字搜索，也可以回复‘h’或‘书评’看看有哪些推荐。回复‘帮助’可以查看查询方法！'}
     return {'type':'NEWS','docs':docs}
 
 if __name__=='__main__':

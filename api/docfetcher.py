@@ -7,7 +7,7 @@ class RelyItem:
     '''
         回复信息对象
     '''
-    def __init__(self,rid,uid,subject,content,is_chapter,created_at=datetime.now(),is_first=False,user_name='',attachments=[]):
+    def __init__(self,rid,uid,subject,content,is_chapter,created_at=datetime.now(),is_first=False,user_name='',attachments=[], replyUrl=u''):
         self.rid=rid  #回复对象id，如pid
         self.uid=uid  #作者uid
         self.is_first=is_first
@@ -17,6 +17,7 @@ class RelyItem:
         self.content=content
         self.user_name=user_name
         self.attachments=attachments
+        self.reply_url = replyUrl
 
 class DocItem:
     '''

@@ -12,6 +12,7 @@ from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
 from sync.htsync_view import HtSyncView,ThreadSyncView
 from sync.hxsync_view import HxSyncView, HxThreadSyncView, HxIndexSyncView
+from sync.qdsync_view import QDSyncView, QDThreadSyncView, QDIndexSyncView
 from sync.weixin_views import WeixinView
 
 # Uncomment the next two lines to enable the sync:
@@ -84,6 +85,9 @@ urlpatterns = patterns('',
     (url(r'^sync/hxsync/index$', HxIndexSyncView.as_view())),
     (url(r'^sync/hxsync/t/(?P<tid>\d+)$', HxSyncView.as_view())),
     (url(r'^sync/hxsync/t/(?P<tid>\d+)/(?P<page>\d+)$', HxThreadSyncView.as_view())),
+    (url(r'^sync/qdsync/index$', QDIndexSyncView.as_view())),
+    (url(r'^sync/qdsync/t/(?P<tid>\d+)$', QDSyncView.as_view())),
+    (url(r'^sync/qdsync/t/(?P<tid>\d+)/(?P<page>\d+)$', QDThreadSyncView.as_view())),
     (r'^weixin$','sync.weixin_views.wexin'),
 
     (r'^cron/add$', 'cron.views.newDocument'),

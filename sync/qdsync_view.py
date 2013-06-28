@@ -3,18 +3,18 @@
 from django.template import loader
 from django.http import HttpResponse
 from django.template import RequestContext
+from api.QiDianFetcherImpl import QDDocumentFetcher
 from base.base_view import BaseView, PageInfo
 from ls.models import Document, TopicReply
-from api.HongXiuFetcherImpl import HXDocumentFetcher
 from sync.converter import DocumentConvert
 
-fetcher = HXDocumentFetcher
-siteId = 2
+fetcher = QDDocumentFetcher
+siteId = 1
 
 
-class HxSyncView(BaseView):
+class QDSyncView(BaseView):
     def get(self, request, tid=0, *args, **kwargs):
-        cid = 'zl1_8'
+        cid = '22'
         if request.GET.has_key('type'):
             cid = request.GET['type']
 
@@ -55,14 +55,14 @@ class HxSyncView(BaseView):
                                {
                                    'docList': docList,
                                    'docs': docs,
-                                   'pageInfo': PageInfo(page, 30 * 100, 30, u"/sync/hxsync?type=%s&page=" % cid),
+                                   'pageInfo': PageInfo(page, 30 * 100, 100, u"/sync/qdsync?type=%s&page=" % cid),
                                })
 
-            tt = loader.get_template('sync_hxsync.html')
+            tt = loader.get_template('sync_qdsync.html')
             return HttpResponse(tt.render(c))
 
 
-class HxThreadSyncView(BaseView):
+class QDThreadSyncView(BaseView):
     def get(self, request, tid, page=1, *args, **kwargs):
         tid = int(tid)
         dp = fetcher.getDocumentPage(tid, page)
@@ -100,9 +100,9 @@ class HxThreadSyncView(BaseView):
             return HttpResponse(tt.render(c))
 
 
-class HxIndexSyncView(BaseView):
+class QDIndexSyncView(BaseView):
     def get(self, request):
         c = RequestContext(request,{})
-        tt = loader.get_template('sync_hxsync_index.html')
+        tt = loader.get_template('sync_qdsync_index.html')
         return HttpResponse(tt.render(c))
 

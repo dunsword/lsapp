@@ -28,6 +28,9 @@ class DocumentConvert:
             tr.save()
         except TopicReply.DoesNotExist:
             if not reply.is_first:
+                source_url = doc.source_url
+                if reply.reply_url:
+                    source_url = reply.reply_url
                 tr=TopicReply.objects.createReply(topicid=doc.topic.id,
                                        userid=UID,
                                        username=UNAME,
@@ -35,7 +38,7 @@ class DocumentConvert:
                                        content=reply.content,
                                        is_chapter=is_chapter,
                                        source_pid=reply.rid,
-                                       source_url=doc.source_url,
+                                       source_url=source_url,
                                        created_at=reply.created_at)
             if doc.source_updated_at<tr.created_at:
                 doc.source_updated_at=tr.created_at
