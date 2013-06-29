@@ -166,5 +166,5 @@ CREATE INDEX `sync_source_author_82ae9392` ON `sync_source_author` (`uid`);
 CREATE INDEX `sync_source_author_66fec48f` ON `sync_source_author` (`site_id`);
 CREATE INDEX `sync_source_author_47b71727` ON `sync_source_author` (`uid`, `site_id`);
 
- 
+
 </code></pre>
