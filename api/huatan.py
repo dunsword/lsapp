@@ -19,6 +19,13 @@ class Huatan():
 
     user19Url='https://www.19lou.com/api/myinfo/getUserThread?client_id=%d&client_secret=%s&uid=%d&page=%d'
 
+    def getUserName(self,uid):
+        #TODO:改方法需要重构，调用getUserInfo接口
+        uid=int(uid)
+        doclist=self.getUserUserThreadList(uid,1)
+        return doclist.source_info.source_name
+
+
     def getUserUserThreadList(self,uid,page=1):
         url=Huatan.user19Url%(Huatan.client_id,Huatan.client_secret,uid,page)
         hClient = Http()

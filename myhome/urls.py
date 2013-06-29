@@ -7,12 +7,16 @@ from base.login_views import LoginView
 from ls.index_view import IndexView
 from ls.user_home_view import MyTopicView
 from ls.search_view import SearchView
+from ls.tuijian_views import TuijianViews
+
 from base.register_view import RegisterView,EmailBindView,EmailActiveView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
+
 from sync.htsync_view import HtSyncView,ThreadSyncView
 from sync.hxsync_view import HxSyncView, HxThreadSyncView, HxIndexSyncView
 from sync.qdsync_view import QDSyncView, QDThreadSyncView, QDIndexSyncView
+
 from sync.weixin_views import WeixinView
 
 # Uncomment the next two lines to enable the sync:
@@ -38,6 +42,7 @@ urlpatterns = patterns('',
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$',TopicReplyPageView.as_view())),
+    (url(r'^(?P<version>\w)/daren/(?P<source_uid>\d+)$',TuijianViews.as_view())),
     (url(r'^proxy/(?P<tid>\d+)',ProxyView.as_view())),
 
 
