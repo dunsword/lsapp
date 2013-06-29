@@ -47,7 +47,7 @@ class TuijianViews(LsView):
 
         count=Document.objects.filter(source_uid__exact=source_uid).count()
         pageInfo=PageInfo(page,count,10,'/m/daren/'+str(source_uid)+'?page=')
-        docs=Document.objects.filter(source_uid__exact=source_uid).order_by('-id').order_by('-source_updated_at')[pageInfo.startNum:pageInfo.endNum]
+        docs=Document.objects.filter(source_uid__exact=source_uid).filter(topic__status__exact=1).order_by('-topic__created_at')[pageInfo.startNum:pageInfo.endNum]
         c = self.getContext(request,
                             {
                              'user_name':userName,
