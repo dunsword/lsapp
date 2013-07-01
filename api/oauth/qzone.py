@@ -22,7 +22,6 @@ def qqAuthor(request):
     qqUserInfos = User3rdInfo.objects.filter(sid = openid,type=1)
     if qqUserInfos and qqUserInfos[0] :
         qqUserInfo =qqUserInfos[0]
-        # user = User.objects.get(id = qqUserInfo.userid)
         user = authenticate(username=qqUserInfo.nick_name, password=openid)
         # user.username = qqUserInfo.nick_name
         login(request,user)
@@ -50,9 +49,13 @@ class QQAuthor:
     appkey = u'89321b04df2263fce5db7aaa339b7553'
     # 从请求中获得qq返回的code，用于获得Access_token
     token_url = u'https://graph.qq.com/oauth2.0/token'
-    redirect_url = u'mobile-proxy.weibols.com/oauthor/qzone'
+    # 获得openid的url,openid 是qq 号码和app 生成的代码，基本上可以唯一，但是和申请appid的域名相关
     openid_url = u'https://graph.qq.com/oauth2.0/me'
+    # 获得qq用户资料的地址
     userinfo_url = u'https://graph.qq.com/user/get_user_info'
+    # qq登录成功后的，回调地址
+    redirect_url = u'mobile-proxy.weibols.com/oauthor/qzone'
+
 
     def get_code(self, request):
         return request.REQUEST.get('code')
