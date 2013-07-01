@@ -90,6 +90,9 @@ urlpatterns = patterns('',
     (url(r'^sync/qdsync/t/(?P<tid>\d+)/(?P<page>\d+)$', QDThreadSyncView.as_view())),
     (r'^weixin$','sync.weixin_views.wexin'),
 
+    #author
+    (r'^oauthor/qzone','api.oauth.qzone.qqAuthor'),
+
     (r'^cron/add$', 'cron.views.newDocument'),
     (r'^cron/update$', 'cron.views.updateDocument'),
     (r'^cron/addCharpter$', 'cron.views.newCharpters'),
