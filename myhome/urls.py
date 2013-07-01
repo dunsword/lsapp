@@ -14,6 +14,7 @@ from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
 
 from sync.htsync_view import HtSyncView,ThreadSyncView
+from sync.author_view import AuthorListView,AuthorEditView
 from sync.hxsync_view import HxSyncView, HxThreadSyncView, HxIndexSyncView
 from sync.qdsync_view import QDSyncView, QDThreadSyncView, QDIndexSyncView
 
@@ -85,6 +86,8 @@ urlpatterns = patterns('',
     (url(r'^sync/htsync/(?P<bid>\d+)$',HtSyncView.as_view())),
     (url(r'^sync/htsync/t/(?P<tid>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync/htsync/t/(?P<tid>\d+)/(?P<page>\d+)$',ThreadSyncView.as_view())),
+    (url(r'^sync/authors/(?P<page>\d+)$',AuthorListView.as_view())),
+    (url(r'^sync/author/edit/(?P<uid>\d+)$',AuthorEditView.as_view())),
     (url(r'^sync$',HtSyncView.as_view())),
     (url(r'^sync/hxsync$', HxSyncView.as_view())),
     (url(r'^sync/hxsync/index$', HxIndexSyncView.as_view())),

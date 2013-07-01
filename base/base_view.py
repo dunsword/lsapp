@@ -19,10 +19,11 @@ class PageInfo(object):
             self.isCurrent=isCurrent
         
     def __init__(self,page,itemCount,pageSize,baseUrl='./'):
-        '''
-        page 当前页码
-        itemCount 总条目数
-        pageSize 每页显示条目数
+        u'''
+        :param page:当前页码
+        :param itemCount: 总条目数
+        :param pageSize: 每页显示条目数
+        :param baseUrl: 页码数字前的链接地址
         '''
         self.baseUrl=baseUrl
         self.page=page

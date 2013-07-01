@@ -1,0 +1,64 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+
+<div class="container" style="width: 980px">
+
+    <div class="container-fluid">
+        <div class="row-fluid" > 
+            <div class="span12">
+               <h4>编辑达人用户：</h4>
+            </div>
+         </div>
+        <div class="row-fluid" > 
+            <form class="form-horizontal" id='edit-author-form' action='' method="post" onsubmit="return postEditForm()">
+            <div class="span12">
+               
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail" style="width: 80px">{{field.label}}：</label>
+                        <div class="controls" style="margin-left: 100px">
+                            {{field}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    
+                  
+                    
+                    <input type='submit' class='btn btn-primary' id="id_submit_button" value="提交"/>
+                    <a href='/sync/authors/1' class='btn'>返回</a>
+                   
+               
+            </div>
+               
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function postEditForm(){
+        $("#id_submit_button").attr('class','btn');
+        $.post($('#edit-author-form').attr('action'),$('#edit-author-form').serialize()).done(
+            function(data){
+                
+                if(data['result']!='success'){
+                    var topic_errors=data['errors'];
+                    
+                    for(e in errors){
+                         $("#id_" + e).bindPopover(errors[e]);
+                    }
+                }else{
+                    $("#id_submit_button").bindPopover("保存成功！", 'top');
+                }
+                $("#id_submit_button").attr('class','btn btn-primary');
+            }
+        );
+        return false;
+    }
+    
+</script>
+
+{% endblock %}
