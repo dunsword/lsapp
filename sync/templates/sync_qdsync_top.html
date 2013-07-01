@@ -1,0 +1,41 @@
+{% extends "frameWithTitle.html" %}
+
+{% block content %}
+    <div class="container" style="width: 1110px">
+        <div class='row-fluid'>
+            <div class='span2'>
+                {% include 'sync_htlist.html' %}
+            </div>
+            <div class='span10'>
+                <div class='row-fluid'>
+                    <div class='span12'>
+                        <h5>{{ docList.source_info.source_name }}</h5>
+
+                        <p>{{ docList.source_info.source_desc }}</p>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class='span12'><table class='table'>
+                            <tr>
+                                <th>TID</th>
+                                <th>标题</th>
+                            </tr>
+                            <tbody>
+                            {% for t in topWeekList %}
+                                <tr>
+                                    <td>{{ t.tid }}
+                                    </td>
+                                    <td>
+                                        <a href='/sync/qdsync/t/{{ t.tid }}' target="_blank">{{ t.name }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            t
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

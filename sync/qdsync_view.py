@@ -1,10 +1,13 @@
 # coding=utf-8
 
+import re
+
 from django.template import loader
 from django.http import HttpResponse
 from django.template import RequestContext
 from api.QiDianFetcherImpl import QDDocumentFetcher
 from base.base_view import BaseView, PageInfo
+from cron.spider.getAvatar import WebPageContent
 from ls.models import Document, TopicReply
 from sync.converter import DocumentConvert
 
@@ -102,7 +105,62 @@ class QDThreadSyncView(BaseView):
 
 class QDIndexSyncView(BaseView):
     def get(self, request):
-        c = RequestContext(request,{})
+        c = RequestContext(request, {})
         tt = loader.get_template('sync_qdsync_index.html')
         return HttpResponse(tt.render(c))
 
+
+class QDSyncHotData:
+    def __init__(self):
+        self.tid = 0
+        self.name = 0
+
+
+TopWeek = {
+    "http://script.qidian.com/Script/BookChannel1ThirdScript.js": "奇幻",
+    "http://script.qidian.com/Script/BookChannel2ThirdScript.js": "武侠",
+    "http://script.qidian.com/Script/BookChannel4ThirdScript.js": "都市",
+    # "http://script.qidian.com/Script/BookChannel5ThirdScript.js":"",
+    "http://script.qidian.com/Script/BookChannel6ThirdScript.js": "军事",
+    # "http://script.qidian.com/Script/BookChannel7ThirdScript.js":"",
+    # "http://script.qidian.com/Script/BookChannel8ThirdScript.js":"",
+    "http://script.qidian.com/Script/BookChannel9ThirdScript.js": "科幻",
+    # "http://script.qidian.com/Script/BookChannel10ThirdScript.js":"",
+    "http://script.qidian.com/Script/BookChannel15ThirdScript.js": "青春",
+    "http://script.qidian.com/Script/BookChannel21ThirdScript.js": "玄幻",
+    "http://script.qidian.com/Script/BookChannel22ThirdScript.js": "仙侠",
+}
+
+
+class QDSyncHotView(BaseView):
+    def get(self, request):
+        topWeekList = []
+        for key in TopWeek:
+            url = key
+            category = TopWeek[key]
+            content = WebPageContent(url)
+            subTitle = u'var TopWeekClickVip=['
+            data = content.getData().decode('utf-8')
+            start = data.index(subTitle)
+            end = data.index("];", start)
+            if start <= 0 or end <= 0:
+                continue
+            data = data[start + len(subTitle):end - 1]
+            objectPattern = re.compile(r'new Book')
+            al = objectPattern.split(data)
+            for a in al:
+                a = a.strip(',').strip()
+                if a:
+                    a = a[1:len(a) - 1]
+                    data = a.split(',')
+                    topWeekBook = QDSyncHotData()
+                    topWeekList.append(topWeekBook)
+                    topWeekBook.tid = data[0].strip('\'')
+                    topWeekBook.name = "%s[%s]" % (data[1].strip('\''), category)
+        c = RequestContext(request,
+                           {
+                               'topWeekList': topWeekList,
+                           })
+
+        tt = loader.get_template('sync_qdsync_top.html')
+        return HttpResponse(tt.render(c))
