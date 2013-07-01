@@ -7,12 +7,17 @@ from base.login_views import LoginView
 from ls.index_view import IndexView
 from ls.user_home_view import MyTopicView
 from ls.search_view import SearchView
+from ls.tuijian_views import TuijianViews
+
 from base.register_view import RegisterView,EmailBindView,EmailActiveView
 from base.user_edit_view import UserEditView,UserEditAvatarView
 from api.WeixinTokenInvalidView import WeixinTokenInvalidView
+
 from sync.htsync_view import HtSyncView,ThreadSyncView
+from sync.author_view import AuthorListView,AuthorEditView
 from sync.hxsync_view import HxSyncView, HxThreadSyncView, HxIndexSyncView
-from sync.qdsync_view import QDSyncView, QDThreadSyncView, QDIndexSyncView
+from sync.qdsync_view import QDSyncView, QDThreadSyncView, QDIndexSyncView, QDSyncHotView
+
 from sync.weixin_views import WeixinView
 
 # Uncomment the next two lines to enable the sync:
@@ -38,6 +43,7 @@ urlpatterns = patterns('',
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$',TopicReplyPageView.as_view())),
+    (url(r'^(?P<version>\w)/daren/(?P<source_uid>\d+)$',TuijianViews.as_view())),
     (url(r'^proxy/(?P<tid>\d+)',ProxyView.as_view())),
 
 
@@ -80,12 +86,15 @@ urlpatterns = patterns('',
     (url(r'^sync/htsync/(?P<bid>\d+)$',HtSyncView.as_view())),
     (url(r'^sync/htsync/t/(?P<tid>\d+)$',ThreadSyncView.as_view())),
     (url(r'^sync/htsync/t/(?P<tid>\d+)/(?P<page>\d+)$',ThreadSyncView.as_view())),
+    (url(r'^sync/authors/(?P<page>\d+)$',AuthorListView.as_view())),
+    (url(r'^sync/author/edit/(?P<uid>\d+)$',AuthorEditView.as_view())),
     (url(r'^sync$',HtSyncView.as_view())),
     (url(r'^sync/hxsync$', HxSyncView.as_view())),
     (url(r'^sync/hxsync/index$', HxIndexSyncView.as_view())),
     (url(r'^sync/hxsync/t/(?P<tid>\d+)$', HxSyncView.as_view())),
     (url(r'^sync/hxsync/t/(?P<tid>\d+)/(?P<page>\d+)$', HxThreadSyncView.as_view())),
     (url(r'^sync/qdsync/index$', QDIndexSyncView.as_view())),
+    (url(r'^sync/qdsync/top$', QDSyncHotView.as_view())),
     (url(r'^sync/qdsync/t/(?P<tid>\d+)$', QDSyncView.as_view())),
     (url(r'^sync/qdsync/t/(?P<tid>\d+)/(?P<page>\d+)$', QDThreadSyncView.as_view())),
     (r'^weixin$','sync.weixin_views.wexin'),

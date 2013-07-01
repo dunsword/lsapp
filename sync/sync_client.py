@@ -84,10 +84,12 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                    logger.info(u'改Topic不是文档，不需要同步。')
                    continue
                sync_repy_count=dp1['sync_reply_count']
-
+               start_page=sync_repy_count/18
+               if start_page<2:
+                   start_page=2
                totalPage=int(dp1['totalPage'])
-               p=2
-               for p in range(2,totalPage+1):
+               logger.info(u'已经同步了了'+str(sync_repy_count)+u'项回复，从第'+str(start_page)+u'页开始同步！')
+               for p in range(start_page,totalPage+1):
 
                    if sync_status==3: #pause
                         pausing=True

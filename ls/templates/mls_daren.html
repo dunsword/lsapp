@@ -1,0 +1,61 @@
+{% extends "mframe.html" %}
+
+{% block page %}
+
+<section data-role='page' id='id_doc_main'>
+    <header data-role='header'>
+        <h1>{{ user_name }}的推荐</h1>
+    </header>
+    <div data-role='content' style="padding: 0px 15px 15px 15px;">
+        <p>
+                {{ desc }}
+        </p>
+        <ul data-role='listview' id='id_catalogs'>
+           <li data-role='list-divider'>推荐列表：</li>
+            {% for doc in docs %}
+
+                    <li>
+                        <a href='/m/topic/{{ doc.topic.id }}/1' rel='external'>
+                             <h3>{{doc.topic.title }}</h3>
+                            <p>发表时间：{{ doc.topic.created_at|date:"Y-m-d"}}   阅读：{{doc.topic.read_count }}</p>
+                        </a>
+                    </li>
+
+
+            {% endfor %}
+        </ul>
+    </div>
+<div data-role='navbar' >
+        <ul>
+            <li>
+                {% if pageinfo.previous %}
+                <a href='{{pageinfo.baseUrl}}{{pageinfo.previous}}' data-icon='arrow-l' class='ui-btn-left'>上页</a>
+                {% endif %}
+
+            </li>
+            <li>
+
+                 <a href='' data-icon='home'>第{{ pageinfo.page }}页</a>
+
+            </li>
+            <li>
+                {% if pageinfo.next %}
+
+					<a 	href="{{pageinfo.baseUrl}}{{pageinfo.next}}"  data-icon='arrow-r' class='ui-btn-right'>下页</a>
+                {% endif %}
+
+            </li>
+        </ul>
+
+    </div>
+    <footer data-role='footer'>
+
+    </footer>
+</section>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F61ed06e0d1504327fa7ef3da349056b5' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+{% endblock %}

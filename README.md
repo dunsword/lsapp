@@ -143,3 +143,28 @@ Document
 <pre><code>
 alter table ls_document add column `source_cover_img` varchar(200);
 </code></pre>
+
+10.2013-06-29
+保存大人列表
+<pre><code>
+
+CREATE TABLE `sync_source_author` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    `uid` bigint NOT NULL,
+    `username` varchar(100) NOT NULL,
+    `desc` varchar(1000) NOT NULL,
+    `site_id` integer NOT NULL
+)
+;
+CREATE INDEX `sync_source_author_96511a37` ON `sync_source_author` (`created_at`
+);
+CREATE INDEX `sync_source_author_a11a40ab` ON `sync_source_author` (`updated_at`
+);
+CREATE INDEX `sync_source_author_82ae9392` ON `sync_source_author` (`uid`);
+CREATE INDEX `sync_source_author_66fec48f` ON `sync_source_author` (`site_id`);
+CREATE INDEX `sync_source_author_47b71727` ON `sync_source_author` (`uid`, `site_id`);
+
+
+</code></pre>
