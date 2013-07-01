@@ -43,6 +43,7 @@ class ProxyView(BaseTopicView):
 
 PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
 PATTEN_REPLACE_19URL_AUTHOR=re.compile('(?<=http://www.19lou.com/user/profile-)\d+(?=-1.html)')
+PATTEN_REPLACE_19URL_AUTHOR_T=re.compile('(?<=http://www.19lou.com/user/thread-)\d+(?=-1.html)')
 class TopicView(BaseTopicView):
     
     #@method_decorator(login_required)
@@ -87,6 +88,20 @@ class TopicView(BaseTopicView):
                 pass
 
             content=re.sub('http://www.19lou.com/user/profile-%s-1.html'%(uid19),
+                        '&nbsp;<a href="/m/daren/%s">%s</a>&nbsp;'%(uid19,user_link_name),content)
+        while True:
+            m=PATTEN_REPLACE_19URL_AUTHOR_T.search(content)
+            if m==None:
+                break
+            uid19=m.group()
+            user_link_name=u'☞点击访问'
+            try:
+                s_author=source_author.objects.get(uid__exact=uid19)
+                user_link_name=u'☞'+s_author.username+u'帖子列表'
+            except source_author.DoesNotExist:
+                pass
+
+            content=re.sub('http://www.19lou.com/user/thread-%s-1.html'%(uid19),
                         '&nbsp;<a href="/m/daren/%s">%s</a>&nbsp;'%(uid19,user_link_name),content)
 
         replyList=self.tSrv.getTopicReplyList(topic.id, page)

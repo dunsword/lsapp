@@ -48,7 +48,7 @@ class AuthorEditView(BaseView):
         user=request.user
         if not user.is_staff:
             return self._get_json_respones({'result':'error'})
-        
+
         uid=long(uid)
         author=source_author.objects.get(uid__exact=uid)
         form = AuthorForm(instance=author,data=request.POST)
