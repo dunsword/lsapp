@@ -4,51 +4,47 @@
     </button>
     <h3 id="LoginModalLabel">登录</h3>
 </div>
-<ul class="thumbnails">
-
-    <li class="span5">
-
-        <form id='login_form' action='/login/form' class='form-horizontal' style="margin-left:auto; margin-right:auto;width:350px" onsubmit="do_login();return false;">
-            
-          
-           
-            {% csrf_token %}
-              <div id='login_form_alert' class="alert alert-error fade in" style="display:none;margin-top: 15px">
-                
-                <button type="button" class="close" data-dismiss="alert">
-                    &times;
-                </button>
-                用户名或密码错误！
+<div class="thumbnails row">
+    <div class="span8">
+        <div class="row">
+            <div class="span3 offset1 login-connect">
+                <h5>使用合作网站帐号登录</h5>
+                <div class="connections clearfix">
+                    <a class="weibo login-button" onclick="return false;" href="/oauth/weibo/instant_login/">新浪微博</a>
+                    <a class="qzone login-button" href="javascript:;" onclick="return window.open('https://graph.qq.com/oauth2.0/authorize?client_id=100474600&amp;response_type=code&amp;scope=get_user_info,add_share,add_weibo,add_t,add_topic,add_one_blog,list_album,upload_pic,add_album,check_page_fans,list_photo,get_comment,get_user_profile,get_tenpay_address,get_user_cbinfo&amp;redirect_uri=mobile-proxy.weibols.com/oauthor/qzone', 'oauth2Login_10940' ,'height=350,width=700, toolbar=no, menubar=no, scrollbars=no, status=no, location=yes, resizable=yes');">
+                        <img src="{{STATIC_URL}}img/qq_login.png">
+                    </a>
+                </div>
             </div>
-            <p  style="margin-top: 25px;" >
-              
-              <input id="id_username" type="text" name="username" maxlength="100" placeholder="用户名/邮箱"/>
-              <span  id='login_form_error_username' style="margin-left: 10px; color: red;display: none">*请输入用户名！</span>
-               
-            </p>
-            <p style="margin-top: 15px;" >
-               
-                    <input type="password" name="password" id="id_password" placeholder="密码"/>
-                    <span  id='login_form_error_password' style="margin-left: 10px; color: red;display: none">*请输入密码！</span>
-                
-            </p>
-
-            <label>记住密码：
-                <input type="checkbox" name='remember' value='1' checked style="margin-top: 0px;" />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a>忘记密码？</a></label>
-            <button id='login_btn' type='submit' class="btn btn-primary" style="width: 220px">
-                登&nbsp;&nbsp;录
-            </button>
-            <br/>
-            <br/>
-
-        </form>
-
-    </li>
-    <li class="span4">
-        <div style="margin-top: 25px">
-            *&nbsp;还没有账号？<a href="/register">立即注册</a>
+            <div class="span3 offset1 login-form">
+                <h5 class="connections">使用注册邮箱登陆</h5>
+                <form id='login_form' action='/login/form' class="form-horizontal" onsubmit="do_login();return false;">
+                    {% csrf_token %}
+                    <div id='login_form_alert' class="alert alert-error fade in" style="display:none;margin-top: 15px">
+                        <button type="button" class="close" data-dismiss="alert">
+                            &times;
+                        </button>
+                        用户名或密码错误！
+                    </div>
+                    <p  style="margin-top: 15px;" >
+                        <input id="id_username" type="text" name="username" maxlength="100" placeholder="用户名/邮箱"/>
+                        <span  id='login_form_error_username' style="margin-left: 10px; color: red;display: none">*请输入用户名！</span>
+                    </p>
+                    <p style="margin-top: 15px;" >
+                        <input type="password" name="password" id="id_password" placeholder="密码"/>
+                        <span  id='login_form_error_password' style="margin-left: 10px; color: red;display: none">*请输入密码！</span>
+                    </p>
+                    <p>记住密码：
+                        <input type="checkbox" name='remember' value='1' checked style="margin-top: 0px;" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a style="float:right;">忘记密码？</a></p>
+                    <button id='login_btn' type='submit' class="btn btn-primary">
+                        登&nbsp;&nbsp;录
+                    </button>
+                    <p class="login-entry">还没有账号？<a href="/register">立即注册</a></p>
+                    <br/>
+                    <br/>
+                </form>
+            </div>
         </div>
-    </li>
-
-</ul>
+    </div>
+</div>
