@@ -14,3 +14,8 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+.login-connect h5,.login-form h5 {
+    margin-top: 25px;
+    font: 100 16px/15px "Microsoft Yahei",Simsun,Arial;
+    color: #999;
+}
