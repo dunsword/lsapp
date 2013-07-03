@@ -28,9 +28,10 @@ class AuthResult:
         self.auth_time=auth_time
         self.expires=expires
 class UserInfo:
-    def __init__(self,username,email,gender):
+    def __init__(self,username,email,mobile,gender):
         self.username=username
         self.email=email
+        self.mobile=mobile
         self.gender=gender
 
 class Auth():
@@ -67,17 +68,24 @@ class Auth():
         return None
 
     def getUserInfo(self,access_token):
-        userinfo_url=u'http://www.19lou.com/api/user/getCurUserInfo?access_token=%s'%(access_token)
+        userinfo_url=u'http://www.19lou.com/api/user/getCurrentUserInfo?access_token=%s'%(access_token)
         json_result=self._getJsonResult(userinfo_url)
         user=json_result['user']
         username=user['user_name']
-        email='link_'+randstr()+'@weibols.com'
+        if user.has_key('email'):
+            email=user['email']
+        else:
+            email=u'link_'+randstr()+u'@weibols.com'
+        if user.has_key('mobile'):
+            mobile=user['mobile']
+        else:
+            mobile=None
         gender=user['gender']
-        userInfo=UserInfo(username=username,email=email,gender=gender)
+        userInfo=UserInfo(username=username,email=email,mobile=mobile,gender=gender)
         return userInfo
 
 if __name__=='__main__':
-     username=u'猪猪侠'
+     username=u'田伯光的刀'
      password=unicode(raw_input('password:'))
      auth=Auth()
      result=auth.authenticate(username,password)
@@ -88,4 +96,6 @@ if __name__=='__main__':
         print result.expires
 
         userInfo=auth.getUserInfo(access_token=result.access_token)
-        print userInfo
+        print userInfo.username
+        print userInfo.email
+        print userInfo.mobile

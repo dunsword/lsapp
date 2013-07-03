@@ -23,6 +23,9 @@
                 {{ topic_content|linebreaksbr }}
             {% endautoescape %}
         </p>
+
+
+
         <ul data-role='listview' id='id_catalogs'>
            <li data-role='list-divider'>章节：</li>
             {% for chapter in chapters %}
@@ -34,18 +37,24 @@
 
             {% endfor %}
         </ul>
+        <p></p>
+        <a href='{{ topic.instance.getDocument.source_url }}' style="float: right">访问源网页</a>
+
+
+
+
     </div>
-    <footer data-role='footer'><a href='{{ topic.instance.getDocument.source_url }}' style="float: right">访问源网页</a></footer>
+    <footer data-role='footer'>
+        {% if user.is_active %}
+            <a data-icon='start' href='#' class="ui-btn-left">评论</a>
+            <a data-icon='home' href='#' class='ui-btn-right'>书签</a>
+        {% else %}
+            <a data-icon='start' href='#id_login' class="ui-btn-left">登录</a>
+        {% endif %}
+    </footer>
 </section>
-<div data-role='page' id='id_shortcut'>
-        <div data-role='header'><h4>快捷菜单</h4></div>
-        <div data-role='content'>
-                <a data-role='button'>到顶部</a>
-                <a data-role='button'>加书签</a>
-                <a data-role='button'>到页尾</a>
-                <a data-role='button'>到目录</a>
-        </div>
-</div>
+{% include 'mls_login_page_section.html' %}
+
 <script type='text/javascript'>
     $('#id_doc_main').on('pageshow',function(){
         catalogs_top = $('#id_catalogs').offset()['top'];
