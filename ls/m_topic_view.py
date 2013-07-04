@@ -6,13 +6,15 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.context_processors import csrf
 from django.contrib.auth import authenticate, login, logout
-from ls.models import Feed,Document,Category,Topic,TopicReply
+from ls.models import Document,Category,Topic,TopicReply
 from ls.topic_forms import TopicForm,TopicReplyForm,TopicService,TopicReplyService,DocumentForm
 from base.base_view import BaseView, PageInfo
 from sync.models import source_author
 from topic_view import BaseTopicView
 from base.forms import LoginForm
+from ls.bookmark_models import BookMark
 import re
+from django.db.models import Q
 
 PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
 PATTEN_REPLACE_19URL_AUTHOR=re.compile('(?<=http://www.19lou.com/user/profile-)\d+(?=-1.html)')
@@ -130,3 +132,33 @@ class MTopicView(BaseTopicView):
 
              #result.update(loginForm.errors)
              return result
+
+class MTopicReplyPageView(BaseTopicView):
+     '''
+     用于单独的回复页面
+     '''
+     def get(self,request,topicid,replyid,version=None,*args,**kwargs):
+        if version=='r':
+            url=TopicReply.objects.get(pk=replyid).getReplyUrl()
+            return HttpResponseRedirect(url)
+        topic=Topic.objects.get(pk=topicid)
+        topicReply=TopicReply.objects.get(pk=replyid)
+
+        user=request.user
+        if user.is_active:
+            try:
+                bookmark=BookMark.objects.get(Q(uid__exact=user.id)&Q(tid=topic.id))
+            except BookMark.DoesNotExist:
+                bookmark=BookMark()
+                bookmark.uid=user.id
+                bookmark.tid=topic.id
+
+            bookmark.rid=topicReply.id
+            bookmark.title1=topic.title
+            bookmark.title2=topicReply.title
+            bookmark.save()
+
+
+        c = RequestContext(request,{'page_title':topic.title,'reply':topicReply})
+        tt = loader.get_template(version+'ls_topic_reply.html')
+        return HttpResponse(tt.render(c))

@@ -180,19 +180,7 @@ class TopicEditView(BaseTopicView):
                                         'errors':topicForm.errors})
 
 
-class TopicReplyPageView(BaseTopicView):
-     '''
-     用于单独的回复页面
-     '''
-     def get(self,request,topicid,replyid,version=None,*args,**kwargs):
-        if version=='r':
-            url=TopicReply.objects.get(pk=replyid).getReplyUrl()
-            return HttpResponseRedirect(url)
-        topic=Topic.objects.get(pk=topicid)
-        topicReply=TopicReply.objects.get(pk=replyid)
-        c = RequestContext(request,{'page_title':topic.title,'reply':topicReply})
-        tt = loader.get_template(version+'ls_topic_reply.html')
-        return HttpResponse(tt.render(c))
+
 
 class TopicReplyView(BaseTopicView):
     @method_decorator(login_required)

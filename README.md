@@ -168,3 +168,40 @@ CREATE INDEX `sync_source_author_47b71727` ON `sync_source_author` (`uid`, `site
 
 
 </code></pre>
+
+
+11.2013-07-04
+在User表添加了用户信息，另外添加了version表
+<pre><code>
+mobile` varchar(30) UNIQUE,
+    `mobile_bind` bool NOT NULL,
+    `reg_source` smallint NOT NULL,
+
+alter table `base_user` ADD  `mobile` varchar(30) UNIQUE;
+alter table `base_user` ADD  `mobile_bind` bool NOT NULL;
+alter table `base_user` ADD  `reg_source` smallint NOT NULL;
+
+CREATE TABLE `lsapp_version` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `version` varchar(30) UNIQUE not null,
+    `desc` varchar(200),
+    `created_at` timestamp NOT NULL default CURRENT_TIMESTAMP
+);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-04','add mobile and reg_source for user');
+
+
+CREATE TABLE `ls_bookmark` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    `uid` integer NOT NULL,
+    `tid` integer NOT NULL,
+    `rid` integer NOT NULL,
+    `title1` varchar(255) NOT NULL,
+    `title2` varchar(255) NOT NULL
+);
+CREATE INDEX `ls_bookmark_96511a37` ON `ls_bookmark` (`created_at`);
+CREATE INDEX `ls_bookmark_a11a40ab` ON `ls_bookmark` (`updated_at`);
+CREATE INDEX `ls_bookmark_82ae9392` ON `ls_bookmark` (`uid`);
+
+</code></pre>
