@@ -1,4 +1,4 @@
-# coding=utf-
+# coding=utf-8
 from django.db import models
 
 # 记录已经导入过的数据id，以及相应的分类数据
