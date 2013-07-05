@@ -394,3 +394,10 @@ class TopicReply(BaseModel):
 
 
 
+class Comment(BaseModel):
+    uid=models.IntegerField(u'UID')
+    username=models.CharField(u'用户名',max_length=256)
+    topicid=models.IntegerField(u'TID',db_index=True)
+    replyid=models.IntegerField(u'RID',db_index=True)
+    content=models.TextField(u'评论内容',max_length=20480)
+    source_uid=models.IntegerField(u'来源用户ID')
