@@ -42,6 +42,8 @@ class BaseModel(models.Model):
         self.save()
     
     def save(self, *args, **kwargs):
+        if self.id==None:
+            self.created_at=datetime.now()
         self.updated_at=datetime.now()
         super(BaseModel,self).save(*args, **kwargs)
         cache.set(self.__class__.objects.get_cache_key(self.id),self)
@@ -400,4 +402,4 @@ class Comment(BaseModel):
     topicid=models.IntegerField(u'TID',db_index=True)
     replyid=models.IntegerField(u'RID',db_index=True)
     content=models.TextField(u'评论内容',max_length=20480)
-    source_uid=models.IntegerField(u'来源用户ID')
+    source_uid=models.IntegerField(u'来源用户ID',default=0)

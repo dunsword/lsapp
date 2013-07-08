@@ -15,6 +15,7 @@ from base.forms import LoginForm
 from ls.bookmark_models import BookMark
 import re
 from django.db.models import Q
+from datetime import datetime
 
 PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
 PATTEN_REPLACE_19URL_AUTHOR=re.compile('(?<=http://www.19lou.com/user/profile-)\d+(?=-1.html)')
@@ -162,3 +163,36 @@ class MTopicReplyPageView(BaseTopicView):
         c = RequestContext(request,{'page_title':topic.title,'reply':topicReply})
         tt = loader.get_template(version+'ls_topic_reply.html')
         return HttpResponse(tt.render(c))
+
+from ls.models import Comment
+from ls.topic_forms import CommentForm
+class MTopicComment(BaseTopicView):
+    def get(self,request,topicid,replyid=0,result=None,message=None,*args,**kwargs):
+        topicid=int(topicid)
+        replyid=int(replyid)
+        tt = loader.get_template('mls_topic_comment_list.html')
+        comments=Comment.objects.filter(topicid__exact=topicid).filter(replyid__exact=replyid).order_by('-created_at')[0:10]
+        c = RequestContext(request,{'comments':comments,'topicid':topicid,'replyid':replyid})
+        return HttpResponse(tt.render(c))
+
+    def post(self,request,topicid,replyid=0,*args,**kwargs):
+        topicid=int(topicid)
+        replyid=int(replyid)
+        content=request.POST['comment']
+        uid=request.user.id
+        username=request.user.username
+        data={'uid':uid,
+              'username':username,
+              'content':content,
+              'topicid':topicid,
+              'replyid':replyid,
+              'source_uid':0,}
+
+        comment=CommentForm(data=data)
+        if comment.is_valid():
+            comment.save()
+            return self.get(request,topicid,replyid,result='success')
+        else:
+            return self.get(request,topicid,replyid,result='failed',message=comment.errors['content'])
+
+

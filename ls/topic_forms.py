@@ -2,7 +2,7 @@
 
     
 from django import forms
-from ls.models import Topic,TopicReply,Category,Document
+from ls.models import Topic,TopicReply,Category,Document,Comment
 from datetime import datetime
 
 class TopicForm(forms.ModelForm):
@@ -89,7 +89,18 @@ class DocumentForm(forms.ModelForm):
            }
     
       
-            
+class CommentForm(forms.ModelForm):
+    content=forms.CharField(label=u'密码',
+                            required=True,
+                            min_length=2,
+                            max_length=20480,
+                            error_messages={
+                                               'required': '不能为空！',
+                                               'min_length':'不能少于2个字！',
+                                               'max_length': '不能超过1000个字！'})
+    class Meta:
+        model=Comment
+        fields = ('uid','username','content','topicid','replyid')
 
         
 class TopicReplyForm(forms.ModelForm):

@@ -205,3 +205,26 @@ CREATE INDEX `ls_bookmark_a11a40ab` ON `ls_bookmark` (`updated_at`);
 CREATE INDEX `ls_bookmark_82ae9392` ON `ls_bookmark` (`uid`);
 
 </code></pre>
+
+12. 201307107
+<pre><code>
+CREATE TABLE `ls_comment` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `status` integer NOT NULL,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    `uid` integer NOT NULL,
+    `username` varchar(256) NOT NULL,
+    `topicid` integer NOT NULL,
+    `replyid` integer NOT NULL,
+    `content` longtext NOT NULL,
+    `source_uid` integer NOT NULL
+)
+;
+CREATE INDEX `ls_comment_48fb58bb` ON `ls_comment` (`status`);
+CREATE INDEX `ls_comment_96511a37` ON `ls_comment` (`created_at`);
+CREATE INDEX `ls_comment_a11a40ab` ON `ls_comment` (`updated_at`);
+CREATE INDEX `ls_comment_a9db1261` ON `ls_comment` (`topicid`);
+CREATE INDEX `ls_comment_7cc7297e` ON `ls_comment` (`replyid`);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-07','add comment table');
+</code></pre>

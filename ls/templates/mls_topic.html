@@ -46,8 +46,8 @@
     </div>
     <footer data-role='footer'>
         {% if user.is_active %}
-            <a data-icon='start' href='#' class="ui-btn-left">评论</a>
-            <a data-icon='home' href='/m/my/bookmarks/1' class='ui-btn-right'>书签</a>
+            <a data-icon='start' href='/m/comment/{{ topic.instance.id }}'  data-transition="slideup" class="ui-btn-left">评论</a>
+            <a data-icon='home' href='/m/my/bookmarks/1'  class='ui-btn-right'>书签</a>
         {% else %}
             <a data-icon='start' href='#id_login' class="ui-btn-left">登录</a>
         {% endif %}
