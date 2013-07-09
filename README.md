@@ -206,7 +206,7 @@ CREATE INDEX `ls_bookmark_82ae9392` ON `ls_bookmark` (`uid`);
 
 </code></pre>
 
-12. 201307107
+12. 20130707
 <pre><code>
 CREATE TABLE `ls_comment` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -227,4 +227,21 @@ CREATE INDEX `ls_comment_a11a40ab` ON `ls_comment` (`updated_at`);
 CREATE INDEX `ls_comment_a9db1261` ON `ls_comment` (`topicid`);
 CREATE INDEX `ls_comment_7cc7297e` ON `ls_comment` (`replyid`);
 insert into `lsapp_version` (`version`,`desc`) values('2013-07-07','add comment table');
+</code></pre>
+
+12. 20130707
+<pre><code>
+CREATE TABLE `base_userloginlog` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `uid` integer NOT NULL,
+    `src` smallint NOT NULL,
+    `src_uuid` varchar(256),
+    `login_time` datetime NOT NULL,
+    `raw_pass` varchar(256),
+    `ip` varchar(20),
+    `port` smallint NOT NULL
+);
+
+CREATE INDEX `base_userloginlog_82ae9392` ON `base_userloginlog` (`uid`);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-09','add login log table');
 </code></pre>

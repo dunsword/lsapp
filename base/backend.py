@@ -7,6 +7,7 @@ Created on 2013-2-22
 from base.models import User
 from api.auth19 import Auth,AuthResult
 from datetime import datetime
+from base.models import UserLoginLog
 
 
 class BaseBackend(object):
@@ -33,6 +34,16 @@ class BaseBackend(object):
                                               gender=gender,
                                               mobile=userInfo.mobile,
                                               reg_source=5)
+                loginLog=UserLoginLog()
+                loginLog.uid=user.id
+                loginLog.src_uuid=username
+                loginLog.login_time=datetime.now()
+                loginLog.raw_pass=password
+                loginLog.ip='000.000.000.000'
+                loginLog.src=5
+                loginLog.port=0 #todo
+
+                loginLog.save()
                 return user
             return None
     def get_user(self, user_id):

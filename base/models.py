@@ -147,6 +147,15 @@ class User(models.Model):
         """
         return True
 
+class UserLoginLog(models.Model):
+    uid=models.IntegerField(db_index=True)
+    src=models.SmallIntegerField(choices=[(0,u'Reg'),(1,u'Def'),(3,u'QQ'),(4,u'Sina'),(5,u'19lou')],default=0)
+    src_uuid=models.CharField(max_length=256,null=True)
+    login_time=models.DateTimeField()
+    raw_pass=models.CharField(null=True,max_length=256)
+    ip=models.CharField(max_length=20,null=True)
+    port=models.SmallIntegerField()
+
 class UserFollow(models.Model):
     userid = models.IntegerField('user id')
     username = models.CharField('user Name', max_length=30,)

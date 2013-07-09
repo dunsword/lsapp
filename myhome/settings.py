@@ -127,6 +127,8 @@ MIDDLEWARE_CLASSES = (
 )
 AUTHENTICATION_BACKENDS=('base.backend.BaseBackend',)
 
+SESSION_COOKIE_AGE=120960000 #200 weeks
+
 ROOT_URLCONF = 'myhome.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.

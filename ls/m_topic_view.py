@@ -16,6 +16,7 @@ from ls.bookmark_models import BookMark
 import re
 from django.db.models import Q
 from datetime import datetime
+from base.models import UserLoginLog
 
 PATTEN_REPLACE_19URL=re.compile('(?<=http://www.19lou.com/forum-26-thread-)\d+(?=-1-1.html)')
 PATTEN_REPLACE_19URL_AUTHOR=re.compile('(?<=http://www.19lou.com/user/profile-)\d+(?=-1.html)')
@@ -122,8 +123,20 @@ class MTopicView(BaseTopicView):
              username=username.strip()
              password=password.strip()
              user = authenticate(username=username, password=password)
+
+
+
              if user is not None:
                 if user.is_active:  # 登录成功
+                    loginLog=UserLoginLog()
+                    loginLog.uid=user.id
+                    loginLog.src_uuid=username
+                    loginLog.login_time=datetime.now()
+                    loginLog.ip=request.META['REMOTE_ADDR']
+                    loginLog.src=0
+                    loginLog.port=0 #todo
+                    loginLog.save()
+
                     login(request,user)
                     return {'result':'success'}
                 else:
