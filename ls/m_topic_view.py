@@ -119,6 +119,8 @@ class MTopicView(BaseTopicView):
              username = loginForm.cleaned_data['username']
              password = loginForm.cleaned_data['password']
              remember = loginForm.cleaned_data['remember']
+             username=username.strip()
+             password=password.strip()
              user = authenticate(username=username, password=password)
              if user is not None:
                 if user.is_active:  # 登录成功

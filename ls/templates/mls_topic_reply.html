@@ -42,15 +42,18 @@
 
 
     </div>
-
+<!--
     <div id='id_fast_btn_{{ reply.id }}' style="z-index: 1000;position:fixed;right: 100px;width: 100px;display: none">
             <a href='#' data-role='button' data-icon='arrow-d' onclick='$.mobile.silentScroll(cpage.height());cbtn.hide();'>底部</a>
 
-        </div>
-    <footer data-role='footer' data-position='inline' class="ui-bar">
-       <a href='#id_login'>评&nbsp;&nbsp;论</a>
-
-       <a href='' style='float: right'>书&nbsp;&nbsp;签</a>
+        </div>-->
+    <footer data-role='footer' >
+       {% if user.is_active %}
+            <a data-icon='start' href='/m/comment/{{ reply.getTopic.id }}/{{ reply.id }}'  data-transition="slideup" class="ui-btn-left">评论</a>
+            <a data-icon='home' href='/m/my/bookmarks/1'   data-transition="slideup"  class='ui-btn-right'>书签</a>
+        {% else %}
+            <a data-icon='start' href='#id_login' class="ui-btn-left">登录</a>
+        {% endif %}
     </footer>
 
     <script>

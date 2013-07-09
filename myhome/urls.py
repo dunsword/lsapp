@@ -45,7 +45,7 @@ urlpatterns = patterns('',
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
     (url(r'^m/topic/(?P<topicid>\d+)/(?P<page>\d+)$',MTopicView.as_view())),
     (url(r'^m/my/bookmarks/(?P<page>\d+)$',MBookmarkView.as_view())),
-    (url(r'^m/comment//(?P<topicid>\d+)/(?P<replyid>\d+)$',MTopicComment.as_view())),
+    (url(r'^m/comment/(?P<topicid>\d+)/(?P<replyid>\d+)$',MTopicComment.as_view())),
     (url(r'^m/comment/(?P<topicid>\d+)$',MTopicComment.as_view())),
 
     (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$',MTopicReplyPageView.as_view())),
