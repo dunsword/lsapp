@@ -132,7 +132,10 @@ class MTopicView(BaseTopicView):
                     loginLog.uid=user.id
                     loginLog.src_uuid=username
                     loginLog.login_time=datetime.now()
-                    loginLog.ip=request.META['REMOTE_ADDR']
+                    if request.META.has_key('REMOTE_ADDR'):
+                        loginLog.ip=request.META['REMOTE_ADDR']
+                    elif request.META.has_key('REMOTE_HOST'):
+                        loginLog.ip=request.META['REMOTE_HOST']
                     loginLog.src=0
                     loginLog.port=0 #todo
                     loginLog.save()
