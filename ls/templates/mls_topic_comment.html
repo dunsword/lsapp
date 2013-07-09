@@ -1,0 +1,30 @@
+{% extends "mframe.html" %}
+
+{% block page %}
+
+
+<section data-role='page' id='id_login'>
+    <header data-role='header'>
+        <a data-rel='back'>返回</a>
+        <h1>发表评论</h1>
+    </header>
+    <div data-role='content' >
+        {% if result == 'failed' %}
+            请输入5个字以上！
+        {% endif %}
+        <form id='login_form' action="" data-transition="pop" method="post">
+            {% csrf_token %}
+            <label for="textarea">评论：</label>
+            <textarea cols="40" rows="8" name="comment" id="textarea" ></textarea>
+
+            <input type='submit' class='ui-btn-right' value='提交' />
+        </form>
+
+    </div>
+    <footer data-role='footer'>
+
+    </footer>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "mframe.html" %}
+
+{% block page %}
+
+
+<section data-role='page' id='id_login'>
+    <header data-role='header' data-position='fixed'>
+        {% if replyid == 0 %}
+        <a class='ui-btn-left' href='/m/topic/{{ topicid }}/1'>返回</a>
+        {% else %}
+        <a class='ui-btn-left' href='/m/topic/{{ topicid }}/{{ replyid }}'>返回</a>
+        {% endif  %}
+        <h1>评论列表</h1>
+    </header>
+    <div data-role='content' >
+        {% for comment in comments %}
+           <ul data-role='listview'>
+            <li>
+                <p style="color:blue">{{ comment.username }} ({{ comment.created_at|date:"m-d H:i" }}): </p>
+                <div style="padding: 3px 0px 5px 0px;">
+                {{ comment.content }}
+                </div>
+            </li>
+
+        </ul>
+        {% endfor %}
+    </div>
+    <footer data-role='footer' data-position="fixed" >
+         <form id='id_comment_form' action="" method="post"   data-transition="slideup"  style="padding: 5px 10px 5px 10px;margin-right: 10px;">
+            {% csrf_token %}
+            <label for="textarea" id='id_comment_message'>发布评论：</label>
+
+            <textarea cols="40" rows="1" name="comment" id="id_comment_content" ></textarea>
+
+            <input type='button'  class='ui-btn-right' data-icon='plus'  data-iconpos='left' onclick='checkCommentForm()' value='&nbsp;提&nbsp;&nbsp;交&nbsp;' />
+        </form>
+    </footer>
+    <script language="javascript">
+        function checkCommentForm(){
+            if ($('#id_comment_content').val().length<2){
+                $('#id_comment_message').html('评论内容： <font color="red">评论不能少于两个字！</font>')
+            }
+            else{
+                $('#id_comment_form').submit();
+            }
+        }
+    </script>
+</section>
+
+
+{% endblock %}

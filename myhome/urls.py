@@ -1,7 +1,9 @@
 from django.conf.urls import patterns, include, url
 from ls.feed_view import FeedView
 from ls.feed_share_view import FeedShareView
-from ls.topic_view import TopicView,Topic,TopicReplyView,TopicEditView,TopicReplyEditView,TopicReplyPageView,ProxyView
+from ls.topic_view import TopicView,Topic,TopicReplyView,TopicEditView,TopicReplyEditView,ProxyView
+from ls.m_topic_view import MTopicView,MTopicReplyPageView,MTopicComment
+from ls.bookmark_views import MBookmarkView
 from ls.category_view import CategoryView,CategoryNewTopicView
 from base.login_views import LoginView
 from ls.index_view import IndexView
@@ -41,8 +43,12 @@ urlpatterns = patterns('',
     (url(r'^cat/new_topic$',CategoryNewTopicView.as_view())),
 
     (url(r'^topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
-    (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/(?P<page>\d+)$',TopicView.as_view())),
-    (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$',TopicReplyPageView.as_view())),
+    (url(r'^m/topic/(?P<topicid>\d+)/(?P<page>\d+)$',MTopicView.as_view())),
+    (url(r'^m/my/bookmarks/(?P<page>\d+)$',MBookmarkView.as_view())),
+    (url(r'^m/comment/(?P<topicid>\d+)/(?P<replyid>\d+)$',MTopicComment.as_view())),
+    (url(r'^m/comment/(?P<topicid>\d+)$',MTopicComment.as_view())),
+
+    (url(r'^(?P<version>\w)/topic/(?P<topicid>\d+)/reply/(?P<replyid>\d+)$',MTopicReplyPageView.as_view())),
     (url(r'^(?P<version>\w)/daren/(?P<source_uid>\d+)$',TuijianViews.as_view())),
     (url(r'^proxy/(?P<tid>\d+)',ProxyView.as_view())),
 

@@ -168,3 +168,63 @@ CREATE INDEX `sync_source_author_47b71727` ON `sync_source_author` (`uid`, `site
 
 
 </code></pre>
+
+
+11.2013-07-04
+在User表添加了用户信息，另外添加了version表
+<pre><code>
+mobile` varchar(30) UNIQUE,
+    `mobile_bind` bool NOT NULL,
+    `reg_source` smallint NOT NULL,
+
+alter table `base_user` ADD  `mobile` varchar(30) UNIQUE;
+alter table `base_user` ADD  `mobile_bind` bool NOT NULL;
+alter table `base_user` ADD  `reg_source` smallint NOT NULL;
+
+CREATE TABLE `lsapp_version` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `version` varchar(30) UNIQUE not null,
+    `desc` varchar(200),
+    `created_at` timestamp NOT NULL default CURRENT_TIMESTAMP
+);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-04','add mobile and reg_source for user');
+
+
+CREATE TABLE `ls_bookmark` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    `uid` integer NOT NULL,
+    `tid` integer NOT NULL,
+    `rid` integer NOT NULL,
+    `title1` varchar(255) NOT NULL,
+    `title2` varchar(255) NOT NULL
+);
+CREATE INDEX `ls_bookmark_96511a37` ON `ls_bookmark` (`created_at`);
+CREATE INDEX `ls_bookmark_a11a40ab` ON `ls_bookmark` (`updated_at`);
+CREATE INDEX `ls_bookmark_82ae9392` ON `ls_bookmark` (`uid`);
+
+</code></pre>
+
+12. 201307107
+<pre><code>
+CREATE TABLE `ls_comment` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `status` integer NOT NULL,
+    `created_at` datetime NOT NULL,
+    `updated_at` datetime NOT NULL,
+    `uid` integer NOT NULL,
+    `username` varchar(256) NOT NULL,
+    `topicid` integer NOT NULL,
+    `replyid` integer NOT NULL,
+    `content` longtext NOT NULL,
+    `source_uid` integer NOT NULL
+)
+;
+CREATE INDEX `ls_comment_48fb58bb` ON `ls_comment` (`status`);
+CREATE INDEX `ls_comment_96511a37` ON `ls_comment` (`created_at`);
+CREATE INDEX `ls_comment_a11a40ab` ON `ls_comment` (`updated_at`);
+CREATE INDEX `ls_comment_a9db1261` ON `ls_comment` (`topicid`);
+CREATE INDEX `ls_comment_7cc7297e` ON `ls_comment` (`replyid`);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-07','add comment table');
+</code></pre>

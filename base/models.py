@@ -59,10 +59,10 @@ class UserManager(models.Manager):
         else:
             return super(UserManager,self).get(*args,**kwargs)
         
-    def create_user(self, username, email, password,nickname=None,gender=1):
+    def create_user(self, username, email, password,nickname=None,gender=1,mobile=None,reg_source=0):
         if nickname == None:
             nickname=username
-        user = User(username=username, email=email,nickname=nickname,gender=gender)
+        user = User(username=username, email=email,nickname=nickname,gender=gender,mobile=mobile,reg_source=reg_source)
         user.set_password(password)
         user.save()
         return user
@@ -80,6 +80,9 @@ class User(models.Model):
     gender = models.SmallIntegerField(_(u'性别'),choices=[(1,u"女"),(2,u"男"),(3,u'保密')],default=1)
     email = models.EmailField(_(u'邮箱地址'), unique=True)
     email_bind=models.BooleanField(_(u'邮箱绑定'),default=False)
+    mobile = models.CharField(_(u'手机号码'),max_length=30,unique=True,null=True)
+    mobile_bind=models.BooleanField(_(u'手机绑定'),default=False)
+    reg_source=models.SmallIntegerField(_(u'注册来源'),choices=[(0,u'Reg'),(1,u'Def'),(3,u'QQ'),(4,u'Sina'),(5,u'19lou')],default=0)
     avatar = models.URLField(_(u'头像'), null=True, blank=True)
     password = models.CharField(_(u'密码'), max_length=128)
     is_active = models.BooleanField(_(u'激活'), default=True,

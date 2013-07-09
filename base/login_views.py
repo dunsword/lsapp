@@ -11,6 +11,7 @@ from base.forms import LoginForm
 from base.base_view import BaseView
 
 
+
 class LoginView(BaseView):
     def get(self, request,*args, **kwargs):
         loginForm = LoginForm()

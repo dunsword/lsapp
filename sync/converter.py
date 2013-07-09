@@ -83,7 +83,7 @@ class DocumentConvert:
             doc.save()
             doc.topic.created_at=di.created_at
             doc.topic.read_count=di.view_count
-            doc.topic.content=di.content
+            #doc.topic.content=di.content
             tags=LouCategory.getCategoryByTags(di.tags)
 
             if len(tags)>0:

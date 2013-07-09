@@ -1,0 +1,61 @@
+{% extends "mframe.html" %}
+
+{% block page %}
+
+<section data-role='page' id='id_doc_main' data-dom-cache="false">
+    <header data-role='header'>
+         <a data-rel='back'>返回</a>
+        <h1>我的书签</h1>
+    </header>
+    <div data-role='content' style="padding: 0px 15px 15px 15px;">
+
+        <ul data-role='listview' id='id_catalogs'>
+
+            {% for bookmark in bookmarks %}
+
+                    <li>
+                        <a href='/m/topic/{{ bookmark.tid }}/reply/{{ bookmark.rid }}' rel='external'>
+                             <h3>{{bookmark.title1 }}</h3>
+                            <p>{{ bookmark.title2 }}</p>
+                            <p>阅读时间：{{ bookmark.updated_at|date:"Y-m-d H:i"}} </p>
+                        </a>
+                    </li>
+
+
+            {% endfor %}
+        </ul>
+    </div>
+<div data-role='navbar' >
+        <ul>
+            <li>
+                {% if pageInfo.previous %}
+                <a href='{{pageInfo.baseUrl}}{{pageInfo.previous}}' data-icon='arrow-l' class='ui-btn-left'>上页</a>
+                {% endif %}
+
+            </li>
+            <li>
+
+                 <a href='' data-icon='home'>第{{ pageInfo.page }}页</a>
+
+            </li>
+            <li>
+                {% if pageInfo.next %}
+
+					<a 	href="{{pageInfo.baseUrl}}{{pageInfo.next}}"  data-icon='arrow-r' class='ui-btn-right'>下页</a>
+                {% endif %}
+
+            </li>
+        </ul>
+
+    </div>
+    <footer data-role='footer'>
+
+    </footer>
+</section>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F61ed06e0d1504327fa7ef3da349056b5' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+{% endblock %}
