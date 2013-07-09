@@ -173,9 +173,9 @@ CREATE INDEX `sync_source_author_47b71727` ON `sync_source_author` (`uid`, `site
 11.2013-07-04
 在User表添加了用户信息，另外添加了version表
 <pre><code>
-mobile` varchar(30) UNIQUE,
-    `mobile_bind` bool NOT NULL,
-    `reg_source` smallint NOT NULL,
+alter table base_user add column `mobile` varchar(30) UNIQUE;
+alter table base_user add column `mobile_bind` bool NOT NULL;
+alter table base_user add column `reg_source` smallint NOT NULL;
 
 alter table `base_user` ADD  `mobile` varchar(30) UNIQUE;
 alter table `base_user` ADD  `mobile_bind` bool NOT NULL;
