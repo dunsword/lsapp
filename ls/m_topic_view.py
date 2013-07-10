@@ -25,7 +25,21 @@ class MTopicView(BaseTopicView):
 
     #@method_decorator(login_required)
     def get(self,request, topicid,page=1,*args, **kwargs):
+
         topicid=int(topicid)
+
+        #如果是直接进入页面，有阅读记录就跳转到上次阅读的书签
+        refer=request.META.get('HTTP_REFERER')
+        if (refer is None or refer =='') and request.user.is_active:
+            uid=request.user.id
+            try:
+                bookmark=BookMark.objects.filter(uid__exact=uid).get(tid=topicid)
+                rid=bookmark.rid
+                return HttpResponseRedirect('/m/topic/'+str(topicid)+"/reply/"+str(rid))
+            except BookMark.DoesNotExist:
+                pass #没有书签，继续
+
+
         page=int(page)
         topic=Topic.objects.get(pk=topicid)
         docForm=None
