@@ -13,13 +13,35 @@ from base.base_view import BaseView
 
 
 class LoginView(BaseView):
-    def get(self, request,*args, **kwargs):
+    def get(self, request, version='',*args, **kwargs):
+        if version=='m':
+            return self.getm(request)
         loginForm = LoginForm()
         c = RequestContext(request, {'form':loginForm})
         c.update(csrf(request))
-        tt = loader.get_template('base_login.html')
+        tt = loader.get_template(version+'base_login.html')
         return HttpResponse(tt.render(c))
-    
+
+    def getm(self,request):
+         tid=request.GET.get('tid')
+         rid=request.GET.get('rid')
+
+         if tid != None:
+            if rid is None:
+                refer='/m/topic/'+tid+'/1'
+            else:
+                refer='/m/topic/'+tid+'/reply/'+rid
+         else:
+            refer='/m/my/bookmarks/1'
+
+         if request.user.is_active:
+             return HttpResponseRedirect(refer)
+         c = RequestContext(request, {'refer':refer})
+         c.update(csrf(request))
+         tt = loader.get_template('mbase_login.html')
+         return HttpResponse(tt.render(c))
+
+
     def post(self, request,*args, **kwargs):
         loginForm=LoginForm(request.POST)
         if loginForm.is_valid():

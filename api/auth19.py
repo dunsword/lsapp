@@ -4,6 +4,8 @@ from httplib2 import Http
 import json
 from datetime import timedelta,datetime
 import random
+import logging
+log=logging.getLogger('info')
 
 def randstr():
     n=datetime.now()
@@ -51,19 +53,21 @@ class Auth():
         auth_url = u"https://www.19lou.com/oauth/token?grant_type=password&username=%s&password=%s&client_id=%s&client_secret=%s"%(username,password,self.client_id,self.client_secret)
 
 
-        json_result = self._getJsonResult(auth_url)
+        try:
+            json_result = self._getJsonResult(auth_url)
 
-        if json_result.has_key('access_token'):
-            auth_time=datetime.now()
-            expires_in=int(json_result['expires_in'])
-            expires_time=timedelta(seconds=expires_in)
-            expires=auth_time+expires_time
-            auth_result=AuthResult(access_token=json_result['access_token'],
+            if json_result.has_key('access_token'):
+                auth_time=datetime.now()
+                expires_in=int(json_result['expires_in'])
+                expires_time=timedelta(seconds=expires_in)
+                expires=auth_time+expires_time
+                auth_result=AuthResult(access_token=json_result['access_token'],
                                    refresh_token=json_result['refresh_token'],
                                    auth_time=auth_time,
                                    expires=expires)
-            return auth_result
-
+                return auth_result
+        except Exception,e:
+            log.error(e)
 
         return None
 

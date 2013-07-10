@@ -63,7 +63,11 @@ def login_action(request):
 
 def do_logout(request):
     logout(request)
-    return HttpResponseRedirect("/")
+    refer=request.GET.get('refer')
+    if refer is None:
+        return HttpResponseRedirect("/")
+    else :
+        return HttpResponseRedirect(refer)
 
 def email_bind(request):
     if request.method=="GET":

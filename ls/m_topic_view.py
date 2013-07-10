@@ -124,8 +124,6 @@ class MTopicView(BaseTopicView):
              password=password.strip()
              user = authenticate(username=username, password=password)
 
-
-
              if user is not None:
                 if user.is_active:  # 登录成功
                     loginLog=UserLoginLog()

@@ -2,9 +2,12 @@
 
 {% block page %}
 <section data-role='page' id='id_page_reply_{{ reply.id }}' reply_id='{{ reply.id }}'>
-    <header data-role='header'>
+    <header data-role='header' {% if not user.is_active %} data-position='fixed' {% endif %}>
         <a data-rel='back'>返回</a>
         <h1>{{ reply.getTopic.title }}</h1>
+        {% if not user.is_active %}
+        <a data-icon='start' href='/m/login/form?tid={{ reply.topicid }}&rid={{ reply.id }}' class="ui-btn-right">登录</a>
+        {% endif %}
     </header>
     <div data-role='content'>
         <ul data-role='listview'>
@@ -52,7 +55,8 @@
             <a data-icon='start' href='/m/comment/{{ reply.getTopic.id }}/{{ reply.id }}'  data-transition="slideup" class="ui-btn-left">评论</a>
             <a data-icon='home' href='/m/my/bookmarks/1'   data-transition="slideup"  class='ui-btn-right'>书签</a>
         {% else %}
-            <a data-icon='start' href='#id_login' class="ui-btn-left">登录</a>
+            <a data-icon='start' href='/m/login/form?tid={{ reply.topicid }}&rid={{ reply.id }}'  data-transition="slideup" class="ui-btn-left">评论</a>
+            <a data-icon='home'href='/m/login/form?tid={{ reply.topicid }}&rid={{ reply.id }}'   data-transition="slideup" class='ui-btn-right'>书签</a>
         {% endif %}
     </footer>
 
@@ -60,4 +64,5 @@
 
     </script>
 </section>
+
 {% endblock %}

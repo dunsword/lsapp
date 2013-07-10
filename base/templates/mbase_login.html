@@ -1,3 +1,6 @@
+{% extends "mframe.html" %}
+
+{% block page %}
 
 <section data-role='page' id='id_login'>
     <header data-role='header'>
@@ -14,20 +17,20 @@
             <input name='username' type='text' placeholder="请输入用户名"/>
             <input name='password' type='password' placeholder="请输入密码"/>
             <input type="hidden" name='remember' value='1'/>
-
+            <a data-icon='check' data-role="button" onclick='submit_login("{{ refer }}")'>提交</a>
         </form>
-        <a class="ui-btn" data-icon='plus'  onclick='submit_login()'>提交</a>
+
         <script language="javascript">
-            function submit_login(){
+            function submit_login(refer){
                 $('#id_message_login_failed').hide();
                 $('#id_message_login_failed').html('用户名或密码错误！');
 
                 var login_form=$('#id_login_form');
                 $.post(login_form.attr('action'),login_form.serialize()).done(function(data){
                     if(data['result']=='success'){
-                         tourl=window.location.href.split('#')[0];
-                          $.mobile.changePage(tourl,{
-                              url:tourl,
+                          //tourl=window.location.href.split('#')[0];
+                          $.mobile.changePage(refer,{
+                              url:refer,
                               reloadPage:true,
                               transition:"slide",
                               type:'get'
@@ -57,5 +60,5 @@
     <footer data-role='footer'>
 
     </footer>
-</section>
 
+{% endblock %}
