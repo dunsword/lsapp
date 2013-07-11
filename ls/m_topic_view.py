@@ -66,6 +66,8 @@ class MTopicView(BaseTopicView):
             content=re.sub('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(tid_19),
                        '&nbsp;<a href="http://mobile-proxy.weibols.com/proxy/%s">☞点击访问</a>&nbsp;'%(tid_19),content)
 
+        comments=Comment.objects.filter(topicid__exact=topicid).filter(replyid__exact=0).order_by('-created_at')[0:5]
+
         while True:
             m=PATTEN_REPLACE_19URL_AUTHOR.search(content)
             if m==None:
@@ -112,7 +114,8 @@ class MTopicView(BaseTopicView):
                              'chapters':chapters,
                              'category':cat,
                              "pageInfo":pageInfo,
-                             'topic_content':content
+                             'topic_content':content,
+                             'comments':comments
                              })
 
         tt = loader.get_template('mls_topic.html')

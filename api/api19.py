@@ -4,9 +4,11 @@ import sys,os
 from httplib2 import Http
 import json
 import time,re
-from docfetcher import DocItemDetailPage,DocItem,RelyItem
+from docfetcher import DocItemDetailPage,DocItem,RelyItem,RateItem
 import re
-from datetime import datetime
+from datetime import datetime,timedelta
+from random import randint
+
 
 
 PATTEN_FOR_ALT=re.compile('"alt=""')
@@ -141,8 +143,46 @@ class Lou19Config:
 
     httpHeaders = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
 
-class ThreadApi():
+class RateApi():
+    rate_url='http://www.19lou.com/api/thread/getThreadRateList?client_id=100&client_secret=accessTest7118jqq54113accessTest&tid=%s&pids=%s'
+    def getRate(self,fid,tid,pid,page=1):
+        api_url=self.rate_url%(str(tid),str(pid))
+        headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
+        hClient = Http()
+        resp, content = hClient.request(api_url,"GET",headers=headers)
+        try:
+            content = content.decode('gb18030').encode('utf8')
+            jsonContent = json.loads(content)
+            rate_count=jsonContent['rate_list'][str(pid)]['total_count']
+            if int(rate_count)==0:
+                return []
+            ratelist=jsonContent['rate_list'][str(pid)]['rate_list']
+            rates=[]
+            for ratelog in ratelist:
 
+                rint=randint(500,50000)
+                random_delta=timedelta(seconds=rint)
+                created_at=datetime.now()-random_delta
+                rate=RateItem(rate_id=long(ratelog['id']),
+                              pid=long(pid),
+                              tid=long(tid),
+                              fid=int(fid),
+                              uid=long(ratelog['user']['uid']),
+                              username=ratelog['user']['user_name'],
+                              content=ratelog['reason'],
+                              created_at=created_at)
+                rates.append(rate)
+            return rates
+        except Exception, e:
+            logging.error(e)
+            return None
+
+
+
+
+class ThreadApi():
+    def __init__(self):
+        self.rate_api=RateApi()
 
     prePage = 30
     def stripTags(self,html):
@@ -233,6 +273,7 @@ class ThreadApi():
             reply_uid=long(user['uid'])
             reply_user_name=user['user_name']
             reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
+            rates=self.rate_api.getRate(fid=fid,tid=tid,pid=post['pid']) #just page 1
             reply=RelyItem(rid=long(post['pid']),
                            uid=reply_uid,
                            subject=title,
@@ -242,6 +283,7 @@ class ThreadApi():
                            is_first=post['first'],
                            user_name=reply_user_name,
                            attachments=attachments)
+            reply.rates=rates
 
             results.append(reply)
 

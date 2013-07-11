@@ -2,6 +2,16 @@
 __author__ = 'paul'
 from datetime import datetime
 
+class RateItem:
+    def __init__(self,rate_id,pid,tid,fid,uid,username,content,created_at):
+        self.rate_id=rate_id
+        self.pid=pid
+        self.tid=tid
+        self.fid=fid
+        self.uid=uid
+        self.username=username
+        self.content=content
+        self.created_at=created_at
 
 class RelyItem:
     '''
@@ -18,6 +28,7 @@ class RelyItem:
         self.user_name=user_name
         self.attachments=attachments
         self.reply_url = replyUrl
+        self.rates=None
 
 class DocItem:
     '''

@@ -44,6 +44,22 @@
             {% endfor %}
         </ul>
         <p></p>
+        <ul data-role='listview'>
+            <li data-role='list-divider'>最新评论：</li>
+
+        {% for comment in comments %}
+
+            <li>
+                <p style="color:blue">{{ comment.username }} ({{ comment.created_at|date:"m-d H:i" }}): </p>
+                <div style="padding: 3px 0px 5px 0px;">
+                {{ comment.content }}
+                </div>
+            </li>
+
+
+        {% endfor %}
+         </ul>
+        <p></p>
         <a href='{{ topic.instance.getDocument.source_url }}' style="float: right">访问源网页</a>
 
 

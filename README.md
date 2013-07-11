@@ -245,3 +245,15 @@ CREATE TABLE `base_userloginlog` (
 CREATE INDEX `base_userloginlog_82ae9392` ON `base_userloginlog` (`uid`);
 insert into `lsapp_version` (`version`,`desc`) values('2013-07-09','add login log table');
 </code></pre>
+
+
+12. 201307011
+<pre><code>
+alter table `ls_comment` ADD  `source_id` bigint unique;
+alter table `ls_comment` change `uid` `uid` bigint NOT NULL;
+alter table `ls_comment` change `topicid` `topicid` bigint NOT NULL;
+alter table `ls_comment` change `replyid` `replyid` bigint NOT NULL;
+alter table `ls_comment` change `source_uid` `source_uid` bigint NOT NULL;
+CREATE INDEX `ls_comment_48fb58cc` ON `ls_comment` (`source_id`);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-11','add source rate id in comment table');
+</code></pre>

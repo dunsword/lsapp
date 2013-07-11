@@ -3,8 +3,8 @@ __author__ = 'paul'
 
 
 from api.LouDocFetcherImpl import LouDocFetcher,LouCategory
-from ls.models import Document,Topic,TopicReply
-from api.docfetcher import DocItemDetailPage,RelyItem,DocItem,SourceInfo
+from ls.models import Document,Topic,TopicReply,Comment
+from api.docfetcher import DocItemDetailPage,RelyItem,DocItem,SourceInfo,RateItem
 
 
 #TODO user get user random api
@@ -12,8 +12,45 @@ UID=777
 UNAME=u'一缕红尘'
 
 class DocumentConvert:
+    def saveRate(self,doc,reply,topicReply=None):
+        '''
+            保持指定回复的评分
+
+        :param doc: Document对象
+        :param reply: ReplyItem对象
+        :param topicReply: TopicReply对象，如果为None，Comment的rid记为0，即作为主帖的评论
+        '''
+        rid=0;
+        if topicReply is not None:
+            rid=topicReply.id
+        if reply.rates is not None:
+                rates=reply.rates
+                for rate in rates:
+                    if len(rate.content)<2:
+                        continue
+                    if rate.content == u'祝福……':
+                        continue
+                    if rate.content.__contains__(u'来自'):
+                        continue
+                    #rate=RateItem()
+                    try:
+                        comment=Comment.objects.get(source_id__exact=long(rate.rate_id))
+                    except Comment.DoesNotExist:
+
+                        comment=Comment()
+                        comment.topicid=doc.topic.id
+                        comment.replyid=rid
+                        comment.uid=0
+                        comment.source_uid=long(rate.uid)
+                        comment.username=rate.username
+                        comment.source_id=long(rate.rate_id)
+                        comment.content=rate.content
+                        comment.created_at=rate.created_at
+                        comment.save()
+
     def saveReply(self,doc,reply):
         if reply.is_first:
+            self.saveRate(doc,reply)
             return None
 
         if reply.uid==doc.source_uid:
@@ -40,9 +77,14 @@ class DocumentConvert:
                                        source_pid=reply.rid,
                                        source_url=source_url,
                                        created_at=reply.created_at)
+                self.saveRate(doc,reply,tr)
+
             if doc.source_updated_at<tr.created_at:
                 doc.source_updated_at=tr.created_at
                 doc.save()
+
+
+
         return tr
 
     def save(self,docPage,siteId=19):
@@ -85,7 +127,6 @@ class DocumentConvert:
             doc.topic.read_count=di.view_count
             #doc.topic.content=di.content
             tags=LouCategory.getCategoryByTags(di.tags)
-
             if len(tags)>0:
                 doc.topic.categoryid=tags[0]
             if len(tags)>1:
@@ -93,7 +134,6 @@ class DocumentConvert:
             if len(tags)>2:
                 doc.topic.catid2=tags[2]
             doc.topic.save()
-
         return doc
 
     def convert(self,threadPage,siteId=19):

@@ -42,7 +42,7 @@ class BaseModel(models.Model):
         self.save()
     
     def save(self, *args, **kwargs):
-        if self.id==None:
+        if self.id==None and self.created_at is None:
             self.created_at=datetime.now()
         self.updated_at=datetime.now()
         super(BaseModel,self).save(*args, **kwargs)
@@ -397,9 +397,10 @@ class TopicReply(BaseModel):
 
 
 class Comment(BaseModel):
-    uid=models.IntegerField(u'UID')
+    uid=models.BigIntegerField(u'UID')
     username=models.CharField(u'用户名',max_length=256)
-    topicid=models.IntegerField(u'TID',db_index=True)
-    replyid=models.IntegerField(u'RID',db_index=True)
+    topicid=models.BigIntegerField(u'TID',db_index=True)
+    replyid=models.BigIntegerField(u'RID',db_index=True)
     content=models.TextField(u'评论内容',max_length=20480)
-    source_uid=models.IntegerField(u'来源用户ID',default=0)
+    source_uid=models.BigIntegerField(u'来源用户ID',default=0)
+    source_id=models.BigIntegerField(u'来源评分ID',null=True,unique=True)
