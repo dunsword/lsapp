@@ -72,7 +72,7 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                    continue
                else:
                    if type=='user':
-                       logger.info(u'当前用户('+str(bid)+u')第'+str(pp)+u'页。')
+                       logger.info(u'当前达人('+str(bid)+u')第'+str(pp)+u'页。')
                    else:
                        logger.info(u'当前花坛('+str(bid)+u')第'+str(pp)+u'页。')
                    logger.info(u'开始同步文档'+str(tid)+u'，第1页同步成功。共'+ str(dp1['totalPage'])+u'页')

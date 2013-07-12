@@ -50,6 +50,7 @@ class HtSyncView(BaseView):
 
              for di in docList.doc_list:
                 docs.append({'tid':di.tid,
+                             'fid':di.fid,
                              'title':di.subject,
                              'reply_count':di.reply_count,
                              'last_reply_at':di.last_reply_at.strftime('%Y-%m-%d %H:%M:%S')})

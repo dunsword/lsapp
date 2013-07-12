@@ -125,6 +125,7 @@ class Huatan():
         threadList = []
         for item in htThreadlist:
             tid=item['thread']['tid']
+            fid=item['thread']['fid']
             reply_count=int(item['thread']['replies'])
             subject = item["subject"]
             content = item["content"]
@@ -144,6 +145,7 @@ class Huatan():
                             url=url,
                             tags='',
                             reply_count=reply_count,
+                            fid=int(fid),
                             view_count=0,created_at=created_at)
             threadList.append(docItem)
 
