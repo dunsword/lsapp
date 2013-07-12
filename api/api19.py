@@ -289,9 +289,9 @@ class ThreadApi():
                            user_name=reply_user_name,
                            attachments=attachments)
 
-            if reply.is_first:
+            if False:#reply.is_first:
                 rates=self.rate_api.getRate(fid=fid,tid=tid,pid=post['pid']) #just page 1
-            reply.rates=rates
+                reply.rates=rates
 
             results.append(reply)
 
