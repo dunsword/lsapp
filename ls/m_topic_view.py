@@ -63,8 +63,15 @@ class MTopicView(BaseTopicView):
             if m==None:
                 break
             tid_19=m.group()
+            content=re.sub('"http://www.19lou.com/forum-26-thread-%s-1-1.html"'%(tid_19),
+                           '"/proxy/%s"'%(tid_19),content)
+            content=re.sub('\'http://www.19lou.com/forum-26-thread-%s-1-1.html\''%(tid_19),
+                           '"/proxy/%s"'%(tid_19),content)
+            content=re.sub('>http://www.19lou.com/forum-26-thread-%s-1-1.html<'%(tid_19),
+                           u'>☞点击访问<',content)
             content=re.sub('http://www.19lou.com/forum-26-thread-%s-1-1.html'%(tid_19),
-                       '&nbsp;<a href="http://mobile-proxy.weibols.com/proxy/%s">☞点击访问</a>&nbsp;'%(tid_19),content)
+                           u'<a href="/proxy/%s">☞点击访问</a>'%(tid_19),content)
+                       #'&nbsp;<a href="http://mobile-proxy.weibols.com/proxy/%s">☞点击访问</a>&nbsp;'%(tid_19),content)
 
         comments=Comment.objects.filter(topicid__exact=topicid).filter(replyid__exact=0).order_by('-created_at')[0:5]
 
@@ -80,8 +87,15 @@ class MTopicView(BaseTopicView):
             except source_author.DoesNotExist:
                 pass
 
-            content=re.sub('http://www.19lou.com/user/profile-%s-1.html'%(uid19),
-                        '&nbsp;<a href="/m/daren/%s">%s</a>&nbsp;'%(uid19,user_link_name),content)
+            content=re.sub(u'"http://www.19lou.com/user/profile-%s-1.html"'%(uid19),
+                           u'"/m/daren/%s"'%(uid19),content)
+            content=re.sub(u'\'http://www.19lou.com/user/profile-%s-1.html\''%(uid19),
+                           u'"/m/daren/%s"'%(uid19),content)
+            content=re.sub(u'>http://www.19lou.com/user/profile-%s-1.html<'%(uid19),
+                           u'>☞点击访问<',content)
+            content=re.sub(u'http://www.19lou.com/user/profile-%s-1.html'%(uid19),
+                           u'<a href="/m/daren/%s">☞点击访问</a>'%(uid19),content)
+                        #'&nbsp;<a href="/m/daren/%s">%s</a>&nbsp;'%(uid19,user_link_name),content)
         while True:
             m=PATTEN_REPLACE_19URL_AUTHOR_T.search(content)
             if m==None:
@@ -94,8 +108,15 @@ class MTopicView(BaseTopicView):
             except source_author.DoesNotExist:
                 pass
 
-            content=re.sub('http://www.19lou.com/user/thread-%s-1.html'%(uid19),
-                        '&nbsp;<a href="/m/daren/%s">%s</a>&nbsp;'%(uid19,user_link_name),content)
+            content=re.sub(u'"http://www.19lou.com/user/thread-%s-1.html"'%(uid19),
+                           u'"/m/daren/%s"'%(uid19),content)
+            content=re.sub(u'\'http://www.19lou.com/user/thread-%s-1.html\''%(uid19),
+                           u'"/m/daren/%s"'%(uid19),content)
+            content=re.sub(u'>http://www.19lou.com/user/thread-%s-1.html<'%(uid19),
+                           u'>☞点击访问<',content)
+            content=re.sub(u'http://www.19lou.com/user/thread-%s-1.html'%(uid19),
+                           u'<a href="/m/daren/%s">☞点击访问</a>'%(uid19),content)
+                        #'&nbsp;<a href="/m/daren/%s">%s</a>&nbsp;'%(uid19,user_link_name),content)
 
 
         topicForm=TopicForm(instance=topic,prefix="topic")

@@ -124,6 +124,7 @@ class DocumentConvert:
             doc.source_cover_img=di.cover_img
             doc.save()
             doc.topic.created_at=di.created_at
+            doc.topic.content=di.content
             doc.topic.read_count=di.view_count
             #doc.topic.content=di.content
             tags=LouCategory.getCategoryByTags(di.tags)

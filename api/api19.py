@@ -13,6 +13,7 @@ from random import randint
 
 PATTEN_FOR_ALT=re.compile('"alt=""')
 PATTEN_FOR_ALT2=re.compile('alt=;P')
+PATTEN_FOR_ALT3=re.compile('alt=\[s[0-9]{1,5}\]>')
 from HTMLParser import HTMLParser,HTMLParseError
 class HTMLStripper(HTMLParser):
     """
@@ -44,12 +45,12 @@ class HTMLStripperExcludeBr(HTMLParser):
         elif tag=='a':
             for key,value in attrs:
                 if key=='href':
-                    self.urls.append(value)
+                    self.fed.append('<a href="'+value+'">')
     def handle_endtag(self, tag):
         if tag=='div':
             self.fed.append('\r\n')
         elif tag=='a':
-            pass
+            self.fed.append('</a>')
 
     def get_data(self):
         return ''.join(self.fed)
@@ -241,6 +242,7 @@ class ThreadApi():
             try:
                 rawMessage=PATTEN_FOR_ALT.sub('"',post["message"]) #it's ugly
                 rawMessage=PATTEN_FOR_ALT2.sub('/',rawMessage)
+                rawMessage=PATTEN_FOR_ALT3.sub('/>',rawMessage)
                 message = self.stripTagsExcludeBr(rawMessage)
             except  HTMLParseError:
                 message="错误！"
@@ -253,6 +255,9 @@ class ThreadApi():
 
                         lines = re.split(u'\n', message)
                         for line in lines:
+                            index_a=line.find('<a')
+                            if index_a>1:
+                                line=line[0,index_a]
                             if len(line)>1 and len(line.strip(' \r\n'))>1:
                                 title=line
                                 if len(title)>20:
