@@ -25,8 +25,8 @@ class StorageClient():
     def __init__(self,domain,supportedSizes=None):
         try:
             import sae.storage
-            self.storage=sae.storage
-            self.client=sae.storage.Client()
+            #self.storage=sae.storage
+            #self.client=sae.storage.Client()
         except RuntimeError, e:
             self.client=None
             self.storage=None
