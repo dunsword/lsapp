@@ -16,8 +16,8 @@ handler.setFormatter(FORMAT)
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
-host='121.199.9.13'
-
+#host='121.199.9.13'
+host='127.0.0.1:8000'
 def get_page(bid,page,type='board'):
     try:
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
@@ -66,6 +66,9 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                if sync_status==2:
                    break
                tid=int(d['tid'])
+               if int(d['fid'])!= 26:
+                   logger.info(u'文档不是26板块，不同步')
+                   continue
                dp1 = get_doc_page(tid,1)
                if dp1==None:
                    logger.error(u'同步文档'+str(tid)+u'失败:'+d['title'])

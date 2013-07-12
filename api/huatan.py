@@ -96,8 +96,8 @@ class Huatan():
             docs.append(docItem)
         si=SourceInfo(source_id=fid,source_name=forumName,source_desc='',site_id=19)
         return DocumentList(source_info=si,doc_list=docs)
-
-
+    import re
+    PATTEN_GET_FID=re.compile('(?<=http://www.19lou.com/forum-)\d+(?=-thread-)')
 
     def getThreadList(self,bid,page=1,perPage=50):
         """
@@ -125,7 +125,13 @@ class Huatan():
         threadList = []
         for item in htThreadlist:
             tid=item['thread']['tid']
-            fid=item['thread']['fid']
+
+            #get fid
+            turl=item['thread']['url']
+            if turl[:30]=='http://www.19lou.com/forum-26-':
+                fid=26
+            else:
+                fid=0
             reply_count=int(item['thread']['replies'])
             subject = item["subject"]
             content = item["content"]
