@@ -278,7 +278,7 @@ class ThreadApi():
             reply_uid=long(user['uid'])
             reply_user_name=user['user_name']
             reply_created_at=datetime.strptime(post['created_at'],'%Y-%m-%d %H:%M:%S')
-            rates=self.rate_api.getRate(fid=fid,tid=tid,pid=post['pid']) #just page 1
+
             reply=RelyItem(rid=long(post['pid']),
                            uid=reply_uid,
                            subject=title,
@@ -288,6 +288,9 @@ class ThreadApi():
                            is_first=post['first'],
                            user_name=reply_user_name,
                            attachments=attachments)
+
+            if reply.is_first:
+                rates=self.rate_api.getRate(fid=fid,tid=tid,pid=post['pid']) #just page 1
             reply.rates=rates
 
             results.append(reply)
