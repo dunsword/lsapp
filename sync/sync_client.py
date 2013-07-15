@@ -66,9 +66,11 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                if sync_status==2:
                    break
                tid=int(d['tid'])
-               if int(d['fid'])!= 26:
+               if d['fid'] is not None and int(d['fid'])!= 26: #只有按花坛同步时返回fid，其它先不过滤
                    logger.info(u'文档不是26板块，不同步')
                    continue
+
+               #获取第一页
                dp1 = get_doc_page(tid,1)
                if dp1==None:
                    logger.error(u'同步文档'+str(tid)+u'失败:'+d['title'])
@@ -93,7 +95,7 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                totalPage=int(dp1['totalPage'])
                logger.info(u'已经同步了了'+str(sync_repy_count)+u'项回复，从第'+str(start_page)+u'页开始同步！')
                for p in range(start_page,totalPage+1):
-
+                   sleep(2) #控制速度
                    if sync_status==3: #pause
                         pausing=True
                         while pausing:

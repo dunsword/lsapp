@@ -75,7 +75,11 @@ class ThreadSyncView(BaseView):
            tid=int(tid)
            dp=fecther.getDocumentPage(tid,page)
            convert=DocumentConvert()
-           totalPage=dp.docItem.reply_count/18+1
+           fid=dp.docItem.fid
+           if fid==464703: #原创，每页10个回帖
+               totalPage=dp.docItem.reply_count/10+1
+           else: #26，每页18个回帖
+                totalPage=dp.docItem.reply_count/18+1
 
            doc=convert.save(dp)
 
@@ -102,9 +106,10 @@ class ThreadSyncView(BaseView):
 
 
                is_doc=doc.topic.isDocument()
-               sync_reply_count=doc.topic.reply_count
+               sync_reply_count=doc.topic.reply_count #已经同步的帖子数
                return self._get_json_respones({'result':'success',
                                               'tid':tid,
+                                              'fid':dp.docItem.fid,
                                               "page":page,
                                               'reply_count':doc.topic.reply_count,
                                               'source_reply_count':dp.docItem.reply_count,
