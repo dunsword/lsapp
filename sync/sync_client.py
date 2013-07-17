@@ -17,7 +17,7 @@ logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
 
 #host='121.199.9.13'
-host='127.0.0.1:8000'
+host='127.0.0.1:8010'
 def get_page(bid,page,type='board'):
     try:
         headers = {"Content-type": "application/json", "Accept": "txt/plain","User-Agent": "Magic Browser"}
