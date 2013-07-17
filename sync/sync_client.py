@@ -84,7 +84,7 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                dp1 = get_doc_page(tid,1)
                fi_time=datetime.now()
                u_time=fi_time-st_time
-               logger.info(u'同步用时(秒）：'+unicode(u_time.seconds))
+               logger.info(u'同步用时(秒）：'+unicode(u_time.total_seconds()))
                if dp1==None:
                    logger.error(u'同步文档'+str(tid)+u'失败:'+d['title'])
                    continue
@@ -119,12 +119,13 @@ def getHuatan(bid,startPage,pageCount,type='board'):
                    if sync_status==4: #quit2
                         break
 
-
+                   st=datetime.now()
                    dp=get_doc_page(tid,p)
+                   fi=datetime.now()
                    if dp==None:
                       logger.error( u'同步文档'+str(tid)+u'第'+str(p)+u'页失败。')
                    else:
-                      logger.info( u'同步文档'+str(tid)+u'第'+str(p)+u'页成功。')
+                      logger.info( u'同步文档'+str(tid)+u'第'+str(p)+u'页成功。用时:'+str((fi-st).total_seconds()))
                sync_doc_count=sync_doc_count+1
                logger.info( u'成功同步了'+str(sync_doc_count)+u'个文档。')
                logger.info( u'_______________________________________')

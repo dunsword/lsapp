@@ -9,6 +9,7 @@ class BaseView(View):
         return HttpResponse(content,
                                  content_type='application/json',
                                  **httpresponse_kwargs)
+
         
 
 

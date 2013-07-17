@@ -257,3 +257,9 @@ alter table `ls_comment` change `source_uid` `source_uid` bigint NOT NULL;
 CREATE INDEX `ls_comment_48fb58cc` ON `ls_comment` (`source_id`);
 insert into `lsapp_version` (`version`,`desc`) values('2013-07-11','add source rate id in comment table');
 </code></pre>
+
+13.20130717
+<pre><code>
+CREATE INDEX `ls_topicreply_topicid_source_pid_ea` ON `ls_topicreply` (`topicid`,`source_pid`);
+insert into `lsapp_version` (`version`,`desc`) values('2013-07-17','index for ls_topicreply for performance');
+</code></pre>
