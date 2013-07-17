@@ -104,7 +104,7 @@ class User(models.Model):
     
     def save(self,*args,**kwargs):
         super(User,self).save(*args,**kwargs)
-        
+
         if User.objects.users.has_key(self.id):
             User.objects.users.pop(self.id)
     def clone(self):
