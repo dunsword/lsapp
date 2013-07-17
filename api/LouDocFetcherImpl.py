@@ -3,10 +3,16 @@ from docfetcher import DocumentFetcher
 from api19 import ThreadApi
 from huatan import Huatan
 from api19 import Lou19Category
+from datetime import datetime
+import logging
+logger=logging.getLogger('perf')
 #
 class LouDocFetcherImpl(DocumentFetcher):
     def getDocumentPage(self,tid,page=1,tags=[]):
+        st=datetime.now()
         docPage= ThreadApi().getThreadPage(tid,page,tags)
+        logger.debug(u'获取帖子'+str(tid)+u'第'+str(page)+u'页用时：'+str((datetime.now()-st).total_seconds()))
+
         docPage.docItem.siteid=19
         return docPage
 
