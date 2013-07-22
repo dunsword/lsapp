@@ -10,7 +10,7 @@
  <Title><![CDATA[{{ doc.topic.title }}]]></Title>
  <Description><![CDATA[{{ doc.topic.content|truncatechars:30 }}]]></Description>
  <PicUrl><![CDATA[{{ doc.source_cover_img }}]]></PicUrl>
- <Url><![CDATA[http://mobile-proxy.weibols.com/m/topic/{{ doc.topic.id }}/1]]></Url>
+ <Url><![CDATA[http://m.weibols.com/m/topic/{{ doc.topic.id }}/1]]></Url>
  </item>
  {% endfor %}
  </Articles>
