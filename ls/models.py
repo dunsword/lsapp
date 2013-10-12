@@ -305,7 +305,7 @@ class Category(BaseModel):
 
 class TopicReplyManager(BaseManager):
     def getChapters(self,topicid):
-        chapters=self.raw('select id,title from ls_topicreply where topicid=%s and is_chapter=true limit 1000',[topicid])
+        chapters=self.raw('select id,title from ls_topicreply where topicid=%s and is_chapter=true order by id limit 1000',[topicid])
         l=list(chapters)
         for i in range(0,len(l)):
             c=l[i]
